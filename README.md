@@ -2,7 +2,7 @@
 Application for Premier Service Software Solutions
 
 
-```markdown
+
 # Premier Service Solutions - README
 
 ## Application Requirements (Version 1.0)
