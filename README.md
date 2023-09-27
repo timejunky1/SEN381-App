@@ -64,6 +64,16 @@ Each incident must be tracked until resolution, and anomalous performance must b
 - Re-assign jobs when necessary
 - Close service requests
 ```
+#### Team Members
+- Stephanus Jacobus Mathee [578381]
+- Johan Lindeque [578382]
+- Estiaan Britz [578355]
+- Zander Rosslee [578293]
+- Comfort Sibuyi [577231]
+- Ronwynne Swanepoel [578580]
+- Mufunwa nethengwe [577182]
+
+
 ```
 
 This README provides an overview of the Premier Service Solutions application requirements for Version 1.0. It outlines the functional areas of the system, including the Call Centre, Client Maintenance, Contract Maintenance, and the Service Department. Each functional area includes specific requirements to be implemented.
