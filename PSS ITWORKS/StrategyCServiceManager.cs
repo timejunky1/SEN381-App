@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PSS_ITWORKS
+﻿namespace PSS_ITWORKS
 {
-    class StrategyCServiceManager :StrategyAManagement
+    class StrategyCServiceManager : StrategyAManagement
     {
         public override void Add()
         {

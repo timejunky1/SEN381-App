@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PSS_ITWORKS
+﻿namespace PSS_ITWORKS
 {
     public abstract class FactoryAMainFactory
     {
@@ -14,7 +8,7 @@ namespace PSS_ITWORKS
 
         {
 
-          return this.CreateIUser();
+            return this.CreateIUser();
 
 
         }
