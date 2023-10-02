@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace PSS_ITWORKS
 {
-    class Factory
+    public interface FactoryIUser
     {
+        string GetUserName();
+        //User(String username, String pasword)
+        //getAuth()String
     }
 }

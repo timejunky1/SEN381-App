@@ -46,7 +46,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Factory.cs" />
+    <Compile Include="FactoryCAdminFactory.cs" />
+    <Compile Include="FactoryCEmployeeFactory.cs" />
+    <Compile Include="FactoryCManagerFactory.cs" />
+    <Compile Include="FactoryCTechnicianFactory.cs" />
+    <Compile Include="StrategyCServiceManager.cs" />
+    <Compile Include="StrategyCClientManager.cs" />
+    <Compile Include="StrategyCContractManager.cs" />
+    <Compile Include="StrategyCUserManager.cs" />
+    <Compile Include="StrategyCCallManagement.cs" />
+    <Compile Include="FactoryAMainFactory.cs" />
+    <Compile Include="FactoryCAdminDetails.cs" />
+    <Compile Include="FactoryCEmployeeDetails.cs" />
+    <Compile Include="FactoryCManagerDetails.cs" />
+    <Compile Include="FactoryIUser.cs" />
     <Compile Include="LogIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,6 +68,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FactoryCTechnicianDetails.cs" />
+    <Compile Include="StrategyContextManage.cs" />
+    <Compile Include="StrategyAManagement.cs" />
     <EmbeddedResource Include="LogIn.resx">
       <DependentUpon>LogIn.cs</DependentUpon>
     </EmbeddedResource>
