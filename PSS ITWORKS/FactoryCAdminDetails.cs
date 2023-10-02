@@ -1,12 +1,14 @@
-﻿namespace PSS_ITWORKS
+﻿using System.Windows.Forms;
+
+namespace PSS_ITWORKS
 {
     class FactoryCAdminDetails : FactoryIUser
     {
-        public string GetUserName()
+        //User form
+        public override void ShowUserInterface()
         {
-            return "user name";
+            throw new System.NotImplementedException();
+            //Open user form
         }
-        // Opens Admin view 
-        // Gets Admin info
     }
 }

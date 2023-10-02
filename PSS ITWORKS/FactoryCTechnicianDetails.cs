@@ -2,11 +2,11 @@
 {
     class FactoryCTechnicianDetails : FactoryIUser
     {
-        public string GetUserName()
+        //User Form
+        public override void ShowUserInterface()
         {
-            return "user name";
+            throw new System.NotImplementedException();
+            //Open User Form
         }
-        // Opens Technician view 
-        // Gets Technician info
     }
 }

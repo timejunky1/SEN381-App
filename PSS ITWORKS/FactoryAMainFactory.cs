@@ -2,18 +2,10 @@
 {
     public abstract class FactoryAMainFactory
     {
-        protected abstract FactoryIUser CreateIUser();
+        //Factory class, Contains all methods associated with factories
+        protected abstract FactoryIUser CreateUser(string userType);
 
-        public FactoryIUser UserDetails()
-
-        {
-
-            return this.CreateIUser();
-
-
-        }
-
-        //This uses the interface to show the details of a specific user
+        public abstract FactoryIUser GetUserRole(string usernam, string password);
     }
 }
 

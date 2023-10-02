@@ -2,11 +2,11 @@
 {
     class FactoryCEmployeeDetails : FactoryIUser
     {
-        public string GetUserName()
+        //User Form
+        public override void ShowUserInterface()
         {
-            return "user name";
+            throw new System.NotImplementedException();
+            //Open User Form
         }
-        // Opens Employee view 
-        // Gets Employee info
     }
 }

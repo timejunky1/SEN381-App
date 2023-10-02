@@ -2,11 +2,11 @@
 {
     class FactoryCManagerDetails : FactoryIUser
     {
-        public string GetUserName()
+        //User Form
+        public override void ShowUserInterface()
         {
-            return "user name";
+            throw new System.NotImplementedException();
+            //Show User Form
         }
-        // Opens Manager view 
-        // Gets Manager info
     }
 }
