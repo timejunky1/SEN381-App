@@ -8,15 +8,6 @@
             FactoryIUser user = new FactoryCManagerDetails();
             return user;
         }
-
-        public override FactoryIUser GetUserRole(string usernam, string password)
-        {
-            //encrypt password
-            //connect to database and get user type
-            string userType = "Manager";
-            return this.CreateUser(userType);
-        }
-
         //this implements MainFactory
     }
 }

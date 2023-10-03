@@ -1,12 +1,13 @@
-﻿namespace PSS_ITWORKS
+﻿using PSS_ITWORKS.Presentation_Layer;
+
+namespace PSS_ITWORKS
 {
     class FactoryCManagerDetails : FactoryIUser
     {
-        //User Form
+        ManagerForm managerForm;
         public void ShowUserInterface()
         {
-            throw new System.NotImplementedException();
-            //Show User Form
+            managerForm.Show();
         }
     }
 }

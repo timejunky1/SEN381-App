@@ -1,12 +1,14 @@
-﻿namespace PSS_ITWORKS
+﻿using PSS_ITWORKS.Presentation_Layer;
+using System.Windows.Forms;
+
+namespace PSS_ITWORKS
 {
     class FactoryCTechnicianDetails : FactoryIUser
     {
-        //User Form
+        TechnicianForm form;
         public void ShowUserInterface()
         {
-            throw new System.NotImplementedException();
-            //Open User Form
+            form.Show();
         }
     }
 }

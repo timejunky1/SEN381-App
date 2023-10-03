@@ -1,14 +1,13 @@
 ﻿using PSS_ITWORKS.Presentation_Layer;
-using System.Windows.Forms;
 
 namespace PSS_ITWORKS
 {
-    class FactoryCAdminDetails : FactoryIUser
+    class FactoryCCallEmployeeDetails : FactoryIUser
     {
-        AdminForm adminForm;
+        CallForm form;
         public void ShowUserInterface()
         {
-            adminForm.Show();
+            form.Show();
         }
     }
 }

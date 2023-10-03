@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccessLayer\DatabaseAPI.cs" />
     <Compile Include="LogicLayer\EntityCall.cs" />
     <Compile Include="LogicLayer\EntityClient.cs" />
     <Compile Include="LogicLayer\EntityContract.cs" />
@@ -64,14 +65,38 @@
     <Compile Include="LogicLayer\StrategyCCallManagement.cs" />
     <Compile Include="LogicLayer\FactoryAMainFactory.cs" />
     <Compile Include="LogicLayer\FactoryCAdminDetails.cs" />
-    <Compile Include="LogicLayer\FactoryCEmployeeDetails.cs" />
+    <Compile Include="LogicLayer\FactoryCCallEmployeeDetails.cs" />
     <Compile Include="LogicLayer\FactoryCManagerDetails.cs" />
     <Compile Include="LogicLayer\FactoryIUser.cs" />
+    <Compile Include="Presentation Layer\AdminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Layer\AdminForm.Designer.cs">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation Layer\CallForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Layer\CallForm.Designer.cs">
+      <DependentUpon>CallForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation Layer\LogIn.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentation Layer\LogIn.Designer.cs">
       <DependentUpon>LogIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation Layer\ManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Layer\ManagerForm.Designer.cs">
+      <DependentUpon>ManagerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation Layer\TechnicianForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Layer\TechnicianForm.Designer.cs">
+      <DependentUpon>TechnicianForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,8 +128,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DataAccessLayer\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
