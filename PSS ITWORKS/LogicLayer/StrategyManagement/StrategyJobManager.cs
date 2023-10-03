@@ -9,10 +9,6 @@ namespace PSS_ITWORKS.LogicLayer
     class StrategyJobManager : IStrategyManagement
     {
 
-        // connect to api ?
-        // void connectDB(); ?
-
-
 
         public void Get()
         {

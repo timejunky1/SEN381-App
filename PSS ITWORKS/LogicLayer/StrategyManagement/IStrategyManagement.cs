@@ -2,7 +2,14 @@
 {
     internal interface StrategyAManagement
     {
-       void Get()
+
+
+
+        // connect to api ?
+        // void connectDB(); ?
+
+
+        void Get()
         {
             // get something
         }

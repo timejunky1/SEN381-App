@@ -27,6 +27,18 @@ namespace PSS_ITWORKS
             }
         }
 
+
+
+        void SetConnection(string conString)
+        {
+            // set connection
+        }
+
+        void SetEntity(string entity)
+        {
+            // set entity
+        }
+
         
         //store private variables here and use methods here to add update delete etc
 
