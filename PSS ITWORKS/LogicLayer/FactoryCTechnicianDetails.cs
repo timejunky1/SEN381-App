@@ -1,12 +1,12 @@
 ﻿namespace PSS_ITWORKS
 {
-    class FactoryCManagerDetails : FactoryIUser
+    class FactoryCTechnicianDetails : FactoryIUser
     {
         //User Form
-        public override void ShowUserInterface()
+        public void ShowUserInterface()
         {
             throw new System.NotImplementedException();
-            //Show User Form
+            //Open User Form
         }
     }
 }

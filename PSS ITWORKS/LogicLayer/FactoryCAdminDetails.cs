@@ -5,7 +5,7 @@ namespace PSS_ITWORKS
     class FactoryCAdminDetails : FactoryIUser
     {
         //User form
-        public override void ShowUserInterface()
+        public void ShowUserInterface()
         {
             throw new System.NotImplementedException();
             //Open user form

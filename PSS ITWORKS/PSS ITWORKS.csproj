@@ -46,16 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccessLayer\FactoryUserFactory.cs" />
-    <Compile Include="DataAccessLayer\StrategyCServiceManager.cs" />
-    <Compile Include="DataAccessLayer\StrategyCClientManager.cs" />
-    <Compile Include="DataAccessLayer\StrategyCContractManager.cs" />
-    <Compile Include="DataAccessLayer\StrategyCUserManager.cs" />
-    <Compile Include="DataAccessLayer\StrategyCCallManagement.cs" />
+    <Compile Include="LogicLayer\EntityCall.cs" />
+    <Compile Include="LogicLayer\EntityClient.cs" />
+    <Compile Include="LogicLayer\EntityContract.cs" />
+    <Compile Include="LogicLayer\EntityJob.cs" />
+    <Compile Include="LogicLayer\EntityService.cs" />
+    <Compile Include="LogicLayer\FactoryUserFactory.cs" />
+    <Compile Include="LogicLayer\IEntity.cs" />
+    <Compile Include="LogicLayer\LoginController.cs" />
+    <Compile Include="LogicLayer\Scheduler.cs" />
+    <Compile Include="LogicLayer\ServiceRequest.cs" />
+    <Compile Include="LogicLayer\StrategyCJobManager.cs" />
+    <Compile Include="LogicLayer\StrategyCServiceManager.cs" />
+    <Compile Include="LogicLayer\StrategyCClientManager.cs" />
+    <Compile Include="LogicLayer\StrategyCContractManager.cs" />
+    <Compile Include="LogicLayer\StrategyCUserManager.cs" />
+    <Compile Include="LogicLayer\StrategyCCallManagement.cs" />
     <Compile Include="LogicLayer\FactoryAMainFactory.cs" />
-    <Compile Include="DataAccessLayer\FactoryCAdminDetails.cs" />
-    <Compile Include="DataAccessLayer\FactoryCEmployeeDetails.cs" />
-    <Compile Include="DataAccessLayer\FactoryCManagerDetails.cs" />
+    <Compile Include="LogicLayer\FactoryCAdminDetails.cs" />
+    <Compile Include="LogicLayer\FactoryCEmployeeDetails.cs" />
+    <Compile Include="LogicLayer\FactoryCManagerDetails.cs" />
     <Compile Include="LogicLayer\FactoryIUser.cs" />
     <Compile Include="Presentation Layer\LogIn.cs">
       <SubType>Form</SubType>
@@ -65,7 +75,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DataAccessLayer\FactoryCTechnicianDetails.cs" />
+    <Compile Include="LogicLayer\FactoryCTechnicianDetails.cs" />
     <Compile Include="LogicLayer\StrategyContextManager.cs" />
     <Compile Include="LogicLayer\StrategyAManagement.cs" />
     <EmbeddedResource Include="Presentation Layer\LogIn.resx">
@@ -93,6 +103,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="DataAccessLayer\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
