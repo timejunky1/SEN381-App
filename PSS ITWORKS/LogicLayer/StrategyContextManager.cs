@@ -4,16 +4,21 @@ namespace PSS_ITWORKS
 {
     class StrategyContextManager
     {
-        private StrategyAManagement stratagy;
+        private readonly StrategyAManagement _strategy;
+
+        public StrategyContextManager(StrategyAManagement strategy)
+        {
+            _strategy = strategy;
+        }
         public void ExecuteStrategy(string action)
         {
             switch (action.ToLower())
             {
                 case "add":
-                    stratagy.Add();
+                    _strategy.Add();
                     break;
                 case "sort":
-                    stratagy.Sort();
+                    _strategy.Sort();
                     break;
                 default:
                     MessageBox.Show("No action");
@@ -22,10 +27,7 @@ namespace PSS_ITWORKS
             }
         }
 
-        public void SetStratagy(StrategyAManagement strategy)
-        {
-            this.stratagy = strategy;
-        }
+        
         //store private variables here and use methods here to add update delete etc
 
     }

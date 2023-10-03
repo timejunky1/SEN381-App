@@ -8,5 +8,6 @@ namespace PSS_ITWORKS.LogicLayer
 {
     interface IEntity
     {
+
     }
 }
