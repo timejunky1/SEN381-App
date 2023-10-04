@@ -10,7 +10,7 @@ namespace PSS_ITWORKS
             messageBox.Show("Get something");
         }
 
-        public void Create()
+        public void Create(IEntity entity)
         {
             // create something
             messageBox.Show("Create something");
@@ -22,7 +22,7 @@ namespace PSS_ITWORKS
             messageBox.Show("Delete something");
         }
 
-        public void Update()
+        public void Update(IEntity entity)
         {
             // update something
             messageBox.Show("Update something");
