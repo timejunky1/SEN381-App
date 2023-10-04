@@ -14,11 +14,20 @@ namespace PSS_ITWORKS
         {
             switch (action.ToLower())
             {
-                case "add":
-                    _strategy.Add();
+                case "get":
+                    _strategy.Get();
                     break;
-                case "sort":
-                    _strategy.Sort();
+                case "create":
+                    _strategy.Create(IEntity entity);
+                    break;
+                case "delete":
+                    _strategy.Delete(int id);
+                    break;
+                case "update":
+                    _strategy.Update(IEntity entity);
+                    break;
+                case "connect":
+                    _strategy.Connect(string someString);
                     break;
                 default:
                     MessageBox.Show("No action");

@@ -14,7 +14,7 @@
             // get something
         }
 
-        void Create()
+        void Create(IEntity entity)
         {
             // create something
         }
@@ -24,7 +24,7 @@
             // delete something
         }
 
-        void Update()
+        void Update(IEntity entity)
         {
             // update something
         }
