@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace PSS_ITWORKS.LogicLayer
 {
-    interface IEntity
+    public interface IEntity
     {
         void Get();
         void Set();

@@ -9,10 +9,10 @@ namespace PSS_ITWORKS.LogicLayer
 {
     class Scheduler
     {
-        private List<Job> jobs;
+        private List<EntityJob> jobs;
 
 
-        public bool addJob(Job job)
+        public bool addJob(EntityJob job)
         {
             if (jobs.Contains(job))
             {

@@ -47,27 +47,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccessLayer\DatabaseAPI.cs" />
-    <Compile Include="LogicLayer\EntityCall.cs" />
-    <Compile Include="LogicLayer\EntityClient.cs" />
-    <Compile Include="LogicLayer\EntityContract.cs" />
-    <Compile Include="LogicLayer\EntityJob.cs" />
-    <Compile Include="LogicLayer\EntityService.cs" />
-    <Compile Include="LogicLayer\FactoryUserFactory.cs" />
-    <Compile Include="LogicLayer\IEntity.cs" />
+    <Compile Include="LogicLayer\EntityMethod\EntityCall.cs" />
+    <Compile Include="LogicLayer\EntityMethod\EntityClient.cs" />
+    <Compile Include="LogicLayer\EntityMethod\EntityContract.cs" />
+    <Compile Include="LogicLayer\EntityMethod\EntityJob.cs" />
+    <Compile Include="LogicLayer\EntityMethod\EntityService.cs" />
+    <Compile Include="LogicLayer\FactoryMethod\FactoryUserFactory.cs" />
+    <Compile Include="LogicLayer\EntityMethod\IEntity.cs" />
+    <Compile Include="LogicLayer\StrategyMethod\IStrategyManagement.cs" />
     <Compile Include="LogicLayer\LoginController.cs" />
     <Compile Include="LogicLayer\Scheduler.cs" />
     <Compile Include="LogicLayer\ServiceRequest.cs" />
-    <Compile Include="LogicLayer\StrategyCJobManager.cs" />
-    <Compile Include="LogicLayer\StrategyCServiceManager.cs" />
-    <Compile Include="LogicLayer\StrategyCClientManager.cs" />
-    <Compile Include="LogicLayer\StrategyCContractManager.cs" />
-    <Compile Include="LogicLayer\StrategyCUserManager.cs" />
-    <Compile Include="LogicLayer\StrategyCCallManagement.cs" />
-    <Compile Include="LogicLayer\FactoryAMainFactory.cs" />
-    <Compile Include="LogicLayer\FactoryCAdminDetails.cs" />
-    <Compile Include="LogicLayer\FactoryCCallEmployeeDetails.cs" />
-    <Compile Include="LogicLayer\FactoryCManagerDetails.cs" />
-    <Compile Include="LogicLayer\FactoryIUser.cs" />
+    <Compile Include="LogicLayer\FactoryMethod\FactoryAMainFactory.cs" />
+    <Compile Include="LogicLayer\FactoryMethod\FactoryCAdminDetails.cs" />
+    <Compile Include="LogicLayer\FactoryMethod\FactoryCCallEmployeeDetails.cs" />
+    <Compile Include="LogicLayer\FactoryMethod\FactoryCManagerDetails.cs" />
+    <Compile Include="LogicLayer\FactoryMethod\FactoryIUser.cs" />
+    <Compile Include="LogicLayer\StrategyMethod\StrategyCallManagement.cs" />
+    <Compile Include="LogicLayer\StrategyMethod\StrategyClientManager.cs" />
+    <Compile Include="LogicLayer\StrategyMethod\StrategyContextManager.cs" />
+    <Compile Include="LogicLayer\StrategyMethod\StrategyContractManager.cs" />
+    <Compile Include="LogicLayer\StrategyMethod\StrategyJobManager.cs" />
+    <Compile Include="LogicLayer\StrategyMethod\StrategyServiceManager.cs" />
+    <Compile Include="LogicLayer\StrategyMethod\StrategyUserManager.cs" />
     <Compile Include="Presentation Layer\AdminForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,9 +102,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LogicLayer\FactoryCTechnicianDetails.cs" />
-    <Compile Include="LogicLayer\StrategyContextManager.cs" />
-    <Compile Include="LogicLayer\StrategyAManagement.cs" />
+    <Compile Include="LogicLayer\FactoryMethod\FactoryCTechnicianDetails.cs" />
     <EmbeddedResource Include="Presentation Layer\LogIn.resx">
       <DependentUpon>LogIn.cs</DependentUpon>
     </EmbeddedResource>

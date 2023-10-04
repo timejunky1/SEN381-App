@@ -8,11 +8,11 @@ namespace PSS_ITWORKS.LogicLayer
 {
     class ServiceRequest
     {
-        private intiger callEmpId;
-        private intiger serviceEmpId;
+        private int callEmpId;
+        private int serviceEmpId;
 
 
-        public ServiceRequest(intiger callEmpId, intiger serviceEmpId)
+        public ServiceRequest(int callEmpId, int serviceEmpId)
         {
             this.callEmpId = callEmpId;
             this.serviceEmpId = serviceEmpId;
