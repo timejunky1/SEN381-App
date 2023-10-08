@@ -1,4 +1,6 @@
-﻿using PSS_ITWORKS.LogicLayer;
+﻿// StrategyContextManager.cs
+using PSS_ITWORKS.LogicLayer;
+using System;
 using System.Windows.Forms;
 
 namespace PSS_ITWORKS
@@ -10,13 +12,14 @@ namespace PSS_ITWORKS
         private readonly int id;
         private readonly string connectionString;
 
-       
-        
         public StrategyContextManager(IStrategyAManagement strategy)
         {
             _strategy = strategy;
         }
 
+        public StrategyContextManager()
+        {
+        }
 
         public void ExecuteStrategy(string action)
         {
@@ -40,11 +43,8 @@ namespace PSS_ITWORKS
                 default:
                     MessageBox.Show("No action");
                     break;
-
             }
         }
-
-
 
         void SetConnection(string conString)
         {
@@ -55,12 +55,39 @@ namespace PSS_ITWORKS
         {
             // set entity
         }
+
         void setId()
         {
             // set the id which will be used
         }
 
-        //store private variables here and use methods here to add update delete etc
-
+        public void ExecuteStrategyByUserRole(string userRole)
+        {
+            switch (userRole.ToLower())
+            {
+                case "jobmanager":
+                    _strategy.Get();
+                    _strategy.Create(entity);
+                    break;
+                case "servicemanager":
+                    // Execute the strategy for ServiceManager
+                    break;
+                case "clientmanager":
+                    // Execute the strategy for ClientManager
+                    break;
+                case "contractmanager":
+                    // Execute the strategy for ContractManager
+                    break;
+                case "usermanager":
+                    // Execute the strategy for UserManager
+                    break;
+                case "callmanager":
+                    // Execute the strategy for CallManager
+                    break;
+                default:
+                    MessageBox.Show("Invalid user role");
+                    break;
+            }
+        }
     }
 }

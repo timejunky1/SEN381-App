@@ -1,16 +1,12 @@
-﻿using System;
-using System.CodeDom;
+﻿// Scheduler.cs
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PSS_ITWORKS.LogicLayer
 {
     class Scheduler
     {
         private List<EntityJob> jobs;
-
 
         public bool addJob(EntityJob job)
         {
@@ -27,12 +23,7 @@ namespace PSS_ITWORKS.LogicLayer
 
         public string GetSchedule()
         {
-            // return jobs for day in list
             return "";
-
         }
-        
-      
-    
     }
 }

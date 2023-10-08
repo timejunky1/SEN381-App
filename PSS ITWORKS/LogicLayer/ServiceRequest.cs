@@ -1,21 +1,29 @@
-﻿using System;
+﻿// ServiceRequest.cs
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PSS_ITWORKS.LogicLayer
 {
     class ServiceRequest
     {
-        private int callEmpId;
-        private int serviceEmpId;
+        private List<EntityJob> jobs;
 
-
-        public ServiceRequest(int callEmpId, int serviceEmpId)
+        public bool addJob(EntityJob job)
         {
-            this.callEmpId = callEmpId;
-            this.serviceEmpId = serviceEmpId;
+            if (jobs.Contains(job))
+            {
+                return false;
+            }
+            else
+            {
+                jobs.Add(job);
+                return true;
+            }
+        }
+
+        public string GetSchedule()
+        {
+            return "";
         }
     }
 }

@@ -1,43 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// StrategyJobManager.cs
+using PSS_ITWORKS.LogicLayer;
+using System.Windows.Forms;
 
-namespace PSS_ITWORKS.LogicLayer
+namespace PSS_ITWORKS
 {
     class StrategyJobManager : IStrategyAManagement
     {
-
-
         public void Get()
         {
-            // get something
-            messageBox.Show("Get something");
+            MessageBox.Show("Get something");
         }
 
         public void Create(IEntity entity)
         {
-            // create something
-            messageBox.Show("Create something");
+            MessageBox.Show("Create something");
         }
 
         public void Delete(int ID)
         {
-            // delete something
-            messageBox.Show("Delete something");
+            MessageBox.Show("Delete something");
         }
 
         public void Update(IEntity entity)
         {
-            // update something
-            messageBox.Show("Update something");
+            MessageBox.Show("Update something");
         }
 
         public void Connect(string myString)
         {
-            // connect to something
-            messageBox.Show("Connect to or soemthing");
+            MessageBox.Show("Connect to or something");
         }
     }
 }

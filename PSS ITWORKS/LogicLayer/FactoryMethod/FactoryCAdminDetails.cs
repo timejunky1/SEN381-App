@@ -1,4 +1,5 @@
-﻿using PSS_ITWORKS.Presentation_Layer;
+﻿// FactoryCAdminDetails.cs
+using PSS_ITWORKS.Presentation_Layer;
 using System.Windows.Forms;
 
 namespace PSS_ITWORKS

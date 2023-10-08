@@ -1,4 +1,5 @@
-﻿using PSS_ITWORKS.Presentation_Layer;
+﻿// FactoryCManagerDetails.cs
+using PSS_ITWORKS.Presentation_Layer;
 
 namespace PSS_ITWORKS
 {

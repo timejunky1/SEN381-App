@@ -1,4 +1,5 @@
-﻿namespace PSS_ITWORKS
+﻿// FactoryIUser.cs
+namespace PSS_ITWORKS
 {
     public interface FactoryIUser
     {

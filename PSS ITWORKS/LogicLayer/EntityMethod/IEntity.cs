@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// IEntity.cs
 using System.Windows.Forms;
 
 namespace PSS_ITWORKS.LogicLayer
@@ -11,6 +7,5 @@ namespace PSS_ITWORKS.LogicLayer
     {
         void Get();
         void Set();
-
     }
 }

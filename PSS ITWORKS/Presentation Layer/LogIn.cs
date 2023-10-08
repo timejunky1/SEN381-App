@@ -16,15 +16,30 @@ namespace PSS_ITWORKS
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Login_btn_Click(object sender, EventArgs e)
         {
-            //FactoryUserFactory uf = new FactoryUserFactory();
-            //FactoryIUser user = uf.GetUserRole("Billabong", "password");
-            //this.Hide();
-            //user.ShowUserInterface();
+            // Get the username and password from the textboxes
+            string username = UserName_txt.Text;
+            string password = Password_txt.Text;
 
-            context.SetStratagy(new StrategyCServiceManager());
-            context.ExecuteStrategy("add");
+            // Initialize the LoginController (you should have this class)
+            LoginController loginController = new LoginController();
+
+            // Authenticate the user
+            FactoryIUser user = loginController.Login(username, password);
+
+            if (user != null)
+            {
+                // Authentication successful, now you have the user instance with the associated role
+                // Redirect to the appropriate user interface based on the role
+                user.ShowUserInterface();
+            }
+            else
+            {
+                // Authentication failed, show an error message or take appropriate action
+                MessageBox.Show("Authentication failed. Please check your credentials.");
+            }
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -35,6 +50,16 @@ namespace PSS_ITWORKS
         private void button3_Click(object sender, EventArgs e)
         {
             context.ExecuteStrategy("webjfveaj");
+        }
+
+        private void UserName_txt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Password_txt_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
