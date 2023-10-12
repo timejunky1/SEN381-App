@@ -142,7 +142,6 @@
             // 
             this.Logo_img.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Logo_img.BackgroundImage")));
             this.Logo_img.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Logo_img.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Logo_img.Location = new System.Drawing.Point(12, 9);
             this.Logo_img.Name = "Logo_img";
             this.Logo_img.Size = new System.Drawing.Size(76, 61);
@@ -153,7 +152,6 @@
             // 
             this.Login_img.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Login_img.BackgroundImage")));
             this.Login_img.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Login_img.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Login_img.Location = new System.Drawing.Point(24, 90);
             this.Login_img.Name = "Login_img";
             this.Login_img.Size = new System.Drawing.Size(359, 336);
@@ -177,6 +175,7 @@
             this.Controls.Add(this.Exit_btn);
             this.Controls.Add(this.Login_btn);
             this.Name = "LogIn";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).EndInit();
