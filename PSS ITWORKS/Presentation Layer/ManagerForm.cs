@@ -16,5 +16,10 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             InitializeComponent();
         }
+
+        private void ManagerForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

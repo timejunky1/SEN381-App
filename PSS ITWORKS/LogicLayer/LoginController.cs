@@ -1,78 +1,164 @@
-﻿using System;
+﻿using PSS_ITWORKS;
+using System;
+using System.Data;
 using System.Data.SqlClient;
-using PSS_ITWORKS.LogicLayer;
 
-namespace PSS_ITWORKS
+public class LoginController
 {
-    class LoginController
+    private string connectionString = @"Data Source=DESKTOP-TBBSO02\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True";
+
+    public bool AuthenticateUser(string username, string password)
     {
-        private readonly string connectionString = "your_connection_string_here";
-
-        public FactoryIUser Login(string Username, string Password)
+        using (SqlConnection connection = new SqlConnection(connectionString))
         {
-            // Initialize a user instance (FactoryIUser) to return
-            FactoryIUser user = null;
+            connection.Open();
 
-            // Hash the provided password for security (You should use a proper password hashing library)
-            string hashedPassword = HashPassword(Password);
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand("sp_AuthenticateUser", connection))
             {
-                connection.Open();
+                command.CommandType = CommandType.StoredProcedure;
 
-                // Query the database to check the credentials and retrieve the user's role
-                SqlCommand command = new SqlCommand("SELECT Role FROM EmployeeTable WHERE username = @Username AND Password = @Password", connection);
-                command.Parameters.AddWithValue("@Username", Username);
-                command.Parameters.AddWithValue("@Password", hashedPassword);
+                // Set the parameters for the stored procedure
+                command.Parameters.AddWithValue("@Username", username);
+                command.Parameters.AddWithValue("@PasswordHash", HashPassword(password));
 
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
+                // Output parameter to capture the result
+                var result = new SqlParameter
                 {
-                    // Authentication successful, retrieve the user's role
-                    string role = reader["Role"].ToString();
-                    user = CreateUserBasedOnRole(role);
-                }
+                    ParameterName = "@Result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
 
-                reader.Close();
+                command.Parameters.Add(result);
+
+                // Execute the stored procedure
+                command.ExecuteNonQuery();
+
+                // Check the result to authenticate the user
+                int authenticationResult = Convert.ToInt32(result.Value);
+
+                return authenticationResult == 1;
             }
-
-            return user;
         }
+    }
 
-        private string HashPassword(string password)
+    public string GetUserRole(string username)
+    {
+        using (SqlConnection connection = new SqlConnection(connectionString))
         {
-            // Generate a salt and hash the password with BCrypt
-            string salt = BCrypt.Net.BCrypt.GenerateSalt(12); // 12 is the work factor (adjust as needed)
-            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
-            return hashedPassword;
-        }
+            connection.Open();
 
-        private FactoryIUser CreateUserBasedOnRole(string role)
-        {
-            // Create a user instance (FactoryIUser) based on the role
-            FactoryIUser user = null;
-
-            switch (role.ToLower())
+            using (SqlCommand command = new SqlCommand("sp_GetUserRole", connection))
             {
-                case "admin":
-                    user = new FactoryCAdminDetails();
-                    break;
-                case "callmanager":
-                    user = new FactoryCCallEmployeeDetails();
-                    break;
-                case "manager":
-                    user = new FactoryCManagerDetails();
-                    break;
-                case "technician":
-                    user = new FactoryCTechnicianDetails();
-                    break;
-                default:
-                    // Handle unknown or invalid roles
-                    break;
-            }
+                command.CommandType = CommandType.StoredProcedure;
 
-            return user;
+                // Set the parameters for the stored procedure
+                command.Parameters.AddWithValue("@Username", username);
+
+                // Output parameter to capture the user's role
+                var roleParam = new SqlParameter
+                {
+                    ParameterName = "@Role",
+                    SqlDbType = SqlDbType.VarChar,
+                    Size = 30,
+                    Direction = ParameterDirection.Output
+                };
+
+                command.Parameters.Add(roleParam);
+
+                // Execute the stored procedure
+                command.ExecuteNonQuery();
+
+                // Retrieve the role from the output parameter
+                string role = roleParam.Value.ToString();
+
+                return role;
+            }
         }
+    }
+    private void RecordLoginTime(int employeeID)
+    {
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+
+            SqlCommand command = new SqlCommand("RecordLoginTime", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@EmployeeID", employeeID);
+
+            command.ExecuteNonQuery();
+        }
+    }
+
+    public string FetchNameAndSurname(string username)
+    {
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+
+            using (SqlCommand command = new SqlCommand("sp_FetchNameAndSurname", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+
+                // Set the parameters for the stored procedure
+                command.Parameters.AddWithValue("@Username", username);
+
+                // Output parameters to capture the name and surname
+                var nameParam = new SqlParameter
+                {
+                    ParameterName = "@Name",
+                    SqlDbType = SqlDbType.VarChar,
+                    Size = 50,
+                    Direction = ParameterDirection.Output
+                };
+
+                var surnameParam = new SqlParameter
+                {
+                    ParameterName = "@Surname",
+                    SqlDbType = SqlDbType.VarChar,
+                    Size = 50,
+                    Direction = ParameterDirection.Output
+                };
+
+                command.Parameters.Add(nameParam);
+                command.Parameters.Add(surnameParam);
+
+                // Execute the stored procedure
+                command.ExecuteNonQuery();
+
+                // Retrieve the name and surname from the output parameters
+                string name = nameParam.Value.ToString();
+                string surname = surnameParam.Value.ToString();
+
+                return $"{name} {surname}";
+            }
+        }
+    }
+
+    private FactoryIUser CreateUserBasedOnRole(string role)
+    {
+        switch (role)
+        {
+            case "Admin":
+                return new FactoryCAdminDetails();
+            case "Call Employee":
+                return new FactoryCCallEmployeeDetails();
+            case "Manager":
+                return new FactoryCManagerDetails();
+            case "Technician":
+                return new FactoryCTechnicianDetails();
+            default:
+                throw new Exception("Invalid user role.");
+        }
+    }
+
+    private string HashPassword(string password)
+    {
+        // Implement password hashing logic here (e.g., SHA-256)
+        // Return the hashed password
+       // string salt = BCrypt.Net.BCrypt.GenerateSalt(12); // 12 is the work factor (adjust as needed)
+        //string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
+        string hashedPassword = password;
+        return hashedPassword;
     }
 }

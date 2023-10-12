@@ -35,6 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.UserName_txt = new System.Windows.Forms.TextBox();
             this.Password_txt = new System.Windows.Forms.TextBox();
+            this.WelcomeLabel_txt = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Login_btn
@@ -101,11 +102,22 @@
             this.Password_txt.TabIndex = 6;
             this.Password_txt.TextChanged += new System.EventHandler(this.Password_txt_TextChanged);
             // 
+            // WelcomeLabel_txt
+            // 
+            this.WelcomeLabel_txt.AutoSize = true;
+            this.WelcomeLabel_txt.Location = new System.Drawing.Point(278, 25);
+            this.WelcomeLabel_txt.Name = "WelcomeLabel_txt";
+            this.WelcomeLabel_txt.Size = new System.Drawing.Size(35, 13);
+            this.WelcomeLabel_txt.TabIndex = 7;
+            this.WelcomeLabel_txt.Text = "label3";
+            this.WelcomeLabel_txt.Click += new System.EventHandler(this.WelcomeLabel_txt_Click);
+            // 
             // LogIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.WelcomeLabel_txt);
             this.Controls.Add(this.Password_txt);
             this.Controls.Add(this.UserName_txt);
             this.Controls.Add(this.label2);
@@ -130,6 +142,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox UserName_txt;
         private System.Windows.Forms.TextBox Password_txt;
+        private System.Windows.Forms.Label WelcomeLabel_txt;
     }
 }
 
