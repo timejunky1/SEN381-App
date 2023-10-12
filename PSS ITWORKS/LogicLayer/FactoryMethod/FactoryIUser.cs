@@ -1,8 +1,7 @@
-﻿// FactoryIUser.cs
-namespace PSS_ITWORKS
+﻿namespace PSS_ITWORKS
 {
     public interface FactoryIUser
     {
-        void ShowUserInterface();
+        void ShowUserInterface(LogIn loginForm);
     }
 }

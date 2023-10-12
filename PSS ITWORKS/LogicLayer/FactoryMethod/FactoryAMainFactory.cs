@@ -1,8 +1,7 @@
-﻿// FactoryAMainFactory.cs
-namespace PSS_ITWORKS
+﻿namespace PSS_ITWORKS
 {
     public abstract class FactoryAMainFactory
     {
-        protected abstract FactoryIUser CreateUser(string userType);
+        protected internal abstract FactoryIUser CreateUser(string userType);
     }
 }

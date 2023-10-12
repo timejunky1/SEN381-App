@@ -13,7 +13,11 @@ namespace PSS_ITWORKS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LogIn());
+            LogIn loginForm = new LogIn();
+            loginForm.Show();
+            Application.Run();
+            
+            
         }
     }
 }

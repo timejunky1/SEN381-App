@@ -6,7 +6,7 @@ namespace PSS_ITWORKS
     class FactoryCCallEmployeeDetails : FactoryIUser
     {
         CallForm form;
-        public void ShowUserInterface()
+        public void ShowUserInterface(LogIn loginForm)
         {
             form.Show();
         }

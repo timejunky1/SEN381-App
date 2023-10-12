@@ -5,10 +5,12 @@ namespace PSS_ITWORKS
 {
     public partial class LogIn : Form
     {
-        StrategyContextManager context = new StrategyContextManager();
+        
+        private LoginController loginController;
         public LogIn()
         {
             InitializeComponent();
+            loginController = new LoginController();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -18,38 +20,57 @@ namespace PSS_ITWORKS
 
         private void Login_btn_Click(object sender, EventArgs e)
         {
-            // Get the username and password from the textboxes
             string username = UserName_txt.Text;
             string password = Password_txt.Text;
 
-            // Initialize the LoginController (you should have this class)
-            LoginController loginController = new LoginController();
-
-            // Authenticate the user
-            FactoryIUser user = loginController.Login(username, password);
-
-            if (user != null)
+            // Check if username and password are not empty
+            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
             {
-                // Authentication successful, now you have the user instance with the associated role
-                // Redirect to the appropriate user interface based on the role
-                user.ShowUserInterface();
+                // Authenticate the user using the LoginController
+                bool isAuthenticated = loginController.AuthenticateUser(username, password);
+
+                if (isAuthenticated)
+                {
+                    // User is authenticated, you can proceed to fetch name and surname and role
+                    string name = loginController.FetchNameAndSurname(username);
+                    string role = loginController.GetUserRole(username);
+
+
+                    // Open the correct portal based on the user's role using a Factory
+                    FactoryAMainFactory factory = new FactoryUserFactory();
+                    FactoryIUser userPortal = factory.CreateUser(role);
+                    userPortal.ShowUserInterface(this);
+
+                    // Display a welcome message
+                    WelcomeLabel_txt.Text = $"Welcome, {name}";
+
+                    
+
+                    // Close the login form
+                    //this.Close();
+                }
+                else
+                {
+                    // Authentication failed
+                    MessageBox.Show("Invalid username or password. Please try again.");
+                }
             }
             else
             {
-                // Authentication failed, show an error message or take appropriate action
-                MessageBox.Show("Authentication failed. Please check your credentials.");
+                // Username or password is empty
+                MessageBox.Show("Username and password are required.");
             }
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            context.ExecuteStrategy("sort");
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            context.ExecuteStrategy("webjfveaj");
+            
         }
 
         private void UserName_txt_TextChanged(object sender, EventArgs e)
@@ -58,6 +79,11 @@ namespace PSS_ITWORKS
         }
 
         private void Password_txt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void WelcomeLabel_txt_Click(object sender, EventArgs e)
         {
 
         }
