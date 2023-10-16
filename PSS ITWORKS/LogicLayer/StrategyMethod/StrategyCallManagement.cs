@@ -6,6 +6,7 @@ namespace PSS_ITWORKS
 {
     public class StrategyCallManagement : IStrategyAManagement
     {
+        DatabaseAPI api;
         public void Get()
         {
             MessageBox.Show("Get something");
