@@ -6,6 +6,7 @@ namespace PSS_ITWORKS
 {
     class StrategyContractManager : IStrategyAManagement
     {
+        DatabaseAPI api;
         public void Get()
         {
             MessageBox.Show("Get something");
@@ -29,6 +30,11 @@ namespace PSS_ITWORKS
         public void Connect(string myString)
         {
             MessageBox.Show("Connect to or something");
+        }
+
+        public void Get(int ID, string s1 = "", string s2 = "")
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

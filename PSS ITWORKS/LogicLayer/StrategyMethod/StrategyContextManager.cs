@@ -8,7 +8,6 @@ namespace PSS_ITWORKS
     class StrategyContextManager
     {
         private readonly IStrategyAManagement _strategy;
-        private readonly IEntity entity;
         private readonly int id;
         private readonly string connectionString;
 
@@ -17,77 +16,35 @@ namespace PSS_ITWORKS
             _strategy = strategy;
         }
 
-        public StrategyContextManager()
+        public void Get()
         {
+            _strategy.Get();
         }
 
-        public void ExecuteStrategy(string action)
+        public void Create(IEntity entity)
         {
-            switch (action.ToLower())
-            {
-                case "get":
-                    _strategy.Get();
-                    break;
-                case "create":
-                    _strategy.Create(entity);
-                    break;
-                case "delete":
-                    _strategy.Delete(id);
-                    break;
-                case "update":
-                    _strategy.Update(entity);
-                    break;
-                case "connect":
-                    _strategy.Connect(connectionString);
-                    break;
-                default:
-                    MessageBox.Show("No action");
-                    break;
-            }
+            _strategy.Create(entity);
         }
 
-        void SetConnection(string conString)
+        public void Delete(int ID)
         {
-            // set connection
+            _strategy.Delete(ID);
         }
 
-        void SetEntity(string entity)
+        public void Update(IEntity entity)
         {
-            // set entity
+
+            _strategy.Update(entity);
         }
 
-        void setId()
+        public void Connect(string myString)
         {
-            // set the id which will be used
+            _strategy.Connect(myString);
         }
 
-        public void ExecuteStrategyByUserRole(string userRole)
+        public void Get(int ID, string s1 = "", string s2 = "")
         {
-            switch (userRole.ToLower())
-            {
-                case "jobmanager":
-                    _strategy.Get();
-                    _strategy.Create(entity);
-                    break;
-                case "servicemanager":
-                    // Execute the strategy for ServiceManager
-                    break;
-                case "clientmanager":
-                    // Execute the strategy for ClientManager
-                    break;
-                case "contractmanager":
-                    // Execute the strategy for ContractManager
-                    break;
-                case "usermanager":
-                    // Execute the strategy for UserManager
-                    break;
-                case "callmanager":
-                    // Execute the strategy for CallManager
-                    break;
-                default:
-                    MessageBox.Show("Invalid user role");
-                    break;
-            }
+            _strategy.Get(ID, s1, s2);
         }
     }
 }

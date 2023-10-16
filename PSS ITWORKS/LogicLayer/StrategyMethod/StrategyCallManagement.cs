@@ -30,5 +30,10 @@ namespace PSS_ITWORKS
         {
             MessageBox.Show("Connect to or something");
         }
+
+        public void Get(int ID, string s1 = "", string s2 = "")
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
