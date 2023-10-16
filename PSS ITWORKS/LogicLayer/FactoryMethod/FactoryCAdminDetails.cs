@@ -5,10 +5,12 @@ namespace PSS_ITWORKS
 {
     class FactoryCAdminDetails : FactoryIUser
     {
-        AdminForm adminForm;
+        
         public void ShowUserInterface(LogIn loginForm)
         {
+            AdminForm adminForm = new AdminForm();
             adminForm.Show();
+            loginForm.Close();
         }
     }
 }

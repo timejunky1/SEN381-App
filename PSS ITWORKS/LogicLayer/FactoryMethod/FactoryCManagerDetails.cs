@@ -11,7 +11,6 @@ namespace PSS_ITWORKS
         
         public void ShowUserInterface(LogIn loginForm)
         {
-            
             ManagerForm managerForm = new ManagerForm();
             managerForm.Show();
             loginForm.Close();
