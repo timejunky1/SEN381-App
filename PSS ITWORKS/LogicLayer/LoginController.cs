@@ -76,19 +76,6 @@ public class LoginController
             }
         }
     }
-    private void RecordLoginTime(int employeeID)
-    {
-        using (SqlConnection connection = new SqlConnection(connectionString))
-        {
-            connection.Open();
-
-            SqlCommand command = new SqlCommand("RecordLoginTime", connection);
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@EmployeeID", employeeID);
-
-            command.ExecuteNonQuery();
-        }
-    }
 
     public string FetchNameAndSurname(string username)
     {
@@ -135,22 +122,7 @@ public class LoginController
         }
     }
 
-    private FactoryIUser CreateUserBasedOnRole(string role)
-    {
-        switch (role)
-        {
-            case "Admin":
-                return new FactoryCAdminDetails();
-            case "Call Employee":
-                return new FactoryCCallEmployeeDetails();
-            case "Manager":
-                return new FactoryCManagerDetails();
-            case "Technician":
-                return new FactoryCTechnicianDetails();
-            default:
-                throw new Exception("Invalid user role.");
-        }
-    }
+
 
     private string HashPassword(string password)
     {
