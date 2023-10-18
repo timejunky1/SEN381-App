@@ -36,5 +36,15 @@ namespace PSS_ITWORKS
         {
             throw new System.NotImplementedException();
         }
+
+        public void Get(int ID)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Get(string s1 = "", string s2 = "")
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

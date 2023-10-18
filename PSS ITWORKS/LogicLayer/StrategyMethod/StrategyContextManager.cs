@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace PSS_ITWORKS
 {
-    class StrategyContextManager
+    public class StrategyContextManager
     {
         private readonly IStrategyAManagement _strategy;
         private readonly int id;
