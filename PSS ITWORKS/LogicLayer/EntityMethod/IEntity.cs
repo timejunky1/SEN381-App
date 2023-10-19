@@ -5,7 +5,5 @@ namespace PSS_ITWORKS.LogicLayer
 {
     public interface IEntity
     {
-        void Get();
-        void Set();
     }
 }

@@ -6,55 +6,119 @@ namespace PSS_ITWORKS.LogicLayer
 {
     class EntityClient : IEntity
     {
-        private int Id;
-        private string clientName;
-        private string address;
-        private string contactDetails;
-        private string clientRole;
-        private int contract;
+        private int id;
+        private string companyName;
+        private string name;
+        private string surname;
+        private int contractId;
+        private int streetNumber;
+        private string streetName;
+        private string city;
+        private string province;
+        private string zipCode;
+        private string phone;
+        private string email;
+        private DateTime contractInitiationDate;
+        private string role;
 
-        public void Get()
+        public EntityClient(
+            string companyName, 
+            string personName, 
+            string personSurname, 
+            int contractId, 
+            string phone,
+            string email,
+            DateTime contractInitiationDate,
+            int streetNumber,
+            string streetName,
+            string city,
+            string province,
+            string zipCode
+            )
         {
-            // Retrieve data for EntityClient from the database
-            using (SqlConnection connection = new SqlConnection("your_connection_string_here"))
-            {
-                connection.Open();
-                // Create and execute SQL query to fetch EntityClient data
-                SqlCommand command = new SqlCommand("SELECT * FROM Client WHERE Client_ID = @Id", connection);
-                command.Parameters.AddWithValue("@Id", Id);
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
-                {
-                    // Map retrieved data to class properties
-                    Id = (int)reader["Client_ID"];
-                    clientName = reader["Company_Name"].ToString();
-                    address = reader["Address"].ToString();
-                    contactDetails = reader["Contact_Details"].ToString();
-                    clientRole = reader["Role"].ToString();
-                    contract = (int)reader["Contract_ID"];
-                }
-
-                reader.Close();
-            }
+            this.companyName = companyName;
+            this.name = personName;
+            this.surname = personSurname;
+            this.contractId = contractId;
+            this.phone = phone;
+            this.email = email;
+            this.contractInitiationDate = contractInitiationDate;
+            this.streetNumber = streetNumber;
+            this.streetName = streetName;
+            this.city = city;
+            this.province = province;
+            this.zipCode = zipCode;
+            this.role = "Client";
         }
 
-        public void Set()
+        public int GetID()
         {
-            // Update or insert data for EntityClient into the database
-            using (SqlConnection connection = new SqlConnection("your_connection_string_here"))
-            {
-                connection.Open();
-                // Create and execute SQL query to update or insert data
-                SqlCommand command = new SqlCommand("INSERT INTO Client (Client_ID, Company_Name, Address, Contact_Details, Role, Contract_ID) VALUES (@Id, @ClientName, @Address, @ContactDetails, @Role, @Contract)", connection);
-                command.Parameters.AddWithValue("@Id", Id);
-                command.Parameters.AddWithValue("@ClientName", clientName);
-                command.Parameters.AddWithValue("@Address", address);
-                command.Parameters.AddWithValue("@ContactDetails", contactDetails);
-                command.Parameters.AddWithValue("@Role", clientRole);
-                command.Parameters.AddWithValue("@Contract", contract);
-                command.ExecuteNonQuery();
-            }
+            return id;
+        }
+
+        public string GetCompanyName()
+        {
+            return companyName;
+        }
+
+        public string GetName()
+        {
+            return name;
+        }
+
+        public string GetSurname()
+        {
+            return surname;
+        }
+
+        public int GetContractId()
+        {
+            return contractId;
+        }
+
+        public string GetPhone()
+        {
+            return phone;
+        }
+
+        public string GetEmail()
+        {
+            return email;
+        }
+
+        public DateTime GetContractInitiationDate()
+        {
+            return contractInitiationDate;
+        }
+
+        public int GetStreetNumber()
+        {
+            return streetNumber;
+        }
+
+        public string GetStreetName()
+        {
+            return streetName;
+        }
+
+        public string GetCity()
+        {
+            return city;
+        }
+
+        public string GetProvince()
+        {
+            return province;
+        }
+
+        public string GetZipCode()
+        {
+            return zipCode;
+        }
+
+        public string GetRole()
+        {
+            return role;
         }
     }
 }
