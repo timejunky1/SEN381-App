@@ -48,7 +48,7 @@ namespace PSS_ITWORKS
 
                 // Set textbox border color and background color
                 textBox.BackColor = backgroundColor != default(Color) ? backgroundColor : Color.FromArgb(27, 77, 137);
-                textBox.ForeColor = Color.White; // Text color for textboxes
+                textBox.ForeColor = Color.Black; // Text color for textboxes
                 textBox.BorderStyle = BorderStyle.None; // Set the border style to None
                 textBox.BackColorChanged += (sender, e) =>
                 {

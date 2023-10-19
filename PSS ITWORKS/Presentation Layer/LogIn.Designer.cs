@@ -99,6 +99,7 @@
             // 
             this.UserName_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.UserName_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UserName_txt.ForeColor = System.Drawing.Color.Black;
             this.UserName_txt.Location = new System.Drawing.Point(428, 189);
             this.UserName_txt.Name = "UserName_txt";
             this.UserName_txt.Size = new System.Drawing.Size(232, 29);
@@ -109,6 +110,7 @@
             // Password_txt
             // 
             this.Password_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Password_txt.ForeColor = System.Drawing.Color.Black;
             this.Password_txt.Location = new System.Drawing.Point(428, 264);
             this.Password_txt.Name = "Password_txt";
             this.Password_txt.Size = new System.Drawing.Size(232, 29);
