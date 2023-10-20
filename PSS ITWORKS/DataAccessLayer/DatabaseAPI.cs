@@ -17,33 +17,40 @@ namespace PSS_ITWORKS
             conn = new SqlConnection(connString);
         }
 
-        public BindingSource GetClientOverview(string username, string contactNumber)
-        {
-            SqlDataReader reader = null;
-            BindingSource bs = null;
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("GetClientOverview", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@clientUserName", username);
-                cmd.Parameters.AddWithValue("@ContactNumber", contactNumber);
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    bs.DataSource = reader;                  
-                }
-                reader.Close();
-                conn.Close();
-            }
-            catch (Exception ex)
-            {
+        //Contract Interaction
 
-            }
-            return bs;
+        public void CreateContract(EntityContract contract)
+        {
+            MessageBox.Show("Create Contract");
         }
 
-        public void InsertUser(EntityClient client)
+        public void GetContractStats(int id, int period)
+        {
+            MessageBox.Show("GetContract Stats");
+        }
+
+        public void GetServices()
+        {
+            MessageBox.Show("GetServices");
+        }
+
+        public void UpdateContract(EntityContract contract)
+        {
+            MessageBox.Show("UpdateContract");
+        }
+
+        public void DeleteContract(int Id)
+        {
+            MessageBox.Show("DeleteContract");
+        }
+        public void AddContractRef(int contractId, int serviceId)
+        {
+            MessageBox.Show("AddContractRef");
+        }
+
+        //
+
+        public void InsertUser(EntityUser user)
         {
             SqlDataReader reader = null;
             BindingSource bs = null;
@@ -52,18 +59,18 @@ namespace PSS_ITWORKS
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("AdminPortalProcedures.InsertUser", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@CompanyName", client.GetCompanyName());
-                cmd.Parameters.AddWithValue("@Name", client.GetName());
-                cmd.Parameters.AddWithValue("@Surname", client.GetSurname());
-                cmd.Parameters.AddWithValue("@ContractId", client.GetContractId());
-                cmd.Parameters.AddWithValue("@Phone", client.GetPhone());
-                cmd.Parameters.AddWithValue("@Email", client.GetEmail());
-                cmd.Parameters.AddWithValue("@ContractInitiationDate", client.GetContractInitiationDate());
-                cmd.Parameters.AddWithValue("@StreetNumber", client.GetStreetNumber());
-                cmd.Parameters.AddWithValue("@Street", client.GetStreetName());
-                cmd.Parameters.AddWithValue("@City", client.GetCity());
-                cmd.Parameters.AddWithValue("@Province", client.GetProvince());
-                cmd.Parameters.AddWithValue("@ZipCode", client.GetZipCode());
+                cmd.Parameters.AddWithValue("@CompanyName", user.GetCompanyName());
+                cmd.Parameters.AddWithValue("@Name", user.GetName());
+                cmd.Parameters.AddWithValue("@Surname", user.GetSurname());
+                cmd.Parameters.AddWithValue("@ContractId", user.GetContractId());
+                cmd.Parameters.AddWithValue("@Phone", user.GetPhone());
+                cmd.Parameters.AddWithValue("@Email", user.GetEmail());
+                cmd.Parameters.AddWithValue("@ContractInitiationDate", user.GetContractInitiationDate());
+                cmd.Parameters.AddWithValue("@StreetNumber", user.GetStreetNumber());
+                cmd.Parameters.AddWithValue("@Street", user.GetStreetName());
+                cmd.Parameters.AddWithValue("@City", user.GetCity());
+                cmd.Parameters.AddWithValue("@Province", user.GetProvince());
+                cmd.Parameters.AddWithValue("@ZipCode", user.GetZipCode());
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {

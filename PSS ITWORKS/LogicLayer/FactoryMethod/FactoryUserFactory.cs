@@ -17,7 +17,7 @@ namespace PSS_ITWORKS
                     user = new FactoryCCallEmployeeDetails();
                     break;
                 case "Manager":
-                    user = new FactoryCManagerDetails();
+                    user = new FactoryCServiceManagerDetails();
                     break;
                 case "Technician":
                     user = new FactoryCTechnicianDetails();

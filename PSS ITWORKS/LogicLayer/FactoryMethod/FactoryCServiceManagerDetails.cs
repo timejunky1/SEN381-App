@@ -4,14 +4,12 @@ using PSS_ITWORKS.Presentation_Layer;
 
 namespace PSS_ITWORKS
 {
-    class FactoryCManagerDetails : FactoryIUser
+    class FactoryCServiceManagerDetails : FactoryIUser
     {
-        
-
-        
+                
         public void ShowUserInterface(LogIn loginForm)
         {
-            ManagerForm managerForm = new ManagerForm();
+            ServiceManagerForm managerForm = new ServiceManagerForm();
             managerForm.Show();
             loginForm.Close();
         }

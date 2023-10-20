@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace PSS_ITWORKS.Presentation_Layer
 {
-    public partial class ManagerForm : Form
+    public partial class ClientManagerForm : Form
     {
-        public ManagerForm()
+        public ClientManagerForm()
         {
             InitializeComponent();
-        }
-
-        private void ManagerForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

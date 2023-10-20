@@ -1,40 +1,39 @@
 ﻿// StrategyContractManager.cs
 using PSS_ITWORKS.LogicLayer;
+using System.Diagnostics.Contracts;
 using System.Windows.Forms;
 
 namespace PSS_ITWORKS
 {
     class StrategyContractManager : IStrategyAManagement
     {
-        DatabaseAPI api;
+        DatabaseAPI api = new DatabaseAPI();
         public void Get()
         {
-            MessageBox.Show("Get something");
+           api.GetServices();
         }
 
         public void Create(IEntity entity)
         {
-            MessageBox.Show("Create something");
+            EntityContract contract = entity as EntityContract;
+            ErrorHandler.DisplayError($"{contract.GetId()}");
+            api.CreateContract( contract );
         }
 
         public void Delete(int ID)
         {
-            MessageBox.Show("Delete something");
+            api.DeleteContract(ID);
         }
 
         public void Update(IEntity entity)
         {
-            MessageBox.Show("Update something");
+            EntityContract contract = entity as EntityContract;
+            ErrorHandler.DisplayError($"{contract.GetId()}");
+            api.UpdateContract(contract);
         }
 
         public void Connect(string myString)
         {
-            MessageBox.Show("Connect to or something");
-        }
-
-        public void Get(int ID, string s1 = "", string s2 = "")
-        {
-            throw new System.NotImplementedException();
         }
 
         public void Get(int ID)
@@ -42,9 +41,9 @@ namespace PSS_ITWORKS
             throw new System.NotImplementedException();
         }
 
-        public void Get(string s1 = "", string s2 = "")
+        public void GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
         {
-            throw new System.NotImplementedException();
+            api.GetContractStats(id1, id2);
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 public class LoginController
 {
-    private string connectionString = @"Data Source=DESKTOP-TBBSO02\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True";
+    private string connectionString = @"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True";
 
     public bool AuthenticateUser(string username, string password)
     {
@@ -13,13 +13,14 @@ public class LoginController
         {
             connection.Open();
 
-            using (SqlCommand command = new SqlCommand("sp_AuthenticateUser", connection))
+            using (SqlCommand command = new SqlCommand("LogInProcedures.AuthenticateUser", connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
 
                 // Set the parameters for the stored procedure
                 command.Parameters.AddWithValue("@Username", username);
-                command.Parameters.AddWithValue("@PasswordHash", HashPassword(password));
+                command.Parameters.AddWithValue("@Password", HashPassword(password));
+                command.Parameters.AddWithValue("@UserRole", null);
 
                 // Output parameter to capture the result
                 var result = new SqlParameter

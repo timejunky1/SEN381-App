@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace PSS_ITWORKS.LogicLayer
 {
-    class EntityClient : IEntity
+    class EntityUser : IEntity
     {
         private int id;
         private string companyName;
@@ -21,7 +21,7 @@ namespace PSS_ITWORKS.LogicLayer
         private DateTime contractInitiationDate;
         private string role;
 
-        public EntityClient(
+        public EntityUser(
             string companyName, 
             string personName, 
             string personSurname, 
@@ -33,7 +33,8 @@ namespace PSS_ITWORKS.LogicLayer
             string streetName,
             string city,
             string province,
-            string zipCode
+            string zipCode,
+            string role
             )
         {
             this.companyName = companyName;
@@ -48,7 +49,7 @@ namespace PSS_ITWORKS.LogicLayer
             this.city = city;
             this.province = province;
             this.zipCode = zipCode;
-            this.role = "Client";
+            this.role = role;
         }
 
         public int GetID()

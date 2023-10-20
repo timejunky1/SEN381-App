@@ -51,10 +51,14 @@
   <ItemGroup>
     <Compile Include="DataAccessLayer\DatabaseAPI.cs" />
     <Compile Include="LogicLayer\EntityMethod\EntityCall.cs" />
-    <Compile Include="LogicLayer\EntityMethod\EntityClient.cs" />
+    <Compile Include="LogicLayer\EntityMethod\EntityUser.cs" />
     <Compile Include="LogicLayer\EntityMethod\EntityContract.cs" />
     <Compile Include="LogicLayer\EntityMethod\EntityJob.cs" />
     <Compile Include="LogicLayer\EntityMethod\EntityService.cs" />
+    <Compile Include="LogicLayer\ErrorHandler.cs" />
+    <Compile Include="LogicLayer\FactoryMethod\FactoryCClientDetails.cs" />
+    <Compile Include="LogicLayer\FactoryMethod\FactoryCClientManagerDetails.cs" />
+    <Compile Include="LogicLayer\FactoryMethod\FactoryCContractManagerDetails.cs" />
     <Compile Include="LogicLayer\FactoryMethod\FactoryUserFactory.cs" />
     <Compile Include="LogicLayer\EntityMethod\IEntity.cs" />
     <Compile Include="LogicLayer\StrategyMethod\IStrategyManagement.cs" />
@@ -64,7 +68,7 @@
     <Compile Include="LogicLayer\FactoryMethod\FactoryAMainFactory.cs" />
     <Compile Include="LogicLayer\FactoryMethod\FactoryCAdminDetails.cs" />
     <Compile Include="LogicLayer\FactoryMethod\FactoryCCallEmployeeDetails.cs" />
-    <Compile Include="LogicLayer\FactoryMethod\FactoryCManagerDetails.cs" />
+    <Compile Include="LogicLayer\FactoryMethod\FactoryCServiceManagerDetails.cs" />
     <Compile Include="LogicLayer\FactoryMethod\FactoryIUser.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyCallManagement.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyClientManager.cs" />
@@ -73,6 +77,12 @@
     <Compile Include="LogicLayer\StrategyMethod\StrategyJobManager.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyServiceManager.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyUserManager.cs" />
+    <Compile Include="Presentation Layer\ClientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Layer\.Designer.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentation Layer\AdminForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,17 +95,29 @@
     <Compile Include="Presentation Layer\CallForm.Designer.cs">
       <DependentUpon>CallForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation Layer\ClientManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Layer\ClientManagerForm.Designer.cs">
+      <DependentUpon>ClientManagerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation Layer\ContractManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Layer\ContractManagerForm.Designer.cs">
+      <DependentUpon>ContractManagerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation Layer\LogIn.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentation Layer\LogIn.Designer.cs">
       <DependentUpon>LogIn.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation Layer\ManagerForm.cs">
+    <Compile Include="Presentation Layer\ServiceManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation Layer\ManagerForm.Designer.cs">
-      <DependentUpon>ManagerForm.cs</DependentUpon>
+    <Compile Include="Presentation Layer\ServiceManagerForm.Designer.cs">
+      <DependentUpon>ServiceManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation Layer\TechnicianForm.cs">
       <SubType>Form</SubType>
@@ -113,6 +135,9 @@
     </Compile>
     <EmbeddedResource Include="Presentation Layer\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Layer\ContractManagerForm.resx">
+      <DependentUpon>ContractManagerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\LogIn.resx">
       <DependentUpon>LogIn.cs</DependentUpon>

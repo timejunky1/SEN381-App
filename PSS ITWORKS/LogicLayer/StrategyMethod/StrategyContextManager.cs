@@ -42,9 +42,9 @@ namespace PSS_ITWORKS
             _strategy.Connect(myString);
         }
 
-        public void Get(int ID, string s1 = "", string s2 = "")
+        public void GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
         {
-            _strategy.Get(ID, s1, s2);
+            _strategy.GetSpecific(id1, id2, s1, s2);
         }
     }
 }

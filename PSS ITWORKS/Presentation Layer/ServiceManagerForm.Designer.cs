@@ -1,6 +1,6 @@
 ﻿namespace PSS_ITWORKS.Presentation_Layer
 {
-    partial class ManagerForm
+    partial class ServiceManagerForm
     {
         /// <summary>
         /// Required designer variable.

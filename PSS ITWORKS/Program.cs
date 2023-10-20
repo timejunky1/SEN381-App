@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PSS_ITWORKS.Presentation_Layer;
+using System;
 using System.Windows.Forms;
 
 namespace PSS_ITWORKS
@@ -15,6 +16,8 @@ namespace PSS_ITWORKS
             Application.SetCompatibleTextRenderingDefault(false);
             LogIn loginForm = new LogIn();
             loginForm.Show();
+            ContractManagerForm contractManagerForm = new ContractManagerForm();
+            contractManagerForm.Show();
             Application.Run();
             
             
