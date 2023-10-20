@@ -1,11 +1,12 @@
 ﻿// IStrategyAManagement.cs
 using PSS_ITWORKS.LogicLayer;
+using System.Windows.Forms;
 
 namespace PSS_ITWORKS
 {
     public interface IStrategyAManagement
     {
-        void Get();
+        BindingSource Get();
         void Get(int ID);
         void GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "");
         void Create(IEntity entity);

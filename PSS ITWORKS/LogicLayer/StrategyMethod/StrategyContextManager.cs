@@ -16,9 +16,10 @@ namespace PSS_ITWORKS
             _strategy = strategy;
         }
 
-        public void Get()
+        public BindingSource Get()
         {
-            _strategy.Get();
+            BindingSource bs = _strategy.Get();
+            return bs;
         }
 
         public void Create(IEntity entity)

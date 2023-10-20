@@ -7,9 +7,10 @@ namespace PSS_ITWORKS
     class StrategyUserManager : IStrategyAManagement
     {
         DatabaseAPI api;
-        public void Get()
+        public BindingSource Get()
         {
             MessageBox.Show("Get something");
+            return null;
         }
 
         public void Create(IEntity entity)

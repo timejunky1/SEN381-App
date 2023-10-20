@@ -24,14 +24,36 @@ namespace PSS_ITWORKS
             MessageBox.Show("Create Contract");
         }
 
-        public void GetContractStats(int id, int period)
+        public BindingSource GetContractStats(int id, int period)
         {
             MessageBox.Show("GetContract Stats");
+            return null;
         }
 
-        public void GetServices()
+        public BindingSource GetServices()
         {
+            SqlDataReader reader;
+            BindingSource bs = new BindingSource();
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.GetServices", conn);
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    bs.DataSource = reader;
+                }
+                reader.Close();
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                conn.Close();
+            }
+
             MessageBox.Show("GetServices");
+            return bs;
         }
 
         public void UpdateContract(EntityContract contract)
@@ -49,40 +71,5 @@ namespace PSS_ITWORKS
         }
 
         //
-
-        public void InsertUser(EntityUser user)
-        {
-            SqlDataReader reader = null;
-            BindingSource bs = null;
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("AdminPortalProcedures.InsertUser", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@CompanyName", user.GetCompanyName());
-                cmd.Parameters.AddWithValue("@Name", user.GetName());
-                cmd.Parameters.AddWithValue("@Surname", user.GetSurname());
-                cmd.Parameters.AddWithValue("@ContractId", user.GetContractId());
-                cmd.Parameters.AddWithValue("@Phone", user.GetPhone());
-                cmd.Parameters.AddWithValue("@Email", user.GetEmail());
-                cmd.Parameters.AddWithValue("@ContractInitiationDate", user.GetContractInitiationDate());
-                cmd.Parameters.AddWithValue("@StreetNumber", user.GetStreetNumber());
-                cmd.Parameters.AddWithValue("@Street", user.GetStreetName());
-                cmd.Parameters.AddWithValue("@City", user.GetCity());
-                cmd.Parameters.AddWithValue("@Province", user.GetProvince());
-                cmd.Parameters.AddWithValue("@ZipCode", user.GetZipCode());
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    bs.DataSource = reader;
-                }
-                reader.Close();
-                conn.Close();
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
     }
 }

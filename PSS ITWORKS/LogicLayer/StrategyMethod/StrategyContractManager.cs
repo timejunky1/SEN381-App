@@ -8,15 +8,15 @@ namespace PSS_ITWORKS
     class StrategyContractManager : IStrategyAManagement
     {
         DatabaseAPI api = new DatabaseAPI();
-        public void Get()
+        public BindingSource Get()
         {
-           api.GetServices();
+            BindingSource bs = api.GetServices();
+            return bs;
         }
 
         public void Create(IEntity entity)
         {
             EntityContract contract = entity as EntityContract;
-            ErrorHandler.DisplayError($"{contract.GetId()}");
             api.CreateContract( contract );
         }
 
@@ -28,12 +28,12 @@ namespace PSS_ITWORKS
         public void Update(IEntity entity)
         {
             EntityContract contract = entity as EntityContract;
-            ErrorHandler.DisplayError($"{contract.GetId()}");
             api.UpdateContract(contract);
         }
 
-        public void Connect(string myString)
+        public void Connect(string connString)
         {
+            api.SetConnection(connString);
         }
 
         public void Get(int ID)

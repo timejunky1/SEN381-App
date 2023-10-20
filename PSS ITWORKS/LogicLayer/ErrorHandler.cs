@@ -9,9 +9,9 @@ namespace PSS_ITWORKS.LogicLayer
 {
     static internal class ErrorHandler
     {
-        internal static void DisplayError(string message)
+        internal static void DisplayError(Exception ex)
         {
-            MessageBox.Show(message);
+            MessageBox.Show(ex.Message);
         }
     }
 }

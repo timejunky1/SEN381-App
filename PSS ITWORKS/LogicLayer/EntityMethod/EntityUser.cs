@@ -21,34 +21,21 @@ namespace PSS_ITWORKS.LogicLayer
         private DateTime contractInitiationDate;
         private string role;
 
-        public EntityUser(
-            string companyName, 
-            string personName, 
-            string personSurname, 
-            int contractId, 
-            string phone,
-            string email,
-            DateTime contractInitiationDate,
-            int streetNumber,
-            string streetName,
-            string city,
-            string province,
-            string zipCode,
-            string role
-            )
+        public EntityUser(int id, string companyName, string name, string surname, int contractId, int streetNumber, string streetName, string city, string province, string zipCode, string phone, string email, DateTime contractInitiationDate, string role)
         {
+            this.id = id;
             this.companyName = companyName;
-            this.name = personName;
-            this.surname = personSurname;
+            this.name = name;
+            this.surname = surname;
             this.contractId = contractId;
-            this.phone = phone;
-            this.email = email;
-            this.contractInitiationDate = contractInitiationDate;
             this.streetNumber = streetNumber;
             this.streetName = streetName;
             this.city = city;
             this.province = province;
             this.zipCode = zipCode;
+            this.phone = phone;
+            this.email = email;
+            this.contractInitiationDate = contractInitiationDate;
             this.role = role;
         }
 
