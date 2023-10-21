@@ -1,5 +1,6 @@
 ﻿// StrategyServiceManager.cs
 using PSS_ITWORKS.LogicLayer;
+using System;
 using System.Windows.Forms;
 
 namespace PSS_ITWORKS
@@ -9,28 +10,42 @@ namespace PSS_ITWORKS
         DatabaseAPI api;
         public BindingSource Get()
         {
-            MessageBox.Show("Get something");
-            return null;
+            return api.GetServices();
         }
 
         public void Create(IEntity entity)
         {
-            MessageBox.Show("Create something");
+            try
+            {
+                EntityService service = entity as EntityService;
+                api.CreateService(service);
+            }catch(Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+            }
         }
 
         public void Delete(int ID)
         {
-            MessageBox.Show("Delete something");
+            api.DeleteService(ID);
         }
 
         public void Update(IEntity entity)
         {
-            MessageBox.Show("Update something");
+            try
+            {
+                EntityService service = entity as EntityService;
+                api.UpdateService(service);
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+            }
         }
 
         public void Connect(string myString)
         {
-            MessageBox.Show("Connect to or something");
+            api.SetConnection(myString);
         }
 
         public BindingSource Get(int ID)

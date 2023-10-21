@@ -1,5 +1,6 @@
 ﻿// StrategyContractManager.cs
 using PSS_ITWORKS.LogicLayer;
+using System;
 using System.Diagnostics.Contracts;
 using System.Windows.Forms;
 
@@ -10,8 +11,7 @@ namespace PSS_ITWORKS
         DatabaseAPI api = new DatabaseAPI();
         public BindingSource Get()
         {
-            BindingSource bs = api.GetServices();
-            return bs;
+            return null;
         }
 
         public void Create(IEntity entity)
@@ -27,8 +27,14 @@ namespace PSS_ITWORKS
 
         public void Update(IEntity entity)
         {
-            EntityContract contract = entity as EntityContract;
-            api.UpdateContract(contract);
+            try
+            {
+                EntityContract contract = entity as EntityContract;
+                api.UpdateContract(contract);
+            }catch(Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+            }
         }
 
         public void Connect(string connString)
@@ -38,13 +44,12 @@ namespace PSS_ITWORKS
 
         public BindingSource Get(int ID)
         {
-            api.GetClientAndContractInfo(ID);
+            return api.GetClientAndContractInfo(ID);
         }
 
         public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
         {
-            BindingSource bs = api.GetContractStats(id1, id2);
-            return bs;
+            return api.GetContractStats(id1, id2);
         }
     }
 }

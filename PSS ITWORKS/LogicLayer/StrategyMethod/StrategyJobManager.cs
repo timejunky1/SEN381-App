@@ -1,5 +1,6 @@
 ﻿// StrategyJobManager.cs
 using PSS_ITWORKS.LogicLayer;
+using System;
 using System.Windows.Forms;
 
 namespace PSS_ITWORKS
@@ -9,13 +10,20 @@ namespace PSS_ITWORKS
         DatabaseAPI api;
         public BindingSource Get()
         {
-            MessageBox.Show("Get something");
-            return null;
+            return api.GetJobSchedule();
         }
 
         public void Create(IEntity entity)
         {
-            MessageBox.Show("Create something");
+            try
+            {
+                EntityJob job = entity as EntityJob;
+                api.AssignJob(job);
+            }catch(Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+            }
+            
         }
 
         public void Delete(int ID)
@@ -25,7 +33,15 @@ namespace PSS_ITWORKS
 
         public void Update(IEntity entity)
         {
-            MessageBox.Show("Update something");
+            try
+            {
+                EntityJob job = entity as EntityJob;
+                api.UpdateAssignedJob(job);
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+            }
         }
 
         public void Connect(string myString)
@@ -40,6 +56,28 @@ namespace PSS_ITWORKS
 
         public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
         {
+            if (!string.IsNullOrEmpty(s1))
+            {
+                try
+                {
+                    return api.GetJobsAssignedToEmployeeName(s1);
+                }
+                catch (Exception ex)
+                {
+                    ErrorHandler.DisplayError(ex);
+                }
+            }
+            if (!string.IsNullOrEmpty(s2))
+            {
+                try
+                {
+                    DateTime date = DateTime.Parse(s1);
+                    return api.UnassignedJobsOnDate(date);
+                }catch(Exception ex)
+                {
+                    ErrorHandler.DisplayError(ex);
+                }
+            }
             throw new System.NotImplementedException();
         }
     }
