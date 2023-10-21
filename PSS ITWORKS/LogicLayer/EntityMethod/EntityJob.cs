@@ -7,6 +7,7 @@ namespace PSS_ITWORKS.LogicLayer
     class EntityJob : IEntity
     {
         private int Id;
+        private int employeeId;
         private int clientId;
         private int serviceId;
         private DateTime timeBegin;
@@ -25,9 +26,29 @@ namespace PSS_ITWORKS.LogicLayer
             this.notes = notes;
         }
 
+        public EntityJob(int clientId, int serviceId, string notes)
+        {
+            this.clientId = clientId;
+            this.serviceId = serviceId;
+            this.notes = notes;
+        }
+
+        public EntityJob(int employeeId ,int clientId, int serviceId, string notes)
+        {
+            this.employeeId = employeeId;
+            this.clientId = clientId;
+            this.serviceId = serviceId;
+            this.notes = notes;
+        }
+
         public int GetId()
         {
             return Id;
+        }
+
+        public int GetEmployeeId()
+        {
+            return employeeId;
         }
 
         public int GetClientId()
@@ -35,27 +56,27 @@ namespace PSS_ITWORKS.LogicLayer
             return clientId;
         }
 
-        public int ServiceId()
+        public int GetServiceId()
         {
             return serviceId;
         }
 
-        public DateTime TimeBegin()
+        public DateTime GetTimeBegin()
         {
             return timeBegin;
         }
 
-        public DateTime TimeEnd()
+        public DateTime GetTimeEnd()
         {
             return timeEnd;
         }
 
-        public string Status()
+        public string GetStatus()
         {
             return status;
         }
 
-        public string Notes()
+        public string GetNotes()
         {
             return notes;
         }

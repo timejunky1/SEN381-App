@@ -33,12 +33,12 @@ namespace PSS_ITWORKS
             MessageBox.Show("Connect to or something");
         }
 
-        public void Get(int ID)
+        public BindingSource Get(int ID)
         {
             throw new System.NotImplementedException();
         }
 
-        public void GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
+        public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
         {
             throw new System.NotImplementedException();
         }

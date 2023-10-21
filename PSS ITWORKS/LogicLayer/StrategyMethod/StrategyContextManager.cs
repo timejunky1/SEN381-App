@@ -43,9 +43,16 @@ namespace PSS_ITWORKS
             _strategy.Connect(myString);
         }
 
-        public void GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
+        public BindingSource Get(int id)
         {
-            _strategy.GetSpecific(id1, id2, s1, s2);
+            BindingSource bs = _strategy.Get(id);
+            return bs;
+        }
+
+        public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
+        {
+            BindingSource bs = _strategy.GetSpecific(id1, id2, s1, s2);
+            return bs;
         }
     }
 }

@@ -70,6 +70,7 @@
     <Compile Include="LogicLayer\FactoryMethod\FactoryCCallEmployeeDetails.cs" />
     <Compile Include="LogicLayer\FactoryMethod\FactoryCServiceManagerDetails.cs" />
     <Compile Include="LogicLayer\FactoryMethod\FactoryIUser.cs" />
+    <Compile Include="LogicLayer\StrategyMethod\StrategyClient.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyCallManagement.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyClientManager.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyContextManager.cs" />
@@ -107,6 +108,12 @@
     <Compile Include="Presentation Layer\ContractManagerForm.Designer.cs">
       <DependentUpon>ContractManagerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation Layer\Testing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Layer\Testing.Designer.cs">
+      <DependentUpon>Testing.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation Layer\LogIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\LogIn.resx">
       <DependentUpon>LogIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Layer\Testing.resx">
+      <DependentUpon>Testing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

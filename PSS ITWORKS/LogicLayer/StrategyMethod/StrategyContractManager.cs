@@ -36,14 +36,15 @@ namespace PSS_ITWORKS
             api.SetConnection(connString);
         }
 
-        public void Get(int ID)
+        public BindingSource Get(int ID)
         {
-            throw new System.NotImplementedException();
+            api.GetClientAndContractInfo(ID);
         }
 
-        public void GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
+        public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
         {
-            api.GetContractStats(id1, id2);
+            BindingSource bs = api.GetContractStats(id1, id2);
+            return bs;
         }
     }
 }

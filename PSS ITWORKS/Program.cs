@@ -14,10 +14,8 @@ namespace PSS_ITWORKS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            LogIn loginForm = new LogIn();
-            loginForm.Show();
-            ContractManagerForm contractManagerForm = new ContractManagerForm();
-            contractManagerForm.Show();
+            Testing testing = new Testing();
+            testing.Show();
             Application.Run();
             
             
