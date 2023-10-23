@@ -18,6 +18,122 @@ namespace PSS_ITWORKS
         }
 
         //LoginProcedures
+        public bool AuthenticateUser(string username, string password)
+        {
+            using (SqlConnection connection = new SqlConnection(conn.ConnectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("LogInProcedures.AuthenticateUser", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@Password", HashPassword(password));
+                    command.Parameters.AddWithValue("@UserRole", null);
+
+                    var result = new SqlParameter
+                    {
+                        ParameterName = "@Result",
+                        SqlDbType = SqlDbType.Int,
+                        Direction = ParameterDirection.Output
+                    };
+
+                    command.Parameters.Add(result);
+
+                    command.ExecuteNonQuery();
+
+                    int authenticationResult = Convert.ToInt32(result.Value);
+
+                    return authenticationResult == 1;
+                }
+            }
+        }
+
+        public string GetUserRole(string username)
+        {
+            using (SqlConnection connection = new SqlConnection(conn.ConnectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("sp_GetUserRole", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@Username", username);
+
+                    var roleParam = new SqlParameter
+                    {
+                        ParameterName = "@Role",
+                        SqlDbType = SqlDbType.VarChar,
+                        Size = 30,
+                        Direction = ParameterDirection.Output
+                    };
+
+                    command.Parameters.Add(roleParam);
+
+                    command.ExecuteNonQuery();
+
+                    string role = roleParam.Value.ToString();
+
+                    return role;
+                }
+            }
+        }
+
+        public string FetchNameAndSurname(string username)
+        {
+            using (SqlConnection connection = new SqlConnection(conn.ConnectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("sp_FetchNameAndSurname", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@Username", username);
+
+                    var nameParam = new SqlParameter
+                    {
+                        ParameterName = "@Name",
+                        SqlDbType = SqlDbType.VarChar,
+                        Size = 50,
+                        Direction = ParameterDirection.Output
+                    };
+
+                    var surnameParam = new SqlParameter
+                    {
+                        ParameterName = "@Surname",
+                        SqlDbType = SqlDbType.VarChar,
+                        Size = 50,
+                        Direction = ParameterDirection.Output
+                    };
+
+                    command.Parameters.Add(nameParam);
+                    command.Parameters.Add(surnameParam);
+
+                    command.ExecuteNonQuery();
+
+                    string name = nameParam.Value.ToString();
+                    string surname = surnameParam.Value.ToString();
+
+                    return $"{name} {surname}";
+                }
+            }
+        }
+    
+
+
+    private string HashPassword(string password)
+        {
+            // Implement password hashing logic here (e.g., SHA-256)
+            // Return the hashed password
+            // string salt = BCrypt.Net.BCrypt.GenerateSalt(12); // 12 is the work factor (adjust as needed)
+            // string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
+            string hashedPassword = password;
+            return hashedPassword;
+        }
+
 
         //ContractManager
 

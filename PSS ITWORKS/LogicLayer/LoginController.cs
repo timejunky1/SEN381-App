@@ -5,122 +5,28 @@ using System.Data.SqlClient;
 
 public class LoginController
 {
+    private DatabaseAPI databaseAPI;
+
+    public LoginController(DatabaseAPI databaseAPI)
+    {
+        this.databaseAPI = databaseAPI;
+    }
+
     private string connectionString = @"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True";
 
     public bool AuthenticateUser(string username, string password)
     {
-        using (SqlConnection connection = new SqlConnection(connectionString))
-        {
-            connection.Open();
-
-            using (SqlCommand command = new SqlCommand("LogInProcedures.AuthenticateUser", connection))
-            {
-                command.CommandType = CommandType.StoredProcedure;
-
-                // Set the parameters for the stored procedure
-                command.Parameters.AddWithValue("@Username", username);
-                command.Parameters.AddWithValue("@Password", HashPassword(password));
-                command.Parameters.AddWithValue("@UserRole", null);
-
-                // Output parameter to capture the result
-                var result = new SqlParameter
-                {
-                    ParameterName = "@Result",
-                    SqlDbType = SqlDbType.Int,
-                    Direction = ParameterDirection.Output
-                };
-
-                command.Parameters.Add(result);
-
-                // Execute the stored procedure
-                command.ExecuteNonQuery();
-
-                // Check the result to authenticate the user
-                int authenticationResult = Convert.ToInt32(result.Value);
-
-                return authenticationResult == 1;
-            }
-        }
+        return databaseAPI.AuthenticateUser(username, password);
     }
 
     public string GetUserRole(string username)
     {
-        using (SqlConnection connection = new SqlConnection(connectionString))
-        {
-            connection.Open();
-
-            using (SqlCommand command = new SqlCommand("sp_GetUserRole", connection))
-            {
-                command.CommandType = CommandType.StoredProcedure;
-
-                // Set the parameters for the stored procedure
-                command.Parameters.AddWithValue("@Username", username);
-
-                // Output parameter to capture the user's role
-                var roleParam = new SqlParameter
-                {
-                    ParameterName = "@Role",
-                    SqlDbType = SqlDbType.VarChar,
-                    Size = 30,
-                    Direction = ParameterDirection.Output
-                };
-
-                command.Parameters.Add(roleParam);
-
-                // Execute the stored procedure
-                command.ExecuteNonQuery();
-
-                // Retrieve the role from the output parameter
-                string role = roleParam.Value.ToString();
-
-                return role;
-            }
-        }
+        return databaseAPI.GetUserRole(username);
     }
 
     public string FetchNameAndSurname(string username)
     {
-        using (SqlConnection connection = new SqlConnection(connectionString))
-        {
-            connection.Open();
-
-            using (SqlCommand command = new SqlCommand("sp_FetchNameAndSurname", connection))
-            {
-                command.CommandType = CommandType.StoredProcedure;
-
-                // Set the parameters for the stored procedure
-                command.Parameters.AddWithValue("@Username", username);
-
-                // Output parameters to capture the name and surname
-                var nameParam = new SqlParameter
-                {
-                    ParameterName = "@Name",
-                    SqlDbType = SqlDbType.VarChar,
-                    Size = 50,
-                    Direction = ParameterDirection.Output
-                };
-
-                var surnameParam = new SqlParameter
-                {
-                    ParameterName = "@Surname",
-                    SqlDbType = SqlDbType.VarChar,
-                    Size = 50,
-                    Direction = ParameterDirection.Output
-                };
-
-                command.Parameters.Add(nameParam);
-                command.Parameters.Add(surnameParam);
-
-                // Execute the stored procedure
-                command.ExecuteNonQuery();
-
-                // Retrieve the name and surname from the output parameters
-                string name = nameParam.Value.ToString();
-                string surname = surnameParam.Value.ToString();
-
-                return $"{name} {surname}";
-            }
-        }
+        return databaseAPI.FetchNameAndSurname(username);
     }
 
 
