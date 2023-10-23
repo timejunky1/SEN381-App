@@ -73,6 +73,32 @@ namespace PSS_ITWORKS
         }
         public void DeleteService(int Id)
         {
+           BindingSource bs = new BindingSource();
+            try
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("ServicePortalProcedures.DeleteService", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@serviceID", SqlDbType.Int).Value = Id; 
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        bs.DataSource = reader;
+                    }
+                }
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                conn.Close();
+            }
+
+            MessageBox.Show("Delete Service");
+            return bs;
 
         }
 
