@@ -50,6 +50,58 @@ namespace PSS_ITWORKS
             }
         }
 
+        // this stored procedure has not been created yet
+        public UserInfo GetUserInformation(string username)
+        {
+            using (SqlConnection connection = new SqlConnection(conn.ConnectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("sp_GetUserInformation", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@Username", username);
+
+                    var nameParam = new SqlParameter
+                    {
+                        ParameterName = "@Name",
+                        SqlDbType = SqlDbType.VarChar,
+                        Size = 50,
+                        Direction = ParameterDirection.Output
+                    };
+
+                    var surnameParam = new SqlParameter
+                    {
+                        ParameterName = "@Surname",
+                        SqlDbType = SqlDbType.VarChar,
+                        Size = 50,
+                        Direction = ParameterDirection.Output
+                    };
+
+                    var roleParam = new SqlParameter
+                    {
+                        ParameterName = "@Role",
+                        SqlDbType = SqlDbType.VarChar,
+                        Size = 30,
+                        Direction = ParameterDirection.Output
+                    };
+
+                    command.Parameters.Add(nameParam);
+                    command.Parameters.Add(surnameParam);
+                    command.Parameters.Add(roleParam);
+
+                    command.ExecuteNonQuery();
+
+                    string name = nameParam.Value.ToString();
+                    string surname = surnameParam.Value.ToString();
+                    string role = roleParam.Value.ToString();
+
+                    return new UserInfo { Name = name, Surname = surname, Role = role };
+                }
+            }
+        }
+
         public string GetUserRole(string username)
         {
             using (SqlConnection connection = new SqlConnection(conn.ConnectionString))

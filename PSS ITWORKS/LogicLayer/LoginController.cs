@@ -18,6 +18,11 @@ public class LoginController
     {
         return databaseAPI.AuthenticateUser(username, password);
     }
+    //this stored procedure was not implemented yet
+    public UserInfo GetUserInformation(string username)
+    {
+        return databaseAPI.GetUserInformation(username);
+    }
 
     public string GetUserRole(string username)
     {
