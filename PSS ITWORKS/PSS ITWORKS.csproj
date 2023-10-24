@@ -64,7 +64,6 @@
     <Compile Include="LogicLayer\StrategyMethod\IStrategyManagement.cs" />
     <Compile Include="LogicLayer\LoginController.cs" />
     <Compile Include="LogicLayer\Scheduler.cs" />
-    <Compile Include="LogicLayer\ServiceRequest.cs" />
     <Compile Include="LogicLayer\FactoryMethod\FactoryAMainFactory.cs" />
     <Compile Include="LogicLayer\FactoryMethod\FactoryCAdminDetails.cs" />
     <Compile Include="LogicLayer\FactoryMethod\FactoryCCallEmployeeDetails.cs" />
