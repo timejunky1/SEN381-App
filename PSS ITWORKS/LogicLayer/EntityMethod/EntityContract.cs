@@ -1,5 +1,6 @@
 ﻿// EntityContract.cs
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace PSS_ITWORKS.LogicLayer
@@ -12,8 +13,9 @@ namespace PSS_ITWORKS.LogicLayer
         private float cost;
         private int priority;
         private string availability;
+        List<EntityService> services;
 
-        public EntityContract(int id, string sLA, int duration, float cost, int priority, string availability)
+        public EntityContract(int id, string sLA, int duration, float cost, int priority, string availability, List<EntityService> services)
         {
             Id = id;
             SLA = sLA;
@@ -21,6 +23,8 @@ namespace PSS_ITWORKS.LogicLayer
             this.cost = cost;
             this.priority = priority;
             this.availability = availability;
+            this.services = services;
+            this.services = services;
         }
 
         public int GetId()
@@ -51,6 +55,11 @@ namespace PSS_ITWORKS.LogicLayer
         public string GetAvailability()
         {
             return availability;
+        }
+
+        public List<EntityService> GetServices()
+        {
+            return services;
         }
     }
 }

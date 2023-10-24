@@ -27,13 +27,13 @@ namespace PSS_ITWORKS
             try
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.CreateContractt", conn);
+                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.CreateContract", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@SLA", contract.GetSLA());
                 cmd.Parameters.AddWithValue("@duration", contract.GetDuration());
                 cmd.Parameters.AddWithValue("@priority", contract.GetPriority());
                 cmd.Parameters.AddWithValue("@cost", contract.GetCost());
-                cmd.Parameters.AddWithValue("@avalability", contract.GetAvailability());
+                cmd.Parameters.AddWithValue("@availability", contract.GetAvailability());
                 cmd.ExecuteNonQuery();
                 ErrorHandler.DisplayError("Quary Successfully executed");
             }
@@ -48,14 +48,14 @@ namespace PSS_ITWORKS
             try
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.CreateContractt", conn);
+                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.UpdateContract", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@contractId", contract.GetId());
                 cmd.Parameters.AddWithValue("@SLA", contract.GetSLA());
                 cmd.Parameters.AddWithValue("@duration", contract.GetDuration());
                 cmd.Parameters.AddWithValue("@priority", contract.GetPriority());
                 cmd.Parameters.AddWithValue("@cost", contract.GetCost());
-                cmd.Parameters.AddWithValue("@avalability", contract.GetAvailability());
+                cmd.Parameters.AddWithValue("@availability", contract.GetAvailability());
                 cmd.ExecuteNonQuery();
                 ErrorHandler.DisplayError("Quary Successfully executed");
             }
@@ -76,7 +76,7 @@ namespace PSS_ITWORKS
                 SqlCommand cmd = new SqlCommand("ContractPortalProcedures.GetContractStats", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@period", period);
-                cmd.Parameters.AddWithValue("contractid", contractId);
+                cmd.Parameters.AddWithValue("@contractid", contractId);
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -118,6 +118,45 @@ namespace PSS_ITWORKS
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("ContractPortalProcedures.AddContractRef", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@contractId", contractId);
+                cmd.Parameters.AddWithValue("@serviceId", serviceId);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                ErrorHandler.DisplayError("Quary Successfully executed");
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                conn.Close();
+            }
+        }
+
+        public void AddContractRef(int serviceId)
+        {
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.AddContractRef", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@serviceId", serviceId);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                ErrorHandler.DisplayError("Quary Successfully executed");
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                conn.Close();
+            }
+        }
+
+        public void DeleteContractRef(int contractId, int serviceId)
+        {
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.DeleteContractRef", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@contractId", contractId);
                 cmd.Parameters.AddWithValue("@serviceId", serviceId);
@@ -369,6 +408,8 @@ namespace PSS_ITWORKS
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("ClientManagementProcedures.GetClientAndContractInfo", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@clientID", Id);
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {

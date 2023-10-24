@@ -34,11 +34,15 @@
             this.Method_cmb = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.Id_txt = new System.Windows.Forms.TextBox();
             this.filter_txt = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.id1_num = new System.Windows.Forms.NumericUpDown();
+            this.id2_num = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.Test_dgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.id1_num)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.id2_num)).BeginInit();
             this.SuspendLayout();
             // 
             // Test_btn
@@ -93,13 +97,6 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Method";
             // 
-            // Id_txt
-            // 
-            this.Id_txt.Location = new System.Drawing.Point(62, 172);
-            this.Id_txt.Name = "Id_txt";
-            this.Id_txt.Size = new System.Drawing.Size(100, 20);
-            this.Id_txt.TabIndex = 6;
-            // 
             // filter_txt
             // 
             this.filter_txt.Location = new System.Drawing.Point(62, 226);
@@ -112,9 +109,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(62, 156);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(18, 13);
+            this.label3.Size = new System.Drawing.Size(24, 13);
             this.label3.TabIndex = 8;
-            this.label3.Text = "ID";
+            this.label3.Text = "ID1";
             // 
             // label4
             // 
@@ -125,15 +122,40 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Filter";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(157, 156);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(24, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "ID2";
+            // 
+            // id1_num
+            // 
+            this.id1_num.Location = new System.Drawing.Point(64, 172);
+            this.id1_num.Name = "id1_num";
+            this.id1_num.Size = new System.Drawing.Size(44, 20);
+            this.id1_num.TabIndex = 12;
+            // 
+            // id2_num
+            // 
+            this.id2_num.Location = new System.Drawing.Point(160, 172);
+            this.id2_num.Name = "id2_num";
+            this.id2_num.Size = new System.Drawing.Size(44, 20);
+            this.id2_num.TabIndex = 13;
+            // 
             // Testing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.id2_num);
+            this.Controls.Add(this.id1_num);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.filter_txt);
-            this.Controls.Add(this.Id_txt);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Method_cmb);
@@ -143,6 +165,8 @@
             this.Name = "Testing";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.Test_dgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.id1_num)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.id2_num)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -156,9 +180,11 @@
         private System.Windows.Forms.ComboBox Method_cmb;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox Id_txt;
         private System.Windows.Forms.TextBox filter_txt;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown id1_num;
+        private System.Windows.Forms.NumericUpDown id2_num;
     }
 }
