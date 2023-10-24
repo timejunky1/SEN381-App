@@ -36,9 +36,34 @@
             this.ContractPerformance_tbp = new System.Windows.Forms.TabPage();
             this.ServiceConfiguration_tbp = new System.Windows.Forms.TabPage();
             this.ContractConfiguration_tbp = new System.Windows.Forms.TabPage();
+            this.ContractPerformancePastMonth_gbx = new System.Windows.Forms.GroupBox();
+            this.ContractTypePastMonth_lbl = new System.Windows.Forms.Label();
+            this.ContractType_cbx = new System.Windows.Forms.ComboBox();
+            this.ClientCount_lbl = new System.Windows.Forms.Label();
+            this.ClientCount_txt = new System.Windows.Forms.TextBox();
+            this.JobsDonePastMonth_lbl = new System.Windows.Forms.Label();
+            this.JobsCanceledPastMonth_lbl = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.ContractPerformancePastYear_gbx = new System.Windows.Forms.GroupBox();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.JobCanceledPastYear_lbl = new System.Windows.Forms.Label();
+            this.JobDonePastYear_lbl = new System.Windows.Forms.Label();
+            this.ClientCountPastYear_txt = new System.Windows.Forms.TextBox();
+            this.ClientCountPastYear_lbl = new System.Windows.Forms.Label();
+            this.ContractTypePastMonth_cbx = new System.Windows.Forms.ComboBox();
+            this.ContractTypePastYear_lbl = new System.Windows.Forms.Label();
             this.Header_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PSS_img)).BeginInit();
             this.ContractManagement_tbc.SuspendLayout();
+            this.ContractPerformance_tbp.SuspendLayout();
+            this.ContractPerformancePastMonth_gbx.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.ContractPerformancePastYear_gbx.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.SuspendLayout();
             // 
             // Header_pnl
@@ -100,6 +125,8 @@
             // 
             // ContractPerformance_tbp
             // 
+            this.ContractPerformance_tbp.Controls.Add(this.ContractPerformancePastYear_gbx);
+            this.ContractPerformance_tbp.Controls.Add(this.ContractPerformancePastMonth_gbx);
             this.ContractPerformance_tbp.Location = new System.Drawing.Point(4, 34);
             this.ContractPerformance_tbp.Name = "ContractPerformance_tbp";
             this.ContractPerformance_tbp.Padding = new System.Windows.Forms.Padding(3);
@@ -127,6 +154,186 @@
             this.ContractConfiguration_tbp.Text = "Contract Configuration";
             this.ContractConfiguration_tbp.UseVisualStyleBackColor = true;
             // 
+            // ContractPerformancePastMonth_gbx
+            // 
+            this.ContractPerformancePastMonth_gbx.Controls.Add(this.dataGridView2);
+            this.ContractPerformancePastMonth_gbx.Controls.Add(this.dataGridView1);
+            this.ContractPerformancePastMonth_gbx.Controls.Add(this.JobsCanceledPastMonth_lbl);
+            this.ContractPerformancePastMonth_gbx.Controls.Add(this.JobsDonePastMonth_lbl);
+            this.ContractPerformancePastMonth_gbx.Controls.Add(this.ClientCount_txt);
+            this.ContractPerformancePastMonth_gbx.Controls.Add(this.ClientCount_lbl);
+            this.ContractPerformancePastMonth_gbx.Controls.Add(this.ContractType_cbx);
+            this.ContractPerformancePastMonth_gbx.Controls.Add(this.ContractTypePastMonth_lbl);
+            this.ContractPerformancePastMonth_gbx.Location = new System.Drawing.Point(6, 6);
+            this.ContractPerformancePastMonth_gbx.Name = "ContractPerformancePastMonth_gbx";
+            this.ContractPerformancePastMonth_gbx.Size = new System.Drawing.Size(1044, 200);
+            this.ContractPerformancePastMonth_gbx.TabIndex = 0;
+            this.ContractPerformancePastMonth_gbx.TabStop = false;
+            this.ContractPerformancePastMonth_gbx.Text = "Contract Performance Past Month";
+            // 
+            // ContractTypePastMonth_lbl
+            // 
+            this.ContractTypePastMonth_lbl.AutoSize = true;
+            this.ContractTypePastMonth_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.ContractTypePastMonth_lbl.Location = new System.Drawing.Point(13, 23);
+            this.ContractTypePastMonth_lbl.Name = "ContractTypePastMonth_lbl";
+            this.ContractTypePastMonth_lbl.Size = new System.Drawing.Size(127, 25);
+            this.ContractTypePastMonth_lbl.TabIndex = 0;
+            this.ContractTypePastMonth_lbl.Text = "Contract Type";
+            // 
+            // ContractType_cbx
+            // 
+            this.ContractType_cbx.FormattingEnabled = true;
+            this.ContractType_cbx.Location = new System.Drawing.Point(18, 51);
+            this.ContractType_cbx.Name = "ContractType_cbx";
+            this.ContractType_cbx.Size = new System.Drawing.Size(121, 33);
+            this.ContractType_cbx.TabIndex = 1;
+            // 
+            // ClientCount_lbl
+            // 
+            this.ClientCount_lbl.AutoSize = true;
+            this.ClientCount_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.ClientCount_lbl.Location = new System.Drawing.Point(13, 98);
+            this.ClientCount_lbl.Name = "ClientCount_lbl";
+            this.ClientCount_lbl.Size = new System.Drawing.Size(117, 25);
+            this.ClientCount_lbl.TabIndex = 2;
+            this.ClientCount_lbl.Text = "Client Count";
+            // 
+            // ClientCount_txt
+            // 
+            this.ClientCount_txt.Location = new System.Drawing.Point(18, 126);
+            this.ClientCount_txt.Name = "ClientCount_txt";
+            this.ClientCount_txt.Size = new System.Drawing.Size(100, 31);
+            this.ClientCount_txt.TabIndex = 3;
+            // 
+            // JobsDonePastMonth_lbl
+            // 
+            this.JobsDonePastMonth_lbl.AutoSize = true;
+            this.JobsDonePastMonth_lbl.Location = new System.Drawing.Point(309, 24);
+            this.JobsDonePastMonth_lbl.Name = "JobsDonePastMonth_lbl";
+            this.JobsDonePastMonth_lbl.Size = new System.Drawing.Size(99, 25);
+            this.JobsDonePastMonth_lbl.TabIndex = 4;
+            this.JobsDonePastMonth_lbl.Text = "Jobs Done";
+            // 
+            // JobsCanceledPastMonth_lbl
+            // 
+            this.JobsCanceledPastMonth_lbl.AutoSize = true;
+            this.JobsCanceledPastMonth_lbl.Location = new System.Drawing.Point(711, 23);
+            this.JobsCanceledPastMonth_lbl.Name = "JobsCanceledPastMonth_lbl";
+            this.JobsCanceledPastMonth_lbl.Size = new System.Drawing.Size(129, 25);
+            this.JobsCanceledPastMonth_lbl.TabIndex = 5;
+            this.JobsCanceledPastMonth_lbl.Text = "Jobs Canceled";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(314, 52);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(315, 116);
+            this.dataGridView1.TabIndex = 6;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(716, 52);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.RowTemplate.Height = 24;
+            this.dataGridView2.Size = new System.Drawing.Size(316, 116);
+            this.dataGridView2.TabIndex = 7;
+            // 
+            // ContractPerformancePastYear_gbx
+            // 
+            this.ContractPerformancePastYear_gbx.Controls.Add(this.dataGridView3);
+            this.ContractPerformancePastYear_gbx.Controls.Add(this.dataGridView4);
+            this.ContractPerformancePastYear_gbx.Controls.Add(this.JobCanceledPastYear_lbl);
+            this.ContractPerformancePastYear_gbx.Controls.Add(this.JobDonePastYear_lbl);
+            this.ContractPerformancePastYear_gbx.Controls.Add(this.ClientCountPastYear_txt);
+            this.ContractPerformancePastYear_gbx.Controls.Add(this.ClientCountPastYear_lbl);
+            this.ContractPerformancePastYear_gbx.Controls.Add(this.ContractTypePastMonth_cbx);
+            this.ContractPerformancePastYear_gbx.Controls.Add(this.ContractTypePastYear_lbl);
+            this.ContractPerformancePastYear_gbx.Location = new System.Drawing.Point(6, 219);
+            this.ContractPerformancePastYear_gbx.Name = "ContractPerformancePastYear_gbx";
+            this.ContractPerformancePastYear_gbx.Size = new System.Drawing.Size(1044, 200);
+            this.ContractPerformancePastYear_gbx.TabIndex = 8;
+            this.ContractPerformancePastYear_gbx.TabStop = false;
+            this.ContractPerformancePastYear_gbx.Text = "Contract Performance Past Year";
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(716, 52);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.RowHeadersWidth = 51;
+            this.dataGridView3.RowTemplate.Height = 24;
+            this.dataGridView3.Size = new System.Drawing.Size(316, 116);
+            this.dataGridView3.TabIndex = 7;
+            // 
+            // dataGridView4
+            // 
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Location = new System.Drawing.Point(314, 52);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.RowHeadersWidth = 51;
+            this.dataGridView4.RowTemplate.Height = 24;
+            this.dataGridView4.Size = new System.Drawing.Size(315, 116);
+            this.dataGridView4.TabIndex = 6;
+            // 
+            // JobCanceledPastYear_lbl
+            // 
+            this.JobCanceledPastYear_lbl.AutoSize = true;
+            this.JobCanceledPastYear_lbl.Location = new System.Drawing.Point(711, 23);
+            this.JobCanceledPastYear_lbl.Name = "JobCanceledPastYear_lbl";
+            this.JobCanceledPastYear_lbl.Size = new System.Drawing.Size(129, 25);
+            this.JobCanceledPastYear_lbl.TabIndex = 5;
+            this.JobCanceledPastYear_lbl.Text = "Jobs Canceled";
+            // 
+            // JobDonePastYear_lbl
+            // 
+            this.JobDonePastYear_lbl.AutoSize = true;
+            this.JobDonePastYear_lbl.Location = new System.Drawing.Point(309, 24);
+            this.JobDonePastYear_lbl.Name = "JobDonePastYear_lbl";
+            this.JobDonePastYear_lbl.Size = new System.Drawing.Size(99, 25);
+            this.JobDonePastYear_lbl.TabIndex = 4;
+            this.JobDonePastYear_lbl.Text = "Jobs Done";
+            // 
+            // ClientCountPastYear_txt
+            // 
+            this.ClientCountPastYear_txt.Location = new System.Drawing.Point(18, 126);
+            this.ClientCountPastYear_txt.Name = "ClientCountPastYear_txt";
+            this.ClientCountPastYear_txt.Size = new System.Drawing.Size(100, 31);
+            this.ClientCountPastYear_txt.TabIndex = 3;
+            // 
+            // ClientCountPastYear_lbl
+            // 
+            this.ClientCountPastYear_lbl.AutoSize = true;
+            this.ClientCountPastYear_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.ClientCountPastYear_lbl.Location = new System.Drawing.Point(13, 98);
+            this.ClientCountPastYear_lbl.Name = "ClientCountPastYear_lbl";
+            this.ClientCountPastYear_lbl.Size = new System.Drawing.Size(117, 25);
+            this.ClientCountPastYear_lbl.TabIndex = 2;
+            this.ClientCountPastYear_lbl.Text = "Client Count";
+            // 
+            // ContractTypePastMonth_cbx
+            // 
+            this.ContractTypePastMonth_cbx.FormattingEnabled = true;
+            this.ContractTypePastMonth_cbx.Location = new System.Drawing.Point(18, 51);
+            this.ContractTypePastMonth_cbx.Name = "ContractTypePastMonth_cbx";
+            this.ContractTypePastMonth_cbx.Size = new System.Drawing.Size(121, 33);
+            this.ContractTypePastMonth_cbx.TabIndex = 1;
+            // 
+            // ContractTypePastYear_lbl
+            // 
+            this.ContractTypePastYear_lbl.AutoSize = true;
+            this.ContractTypePastYear_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.ContractTypePastYear_lbl.Location = new System.Drawing.Point(13, 23);
+            this.ContractTypePastYear_lbl.Name = "ContractTypePastYear_lbl";
+            this.ContractTypePastYear_lbl.Size = new System.Drawing.Size(127, 25);
+            this.ContractTypePastYear_lbl.TabIndex = 0;
+            this.ContractTypePastYear_lbl.Text = "Contract Type";
+            // 
             // ContractManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -142,6 +349,15 @@
             this.Header_pnl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PSS_img)).EndInit();
             this.ContractManagement_tbc.ResumeLayout(false);
+            this.ContractPerformance_tbp.ResumeLayout(false);
+            this.ContractPerformancePastMonth_gbx.ResumeLayout(false);
+            this.ContractPerformancePastMonth_gbx.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.ContractPerformancePastYear_gbx.ResumeLayout(false);
+            this.ContractPerformancePastYear_gbx.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,5 +373,23 @@
         private System.Windows.Forms.TabPage ContractPerformance_tbp;
         private System.Windows.Forms.TabPage ServiceConfiguration_tbp;
         private System.Windows.Forms.TabPage ContractConfiguration_tbp;
+        private System.Windows.Forms.GroupBox ContractPerformancePastYear_gbx;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.Label JobCanceledPastYear_lbl;
+        private System.Windows.Forms.Label JobDonePastYear_lbl;
+        private System.Windows.Forms.TextBox ClientCountPastYear_txt;
+        private System.Windows.Forms.Label ClientCountPastYear_lbl;
+        private System.Windows.Forms.ComboBox ContractTypePastMonth_cbx;
+        private System.Windows.Forms.Label ContractTypePastYear_lbl;
+        private System.Windows.Forms.GroupBox ContractPerformancePastMonth_gbx;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label JobsCanceledPastMonth_lbl;
+        private System.Windows.Forms.Label JobsDonePastMonth_lbl;
+        private System.Windows.Forms.TextBox ClientCount_txt;
+        private System.Windows.Forms.Label ClientCount_lbl;
+        private System.Windows.Forms.ComboBox ContractType_cbx;
+        private System.Windows.Forms.Label ContractTypePastMonth_lbl;
     }
 }
