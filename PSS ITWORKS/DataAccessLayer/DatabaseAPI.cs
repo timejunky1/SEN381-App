@@ -35,6 +35,7 @@ namespace PSS_ITWORKS
                 cmd.Parameters.AddWithValue("@cost", contract.GetCost());
                 cmd.Parameters.AddWithValue("@avalability", contract.GetAvailability());
                 cmd.ExecuteNonQuery();
+                ErrorHandler.DisplayError("Quary Successfully executed");
             }
             catch (Exception ex)
             {
@@ -56,6 +57,7 @@ namespace PSS_ITWORKS
                 cmd.Parameters.AddWithValue("@cost", contract.GetCost());
                 cmd.Parameters.AddWithValue("@avalability", contract.GetAvailability());
                 cmd.ExecuteNonQuery();
+                ErrorHandler.DisplayError("Quary Successfully executed");
             }
             catch (Exception ex)
             {
@@ -82,6 +84,7 @@ namespace PSS_ITWORKS
                 }
                 reader.Close();
                 conn.Close();
+                ErrorHandler.DisplayError("Quary Successfully executed");
             }
             catch (Exception ex)
             {
@@ -100,6 +103,7 @@ namespace PSS_ITWORKS
                 cmd.Parameters.AddWithValue("@contractId", contractId);
                 cmd.ExecuteNonQuery();
                 conn.Close();
+                ErrorHandler.DisplayError("Quary Successfully executed");
             }
             catch (Exception ex)
             {
@@ -119,6 +123,7 @@ namespace PSS_ITWORKS
                 cmd.Parameters.AddWithValue("@serviceId", serviceId);
                 cmd.ExecuteNonQuery();
                 conn.Close();
+                ErrorHandler.DisplayError("Quary Successfully executed");
             }
             catch (Exception ex)
             {
@@ -143,6 +148,7 @@ namespace PSS_ITWORKS
                 }
                 reader.Close();
                 conn.Close();
+                ErrorHandler.DisplayError("Quary Successfully executed");
             }
             catch (Exception ex)
             {
@@ -163,6 +169,7 @@ namespace PSS_ITWORKS
                 cmd.Parameters.AddWithValue("@contractId", serviceId);
                 cmd.ExecuteNonQuery();
                 conn.Close();
+                ErrorHandler.DisplayError("Quary Successfully executed");
             }
             catch (Exception ex)
             {
@@ -186,6 +193,7 @@ namespace PSS_ITWORKS
                 cmd.Parameters.AddWithValue("@availability", service.GetAvailability());
                 cmd.ExecuteNonQuery();
                 conn.Close();
+                ErrorHandler.DisplayError("Quary Successfully executed");
             }
             catch (Exception ex)
             {
@@ -208,6 +216,7 @@ namespace PSS_ITWORKS
                 cmd.Parameters.AddWithValue("@availability", service.GetAvailability());
                 cmd.ExecuteNonQuery();
                 conn.Close();
+                ErrorHandler.DisplayError("Quary Successfully executed");
             }
             catch (Exception ex)
             {
@@ -231,7 +240,9 @@ namespace PSS_ITWORKS
                 cmd.Parameters.AddWithValue("@notes", job.GetNotes());
                 reader = cmd.ExecuteReader();
                 reader.Close();
-            }catch(Exception ex)
+                ErrorHandler.DisplayError("Quary Successfully executed");
+            }
+            catch(Exception ex)
             {
                 ErrorHandler.DisplayError(ex);
             }
@@ -254,6 +265,7 @@ namespace PSS_ITWORKS
                     bs.DataSource = reader;
                 }
                 reader.Close();
+                ErrorHandler.DisplayError("Quary Successfully executed");
             }
             catch(Exception ex)
             {

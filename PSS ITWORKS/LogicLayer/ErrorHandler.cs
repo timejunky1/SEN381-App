@@ -14,5 +14,10 @@ namespace PSS_ITWORKS.LogicLayer
         {
             MessageBox.Show(ex.Message + ex.TargetSite);
         }
+
+        internal static void DisplayError(string message)
+        {
+            MessageBox.Show(message);
+        }
     }
 }
