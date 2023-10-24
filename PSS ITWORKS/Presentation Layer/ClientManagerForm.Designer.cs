@@ -45,12 +45,13 @@
             this.Filter_btn = new System.Windows.Forms.Button();
             this.client_lbl = new System.Windows.Forms.Label();
             this.clientJobs_tbp = new System.Windows.Forms.TabPage();
+            this.clientDetail_dgv = new System.Windows.Forms.DataGridView();
+            this.clientContract_dgv = new System.Windows.Forms.DataGridView();
+            this.clientJobs_dgv = new System.Windows.Forms.DataGridView();
+            this.getClientJobsTableAdapter = new PSS_ITWORKS.PSSDataSetTableAdapters.GetClientJobsTableAdapter();
             this.pSSDataSet = new PSS_ITWORKS.PSSDataSet();
-            this.pSSDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.getClientDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.getClientDetailsTableAdapter = new PSS_ITWORKS.PSSDataSetTableAdapters.GetClientDetailsTableAdapter();
-            this.clientDetail_dgv = new System.Windows.Forms.DataGridView();
-            this.getClientDetailsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.clientidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.companynameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.personnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,42 +61,33 @@
             this.cityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.provinceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.zipcodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clientContract_dgv = new System.Windows.Forms.DataGridView();
             this.getClientAndContractInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.getClientAndContractInfoTableAdapter = new PSS_ITWORKS.PSSDataSetTableAdapters.GetClientAndContractInfoTableAdapter();
-            this.getClientAndContractInfoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.clientJobs_dgv = new System.Windows.Forms.DataGridView();
-            this.getClientJobsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.getClientJobsTableAdapter = new PSS_ITWORKS.PSSDataSetTableAdapters.GetClientJobsTableAdapter();
-            this.jobidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clientidDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.companynameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sLADataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.durationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priorityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.getClientJobsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.jobidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientidDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.serviceidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.servicetitleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timebeginDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timeendDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.getClientAndContractInfoBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.clientidDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.companynameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sLADataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.durationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priorityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).BeginInit();
             this.Clients_tbc.SuspendLayout();
             this.Clients_tbp.SuspendLayout();
             this.clientContract_tbp.SuspendLayout();
             this.clientJobs_tbp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pSSDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pSSDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.getClientDetailsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientDetail_dgv)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.getClientDetailsBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientContract_dgv)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.getClientAndContractInfoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.getClientAndContractInfoBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientJobs_dgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pSSDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.getClientDetailsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.getClientAndContractInfoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.getClientJobsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.getClientAndContractInfoBindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // Logo_img
@@ -275,25 +267,6 @@
             this.clientJobs_tbp.Text = "Clients & Jobs";
             this.clientJobs_tbp.UseVisualStyleBackColor = true;
             // 
-            // pSSDataSet
-            // 
-            this.pSSDataSet.DataSetName = "PSSDataSet";
-            this.pSSDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // pSSDataSetBindingSource
-            // 
-            this.pSSDataSetBindingSource.DataSource = this.pSSDataSet;
-            this.pSSDataSetBindingSource.Position = 0;
-            // 
-            // getClientDetailsBindingSource
-            // 
-            this.getClientDetailsBindingSource.DataMember = "GetClientDetails";
-            this.getClientDetailsBindingSource.DataSource = this.pSSDataSetBindingSource;
-            // 
-            // getClientDetailsTableAdapter
-            // 
-            this.getClientDetailsTableAdapter.ClearBeforeFill = true;
-            // 
             // clientDetail_dgv
             // 
             this.clientDetail_dgv.AutoGenerateColumns = false;
@@ -308,7 +281,7 @@
             this.cityDataGridViewTextBoxColumn,
             this.provinceDataGridViewTextBoxColumn,
             this.zipcodeDataGridViewTextBoxColumn});
-            this.clientDetail_dgv.DataSource = this.getClientDetailsBindingSource1;
+            this.clientDetail_dgv.DataSource = this.getClientDetailsBindingSource;
             this.clientDetail_dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.clientDetail_dgv.Location = new System.Drawing.Point(3, 3);
             this.clientDetail_dgv.Name = "clientDetail_dgv";
@@ -317,10 +290,63 @@
             this.clientDetail_dgv.Size = new System.Drawing.Size(746, 362);
             this.clientDetail_dgv.TabIndex = 0;
             // 
-            // getClientDetailsBindingSource1
+            // clientContract_dgv
             // 
-            this.getClientDetailsBindingSource1.DataMember = "GetClientDetails";
-            this.getClientDetailsBindingSource1.DataSource = this.pSSDataSetBindingSource;
+            this.clientContract_dgv.AutoGenerateColumns = false;
+            this.clientContract_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.clientContract_dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clientidDataGridViewTextBoxColumn1,
+            this.companynameDataGridViewTextBoxColumn1,
+            this.sLADataGridViewTextBoxColumn,
+            this.durationDataGridViewTextBoxColumn,
+            this.priorityDataGridViewTextBoxColumn});
+            this.clientContract_dgv.DataSource = this.getClientAndContractInfoBindingSource;
+            this.clientContract_dgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.clientContract_dgv.Location = new System.Drawing.Point(3, 3);
+            this.clientContract_dgv.Name = "clientContract_dgv";
+            this.clientContract_dgv.RowHeadersWidth = 51;
+            this.clientContract_dgv.RowTemplate.Height = 24;
+            this.clientContract_dgv.Size = new System.Drawing.Size(746, 362);
+            this.clientContract_dgv.TabIndex = 1;
+            // 
+            // clientJobs_dgv
+            // 
+            this.clientJobs_dgv.AutoGenerateColumns = false;
+            this.clientJobs_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.clientJobs_dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.jobidDataGridViewTextBoxColumn,
+            this.clientidDataGridViewTextBoxColumn2,
+            this.serviceidDataGridViewTextBoxColumn,
+            this.servicetitleDataGridViewTextBoxColumn,
+            this.timebeginDataGridViewTextBoxColumn,
+            this.timeendDataGridViewTextBoxColumn,
+            this.statusDataGridViewTextBoxColumn});
+            this.clientJobs_dgv.DataSource = this.getClientJobsBindingSource;
+            this.clientJobs_dgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.clientJobs_dgv.Location = new System.Drawing.Point(3, 3);
+            this.clientJobs_dgv.Name = "clientJobs_dgv";
+            this.clientJobs_dgv.RowHeadersWidth = 51;
+            this.clientJobs_dgv.RowTemplate.Height = 24;
+            this.clientJobs_dgv.Size = new System.Drawing.Size(746, 362);
+            this.clientJobs_dgv.TabIndex = 1;
+            // 
+            // getClientJobsTableAdapter
+            // 
+            this.getClientJobsTableAdapter.ClearBeforeFill = true;
+            // 
+            // pSSDataSet
+            // 
+            this.pSSDataSet.DataSetName = "PSSDataSet";
+            this.pSSDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // getClientDetailsBindingSource
+            // 
+            this.getClientDetailsBindingSource.DataMember = "GetClientDetails";
+            this.getClientDetailsBindingSource.DataSource = this.pSSDataSet;
+            // 
+            // getClientDetailsTableAdapter
+            // 
+            this.getClientDetailsTableAdapter.ClearBeforeFill = true;
             // 
             // clientidDataGridViewTextBoxColumn
             // 
@@ -395,68 +421,60 @@
             this.zipcodeDataGridViewTextBoxColumn.Name = "zipcodeDataGridViewTextBoxColumn";
             this.zipcodeDataGridViewTextBoxColumn.Width = 125;
             // 
-            // clientContract_dgv
-            // 
-            this.clientContract_dgv.AutoGenerateColumns = false;
-            this.clientContract_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.clientContract_dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clientidDataGridViewTextBoxColumn2,
-            this.companynameDataGridViewTextBoxColumn1,
-            this.sLADataGridViewTextBoxColumn,
-            this.durationDataGridViewTextBoxColumn,
-            this.priorityDataGridViewTextBoxColumn});
-            this.clientContract_dgv.DataSource = this.getClientAndContractInfoBindingSource2;
-            this.clientContract_dgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.clientContract_dgv.Location = new System.Drawing.Point(3, 3);
-            this.clientContract_dgv.Name = "clientContract_dgv";
-            this.clientContract_dgv.RowHeadersWidth = 51;
-            this.clientContract_dgv.RowTemplate.Height = 24;
-            this.clientContract_dgv.Size = new System.Drawing.Size(746, 362);
-            this.clientContract_dgv.TabIndex = 1;
-            // 
             // getClientAndContractInfoBindingSource
             // 
             this.getClientAndContractInfoBindingSource.DataMember = "GetClientAndContractInfo";
-            this.getClientAndContractInfoBindingSource.DataSource = this.pSSDataSetBindingSource;
+            this.getClientAndContractInfoBindingSource.DataSource = this.pSSDataSet;
             // 
             // getClientAndContractInfoTableAdapter
             // 
             this.getClientAndContractInfoTableAdapter.ClearBeforeFill = true;
             // 
-            // getClientAndContractInfoBindingSource1
+            // clientidDataGridViewTextBoxColumn1
             // 
-            this.getClientAndContractInfoBindingSource1.DataMember = "GetClientAndContractInfo";
-            this.getClientAndContractInfoBindingSource1.DataSource = this.pSSDataSetBindingSource;
+            this.clientidDataGridViewTextBoxColumn1.DataPropertyName = "client_id";
+            this.clientidDataGridViewTextBoxColumn1.HeaderText = "client_id";
+            this.clientidDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.clientidDataGridViewTextBoxColumn1.Name = "clientidDataGridViewTextBoxColumn1";
+            this.clientidDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.clientidDataGridViewTextBoxColumn1.Width = 125;
             // 
-            // clientJobs_dgv
+            // companynameDataGridViewTextBoxColumn1
             // 
-            this.clientJobs_dgv.AutoGenerateColumns = false;
-            this.clientJobs_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.clientJobs_dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.jobidDataGridViewTextBoxColumn,
-            this.clientidDataGridViewTextBoxColumn1,
-            this.serviceidDataGridViewTextBoxColumn,
-            this.servicetitleDataGridViewTextBoxColumn,
-            this.timebeginDataGridViewTextBoxColumn,
-            this.timeendDataGridViewTextBoxColumn,
-            this.statusDataGridViewTextBoxColumn});
-            this.clientJobs_dgv.DataSource = this.getClientJobsBindingSource;
-            this.clientJobs_dgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.clientJobs_dgv.Location = new System.Drawing.Point(3, 3);
-            this.clientJobs_dgv.Name = "clientJobs_dgv";
-            this.clientJobs_dgv.RowHeadersWidth = 51;
-            this.clientJobs_dgv.RowTemplate.Height = 24;
-            this.clientJobs_dgv.Size = new System.Drawing.Size(746, 362);
-            this.clientJobs_dgv.TabIndex = 1;
+            this.companynameDataGridViewTextBoxColumn1.DataPropertyName = "company_name";
+            this.companynameDataGridViewTextBoxColumn1.HeaderText = "company_name";
+            this.companynameDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.companynameDataGridViewTextBoxColumn1.Name = "companynameDataGridViewTextBoxColumn1";
+            this.companynameDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // sLADataGridViewTextBoxColumn
+            // 
+            this.sLADataGridViewTextBoxColumn.DataPropertyName = "SLA";
+            this.sLADataGridViewTextBoxColumn.HeaderText = "SLA";
+            this.sLADataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.sLADataGridViewTextBoxColumn.Name = "sLADataGridViewTextBoxColumn";
+            this.sLADataGridViewTextBoxColumn.Width = 125;
+            // 
+            // durationDataGridViewTextBoxColumn
+            // 
+            this.durationDataGridViewTextBoxColumn.DataPropertyName = "duration";
+            this.durationDataGridViewTextBoxColumn.HeaderText = "duration";
+            this.durationDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.durationDataGridViewTextBoxColumn.Name = "durationDataGridViewTextBoxColumn";
+            this.durationDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // priorityDataGridViewTextBoxColumn
+            // 
+            this.priorityDataGridViewTextBoxColumn.DataPropertyName = "priority";
+            this.priorityDataGridViewTextBoxColumn.HeaderText = "priority";
+            this.priorityDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.priorityDataGridViewTextBoxColumn.Name = "priorityDataGridViewTextBoxColumn";
+            this.priorityDataGridViewTextBoxColumn.Width = 125;
             // 
             // getClientJobsBindingSource
             // 
             this.getClientJobsBindingSource.DataMember = "GetClientJobs";
-            this.getClientJobsBindingSource.DataSource = this.pSSDataSetBindingSource;
-            // 
-            // getClientJobsTableAdapter
-            // 
-            this.getClientJobsTableAdapter.ClearBeforeFill = true;
+            this.getClientJobsBindingSource.DataSource = this.pSSDataSet;
             // 
             // jobidDataGridViewTextBoxColumn
             // 
@@ -467,13 +485,13 @@
             this.jobidDataGridViewTextBoxColumn.ReadOnly = true;
             this.jobidDataGridViewTextBoxColumn.Width = 125;
             // 
-            // clientidDataGridViewTextBoxColumn1
+            // clientidDataGridViewTextBoxColumn2
             // 
-            this.clientidDataGridViewTextBoxColumn1.DataPropertyName = "client_id";
-            this.clientidDataGridViewTextBoxColumn1.HeaderText = "client_id";
-            this.clientidDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.clientidDataGridViewTextBoxColumn1.Name = "clientidDataGridViewTextBoxColumn1";
-            this.clientidDataGridViewTextBoxColumn1.Width = 125;
+            this.clientidDataGridViewTextBoxColumn2.DataPropertyName = "client_id";
+            this.clientidDataGridViewTextBoxColumn2.HeaderText = "client_id";
+            this.clientidDataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.clientidDataGridViewTextBoxColumn2.Name = "clientidDataGridViewTextBoxColumn2";
+            this.clientidDataGridViewTextBoxColumn2.Width = 125;
             // 
             // serviceidDataGridViewTextBoxColumn
             // 
@@ -515,52 +533,6 @@
             this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
             this.statusDataGridViewTextBoxColumn.Width = 125;
             // 
-            // getClientAndContractInfoBindingSource2
-            // 
-            this.getClientAndContractInfoBindingSource2.DataMember = "GetClientAndContractInfo";
-            this.getClientAndContractInfoBindingSource2.DataSource = this.pSSDataSetBindingSource;
-            // 
-            // clientidDataGridViewTextBoxColumn2
-            // 
-            this.clientidDataGridViewTextBoxColumn2.DataPropertyName = "client_id";
-            this.clientidDataGridViewTextBoxColumn2.HeaderText = "client_id";
-            this.clientidDataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.clientidDataGridViewTextBoxColumn2.Name = "clientidDataGridViewTextBoxColumn2";
-            this.clientidDataGridViewTextBoxColumn2.ReadOnly = true;
-            this.clientidDataGridViewTextBoxColumn2.Width = 125;
-            // 
-            // companynameDataGridViewTextBoxColumn1
-            // 
-            this.companynameDataGridViewTextBoxColumn1.DataPropertyName = "company_name";
-            this.companynameDataGridViewTextBoxColumn1.HeaderText = "company_name";
-            this.companynameDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.companynameDataGridViewTextBoxColumn1.Name = "companynameDataGridViewTextBoxColumn1";
-            this.companynameDataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // sLADataGridViewTextBoxColumn
-            // 
-            this.sLADataGridViewTextBoxColumn.DataPropertyName = "SLA";
-            this.sLADataGridViewTextBoxColumn.HeaderText = "SLA";
-            this.sLADataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.sLADataGridViewTextBoxColumn.Name = "sLADataGridViewTextBoxColumn";
-            this.sLADataGridViewTextBoxColumn.Width = 125;
-            // 
-            // durationDataGridViewTextBoxColumn
-            // 
-            this.durationDataGridViewTextBoxColumn.DataPropertyName = "duration";
-            this.durationDataGridViewTextBoxColumn.HeaderText = "duration";
-            this.durationDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.durationDataGridViewTextBoxColumn.Name = "durationDataGridViewTextBoxColumn";
-            this.durationDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // priorityDataGridViewTextBoxColumn
-            // 
-            this.priorityDataGridViewTextBoxColumn.DataPropertyName = "priority";
-            this.priorityDataGridViewTextBoxColumn.HeaderText = "priority";
-            this.priorityDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.priorityDataGridViewTextBoxColumn.Name = "priorityDataGridViewTextBoxColumn";
-            this.priorityDataGridViewTextBoxColumn.Width = 125;
-            // 
             // ClientManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -587,17 +559,13 @@
             this.Clients_tbp.ResumeLayout(false);
             this.clientContract_tbp.ResumeLayout(false);
             this.clientJobs_tbp.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pSSDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pSSDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.getClientDetailsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientDetail_dgv)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.getClientDetailsBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientContract_dgv)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.getClientAndContractInfoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.getClientAndContractInfoBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientJobs_dgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pSSDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.getClientDetailsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.getClientAndContractInfoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.getClientJobsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.getClientAndContractInfoBindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -621,6 +589,9 @@
         private System.Windows.Forms.Label client_lbl;
         private System.Windows.Forms.TabPage clientJobs_tbp;
         private System.Windows.Forms.DataGridView clientDetail_dgv;
+        private System.Windows.Forms.DataGridView clientContract_dgv;
+        private System.Windows.Forms.DataGridView clientJobs_dgv;
+        private PSSDataSetTableAdapters.GetClientJobsTableAdapter getClientJobsTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn clientidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn companynameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn personnameDataGridViewTextBoxColumn;
@@ -630,30 +601,23 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn provinceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn zipcodeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource getClientDetailsBindingSource1;
-        private System.Windows.Forms.BindingSource pSSDataSetBindingSource;
-        private PSSDataSet pSSDataSet;
         private System.Windows.Forms.BindingSource getClientDetailsBindingSource;
-        private PSSDataSetTableAdapters.GetClientDetailsTableAdapter getClientDetailsTableAdapter;
-        private System.Windows.Forms.DataGridView clientContract_dgv;
-        private System.Windows.Forms.BindingSource getClientAndContractInfoBindingSource1;
-        private System.Windows.Forms.BindingSource getClientAndContractInfoBindingSource;
-        private PSSDataSetTableAdapters.GetClientAndContractInfoTableAdapter getClientAndContractInfoTableAdapter;
-        private System.Windows.Forms.DataGridView clientJobs_dgv;
-        private System.Windows.Forms.DataGridViewTextBoxColumn jobidDataGridViewTextBoxColumn;
+        private PSSDataSet pSSDataSet;
         private System.Windows.Forms.DataGridViewTextBoxColumn clientidDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn companynameDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sLADataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn durationDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn priorityDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource getClientAndContractInfoBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn jobidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clientidDataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn serviceidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn servicetitleDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn timebeginDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn timeendDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource getClientJobsBindingSource;
-        private PSSDataSetTableAdapters.GetClientJobsTableAdapter getClientJobsTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clientidDataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn companynameDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sLADataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn durationDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priorityDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource getClientAndContractInfoBindingSource2;
+        private PSSDataSetTableAdapters.GetClientDetailsTableAdapter getClientDetailsTableAdapter;
+        private PSSDataSetTableAdapters.GetClientAndContractInfoTableAdapter getClientAndContractInfoTableAdapter;
     }
 }
