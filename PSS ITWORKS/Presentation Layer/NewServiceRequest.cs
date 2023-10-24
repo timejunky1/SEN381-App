@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace PSS_ITWORKS.Presentation_Layer
 {
-    public partial class CallForm : Form
+    public partial class ServiceRequestForm : Form
     {
-        public CallForm()
+        public ServiceRequestForm()
         {
             InitializeComponent();
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-            Visible = true;
         }
     }
 }
