@@ -37,9 +37,20 @@
             this.ServiceRequest_tbp = new System.Windows.Forms.TabPage();
             this.Client_tbp = new System.Windows.Forms.TabPage();
             this.CommunicationHistory_tbp = new System.Windows.Forms.TabPage();
+            this.MaintananceOverview_lbl = new System.Windows.Forms.Label();
+            this.PastJobRequest_lbl = new System.Windows.Forms.Label();
+            this.Dashboard_dgv = new System.Windows.Forms.DataGridView();
+            this.ServiceRequest_lbl = new System.Windows.Forms.Label();
+            this.NewServiceRequest_btn = new System.Windows.Forms.Button();
+            this.PastRequests_lbl = new System.Windows.Forms.Label();
+            this.PastRequests_dgv = new System.Windows.Forms.DataGridView();
             this.Header_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PSS_img)).BeginInit();
             this.CallEmployee_tbc.SuspendLayout();
+            this.Dashboard_tbp.SuspendLayout();
+            this.ServiceRequest_tbp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Dashboard_dgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PastRequests_dgv)).BeginInit();
             this.SuspendLayout();
             // 
             // Header_pnl
@@ -101,6 +112,9 @@
             // 
             // Dashboard_tbp
             // 
+            this.Dashboard_tbp.Controls.Add(this.Dashboard_dgv);
+            this.Dashboard_tbp.Controls.Add(this.PastJobRequest_lbl);
+            this.Dashboard_tbp.Controls.Add(this.MaintananceOverview_lbl);
             this.Dashboard_tbp.Location = new System.Drawing.Point(4, 34);
             this.Dashboard_tbp.Name = "Dashboard_tbp";
             this.Dashboard_tbp.Padding = new System.Windows.Forms.Padding(3);
@@ -111,6 +125,10 @@
             // 
             // ServiceRequest_tbp
             // 
+            this.ServiceRequest_tbp.Controls.Add(this.PastRequests_dgv);
+            this.ServiceRequest_tbp.Controls.Add(this.PastRequests_lbl);
+            this.ServiceRequest_tbp.Controls.Add(this.NewServiceRequest_btn);
+            this.ServiceRequest_tbp.Controls.Add(this.ServiceRequest_lbl);
             this.ServiceRequest_tbp.Location = new System.Drawing.Point(4, 34);
             this.ServiceRequest_tbp.Name = "ServiceRequest_tbp";
             this.ServiceRequest_tbp.Padding = new System.Windows.Forms.Padding(3);
@@ -137,6 +155,73 @@
             this.CommunicationHistory_tbp.Text = "Communication History";
             this.CommunicationHistory_tbp.UseVisualStyleBackColor = true;
             // 
+            // MaintananceOverview_lbl
+            // 
+            this.MaintananceOverview_lbl.AutoSize = true;
+            this.MaintananceOverview_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MaintananceOverview_lbl.Location = new System.Drawing.Point(23, 16);
+            this.MaintananceOverview_lbl.Name = "MaintananceOverview_lbl";
+            this.MaintananceOverview_lbl.Size = new System.Drawing.Size(251, 31);
+            this.MaintananceOverview_lbl.TabIndex = 0;
+            this.MaintananceOverview_lbl.Text = "Maintanance Overview";
+            // 
+            // PastJobRequest_lbl
+            // 
+            this.PastJobRequest_lbl.AutoSize = true;
+            this.PastJobRequest_lbl.Location = new System.Drawing.Point(29, 51);
+            this.PastJobRequest_lbl.Name = "PastJobRequest_lbl";
+            this.PastJobRequest_lbl.Size = new System.Drawing.Size(155, 25);
+            this.PastJobRequest_lbl.TabIndex = 1;
+            this.PastJobRequest_lbl.Text = "Past Job Requests";
+            // 
+            // Dashboard_dgv
+            // 
+            this.Dashboard_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Dashboard_dgv.Location = new System.Drawing.Point(29, 92);
+            this.Dashboard_dgv.Name = "Dashboard_dgv";
+            this.Dashboard_dgv.RowHeadersWidth = 51;
+            this.Dashboard_dgv.RowTemplate.Height = 24;
+            this.Dashboard_dgv.Size = new System.Drawing.Size(995, 314);
+            this.Dashboard_dgv.TabIndex = 2;
+            // 
+            // ServiceRequest_lbl
+            // 
+            this.ServiceRequest_lbl.AutoSize = true;
+            this.ServiceRequest_lbl.Location = new System.Drawing.Point(22, 16);
+            this.ServiceRequest_lbl.Name = "ServiceRequest_lbl";
+            this.ServiceRequest_lbl.Size = new System.Drawing.Size(136, 25);
+            this.ServiceRequest_lbl.TabIndex = 0;
+            this.ServiceRequest_lbl.Text = "Service Request";
+            // 
+            // NewServiceRequest_btn
+            // 
+            this.NewServiceRequest_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.NewServiceRequest_btn.Location = new System.Drawing.Point(27, 54);
+            this.NewServiceRequest_btn.Name = "NewServiceRequest_btn";
+            this.NewServiceRequest_btn.Size = new System.Drawing.Size(235, 37);
+            this.NewServiceRequest_btn.TabIndex = 1;
+            this.NewServiceRequest_btn.Text = "New Service Request";
+            this.NewServiceRequest_btn.UseVisualStyleBackColor = false;
+            // 
+            // PastRequests_lbl
+            // 
+            this.PastRequests_lbl.AutoSize = true;
+            this.PastRequests_lbl.Location = new System.Drawing.Point(22, 108);
+            this.PastRequests_lbl.Name = "PastRequests_lbl";
+            this.PastRequests_lbl.Size = new System.Drawing.Size(295, 25);
+            this.PastRequests_lbl.TabIndex = 2;
+            this.PastRequests_lbl.Text = "Past Requests, Status and Feedback";
+            // 
+            // PastRequests_dgv
+            // 
+            this.PastRequests_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.PastRequests_dgv.Location = new System.Drawing.Point(27, 151);
+            this.PastRequests_dgv.Name = "PastRequests_dgv";
+            this.PastRequests_dgv.RowHeadersWidth = 51;
+            this.PastRequests_dgv.RowTemplate.Height = 24;
+            this.PastRequests_dgv.Size = new System.Drawing.Size(1009, 250);
+            this.PastRequests_dgv.TabIndex = 3;
+            // 
             // CallForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -150,6 +235,12 @@
             this.Header_pnl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PSS_img)).EndInit();
             this.CallEmployee_tbc.ResumeLayout(false);
+            this.Dashboard_tbp.ResumeLayout(false);
+            this.Dashboard_tbp.PerformLayout();
+            this.ServiceRequest_tbp.ResumeLayout(false);
+            this.ServiceRequest_tbp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Dashboard_dgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PastRequests_dgv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -166,5 +257,12 @@
         private System.Windows.Forms.TabPage ServiceRequest_tbp;
         private System.Windows.Forms.TabPage Client_tbp;
         private System.Windows.Forms.TabPage CommunicationHistory_tbp;
+        private System.Windows.Forms.DataGridView Dashboard_dgv;
+        private System.Windows.Forms.Label PastJobRequest_lbl;
+        private System.Windows.Forms.Label MaintananceOverview_lbl;
+        private System.Windows.Forms.DataGridView PastRequests_dgv;
+        private System.Windows.Forms.Label PastRequests_lbl;
+        private System.Windows.Forms.Button NewServiceRequest_btn;
+        private System.Windows.Forms.Label ServiceRequest_lbl;
     }
 }
