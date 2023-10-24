@@ -1,5 +1,7 @@
 ﻿// StrategyCCallManagement.cs
 using PSS_ITWORKS.LogicLayer;
+using PSS_ITWORKS.PSSDataSetTableAdapters;
+using System;
 using System.Windows.Forms;
 
 namespace PSS_ITWORKS
@@ -15,7 +17,15 @@ namespace PSS_ITWORKS
 
         public void Create(IEntity entity)
         {
-            MessageBox.Show("Create something");
+            try
+            {
+                EntityJob job = entity as EntityJob;
+                api.CreateServiceRequest(job);
+            }
+            catch(Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+            }
         }
 
         public void Delete(int ID)
@@ -35,12 +45,12 @@ namespace PSS_ITWORKS
 
         public BindingSource Get(int ID)
         {
-            throw new System.NotImplementedException();
+            return api.GetEmployeeOverview(ID);
         }
 
         public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
         {
-            throw new System.NotImplementedException();
+            return api.GetClientOverview(id1);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿// IStrategyAManagement.cs
 using PSS_ITWORKS.LogicLayer;
+using System;
 using System.Windows.Forms;
 
 namespace PSS_ITWORKS

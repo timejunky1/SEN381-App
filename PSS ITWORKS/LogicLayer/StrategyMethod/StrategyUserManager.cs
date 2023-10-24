@@ -1,5 +1,6 @@
 ﻿// StrategyUserManager.cs
 using PSS_ITWORKS.LogicLayer;
+using System;
 using System.Windows.Forms;
 
 namespace PSS_ITWORKS
@@ -9,13 +10,20 @@ namespace PSS_ITWORKS
         DatabaseAPI api;
         public BindingSource Get()
         {
-            MessageBox.Show("Get something");
-            return null;
+            return api.ViewAllUsers();
         }
 
         public void Create(IEntity entity)
         {
-            MessageBox.Show("Create something");
+            try
+            {
+                EntityUser user = entity as EntityUser;
+                api.InsertUser(user);
+            }catch(Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+            }
+            
         }
 
         public void Delete(int ID)
@@ -25,12 +33,20 @@ namespace PSS_ITWORKS
 
         public void Update(IEntity entity)
         {
-            MessageBox.Show("Update something");
+            try
+            {
+                EntityUser user = entity as EntityUser;
+                api.UpdateUser(user);
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+            }
         }
 
         public void Connect(string myString)
         {
-            MessageBox.Show("Connect to or something");
+            api.SetConnection(myString);
         }
 
         public BindingSource Get(int ID)
@@ -40,7 +56,7 @@ namespace PSS_ITWORKS
 
         public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
         {
-            throw new System.NotImplementedException();
+            return api.FilterUsers(s1);
         }
     }
 }

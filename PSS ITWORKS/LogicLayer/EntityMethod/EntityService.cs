@@ -8,12 +8,12 @@ namespace PSS_ITWORKS.LogicLayer
     {
         private int Id;
         private string title;
-        private string duration;
-        private string priority;
+        private int duration;
+        private int priority;
         private decimal cost;
         private string availability;
 
-        public EntityService(int id, string title, string duration, string priority, decimal cost, string availability)
+        public EntityService(int id, string title, int duration, int priority, decimal cost, string availability)
         {
             Id = id;
             this.title = title;
@@ -33,12 +33,12 @@ namespace PSS_ITWORKS.LogicLayer
             return title;
         }
 
-        public string GetDuration()
+        public int GetDuration()
         {
             return duration;
         }
 
-        public string GetPriority()
+        public int GetPriority()
         {
             return priority;
         }

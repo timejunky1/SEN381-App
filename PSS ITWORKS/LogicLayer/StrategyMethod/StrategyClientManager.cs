@@ -30,17 +30,17 @@ namespace PSS_ITWORKS
 
         public void Connect(string myString)
         {
-            MessageBox.Show("Connect to or something");
+            api.SetConnection(myString);
         }
 
         public BindingSource Get(int ID)
         {
-            throw new System.NotImplementedException();
+            return api.GetClientAndContractInfo(ID);
         }
 
         public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
         {
-            throw new System.NotImplementedException();
+            return api.GetClientInfo(id1);
         }
     }
 }
