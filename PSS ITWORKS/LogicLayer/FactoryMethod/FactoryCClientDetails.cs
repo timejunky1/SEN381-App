@@ -13,8 +13,8 @@ namespace PSS_ITWORKS
         }
         public void ShowUserInterface(LogIn loginForm)
         {
-            string name = loginController.Name;
-            string surname = loginController.Surname;
+            string name = loginController.GetUserInfo().Name;
+            string surname = loginController.GetUserInfo().Surname;
             ClientForm clientForm = new ClientForm();
             clientForm.Show();
             loginForm.Close();

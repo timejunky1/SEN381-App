@@ -5,6 +5,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace PSS_ITWORKS
 {
@@ -20,21 +21,20 @@ namespace PSS_ITWORKS
         //LoginProcedures
         public bool AuthenticateUser(string username, string password)
         {
-            using (SqlConnection connection = new SqlConnection(conn.ConnectionString))
+            bool res = false;
+            try
             {
-                connection.Open();
-
-                using (SqlCommand command = new SqlCommand("LogInProcedures.AuthenticateUser", connection))
+                conn.Open();
+                using (SqlCommand command = new SqlCommand("LogInProcedures.AuthenticateUser", conn))
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.AddWithValue("@Username", username);
-                    command.Parameters.AddWithValue("@Password", HashPassword(password));
-                    command.Parameters.AddWithValue("@UserRole", null);
+                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@password", HashPassword(password));
 
                     var result = new SqlParameter
                     {
-                        ParameterName = "@Result",
+                        ParameterName = "@result",
                         SqlDbType = SqlDbType.Int,
                         Direction = ParameterDirection.Output
                     };
@@ -45,27 +45,34 @@ namespace PSS_ITWORKS
 
                     int authenticationResult = Convert.ToInt32(result.Value);
 
-                    return authenticationResult == 1;
+                    res = authenticationResult == 1;
                 }
+                conn.Close();
+            }catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                conn.Close();
             }
+            return res;
         }
 
         // this stored procedure has not been created yet
         public LoginController.UserInfo GetUserInformation(string username)
         {
-            using (conn)
+            LoginController.UserInfo userInfo = null;
+            try
             {
-                
-                using (SqlCommand command = new SqlCommand("sp_GetUserInformation", conn))
+                conn.Open();
+                using (SqlCommand command = new SqlCommand("LoginProcedures.GetUserInformation", conn))
                 {
 
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@username", username);
 
                     var nameParam = new SqlParameter
                     {
-                        ParameterName = "@Name",
+                        ParameterName = "@name",
                         SqlDbType = SqlDbType.VarChar,
                         Size = 50,
                         Direction = ParameterDirection.Output
@@ -73,7 +80,7 @@ namespace PSS_ITWORKS
 
                     var surnameParam = new SqlParameter
                     {
-                        ParameterName = "@Surname",
+                        ParameterName = "@surname",
                         SqlDbType = SqlDbType.VarChar,
                         Size = 50,
                         Direction = ParameterDirection.Output
@@ -81,7 +88,7 @@ namespace PSS_ITWORKS
 
                     var roleParam = new SqlParameter
                     {
-                        ParameterName = "@Role",
+                        ParameterName = "@role",
                         SqlDbType = SqlDbType.VarChar,
                         Size = 30,
                         Direction = ParameterDirection.Output
@@ -97,40 +104,54 @@ namespace PSS_ITWORKS
                     string surname = surnameParam.Value.ToString();
                     string role = roleParam.Value.ToString();
 
-                    return new LoginController.UserInfo { Name = name, Surname = surname, Role = role };
+                    userInfo = new LoginController.UserInfo { Name = name, Surname = surname, Role = role };
                 }
+                conn.Close();
             }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                conn.Close();
+            }
+            return userInfo;
         }
 
         public string GetUserRole(string username)
         {
-            using (SqlConnection connection = new SqlConnection(conn.ConnectionString))
+            string role = "";
+            try
             {
-                connection.Open();
 
-                using (SqlCommand command = new SqlCommand("sp_GetUserRole", connection))
+                using (conn)
                 {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.AddWithValue("@Username", username);
-
-                    var roleParam = new SqlParameter
+                    using (SqlCommand command = new SqlCommand("sp_GetUserRole", conn))
                     {
-                        ParameterName = "@Role",
-                        SqlDbType = SqlDbType.VarChar,
-                        Size = 30,
-                        Direction = ParameterDirection.Output
-                    };
+                        command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.Add(roleParam);
+                        command.Parameters.AddWithValue("@Username", username);
 
-                    command.ExecuteNonQuery();
+                        var roleParam = new SqlParameter
+                        {
+                            ParameterName = "@Role",
+                            SqlDbType = SqlDbType.VarChar,
+                            Size = 30,
+                            Direction = ParameterDirection.Output
+                        };
 
-                    string role = roleParam.Value.ToString();
+                        command.Parameters.Add(roleParam);
 
-                    return role;
+                        command.ExecuteNonQuery();
+
+                        role = roleParam.Value.ToString();
+
+                    }
                 }
             }
+            catch(Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+            }
+            return role;
         }
 
         public string FetchNameAndSurname(string username)

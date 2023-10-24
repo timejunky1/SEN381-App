@@ -17,8 +17,8 @@ namespace PSS_ITWORKS.LogicLayer.FactoryMethod
         }
         public void ShowUserInterface(LogIn loginForm)
         {
-            string name = loginController.Name;
-            string surname = loginController.Surname;
+            string name = loginController.GetUserInfo().Name;
+            string surname = loginController.GetUserInfo().Surname;
             ClientManagerForm clientManagerForm = new ClientManagerForm();
             clientManagerForm.Show();
             loginForm.Close();

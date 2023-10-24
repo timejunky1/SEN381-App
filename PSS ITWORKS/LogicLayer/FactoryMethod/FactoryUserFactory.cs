@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using PSS_ITWORKS.LogicLayer.FactoryMethod;
 
 namespace PSS_ITWORKS
@@ -16,8 +17,6 @@ namespace PSS_ITWORKS
         protected internal override FactoryIUser CreateUser(string userType)
         {
             FactoryIUser user = null;
-
-
             switch (userType)
             {
                 case "Admin":
@@ -38,7 +37,9 @@ namespace PSS_ITWORKS
                 case "Contract Manager":
                     user = new FactoryCContractManagerDetails(loginController);
                     break;
-
+                case "Client":
+                    MessageBox.Show("Client");
+                    break;
                 default:
                     throw new Exception("Invalid user role.");
             }

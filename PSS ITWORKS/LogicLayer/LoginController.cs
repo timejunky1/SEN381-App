@@ -3,47 +3,15 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 public class LoginController
 {
     private DatabaseAPI api = new DatabaseAPI();
-
-    public void Connect()
-    {
-        api.SetConnection(connectionString);
-    }
-
     private string connectionString = @"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True";
-
-
-    private string name;
-    private string surname;
+    UserInfo userInfo;
 
     // Property to access the Name
-    public string Name
-    {
-        get
-        {
-            return name;
-        }
-        private set
-        {
-            name = value;
-        }
-    }
-
-    // Property to access the Surname
-    public string Surname
-    {
-        get
-        {
-            return surname;
-        }
-        private set
-        {
-            surname = value;
-        }
-    }
     public class UserInfo
     {
         public string Name { get; set; }
@@ -51,6 +19,11 @@ public class LoginController
         public string Role { get; set; }
         // Other properties if needed
     }
+    public void Connect()
+    {
+        api.SetConnection(connectionString);
+    }
+
     public void HandleLoginButtonClick(string username, string password, LogIn loginForm, Label welcomeLabel)
     {
         // Check if username and password are not empty
@@ -62,16 +35,14 @@ public class LoginController
             if (isAuthenticated)
             {
                 // User is authenticated, you can proceed to fetch name and surname and role
-                string name = FetchNameAndSurname(username);
-                string role = GetUserRole(username);
 
                 // Open the correct portal based on the user's role using a Factory
                 FactoryAMainFactory factory = new FactoryUserFactory(this);
-                FactoryIUser userPortal = factory.CreateUser(role);
+                FactoryIUser userPortal = factory.CreateUser(userInfo.Role);
                 userPortal.ShowUserInterface(loginForm);
 
                 // Display a welcome message
-                welcomeLabel.Text = $"Welcome, {name}";
+                welcomeLabel.Text = $"Welcome, {userInfo.Name} {userInfo.Surname}";
 
                 // Close the login form (you can uncomment this line if needed)
                 // loginForm.Close();
@@ -89,19 +60,17 @@ public class LoginController
         }
     }
 
-    public bool AuthenticateUser(string username, string password )
+    public bool AuthenticateUser(string username, string password)
     {
-
-        UserInfo userInfo = api.GetUserInformation(username);
-        Name = userInfo.Name;
-        Surname = userInfo.Surname;
+        userInfo = api.GetUserInformation(username);
+        MessageBox.Show(userInfo.Name);
         return api.AuthenticateUser(username, password);
     }
     //this stored procedure was not implemented yet
-    public UserInfo GetUserInformation(string username)
+
+    public UserInfo GetUserInfo()
     {
-        
-        return api.GetUserInformation(username);
+        return userInfo;
     }
 
     public string GetUserRole(string username)
@@ -120,7 +89,7 @@ public class LoginController
     {
         // Implement password hashing logic here (e.g., SHA-256)
         // Return the hashed password
-       // string salt = BCrypt.Net.BCrypt.GenerateSalt(12); // 12 is the work factor (adjust as needed)
+        // string salt = BCrypt.Net.BCrypt.GenerateSalt(12); // 12 is the work factor (adjust as needed)
         //string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
         string hashedPassword = password;
         return hashedPassword;

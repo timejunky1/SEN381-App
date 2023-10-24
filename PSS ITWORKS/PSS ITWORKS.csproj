@@ -140,6 +140,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PSSDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="PSSDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PSSDataSet1.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Presentation Layer\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -187,6 +192,17 @@
     </None>
     <None Include="PSSDataSet.xss">
       <DependentUpon>PSSDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PSSDataSet1.xsc">
+      <DependentUpon>PSSDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="PSSDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PSSDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PSSDataSet1.xss">
+      <DependentUpon>PSSDataSet1.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
