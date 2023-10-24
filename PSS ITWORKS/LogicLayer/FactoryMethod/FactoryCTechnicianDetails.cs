@@ -9,7 +9,7 @@ namespace PSS_ITWORKS
         
         public void ShowUserInterface(LogIn loginForm)
         {
-            Technician technicianForm = new Technician();
+            TechnicianForm technicianForm = new TechnicianForm();
             technicianForm.Show();
             loginForm.Close();
         }
