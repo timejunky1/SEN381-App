@@ -6,9 +6,18 @@ namespace PSS_ITWORKS
 {
     class FactoryCTechnicianDetails : FactoryIUser
     {
+
+        private LoginController loginController;
+
+        public FactoryCTechnicianDetails(LoginController loginController)
+        {
+            this.loginController = loginController;
+        }
         public void ShowUserInterface(LogIn loginForm)
         {
-            Technician technicianForm = new Technician();
+            string name = loginController.GetUserInfo().Name;
+            string surname = loginController.GetUserInfo().Surname;
+            TechnicianForm technicianForm = new TechnicianForm();
             technicianForm.Show();
             loginForm.Close();
         }

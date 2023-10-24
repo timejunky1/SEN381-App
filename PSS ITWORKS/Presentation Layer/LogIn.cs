@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -12,6 +13,7 @@ namespace PSS_ITWORKS
         {
             InitializeComponent();
             loginController = new LoginController();
+            loginController.Connect();
 
             // Modify the appearance of textboxes and buttons
             ModifyControlAppearances(UserName_txt, Color.White, Color.FromArgb(27, 77, 137));
@@ -75,43 +77,9 @@ namespace PSS_ITWORKS
             string username = UserName_txt.Text;
             string password = Password_txt.Text;
 
-            // Check if username and password are not empty
-            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
-            {
-                // Authenticate the user using the LoginController
-                bool isAuthenticated = loginController.AuthenticateUser(username, password);
+            // Call the method in LoginController to handle the login
+            loginController.HandleLoginButtonClick(username, password, this, WelcomeLabel_txt);
 
-                if (isAuthenticated)
-                {
-                    // User is authenticated, you can proceed to fetch name and surname and role
-                    string name = loginController.FetchNameAndSurname(username);
-                    string role = loginController.GetUserRole(username);
-
-
-                    // Open the correct portal based on the user's role using a Factory
-                    FactoryAMainFactory factory = new FactoryUserFactory();
-                    FactoryIUser userPortal = factory.CreateUser(role);
-                    userPortal.ShowUserInterface(this);
-
-                    // Display a welcome message
-                    WelcomeLabel_txt.Text = $"Welcome, {name}";
-
-                    
-
-                    // Close the login form
-                    //this.Close();
-                }
-                else
-                {
-                    // Authentication failed
-                    MessageBox.Show("Invalid username or password. Please try again.");
-                }
-            }
-            else
-            {
-                // Username or password is empty
-                MessageBox.Show("Username and password are required.");
-            }
 
         }
 
@@ -122,7 +90,7 @@ namespace PSS_ITWORKS
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
+            Application.Exit();
         }
 
         private void UserName_txt_TextChanged(object sender, EventArgs e)
@@ -141,6 +109,11 @@ namespace PSS_ITWORKS
         }
 
         private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LogIn_Load(object sender, EventArgs e)
         {
 
         }
