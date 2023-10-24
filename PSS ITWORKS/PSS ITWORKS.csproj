@@ -143,6 +143,9 @@
     <EmbeddedResource Include="Presentation Layer\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Layer\CallForm.resx">
+      <DependentUpon>CallForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\ContractManagerForm.resx">
       <DependentUpon>ContractManagerForm.cs</DependentUpon>
     </EmbeddedResource>

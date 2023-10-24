@@ -16,5 +16,10 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             InitializeComponent();
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            Visible = true;
+        }
     }
 }
