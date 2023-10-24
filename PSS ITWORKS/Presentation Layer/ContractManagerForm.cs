@@ -30,5 +30,10 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
         }
+
+        private void ServiceType_lbl_Click(object sender, EventArgs e)
+        {
+            Visible = true;
+        }
     }
 }
