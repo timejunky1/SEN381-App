@@ -39,6 +39,7 @@ namespace PSS_ITWORKS
         public BindingSource Get(int ID)
         {
             api.GetClientAndContractInfo(ID);
+            return null;// edit this to work
         }
 
         public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")

@@ -51,14 +51,14 @@ namespace PSS_ITWORKS
         }
 
         // this stored procedure has not been created yet
-        public UserInfo GetUserInformation(string username)
+        public LoginController.UserInfo GetUserInformation(string username)
         {
-            using (SqlConnection connection = new SqlConnection(conn.ConnectionString))
+            using (conn)
             {
-                connection.Open();
-
-                using (SqlCommand command = new SqlCommand("sp_GetUserInformation", connection))
+                
+                using (SqlCommand command = new SqlCommand("sp_GetUserInformation", conn))
                 {
+
                     command.CommandType = CommandType.StoredProcedure;
 
                     command.Parameters.AddWithValue("@Username", username);
@@ -97,7 +97,7 @@ namespace PSS_ITWORKS
                     string surname = surnameParam.Value.ToString();
                     string role = roleParam.Value.ToString();
 
-                    return new UserInfo { Name = name, Surname = surname, Role = role };
+                    return new LoginController.UserInfo { Name = name, Surname = surname, Role = role };
                 }
             }
         }
