@@ -6,10 +6,9 @@ namespace PSS_ITWORKS
 {
     class FactoryCTechnicianDetails : FactoryIUser
     {
-        
         public void ShowUserInterface(LogIn loginForm)
         {
-            Technician technicianForm = new Technician();
+            TechnicianForm technicianForm = new TechnicianForm();
             technicianForm.Show();
             loginForm.Close();
         }

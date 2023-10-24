@@ -24,6 +24,8 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             context.Update(new EntityContract(1,"ewqw",2,2,2,"unavailable"));
             dataGridView1.DataSource = context.Get();
+            dataGridView1.DataSource = context.GetSpecific(10);
+            BindingSource bs = context.Get();
         }
 
         private void ContractManagerForm_Load(object sender, EventArgs e)
