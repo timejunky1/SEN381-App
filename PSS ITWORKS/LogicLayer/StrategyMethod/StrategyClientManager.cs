@@ -38,9 +38,9 @@ namespace PSS_ITWORKS
             return api.GetClientAndContractInfo(ID);
         }
 
-        public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
+        public BindingSource GetSpecific(int id1 )
         {
-            return api.GetClientJobs(id1);
+          
             return api.GetClientInfo(id1);
         }
 
@@ -54,9 +54,9 @@ namespace PSS_ITWORKS
             throw new System.NotImplementedException();
         }
 
-        public BindingSource GetSpecific1(int n1)
+        public BindingSource GetSpecific1(int id1)
         {
-            throw new System.NotImplementedException();
+            return api.GetClientJobs(id1);
         }
 
         public BindingSource GetSpecific2(int n1)
