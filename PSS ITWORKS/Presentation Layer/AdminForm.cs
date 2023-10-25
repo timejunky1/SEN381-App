@@ -12,7 +12,7 @@ namespace PSS_ITWORKS.Presentation_Layer
 {
     public partial class AdminForm : Form
     {
-        protected StrategyContextManager cm = new StrategyContextManager(new StrategyUserManager());
+        protected StrategyContextManager cm;
         public AdminForm()
         {
             InitializeComponent();
@@ -20,11 +20,14 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void AdminForm_Load(object sender, EventArgs e)
         {
-            cm.Get();
             cm = new StrategyContextManager(new StrategyClientManager());
-            cm.Get();
+            cm.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+            Users_dgv.DataSource = cm.Get();
         }
 
-        
+        private void addUser_btn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
