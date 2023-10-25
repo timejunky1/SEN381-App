@@ -64,6 +64,7 @@
     <Compile Include="LogicLayer\StrategyMethod\IStrategyManagement.cs" />
     <Compile Include="LogicLayer\LoginController.cs" />
     <Compile Include="LogicLayer\Scheduler.cs" />
+    <Compile Include="LogicLayer\ServiceRequest.cs" />
     <Compile Include="LogicLayer\FactoryMethod\FactoryAMainFactory.cs" />
     <Compile Include="LogicLayer\FactoryMethod\FactoryCAdminDetails.cs" />
     <Compile Include="LogicLayer\FactoryMethod\FactoryCCallEmployeeDetails.cs" />
@@ -108,11 +109,9 @@
     <Compile Include="Presentation Layer\ContractManagerForm.Designer.cs">
       <DependentUpon>ContractManagerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation Layer\NewServiceRequest.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentation Layer\NewServiceRequest.Designer.cs">
-      <DependentUpon>NewServiceRequest.cs</DependentUpon>
+    <Compile Include="Presentation Layer\Form1.cs" />
+    <Compile Include="Presentation Layer\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation Layer\Testing.cs">
       <SubType>Form</SubType>
@@ -158,11 +157,14 @@
     <EmbeddedResource Include="Presentation Layer\ContractManagerForm.resx">
       <DependentUpon>ContractManagerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation Layer\NewServiceRequest.resx">
-      <DependentUpon>NewServiceRequest.cs</DependentUpon>
+    <EmbeddedResource Include="Presentation Layer\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\LogIn.resx">
       <DependentUpon>LogIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Layer\TechnicianForm.resx">
+      <DependentUpon>TechnicianForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\Testing.resx">
       <DependentUpon>Testing.cs</DependentUpon>
