@@ -67,8 +67,8 @@
             this.SearchClient_lbl = new System.Windows.Forms.Label();
             this.History_tbp = new System.Windows.Forms.TabPage();
             this.Search_btn = new System.Windows.Forms.Button();
-            this.ClientNameOrNumber_txt = new System.Windows.Forms.TextBox();
-            this.ClientNameOrNumber_lbl = new System.Windows.Forms.Label();
+            this.SearchClientName_txt = new System.Windows.Forms.TextBox();
+            this.SearchClientName_lbl = new System.Windows.Forms.Label();
             this.PastServiceRequest_dgv = new System.Windows.Forms.DataGridView();
             this.PastServiceRequest_lbl = new System.Windows.Forms.Label();
             this.Header_pnl.SuspendLayout();
@@ -473,8 +473,8 @@
             // History_tbp
             // 
             this.History_tbp.Controls.Add(this.Search_btn);
-            this.History_tbp.Controls.Add(this.ClientNameOrNumber_txt);
-            this.History_tbp.Controls.Add(this.ClientNameOrNumber_lbl);
+            this.History_tbp.Controls.Add(this.SearchClientName_txt);
+            this.History_tbp.Controls.Add(this.SearchClientName_lbl);
             this.History_tbp.Controls.Add(this.PastServiceRequest_dgv);
             this.History_tbp.Controls.Add(this.PastServiceRequest_lbl);
             this.History_tbp.Location = new System.Drawing.Point(4, 34);
@@ -487,43 +487,44 @@
             // Search_btn
             // 
             this.Search_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.Search_btn.Location = new System.Drawing.Point(349, 455);
+            this.Search_btn.Location = new System.Drawing.Point(563, 26);
             this.Search_btn.Name = "Search_btn";
             this.Search_btn.Size = new System.Drawing.Size(211, 43);
             this.Search_btn.TabIndex = 4;
             this.Search_btn.Text = "Search";
             this.Search_btn.UseVisualStyleBackColor = false;
+            this.Search_btn.Click += new System.EventHandler(this.Search_btn_Click);
             // 
-            // ClientNameOrNumber_txt
+            // SearchClientName_txt
             // 
-            this.ClientNameOrNumber_txt.Location = new System.Drawing.Point(44, 466);
-            this.ClientNameOrNumber_txt.Name = "ClientNameOrNumber_txt";
-            this.ClientNameOrNumber_txt.Size = new System.Drawing.Size(209, 32);
-            this.ClientNameOrNumber_txt.TabIndex = 3;
+            this.SearchClientName_txt.Location = new System.Drawing.Point(262, 32);
+            this.SearchClientName_txt.Name = "SearchClientName_txt";
+            this.SearchClientName_txt.Size = new System.Drawing.Size(209, 32);
+            this.SearchClientName_txt.TabIndex = 3;
             // 
-            // ClientNameOrNumber_lbl
+            // SearchClientName_lbl
             // 
-            this.ClientNameOrNumber_lbl.AutoSize = true;
-            this.ClientNameOrNumber_lbl.Location = new System.Drawing.Point(39, 422);
-            this.ClientNameOrNumber_lbl.Name = "ClientNameOrNumber_lbl";
-            this.ClientNameOrNumber_lbl.Size = new System.Drawing.Size(205, 25);
-            this.ClientNameOrNumber_lbl.TabIndex = 2;
-            this.ClientNameOrNumber_lbl.Text = "Client Name or Number";
+            this.SearchClientName_lbl.AutoSize = true;
+            this.SearchClientName_lbl.Location = new System.Drawing.Point(28, 35);
+            this.SearchClientName_lbl.Name = "SearchClientName_lbl";
+            this.SearchClientName_lbl.Size = new System.Drawing.Size(112, 25);
+            this.SearchClientName_lbl.TabIndex = 2;
+            this.SearchClientName_lbl.Text = "Client Name";
             // 
             // PastServiceRequest_dgv
             // 
             this.PastServiceRequest_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.PastServiceRequest_dgv.Location = new System.Drawing.Point(17, 57);
+            this.PastServiceRequest_dgv.Location = new System.Drawing.Point(17, 121);
             this.PastServiceRequest_dgv.Name = "PastServiceRequest_dgv";
             this.PastServiceRequest_dgv.RowHeadersWidth = 51;
             this.PastServiceRequest_dgv.RowTemplate.Height = 24;
-            this.PastServiceRequest_dgv.Size = new System.Drawing.Size(1119, 351);
+            this.PastServiceRequest_dgv.Size = new System.Drawing.Size(1119, 386);
             this.PastServiceRequest_dgv.TabIndex = 1;
             // 
             // PastServiceRequest_lbl
             // 
             this.PastServiceRequest_lbl.AutoSize = true;
-            this.PastServiceRequest_lbl.Location = new System.Drawing.Point(12, 15);
+            this.PastServiceRequest_lbl.Location = new System.Drawing.Point(12, 93);
             this.PastServiceRequest_lbl.Name = "PastServiceRequest_lbl";
             this.PastServiceRequest_lbl.Size = new System.Drawing.Size(468, 25);
             this.PastServiceRequest_lbl.TabIndex = 0;
@@ -538,6 +539,7 @@
             this.Controls.Add(this.Header_pnl);
             this.Name = "CallForm";
             this.Text = "CallForm";
+            this.Load += new System.EventHandler(this.CallForm_Load);
             this.Header_pnl.ResumeLayout(false);
             this.Header_pnl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PSS_img)).EndInit();
@@ -601,8 +603,8 @@
         private System.Windows.Forms.Button RenewalOptionView_btn;
         private System.Windows.Forms.Label RenewalOptions_lbl;
         private System.Windows.Forms.Button Search_btn;
-        private System.Windows.Forms.TextBox ClientNameOrNumber_txt;
-        private System.Windows.Forms.Label ClientNameOrNumber_lbl;
+        private System.Windows.Forms.TextBox SearchClientName_txt;
+        private System.Windows.Forms.Label SearchClientName_lbl;
         private System.Windows.Forms.DataGridView PastServiceRequest_dgv;
         private System.Windows.Forms.Label PastServiceRequest_lbl;
     }
