@@ -18,7 +18,7 @@ namespace PSS_ITWORKS
             MessageBox.Show("Create something");
         }
 
-        public void Delete(int ID)
+        public void Delete(int ID, string s = "")
         {
             MessageBox.Show("Delete something");
         }

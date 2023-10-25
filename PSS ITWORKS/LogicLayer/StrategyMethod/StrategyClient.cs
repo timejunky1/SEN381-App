@@ -28,7 +28,7 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
             }
         }
 
-        public void Delete(int ID)
+        public void Delete(int ID, string s = "")
         {
             throw new NotImplementedException();
         }

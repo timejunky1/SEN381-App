@@ -15,7 +15,7 @@ namespace PSS_ITWORKS
         BindingSource GetSpecific1(int n1);
         BindingSource GetSpecific2(int n1);
         void Create(IEntity entity);
-        void Delete(int ID);
+        void Delete(int ID, string s = "");
         void Update(IEntity entity);
         void Connect(string myString);
     }

@@ -27,7 +27,7 @@ namespace PSS_ITWORKS
             _strategy.Create(entity);
         }
 
-        public void Delete(int ID)
+        public void Delete(int ID, string s = "")
         {
             _strategy.Delete(ID);
         }

@@ -82,7 +82,7 @@ namespace PSS_ITWORKS.Presentation_Layer
                 case 6:
                     context = new StrategyContextManager(new StrategyUserManager());
                     context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
-                    entity = new EntityUser(id1, "test", "test", "test", 1, 1, "test", "test", "test", "test", "test", "test", DateTime.Now, "Technician");
+                    entity = new EntityUser(id1, "test", "test", "test", 1, 1, "test", "test", "test", "test", "test", "testEmail", DateTime.Now, "Technician");
                     break;
                 case 7:
                     context = new StrategyContextManager(new StratagyTechnician());
@@ -111,7 +111,7 @@ namespace PSS_ITWORKS.Presentation_Layer
                     context.Update(entity);
                     break;
                 case 3:
-                    context.Delete(id1);
+                    context.Delete(id1,filter1);
                     break;
                 case 4:
                     bindingSource = context.GetSpecific(id1, id2, filter1, filter2);

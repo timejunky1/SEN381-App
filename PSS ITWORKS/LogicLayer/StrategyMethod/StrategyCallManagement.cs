@@ -28,7 +28,7 @@ namespace PSS_ITWORKS
             }
         }
 
-        public void Delete(int ID)
+        public void Delete(int ID, string s = "")
         {
             MessageBox.Show("Delete something");
         }

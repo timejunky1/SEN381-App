@@ -5,6 +5,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics.Contracts;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
@@ -478,10 +479,10 @@ namespace PSS_ITWORKS
             return bs;
         }
 
-        //UserManagement
+        //UserManagement--Working
         public void SetPassword(string email, string password, string newPassword)
         {
-
+            //work in progress
         }
         public void InsertUser(EntityUser user)
         {
@@ -511,7 +512,7 @@ namespace PSS_ITWORKS
 
         }
 
-        public void UpdateUser(EntityUser user)// not working
+        public void UpdateUser(EntityUser user)
         {
             try
             {
@@ -594,9 +595,24 @@ namespace PSS_ITWORKS
             return bs;
         }
 
-        public void DeleteUser(int id)
+        public void DeleteUser(int id, string role)
         {
-
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("AdminPortalProcedures.DeleteUser", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("role", role);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                ErrorHandler.DisplayError("Quary Successfull");
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                conn.Close();
+            }
         }
 
         //ClientManagement--Working

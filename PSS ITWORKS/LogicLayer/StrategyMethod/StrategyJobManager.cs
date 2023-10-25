@@ -29,7 +29,7 @@ namespace PSS_ITWORKS
             
         }
 
-        public void Delete(int ID)
+        public void Delete(int ID, string s = "")
         {
             MessageBox.Show("Delete something");
         }
@@ -90,6 +90,26 @@ namespace PSS_ITWORKS
                 }
             }
             return bs;
+        }
+
+        public BindingSource GetSpecific1(string s1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific2(string s2)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific1(int n1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific2(int n1)
+        {
+            throw new NotImplementedException();
         }
     }
 }
