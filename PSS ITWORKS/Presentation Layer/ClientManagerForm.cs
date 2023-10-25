@@ -34,8 +34,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void Filter_btn_Click(object sender, EventArgs e)
         {
             int clientID = Convert.ToInt32(clientID_txt.Text);
-            //string clientContactDetails = clientContactDetail_txt.Text;
-            //string clientContract = clientContract_txt.Text;
+
 
             FindClientDetails(clientID);
             FindClientContract(clientID);
