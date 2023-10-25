@@ -14,6 +14,8 @@ namespace PSS_ITWORKS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //LogIn login = new LogIn();
+            //login.Show();
             Testing testing = new Testing();
             testing.Show();
             Application.Run();

@@ -7,7 +7,7 @@ namespace PSS_ITWORKS
 {
     class StrategyJobManager : IStrategyAManagement
     {
-        DatabaseAPI api;
+        DatabaseAPI api = new DatabaseAPI();
         public BindingSource Get()
         {
             return api.GetJobSchedule();
@@ -18,7 +18,10 @@ namespace PSS_ITWORKS
             try
             {
                 EntityJob job = entity as EntityJob;
-                api.AssignJob(job);
+                foreach(EntityUser user in job.GetEmployees())
+                {
+                    api.AssignJob(user.GetID(), job.GetId());
+                }
             }catch(Exception ex)
             {
                 ErrorHandler.DisplayError(ex);
@@ -36,7 +39,11 @@ namespace PSS_ITWORKS
             try
             {
                 EntityJob job = entity as EntityJob;
-                api.UpdateAssignedJob(job);
+                api.DeleteEmployeeJobRef(job.GetId());
+                foreach (EntityUser employee in job.GetEmployees())
+                {
+                    api.AddEmployeeJobRef(job.GetId(), employee.GetID());
+                }
             }
             catch (Exception ex)
             {
@@ -46,7 +53,7 @@ namespace PSS_ITWORKS
 
         public void Connect(string myString)
         {
-            MessageBox.Show("Connect to or something");
+            api.SetConnection(myString);
         }
 
         public BindingSource Get(int ID)
@@ -56,29 +63,33 @@ namespace PSS_ITWORKS
 
         public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
         {
+            BindingSource bs = new BindingSource();
+            bs = api.GetUnasignedJobs();
+            return bs;
             if (!string.IsNullOrEmpty(s1))
             {
                 try
                 {
-                    return api.GetJobsAssignedToEmployeeName(s1);
+                    bs = api.GetJobsAssignedToEmployeeName(s1);
                 }
                 catch (Exception ex)
                 {
                     ErrorHandler.DisplayError(ex);
                 }
             }
-            if (!string.IsNullOrEmpty(s2))
+            else if (!string.IsNullOrEmpty(s2))
             {
                 try
                 {
-                    DateTime date = DateTime.Parse(s1);
-                    return api.UnassignedJobsOnDate(date);
-                }catch(Exception ex)
+                    DateTime date = DateTime.Parse(s2);
+                    bs = api.GetJobsOnDate(date);
+                }
+                catch (Exception ex)
                 {
                     ErrorHandler.DisplayError(ex);
                 }
             }
-            throw new System.NotImplementedException();
+            return bs;
         }
     }
 }

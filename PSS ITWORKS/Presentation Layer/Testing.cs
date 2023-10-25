@@ -17,9 +17,13 @@ namespace PSS_ITWORKS.Presentation_Layer
     {
         StrategyContextManager context;
         IEntity entity;
-        int id;
-        string filter;
+        int id1 = 0;
+        int id2 = 0;
+        string filter1 = "";
+        string filter2 = "";
         BindingSource bindingSource;
+        List<EntityService> services;
+        List<EntityUser> employees;
         public Testing()
         {
             InitializeComponent();
@@ -37,6 +41,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             Strategy_cmb.Items.Add("ServiceManagement");
             Strategy_cmb.Items.Add("JobManagement");
             Strategy_cmb.Items.Add("UserManagement");
+            Strategy_cmb.Items.Add("Technician");
 
         }
 
@@ -47,37 +52,42 @@ namespace PSS_ITWORKS.Presentation_Layer
                 case 0:
                     context = new StrategyContextManager(new StrategyClient());
                     context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
-                    entity = new EntityUser(id, "test", "test", "test", 1, 1, "test", "test", "test", "test", "test", "test", DateTime.Now, "Client");
+                    entity = new EntityUser(id1, "test", "test", "test", 1, 1, "test", "test", "test", "test", "test", "test", DateTime.Now, "Client");
                     break;
                 case 1:
                     context = new StrategyContextManager(new StrategyCallManagement());
                     context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
-                    entity = new EntityCall(id, 1, 1, "test", "test", "testing this application", DateTime.Now);
+                    entity = new EntityJob(id1, 1, 1, DateTime.Now, DateTime.Now, "test", "test", employees);
                     break;
                 case 2:
                     context = new StrategyContextManager(new StrategyClientManager());
                     context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
-                    entity = new EntityUser(id, "test", "test", "test", 1, 1, "test", "test", "test", "test", "test", "test", DateTime.Now, "Client");
+                    entity = new EntityUser(id1, "test", "test", "test", 1, 1, "test", "test", "test", "test", "test", "test", DateTime.Now, "Client");
                     break;
                 case 3:
                     context = new StrategyContextManager(new StrategyContractManager());
                     context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
-                    entity = new EntityContract(id, "SLA", 1, 2, 1, "test");
+                    entity = new EntityContract(id1, "SLA", 1, 200, 1, "test", services);
                     break;
                 case 4:
                     context = new StrategyContextManager(new StrategyServiceManager());
                     context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
-                    entity = new EntityService(id, "test", 1, 1, 1, "test");
+                    entity = new EntityService(id1, "test", 1, 1, 1, "test");
                     break;
                 case 5:
                     context = new StrategyContextManager(new StrategyJobManager());
                     context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
-                    entity = new  EntityJob(id,1,1,DateTime.Now,DateTime.Now,"test", "test");
+                    entity = new  EntityJob(id1,1,1,DateTime.Now,DateTime.Now,"test", "test", employees);
                     break;
                 case 6:
                     context = new StrategyContextManager(new StrategyUserManager());
                     context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
-                    entity = new EntityUser(id, "test", "test", "test", 1, 1, "test", "test", "test", "test", "test", "test", DateTime.Now, "Client");
+                    entity = new EntityUser(id1, "test", "test", "test", 1, 1, "test", "test", "test", "test", "test", "test", DateTime.Now, "Technician");
+                    break;
+                case 7:
+                    context = new StrategyContextManager(new StratagyTechnician());
+                    context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+                    entity = new EntityJob(id1, 1, 1, DateTime.Now, DateTime.Now, "test", "test");
                     break;
                 default:
                     MessageBox.Show("No Selected index");
@@ -101,13 +111,13 @@ namespace PSS_ITWORKS.Presentation_Layer
                     context.Update(entity);
                     break;
                 case 3:
-                    context.Delete(id);
+                    context.Delete(id1);
                     break;
                 case 4:
-                    bindingSource = context.GetSpecific(id, id, filter, filter);
+                    bindingSource = context.GetSpecific(id1, id2, filter1, filter2);
                     break;
                 case 5:
-                    bindingSource = context.Get(id);
+                    bindingSource = context.Get(id1);
                     break;
                 default:
                     MessageBox.Show("No Selected index");
@@ -119,6 +129,22 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             int strategy = Strategy_cmb.SelectedIndex;
             int method = Method_cmb.SelectedIndex;
+            id1 = (int)id1_num.Value;
+            id2 = (int)id2_num.Value;
+            services = new List<EntityService> {
+                new EntityService(id2, "test", 1, 1, 1, "test"),
+                new EntityService(id2+1, "test", 1, 1, 1, "test"),
+                new EntityService(id2+2, "test", 1, 1, 1, "test"),
+                new EntityService(id2+3, "test", 1, 1, 1, "test")
+            };
+            employees = new List<EntityUser> {
+                new EntityUser(id2, "test", "test", "test","test"),
+                new EntityUser(id2+1, "test", "test", "test","test"),
+                new EntityUser(id2+2, "test", "test", "test","test"),
+                new EntityUser(id2+3, "test", "test", "test","test")
+            };
+            filter1 = filter_txt.Text;
+            filter2 = dateTimePicker1.Text;
             SetStrategy(strategy);
             ExecuteMethod(method);
             Test_dgv.DataSource = bindingSource;

@@ -54,5 +54,22 @@ namespace PSS_ITWORKS
             BindingSource bs = _strategy.GetSpecific(id1, id2, s1, s2);
             return bs;
         }
+
+        public BindingSource GetSpecific1(string s1)
+        {
+            return _strategy.GetSpecific1(s1);
+        }
+        public BindingSource GetSpecific2(string s2)
+        {
+            return _strategy.GetSpecific2(s2);
+        }
+        public BindingSource GetSpecific1(int n1)
+        {
+            return _strategy.GetSpecific1(n1);
+        }
+        public BindingSource GetSpecific2(int n2)
+        {
+            return _strategy.GetSpecific1(n2);
+        }
     }
 }

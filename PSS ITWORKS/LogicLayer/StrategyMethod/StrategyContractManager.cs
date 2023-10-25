@@ -11,18 +11,31 @@ namespace PSS_ITWORKS
         DatabaseAPI api = new DatabaseAPI();
         public BindingSource Get()
         {
+            ErrorHandler.DisplayError(new NotImplementedException());
             return null;
         }
 
         public void Create(IEntity entity)
         {
-            EntityContract contract = entity as EntityContract;
-            api.CreateContract( contract );
+            try
+            {
+                EntityContract contract = entity as EntityContract;
+                api.CreateContract(contract);
+                foreach (EntityService service in contract.GetServices())
+                {
+                    api.AddContractRef(service.GetId());
+                }
+            }catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+            }
+            
         }
 
         public void Delete(int ID)
         {
             api.DeleteContract(ID);
+            api.DeleteContractRef(ID,0);
         }
 
         public void Update(IEntity entity)
@@ -31,7 +44,13 @@ namespace PSS_ITWORKS
             {
                 EntityContract contract = entity as EntityContract;
                 api.UpdateContract(contract);
-            }catch(Exception ex)
+                api.DeleteContractRef(contract.GetId(),0);
+                foreach (EntityService service in contract.GetServices())
+                {
+                    api.AddContractRef(contract.GetId(), service.GetId());
+                }
+            }
+            catch(Exception ex)
             {
                 ErrorHandler.DisplayError(ex);
             }

@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics.Contracts;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace PSS_ITWORKS
 {
@@ -19,21 +20,207 @@ namespace PSS_ITWORKS
         }
 
         //LoginProcedures
+        public bool AuthenticateUser(string username, string password)
+        {
+            bool res = false;
+            try
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand("LogInProcedures.AuthenticateUser", conn))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
 
-        //ContractManager
+                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@password", HashPassword(password));
+
+                    var result = new SqlParameter
+                    {
+                        ParameterName = "@result",
+                        SqlDbType = SqlDbType.Int,
+                        Direction = ParameterDirection.Output
+                    };
+
+                    command.Parameters.Add(result);
+
+                    command.ExecuteNonQuery();
+
+                    int authenticationResult = Convert.ToInt32(result.Value);
+
+                    res = authenticationResult == 1;
+                }
+                conn.Close();
+            }catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                conn.Close();
+            }
+            return res;
+        }
+
+        // this stored procedure has not been created yet
+        public LoginController.UserInfo GetUserInformation(string username)
+        {
+            LoginController.UserInfo userInfo = null;
+            try
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand("LoginProcedures.GetUserInformation", conn))
+                {
+
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@username", username);
+
+                    var nameParam = new SqlParameter
+                    {
+                        ParameterName = "@name",
+                        SqlDbType = SqlDbType.VarChar,
+                        Size = 50,
+                        Direction = ParameterDirection.Output
+                    };
+
+                    var surnameParam = new SqlParameter
+                    {
+                        ParameterName = "@surname",
+                        SqlDbType = SqlDbType.VarChar,
+                        Size = 50,
+                        Direction = ParameterDirection.Output
+                    };
+
+                    var roleParam = new SqlParameter
+                    {
+                        ParameterName = "@role",
+                        SqlDbType = SqlDbType.VarChar,
+                        Size = 30,
+                        Direction = ParameterDirection.Output
+                    };
+
+                    command.Parameters.Add(nameParam);
+                    command.Parameters.Add(surnameParam);
+                    command.Parameters.Add(roleParam);
+
+                    command.ExecuteNonQuery();
+
+                    string name = nameParam.Value.ToString();
+                    string surname = surnameParam.Value.ToString();
+                    string role = roleParam.Value.ToString();
+
+                    userInfo = new LoginController.UserInfo { Name = name, Surname = surname, Role = role };
+                }
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                conn.Close();
+            }
+            return userInfo;
+        }
+
+        public string GetUserRole(string username)
+        {
+            string role = "";
+            try
+            {
+
+                using (conn)
+                {
+                    using (SqlCommand command = new SqlCommand("sp_GetUserRole", conn))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@Username", username);
+
+                        var roleParam = new SqlParameter
+                        {
+                            ParameterName = "@Role",
+                            SqlDbType = SqlDbType.VarChar,
+                            Size = 30,
+                            Direction = ParameterDirection.Output
+                        };
+
+                        command.Parameters.Add(roleParam);
+
+                        command.ExecuteNonQuery();
+
+                        role = roleParam.Value.ToString();
+
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+            }
+            return role;
+        }
+
+        public string FetchNameAndSurname(string username)
+        {
+            using (SqlConnection connection = new SqlConnection(conn.ConnectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("sp_FetchNameAndSurname", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@Username", username);
+
+                    var nameParam = new SqlParameter
+                    {
+                        ParameterName = "@Name",
+                        SqlDbType = SqlDbType.VarChar,
+                        Size = 50,
+                        Direction = ParameterDirection.Output
+                    };
+
+                    var surnameParam = new SqlParameter
+                    {
+                        ParameterName = "@Surname",
+                        SqlDbType = SqlDbType.VarChar,
+                        Size = 50,
+                        Direction = ParameterDirection.Output
+                    };
+
+                    command.Parameters.Add(nameParam);
+                    command.Parameters.Add(surnameParam);
+
+                    command.ExecuteNonQuery();
+
+                    string name = nameParam.Value.ToString();
+                    string surname = surnameParam.Value.ToString();
+
+                    return $"{name} {surname}";
+                }
+            }
+        }
+
+        private string HashPassword(string password)
+        {
+            // Implement password hashing logic here (e.g., SHA-256)
+            // Return the hashed password
+            // string salt = BCrypt.Net.BCrypt.GenerateSalt(12); // 12 is the work factor (adjust as needed)
+            // string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
+            string hashedPassword = password;
+            return hashedPassword;
+        }
+
+
+        //ContractManager-Working
 
         public void CreateContract(EntityContract contract)
         {
             try
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.CreateContractt", conn);
+                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.CreateContract", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@SLA", contract.GetSLA());
                 cmd.Parameters.AddWithValue("@duration", contract.GetDuration());
                 cmd.Parameters.AddWithValue("@priority", contract.GetPriority());
                 cmd.Parameters.AddWithValue("@cost", contract.GetCost());
-                cmd.Parameters.AddWithValue("@avalability", contract.GetAvailability());
+                cmd.Parameters.AddWithValue("@availability", contract.GetAvailability());
                 cmd.ExecuteNonQuery();
                 ErrorHandler.DisplayError("Quary Successfully executed");
             }
@@ -48,14 +235,14 @@ namespace PSS_ITWORKS
             try
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.CreateContractt", conn);
+                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.UpdateContract", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@contractId", contract.GetId());
                 cmd.Parameters.AddWithValue("@SLA", contract.GetSLA());
                 cmd.Parameters.AddWithValue("@duration", contract.GetDuration());
                 cmd.Parameters.AddWithValue("@priority", contract.GetPriority());
                 cmd.Parameters.AddWithValue("@cost", contract.GetCost());
-                cmd.Parameters.AddWithValue("@avalability", contract.GetAvailability());
+                cmd.Parameters.AddWithValue("@availability", contract.GetAvailability());
                 cmd.ExecuteNonQuery();
                 ErrorHandler.DisplayError("Quary Successfully executed");
             }
@@ -76,7 +263,7 @@ namespace PSS_ITWORKS
                 SqlCommand cmd = new SqlCommand("ContractPortalProcedures.GetContractStats", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@period", period);
-                cmd.Parameters.AddWithValue("contractid", contractId);
+                cmd.Parameters.AddWithValue("@contractid", contractId);
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -132,7 +319,46 @@ namespace PSS_ITWORKS
             }
         }
 
-        //Servicemanagement
+        public void AddContractRef(int serviceId)
+        {
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.AddContractRef", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@serviceId", serviceId);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                ErrorHandler.DisplayError("Quary Successfully executed");
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                conn.Close();
+            }
+        }
+
+        public void DeleteContractRef(int contractId, int serviceId)
+        {
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.DeleteContractRef", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@contractId", contractId);
+                cmd.Parameters.AddWithValue("@serviceId", serviceId);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                ErrorHandler.DisplayError("Quary Successfully executed");
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                conn.Close();
+            }
+        }
+
+        //Servicemanagement--working
         public BindingSource GetServices()
         {
             SqlDataReader reader;
@@ -155,8 +381,6 @@ namespace PSS_ITWORKS
                 ErrorHandler.DisplayError(ex);
                 conn.Close();
             }
-
-            MessageBox.Show("GetServices");
             return bs;
         }
         public void DeleteService(int serviceId)
@@ -166,7 +390,7 @@ namespace PSS_ITWORKS
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("ContractPortalProcedures.DeleteService", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@contractId", serviceId);
+                cmd.Parameters.AddWithValue("@serviceId", serviceId);
                 cmd.ExecuteNonQuery();
                 conn.Close();
                 ErrorHandler.DisplayError("Quary Successfully executed");
@@ -225,29 +449,7 @@ namespace PSS_ITWORKS
             }
         }
 
-        //Client
-        public void CreateServiceRequest(EntityJob job)
-        {
-            SqlDataReader reader;
-            BindingSource bs = new BindingSource();
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("ClientPortalProcedures.CreateServiceRequest", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@clientId", job.GetClientId());
-                cmd.Parameters.AddWithValue("@serviceId", job.GetServiceId());
-                cmd.Parameters.AddWithValue("@notes", job.GetNotes());
-                reader = cmd.ExecuteReader();
-                reader.Close();
-                ErrorHandler.DisplayError("Quary Successfully executed");
-            }
-            catch(Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-            }
-            conn.Close();
-        }//Also Used By Call Management
+        //Client--Working
 
         public BindingSource GetClientWithDetails(int clientId)
         {
@@ -277,6 +479,10 @@ namespace PSS_ITWORKS
         }
 
         //UserManagement
+        public void SetPassword(string email, string password, string newPassword)
+        {
+
+        }
         public void InsertUser(EntityUser user)
         {
             try
@@ -284,7 +490,20 @@ namespace PSS_ITWORKS
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("AdminPortalProcedures.InsertUser", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@companyName", user.GetCompanyName());
+                cmd.Parameters.AddWithValue("@name", user.GetName());
+                cmd.Parameters.AddWithValue("@surname", user.GetSurname());
+                cmd.Parameters.AddWithValue("@email", user.GetEmail());
+                cmd.Parameters.AddWithValue("@phone", user.GetPhone());
+                cmd.Parameters.AddWithValue("@streetNumber", user.GetStreetNumber());
+                cmd.Parameters.AddWithValue("@street", user.GetStreetName());
+                cmd.Parameters.AddWithValue("@city", user.GetCity());
+                cmd.Parameters.AddWithValue("@province", user.GetProvince());
+                cmd.Parameters.AddWithValue("@zipcode", user.GetZipCode());
+                cmd.Parameters.AddWithValue("@role", user.GetRole());
+                cmd.Parameters.AddWithValue("@contractId", user.GetContractId());
                 cmd.ExecuteNonQuery();
+                ErrorHandler.DisplayError("query successful");
             }catch (Exception ex)
             {
                 ErrorHandler.DisplayError(ex);
@@ -292,14 +511,28 @@ namespace PSS_ITWORKS
 
         }
 
-        public void UpdateUser(EntityUser user)
+        public void UpdateUser(EntityUser user)// not working
         {
             try
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("AdminPortalProcedures.UpdateUser", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", user.GetID());
+                cmd.Parameters.AddWithValue("@companyName", user.GetCompanyName());
+                cmd.Parameters.AddWithValue("@name", user.GetName());
+                cmd.Parameters.AddWithValue("@surname", user.GetSurname());
+                cmd.Parameters.AddWithValue("@email", user.GetEmail());
+                cmd.Parameters.AddWithValue("@phone", user.GetPhone());
+                cmd.Parameters.AddWithValue("@streetNumber", user.GetStreetNumber());
+                cmd.Parameters.AddWithValue("@street", user.GetStreetName());
+                cmd.Parameters.AddWithValue("@city", user.GetCity());
+                cmd.Parameters.AddWithValue("@province", user.GetProvince());
+                cmd.Parameters.AddWithValue("@zipcode", user.GetZipCode());
+                cmd.Parameters.AddWithValue("@role", user.GetRole());
+                cmd.Parameters.AddWithValue("@contractId", user.GetContractId());
                 cmd.ExecuteNonQuery();
+                ErrorHandler.DisplayError("query successful");
             }
             catch (Exception ex)
             {
@@ -341,6 +574,8 @@ namespace PSS_ITWORKS
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("AdminPortalProcedures.FilterUsers", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue ("@username", username);
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -359,9 +594,14 @@ namespace PSS_ITWORKS
             return bs;
         }
 
-        //ClientManagement
+        public void DeleteUser(int id)
+        {
 
-        public BindingSource GetClientAndContractInfo(int Id)
+        }
+
+        //ClientManagement--Working
+
+        public BindingSource GetClientAndContractInfo(int clientId)
         {
             SqlDataReader reader;
             BindingSource bs = new BindingSource();
@@ -369,6 +609,8 @@ namespace PSS_ITWORKS
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("ClientManagementProcedures.GetClientAndContractInfo", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@clientID", clientId);
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -376,18 +618,17 @@ namespace PSS_ITWORKS
                 }
                 reader.Close();
                 conn.Close();
+                ErrorHandler.DisplayError("query succesful");
             }
             catch (Exception ex)
             {
                 ErrorHandler.DisplayError(ex);
                 conn.Close();
             }
-
-            MessageBox.Show("GetClientAndContractInfo");
             return bs;
         }
 
-        public BindingSource GetClientInfo(int Id)
+        public BindingSource GetClientInfo(int clientId)
         {
             SqlDataReader reader;
             BindingSource bs = new BindingSource();
@@ -395,6 +636,8 @@ namespace PSS_ITWORKS
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("ClientManagementProcedures.GetClientInfo", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@clientId", clientId);
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -402,6 +645,7 @@ namespace PSS_ITWORKS
                 }
                 reader.Close();
                 conn.Close();
+                ErrorHandler.DisplayError("query succesful");
             }
             catch (Exception ex)
             {
@@ -413,7 +657,7 @@ namespace PSS_ITWORKS
             return bs;
         }//Also Used At CallManagement
 
-        public BindingSource GetClientJobs(int Id)
+        public BindingSource GetClientJobs(int clientId)
         {
             SqlDataReader reader;
             BindingSource bs = new BindingSource();
@@ -421,6 +665,8 @@ namespace PSS_ITWORKS
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("ClientManagementProcedures.GetClientJobs", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@clientID", clientId);
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -428,20 +674,38 @@ namespace PSS_ITWORKS
                 }
                 reader.Close();
                 conn.Close();
+                ErrorHandler.DisplayError("quary successful");
             }
             catch (Exception ex)
             {
                 ErrorHandler.DisplayError(ex);
                 conn.Close();
             }
-
-            MessageBox.Show("GetClientJobs");
             return bs;
         }
 
-        //CallManagement
-
-        public BindingSource GetClientOverview(int Id)
+        //CallManagement--Working
+        public void CreateServiceRequest(EntityJob job)
+        {
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("ClientPortalProcedures.CreateServiceRequest", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@clientId", job.GetClientId());
+                cmd.Parameters.AddWithValue("@serviceId", job.GetServiceId());
+                cmd.Parameters.AddWithValue("@notes", job.GetNotes());
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                ErrorHandler.DisplayError($"query successful");
+            }
+            catch(Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                conn.Close();
+            }
+        }
+        public BindingSource GetClientOverview(int clientId)
         {
             SqlDataReader reader;
             BindingSource bs = new BindingSource();
@@ -449,6 +713,8 @@ namespace PSS_ITWORKS
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("CallsPortalProcedures.GetClientOverview", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@clientid", clientId);
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -456,6 +722,7 @@ namespace PSS_ITWORKS
                 }
                 reader.Close();
                 conn.Close();
+                ErrorHandler.DisplayError("query successful");
             }
             catch (Exception ex)
             {
@@ -463,10 +730,9 @@ namespace PSS_ITWORKS
                 conn.Close();
             }
 
-            MessageBox.Show("GetClientOverview");
             return bs;
         }
-        public BindingSource GetEmployeeOverview(int Id)
+        public BindingSource GetEmployeeOverview(int employeeId)
         {
             SqlDataReader reader;
             BindingSource bs = new BindingSource();
@@ -474,6 +740,8 @@ namespace PSS_ITWORKS
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("CallsPortalProcedures.GetEmployeeOverview", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@employeeId", employeeId);
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -481,18 +749,17 @@ namespace PSS_ITWORKS
                 }
                 reader.Close();
                 conn.Close();
+                ErrorHandler.DisplayError("query successful");
             }
             catch (Exception ex)
             {
                 ErrorHandler.DisplayError(ex);
                 conn.Close();
             }
-
-            MessageBox.Show("GetEmployeeOverview");
             return bs;
         }
 
-        //JobManagement
+        //JobManagement--Working
         public BindingSource GetJobSchedule()
         {
             SqlDataReader reader;
@@ -508,33 +775,34 @@ namespace PSS_ITWORKS
                 }
                 reader.Close();
                 conn.Close();
+                ErrorHandler.DisplayError("Query Successfull");
             }
             catch (Exception ex)
             {
                 ErrorHandler.DisplayError(ex);
                 conn.Close();
             }
-
-            MessageBox.Show("GetJobSchedule");
             return bs;
         }
 
-        public void AssignJob(EntityJob job)
+        public void AssignJob(int employeeId, int jobId)
         {
             try
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("ServicePortalProcedures.AssignJob", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@employeeId", employeeId);
+                cmd.Parameters.AddWithValue("@jobId", jobId);
                 cmd.ExecuteNonQuery();
                 conn.Close();
+                ErrorHandler.DisplayError("Query Successfull");
             }
             catch (Exception ex)
             {
                 ErrorHandler.DisplayError(ex);
                 conn.Close();
             }
-
-            MessageBox.Show("AssignJob");
         }
 
         public void UpdateAssignedJob(EntityJob job)
@@ -552,17 +820,57 @@ namespace PSS_ITWORKS
                 ErrorHandler.DisplayError(ex);
                 conn.Close();
             }
-            MessageBox.Show("UpdateAssignedJob");
         }
 
-        public BindingSource UnassignedJobsOnDate(DateTime date)
+        public void DeleteEmployeeJobRef(int jobId)
+        {
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("ServicePortalProcedures.DeleteEmployeeJobRef", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@jobId", jobId);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                ErrorHandler.DisplayError("Quary Successfull");
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                conn.Close();
+            }
+        }
+
+        public void AddEmployeeJobRef(int jobId, int employeeId)
+        {
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("ServicePortalProcedures.AddEmployeeJobRef", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@employeeId", employeeId);
+                cmd.Parameters.AddWithValue("@jobId", jobId);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                ErrorHandler.DisplayError("Quary Successfull");
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                conn.Close();
+            }
+        }
+
+        public BindingSource GetJobsOnDate(DateTime date)
         {
             SqlDataReader reader;
             BindingSource bs = new BindingSource();
             try
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("ServicePortalProcedures.UnassignedJobsOnDate", conn);
+                SqlCommand cmd = new SqlCommand("ServicePortalProcedures.GetJobsOnDate", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@specificDate", date);
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -588,7 +896,34 @@ namespace PSS_ITWORKS
             try
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("ServicePortalProcedures.GetJobsAssignedToEmployeeName", conn);
+                SqlCommand cmd = new SqlCommand("ServicePortalProcedures.GetJobsAssignedToEmployeeByName", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@employeeName", employeeName);
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    bs.DataSource = reader;
+                }
+                reader.Close();
+                conn.Close();
+                ErrorHandler.DisplayError("Query Successful");
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                conn.Close();
+            }
+            return bs;
+        }
+
+        public BindingSource GetUnasignedJobs()
+        {
+            SqlDataReader reader;
+            BindingSource bs = new BindingSource();
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("ServicePortalProcedures.GetUnassignedJobs", conn);
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -603,11 +938,11 @@ namespace PSS_ITWORKS
                 conn.Close();
             }
 
-            MessageBox.Show("GetJobsAssignedToEmployeeName");
+            MessageBox.Show("GetUnassignedJobs");
             return bs;
         }
 
-        //TechnicalPortalProcedures
+        //TechnicalPortalProcedures--Working
 
         public BindingSource GetTechnicianTaskList(int employeeId)
         {
@@ -616,7 +951,9 @@ namespace PSS_ITWORKS
             try
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("TechnicianPortalProcedures.GetTechnicianTaskList", conn);
+                SqlCommand cmd = new SqlCommand("TechnicalPortalProcedures.GetTechnicianTaskList", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@employeeId", employeeId);
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -624,6 +961,7 @@ namespace PSS_ITWORKS
                 }
                 reader.Close();
                 conn.Close();
+                ErrorHandler.DisplayError("Query Successfull");
             }
             catch (Exception ex)
             {
@@ -631,7 +969,6 @@ namespace PSS_ITWORKS
                 conn.Close();
             }
 
-            MessageBox.Show("GetTechnicianTaskList");
             return bs;
         }
 
@@ -640,26 +977,31 @@ namespace PSS_ITWORKS
             try
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("TechnicianPortalProcedures.GetTechnicianTaskList", conn);
+                SqlCommand cmd = new SqlCommand("TechnicalPortalProcedures.GetTechnicianTaskList", conn);
+                cmd.CommandType= CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@clientId", job.GetId());
+                cmd.Parameters.AddWithValue("@jobNotes", job.GetNotes());
+                cmd.Parameters.AddWithValue("@jobStartus", job.GetStatus());
                 conn.Close();
+                ErrorHandler.DisplayError($"{job.GetNotes()}, {job.GetStatus()}");
             }
             catch (Exception ex)
             {
                 ErrorHandler.DisplayError(ex);
                 conn.Close();
             }
-
-            MessageBox.Show("GetTechnicianTaskList");
         }
 
-        public BindingSource GetClientDetails()
+        public BindingSource GetClientDetails(int clientId)
         {
             SqlDataReader reader;
             BindingSource bs = new BindingSource();
             try
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("TechnicianPortalProcedures.GetClientDetails", conn);
+                SqlCommand cmd = new SqlCommand("TechnicalPortalProcedures.GetClientDetails", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@clientId", clientId);
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -667,25 +1009,26 @@ namespace PSS_ITWORKS
                 }
                 reader.Close();
                 conn.Close();
+                ErrorHandler.DisplayError("quary successful");
             }
             catch (Exception ex)
             {
                 ErrorHandler.DisplayError(ex);
                 conn.Close();
             }
-
-            MessageBox.Show("GetClientDetails");
             return bs;
         }
 
-        public BindingSource GetServiceOverview(int clientId)
+        public BindingSource GetServiceOverview(int serviceId)
         {
             SqlDataReader reader;
             BindingSource bs = new BindingSource();
             try
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("TechnicianPortalProcedures.GetServiceOverview", conn);
+                SqlCommand cmd = new SqlCommand("TechnicalPortalProcedures.GetServiceOverview", conn);
+                cmd.CommandType= CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@serviceId", serviceId);
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {

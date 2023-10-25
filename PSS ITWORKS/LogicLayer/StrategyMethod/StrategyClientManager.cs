@@ -6,7 +6,7 @@ namespace PSS_ITWORKS
 {
     class StrategyClientManager : IStrategyAManagement
     {
-        DatabaseAPI api;
+        DatabaseAPI api = new DatabaseAPI();
         public BindingSource Get()
         {
             MessageBox.Show("Get something");
@@ -40,7 +40,28 @@ namespace PSS_ITWORKS
 
         public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
         {
+            return api.GetClientJobs(id1);
             return api.GetClientInfo(id1);
+        }
+
+        public BindingSource GetSpecific1(string s1)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public BindingSource GetSpecific2(string s2)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public BindingSource GetSpecific1(int n1)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public BindingSource GetSpecific2(int n1)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
