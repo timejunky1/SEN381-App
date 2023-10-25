@@ -63,5 +63,10 @@ namespace PSS_ITWORKS
         {
             throw new System.NotImplementedException();
         }
+
+        public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -141,16 +141,19 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LogicLayer\FactoryMethod\FactoryCTechnicianDetails.cs" />
-    <Compile Include="PSSDataSet.Designer.cs">
+    <Compile Include="ToetsCM.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PSSDataSet.xsd</DependentUpon>
+      <DependentUpon>ToetsCM.xsd</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Presentation Layer\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\CallForm.resx">
       <DependentUpon>CallForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Layer\ClientForm.resx">
+      <DependentUpon>ClientForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\ClientManagerForm.resx">
       <DependentUpon>ClientManagerForm.cs</DependentUpon>
@@ -186,16 +189,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="PSSDataSet.xsc">
-      <DependentUpon>PSSDataSet.xsd</DependentUpon>
+    <None Include="ToetsCM.xsc">
+      <DependentUpon>ToetsCM.xsd</DependentUpon>
     </None>
-    <None Include="PSSDataSet.xsd">
+    <None Include="ToetsCM.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>PSSDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>ToetsCM.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="PSSDataSet.xss">
-      <DependentUpon>PSSDataSet.xsd</DependentUpon>
+    <None Include="ToetsCM.xss">
+      <DependentUpon>ToetsCM.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

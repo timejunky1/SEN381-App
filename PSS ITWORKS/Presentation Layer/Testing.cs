@@ -51,42 +51,42 @@ namespace PSS_ITWORKS.Presentation_Layer
             {
                 case 0:
                     context = new StrategyContextManager(new StrategyClient());
-                    context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+                    context.Connect(@"Data Source=JOEKNOWS\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
                     entity = new EntityUser(id1, "test", "test", "test", 1, 1, "test", "test", "test", "test", "test", "test", DateTime.Now, "Client");
                     break;
                 case 1:
                     context = new StrategyContextManager(new StrategyCallManagement());
-                    context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+                    context.Connect(@"Data Source=JOEKNOWS\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
                     entity = new EntityJob(id1, 1, 1, DateTime.Now, DateTime.Now, "test", "test", employees);
                     break;
                 case 2:
                     context = new StrategyContextManager(new StrategyClientManager());
-                    context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+                    context.Connect(@"Data Source=JOEKNOWS\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
                     entity = new EntityUser(id1, "test", "test", "test", 1, 1, "test", "test", "test", "test", "test", "test", DateTime.Now, "Client");
                     break;
                 case 3:
                     context = new StrategyContextManager(new StrategyContractManager());
-                    context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+                    context.Connect(@"Data Source=JOEKNOWS\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
                     entity = new EntityContract(id1, "SLA", 1, 200, 1, "test", services);
                     break;
                 case 4:
                     context = new StrategyContextManager(new StrategyServiceManager());
-                    context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+                    context.Connect(@"Data Source=JOEKNOWS\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
                     entity = new EntityService(id1, "test", 1, 1, 1, "test");
                     break;
                 case 5:
                     context = new StrategyContextManager(new StrategyJobManager());
-                    context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+                    context.Connect(@"Data Source=JOEKNOWS\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
                     entity = new  EntityJob(id1,1,1,DateTime.Now,DateTime.Now,"test", "test", employees);
                     break;
                 case 6:
                     context = new StrategyContextManager(new StrategyUserManager());
-                    context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+                    context.Connect(@"Data Source=JOEKNOWS\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
                     entity = new EntityUser(id1, "test", "test", "test", 1, 1, "test", "test", "test", "test", "test", "test", DateTime.Now, "Technician");
                     break;
                 case 7:
                     context = new StrategyContextManager(new StratagyTechnician());
-                    context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+                    context.Connect(@"Data Source=JOEKNOWS\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
                     entity = new EntityJob(id1, 1, 1, DateTime.Now, DateTime.Now, "test", "test");
                     break;
                 default:

@@ -17,6 +17,16 @@ namespace PSS_ITWORKS.Presentation_Layer
             InitializeComponent();
         }
 
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // ClientForm
+            // 
+            this.ClientSize = new System.Drawing.Size(1197, 430);
+            this.Name = "ClientForm";
+            this.ResumeLayout(false);
 
+        }
     }
 }

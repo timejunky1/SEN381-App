@@ -46,7 +46,7 @@
             this.provinceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.zipcodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.getClientDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pSSDataSet = new PSS_ITWORKS.PSSDataSet();
+            
             this.clientContract_tbp = new System.Windows.Forms.TabPage();
             this.clientContract_dgv = new System.Windows.Forms.DataGridView();
             this.clientidDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,16 +73,14 @@
             this.clientContract_lbl = new System.Windows.Forms.Label();
             this.Filter_btn = new System.Windows.Forms.Button();
             this.client_lbl = new System.Windows.Forms.Label();
-            this.getClientJobsTableAdapter = new PSS_ITWORKS.PSSDataSetTableAdapters.GetClientJobsTableAdapter();
-            this.getClientDetailsTableAdapter = new PSS_ITWORKS.PSSDataSetTableAdapters.GetClientDetailsTableAdapter();
-            this.getClientAndContractInfoTableAdapter = new PSS_ITWORKS.PSSDataSetTableAdapters.GetClientAndContractInfoTableAdapter();
+          
             this.Clear_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).BeginInit();
             this.Clients_tbc.SuspendLayout();
             this.Clients_tbp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientDetail_dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.getClientDetailsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pSSDataSet)).BeginInit();
+           
             this.clientContract_tbp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientContract_dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.getClientAndContractInfoBindingSource)).BeginInit();
@@ -252,13 +250,10 @@
             // getClientDetailsBindingSource
             // 
             this.getClientDetailsBindingSource.DataMember = "GetClientDetails";
-            this.getClientDetailsBindingSource.DataSource = this.pSSDataSet;
+           
             // 
-            // pSSDataSet
-            // 
-            this.pSSDataSet.DataSetName = "PSSDataSet";
-            this.pSSDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
+           
+            
             // clientContract_tbp
             // 
             this.clientContract_tbp.Controls.Add(this.clientContract_dgv);
@@ -333,7 +328,7 @@
             // getClientAndContractInfoBindingSource
             // 
             this.getClientAndContractInfoBindingSource.DataMember = "GetClientAndContractInfo";
-            this.getClientAndContractInfoBindingSource.DataSource = this.pSSDataSet;
+            
             // 
             // clientJobs_tbp
             // 
@@ -427,7 +422,7 @@
             // getClientJobsBindingSource
             // 
             this.getClientJobsBindingSource.DataMember = "GetClientJobs";
-            this.getClientJobsBindingSource.DataSource = this.pSSDataSet;
+           
             // 
             // clientID_txt
             // 
@@ -525,16 +520,7 @@
             // 
             // getClientJobsTableAdapter
             // 
-            this.getClientJobsTableAdapter.ClearBeforeFill = true;
-            // 
-            // getClientDetailsTableAdapter
-            // 
-            this.getClientDetailsTableAdapter.ClearBeforeFill = true;
-            // 
-            // getClientAndContractInfoTableAdapter
-            // 
-            this.getClientAndContractInfoTableAdapter.ClearBeforeFill = true;
-            // 
+           
             // Clear_btn
             // 
             this.Clear_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
@@ -579,7 +565,7 @@
             this.Clients_tbp.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.clientDetail_dgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.getClientDetailsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pSSDataSet)).EndInit();
+            
             this.clientContract_tbp.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.clientContract_dgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.getClientAndContractInfoBindingSource)).EndInit();
@@ -611,7 +597,7 @@
         private System.Windows.Forms.DataGridView clientDetail_dgv;
         private System.Windows.Forms.DataGridView clientContract_dgv;
         private System.Windows.Forms.DataGridView clientJobs_dgv;
-        private PSSDataSetTableAdapters.GetClientJobsTableAdapter getClientJobsTableAdapter;
+       
         private System.Windows.Forms.DataGridViewTextBoxColumn clientidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn companynameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn personnameDataGridViewTextBoxColumn;
@@ -622,7 +608,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn provinceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn zipcodeDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource getClientDetailsBindingSource;
-        private PSSDataSet pSSDataSet;
+    
         private System.Windows.Forms.DataGridViewTextBoxColumn clientidDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn companynameDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn sLADataGridViewTextBoxColumn;
@@ -637,8 +623,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn timeendDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource getClientJobsBindingSource;
-        private PSSDataSetTableAdapters.GetClientDetailsTableAdapter getClientDetailsTableAdapter;
-        private PSSDataSetTableAdapters.GetClientAndContractInfoTableAdapter getClientAndContractInfoTableAdapter;
+   
         private System.Windows.Forms.Button Clear_btn;
     }
 }

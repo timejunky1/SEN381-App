@@ -14,14 +14,16 @@ namespace PSS_ITWORKS.Presentation_Layer
     public partial class ClientManagerForm : Form
     {
         
-        StrategyContextManager context;
+        StrategyContextManager clientManager;
 
         public ClientManagerForm()
         {
             InitializeComponent();
             // Set the Client Manager strategy 
-            context = new StrategyContextManager(new StrategyClientManager());
+            clientManager = new StrategyContextManager(new StrategyClientManager());
+            clientManager.Connect(@"Data Source=JOEKNOWS\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
         }
+       
 
         private void ClientManagerForm_Load(object sender, EventArgs e)
         {
@@ -52,7 +54,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             clientDetail_dgv.DataSource = null;
             clientDetail_dgv.Rows.Clear();
             clientDetail_dgv.Refresh();
-            clientDetail_dgv.DataSource = context.GetSpecific(clientID);
+            clientDetail_dgv.DataSource = clientManager.GetSpecific(clientID);
 
 
         }
@@ -64,7 +66,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             clientContract_dgv.DataSource = null;
             clientContract_dgv.Rows.Clear();
             clientContract_dgv.Refresh();
-            clientContract_dgv.DataSource = context.Get(clientID);
+            clientContract_dgv.DataSource = clientManager.Get(clientID);
 
         }
 
@@ -76,7 +78,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             clientJobs_dgv.DataSource = null;
             clientJobs_dgv.Rows.Clear();
             clientJobs_dgv.Refresh();
-            clientJobs_dgv.DataSource = context.GetSpecific1(clientID) ;
+            clientJobs_dgv.DataSource = clientManager.GetSpecific1(clientID) ;
 
 
 
