@@ -17,7 +17,7 @@ namespace PSS_ITWORKS
         {
             string name = loginController.GetUserInfo().Name;
             string surname = loginController.GetUserInfo().Surname;
-            TechnicianForm technicianForm = new TechnicianForm();
+            Technician technicianForm = new Technician();
             technicianForm.Show();
             loginForm.Close();
         }

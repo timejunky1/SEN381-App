@@ -9,7 +9,7 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 {
     internal class StratagyTechnician : IStrategyAManagement
     {
-        DatabaseAPI api;
+        DatabaseAPI api = new DatabaseAPI();
         public void Connect(string myString)
         {
             api.SetConnection(myString);
@@ -37,7 +37,28 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 
         public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
         {
-            return api.GetClientDetails();
+            return api.GetServiceOverview(id1);
+            return api.GetClientDetails(id1);
+        }
+
+        public BindingSource GetSpecific1(string s1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific1(int n1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific2(string s2)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific2(int n1)
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(IEntity entity)

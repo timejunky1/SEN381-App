@@ -40,6 +40,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.id1_num = new System.Windows.Forms.NumericUpDown();
             this.id2_num = new System.Windows.Forms.NumericUpDown();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Test_dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.id1_num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.id2_num)).BeginInit();
@@ -47,7 +49,7 @@
             // 
             // Test_btn
             // 
-            this.Test_btn.Location = new System.Drawing.Point(62, 268);
+            this.Test_btn.Location = new System.Drawing.Point(62, 306);
             this.Test_btn.Name = "Test_btn";
             this.Test_btn.Size = new System.Drawing.Size(122, 29);
             this.Test_btn.TabIndex = 0;
@@ -145,11 +147,29 @@
             this.id2_num.Size = new System.Drawing.Size(44, 20);
             this.id2_num.TabIndex = 13;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(62, 280);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 14;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(62, 255);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(55, 13);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Date Filter";
+            // 
             // Testing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.id2_num);
             this.Controls.Add(this.id1_num);
             this.Controls.Add(this.label5);
@@ -186,5 +206,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown id1_num;
         private System.Windows.Forms.NumericUpDown id2_num;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label6;
     }
 }

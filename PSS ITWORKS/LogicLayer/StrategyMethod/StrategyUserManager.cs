@@ -7,7 +7,7 @@ namespace PSS_ITWORKS
 {
     class StrategyUserManager : IStrategyAManagement
     {
-        DatabaseAPI api;
+        DatabaseAPI api = new DatabaseAPI();
         public BindingSource Get()
         {
             return api.ViewAllUsers();
