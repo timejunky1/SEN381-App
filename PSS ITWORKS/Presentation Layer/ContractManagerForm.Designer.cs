@@ -41,17 +41,17 @@
             this.JobDonePastYear_lbl = new System.Windows.Forms.Label();
             this.ClientCountPastYear_txt = new System.Windows.Forms.TextBox();
             this.ClientCountPastYear_lbl = new System.Windows.Forms.Label();
-            this.ContractTypePastMonth_cbx = new System.Windows.Forms.ComboBox();
-            this.ContractTypePastYear_lbl = new System.Windows.Forms.Label();
+            this.ContractTypePastYear_cbx = new System.Windows.Forms.ComboBox();
+            this.ContractDurationPastYear_lbl = new System.Windows.Forms.Label();
             this.ContractPerformancePastMonth_gbx = new System.Windows.Forms.GroupBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.JobsCanceledPastMonth_lbl = new System.Windows.Forms.Label();
             this.JobsDonePastMonth_lbl = new System.Windows.Forms.Label();
-            this.ClientCount_txt = new System.Windows.Forms.TextBox();
+            this.ClientCountPastMonth_txt = new System.Windows.Forms.TextBox();
             this.ClientCount_lbl = new System.Windows.Forms.Label();
-            this.ContractType_cbx = new System.Windows.Forms.ComboBox();
-            this.ContractTypePastMonth_lbl = new System.Windows.Forms.Label();
+            this.ContractDurationPastMonth_cbx = new System.Windows.Forms.ComboBox();
+            this.ContractDurationPastMonth_lbl = new System.Windows.Forms.Label();
             this.ServiceConfiguration_tp = new System.Windows.Forms.TabPage();
             this.Unvailable_btn = new System.Windows.Forms.Button();
             this.Available_btn = new System.Windows.Forms.Button();
@@ -74,6 +74,24 @@
             this.ServiceType_lbl = new System.Windows.Forms.Label();
             this.ServiceAvailability_lbl = new System.Windows.Forms.Label();
             this.ContractConfiguration_tp = new System.Windows.Forms.TabPage();
+            this.ContractConfigUnavailable_btn = new System.Windows.Forms.Button();
+            this.ContractConfigAvailability_btn = new System.Windows.Forms.Button();
+            this.CreateContract_btn = new System.Windows.Forms.Button();
+            this.UpdateContract_btn = new System.Windows.Forms.Button();
+            this.ContractConfigDetails_gbx = new System.Windows.Forms.GroupBox();
+            this.ContractConfigPriority_txt = new System.Windows.Forms.TextBox();
+            this.ContractConfigPriority_lbl = new System.Windows.Forms.Label();
+            this.Cost_txt = new System.Windows.Forms.TextBox();
+            this.Cost_lbl = new System.Windows.Forms.Label();
+            this.Contract_dgv = new System.Windows.Forms.DataGridView();
+            this.Contract_lbl = new System.Windows.Forms.Label();
+            this.ContractConfigClientCount_txt = new System.Windows.Forms.TextBox();
+            this.ContractConfigClientCount_lbl = new System.Windows.Forms.Label();
+            this.ContractDuraation_cbx = new System.Windows.Forms.ComboBox();
+            this.ContractDuration_lbl = new System.Windows.Forms.Label();
+            this.ContractAvailability_lbl = new System.Windows.Forms.Label();
+            this.SLA_lbl = new System.Windows.Forms.Label();
+            this.SLA_rtb = new System.Windows.Forms.RichTextBox();
             this.Header_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PSS_img)).BeginInit();
             this.ContractManagement_tc.SuspendLayout();
@@ -87,6 +105,9 @@
             this.ServiceConfiguration_tp.SuspendLayout();
             this.Details_gbx.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Services_dgv)).BeginInit();
+            this.ContractConfiguration_tp.SuspendLayout();
+            this.ContractConfigDetails_gbx.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Contract_dgv)).BeginInit();
             this.SuspendLayout();
             // 
             // Header_pnl
@@ -165,8 +186,8 @@
             this.ContractPerformancePastYear_gbx.Controls.Add(this.JobDonePastYear_lbl);
             this.ContractPerformancePastYear_gbx.Controls.Add(this.ClientCountPastYear_txt);
             this.ContractPerformancePastYear_gbx.Controls.Add(this.ClientCountPastYear_lbl);
-            this.ContractPerformancePastYear_gbx.Controls.Add(this.ContractTypePastMonth_cbx);
-            this.ContractPerformancePastYear_gbx.Controls.Add(this.ContractTypePastYear_lbl);
+            this.ContractPerformancePastYear_gbx.Controls.Add(this.ContractTypePastYear_cbx);
+            this.ContractPerformancePastYear_gbx.Controls.Add(this.ContractDurationPastYear_lbl);
             this.ContractPerformancePastYear_gbx.Location = new System.Drawing.Point(20, 262);
             this.ContractPerformancePastYear_gbx.Name = "ContractPerformancePastYear_gbx";
             this.ContractPerformancePastYear_gbx.Size = new System.Drawing.Size(1116, 240);
@@ -229,23 +250,23 @@
             this.ClientCountPastYear_lbl.TabIndex = 2;
             this.ClientCountPastYear_lbl.Text = "Client Count";
             // 
-            // ContractTypePastMonth_cbx
+            // ContractTypePastYear_cbx
             // 
-            this.ContractTypePastMonth_cbx.FormattingEnabled = true;
-            this.ContractTypePastMonth_cbx.Location = new System.Drawing.Point(18, 93);
-            this.ContractTypePastMonth_cbx.Name = "ContractTypePastMonth_cbx";
-            this.ContractTypePastMonth_cbx.Size = new System.Drawing.Size(209, 33);
-            this.ContractTypePastMonth_cbx.TabIndex = 1;
+            this.ContractTypePastYear_cbx.FormattingEnabled = true;
+            this.ContractTypePastYear_cbx.Location = new System.Drawing.Point(18, 93);
+            this.ContractTypePastYear_cbx.Name = "ContractTypePastYear_cbx";
+            this.ContractTypePastYear_cbx.Size = new System.Drawing.Size(209, 33);
+            this.ContractTypePastYear_cbx.TabIndex = 1;
             // 
-            // ContractTypePastYear_lbl
+            // ContractDurationPastYear_lbl
             // 
-            this.ContractTypePastYear_lbl.AutoSize = true;
-            this.ContractTypePastYear_lbl.ForeColor = System.Drawing.Color.Blue;
-            this.ContractTypePastYear_lbl.Location = new System.Drawing.Point(13, 52);
-            this.ContractTypePastYear_lbl.Name = "ContractTypePastYear_lbl";
-            this.ContractTypePastYear_lbl.Size = new System.Drawing.Size(127, 25);
-            this.ContractTypePastYear_lbl.TabIndex = 0;
-            this.ContractTypePastYear_lbl.Text = "Contract Type";
+            this.ContractDurationPastYear_lbl.AutoSize = true;
+            this.ContractDurationPastYear_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.ContractDurationPastYear_lbl.Location = new System.Drawing.Point(13, 52);
+            this.ContractDurationPastYear_lbl.Name = "ContractDurationPastYear_lbl";
+            this.ContractDurationPastYear_lbl.Size = new System.Drawing.Size(162, 25);
+            this.ContractDurationPastYear_lbl.TabIndex = 0;
+            this.ContractDurationPastYear_lbl.Text = "Contract Duration";
             // 
             // ContractPerformancePastMonth_gbx
             // 
@@ -253,10 +274,10 @@
             this.ContractPerformancePastMonth_gbx.Controls.Add(this.dataGridView1);
             this.ContractPerformancePastMonth_gbx.Controls.Add(this.JobsCanceledPastMonth_lbl);
             this.ContractPerformancePastMonth_gbx.Controls.Add(this.JobsDonePastMonth_lbl);
-            this.ContractPerformancePastMonth_gbx.Controls.Add(this.ClientCount_txt);
+            this.ContractPerformancePastMonth_gbx.Controls.Add(this.ClientCountPastMonth_txt);
             this.ContractPerformancePastMonth_gbx.Controls.Add(this.ClientCount_lbl);
-            this.ContractPerformancePastMonth_gbx.Controls.Add(this.ContractType_cbx);
-            this.ContractPerformancePastMonth_gbx.Controls.Add(this.ContractTypePastMonth_lbl);
+            this.ContractPerformancePastMonth_gbx.Controls.Add(this.ContractDurationPastMonth_cbx);
+            this.ContractPerformancePastMonth_gbx.Controls.Add(this.ContractDurationPastMonth_lbl);
             this.ContractPerformancePastMonth_gbx.Location = new System.Drawing.Point(20, 20);
             this.ContractPerformancePastMonth_gbx.Name = "ContractPerformancePastMonth_gbx";
             this.ContractPerformancePastMonth_gbx.Size = new System.Drawing.Size(1116, 236);
@@ -302,12 +323,12 @@
             this.JobsDonePastMonth_lbl.TabIndex = 4;
             this.JobsDonePastMonth_lbl.Text = "Jobs Done";
             // 
-            // ClientCount_txt
+            // ClientCountPastMonth_txt
             // 
-            this.ClientCount_txt.Location = new System.Drawing.Point(18, 178);
-            this.ClientCount_txt.Name = "ClientCount_txt";
-            this.ClientCount_txt.Size = new System.Drawing.Size(209, 31);
-            this.ClientCount_txt.TabIndex = 3;
+            this.ClientCountPastMonth_txt.Location = new System.Drawing.Point(18, 178);
+            this.ClientCountPastMonth_txt.Name = "ClientCountPastMonth_txt";
+            this.ClientCountPastMonth_txt.Size = new System.Drawing.Size(209, 31);
+            this.ClientCountPastMonth_txt.TabIndex = 3;
             // 
             // ClientCount_lbl
             // 
@@ -319,23 +340,23 @@
             this.ClientCount_lbl.TabIndex = 2;
             this.ClientCount_lbl.Text = "Client Count";
             // 
-            // ContractType_cbx
+            // ContractDurationPastMonth_cbx
             // 
-            this.ContractType_cbx.FormattingEnabled = true;
-            this.ContractType_cbx.Location = new System.Drawing.Point(18, 92);
-            this.ContractType_cbx.Name = "ContractType_cbx";
-            this.ContractType_cbx.Size = new System.Drawing.Size(209, 33);
-            this.ContractType_cbx.TabIndex = 1;
+            this.ContractDurationPastMonth_cbx.FormattingEnabled = true;
+            this.ContractDurationPastMonth_cbx.Location = new System.Drawing.Point(18, 92);
+            this.ContractDurationPastMonth_cbx.Name = "ContractDurationPastMonth_cbx";
+            this.ContractDurationPastMonth_cbx.Size = new System.Drawing.Size(209, 33);
+            this.ContractDurationPastMonth_cbx.TabIndex = 1;
             // 
-            // ContractTypePastMonth_lbl
+            // ContractDurationPastMonth_lbl
             // 
-            this.ContractTypePastMonth_lbl.AutoSize = true;
-            this.ContractTypePastMonth_lbl.ForeColor = System.Drawing.Color.Blue;
-            this.ContractTypePastMonth_lbl.Location = new System.Drawing.Point(13, 52);
-            this.ContractTypePastMonth_lbl.Name = "ContractTypePastMonth_lbl";
-            this.ContractTypePastMonth_lbl.Size = new System.Drawing.Size(127, 25);
-            this.ContractTypePastMonth_lbl.TabIndex = 0;
-            this.ContractTypePastMonth_lbl.Text = "Contract Type";
+            this.ContractDurationPastMonth_lbl.AutoSize = true;
+            this.ContractDurationPastMonth_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.ContractDurationPastMonth_lbl.Location = new System.Drawing.Point(13, 52);
+            this.ContractDurationPastMonth_lbl.Name = "ContractDurationPastMonth_lbl";
+            this.ContractDurationPastMonth_lbl.Size = new System.Drawing.Size(162, 25);
+            this.ContractDurationPastMonth_lbl.TabIndex = 0;
+            this.ContractDurationPastMonth_lbl.Text = "Contract Duration";
             // 
             // ServiceConfiguration_tp
             // 
@@ -555,12 +576,198 @@
             // 
             // ContractConfiguration_tp
             // 
+            this.ContractConfiguration_tp.Controls.Add(this.ContractConfigUnavailable_btn);
+            this.ContractConfiguration_tp.Controls.Add(this.ContractConfigAvailability_btn);
+            this.ContractConfiguration_tp.Controls.Add(this.CreateContract_btn);
+            this.ContractConfiguration_tp.Controls.Add(this.UpdateContract_btn);
+            this.ContractConfiguration_tp.Controls.Add(this.ContractConfigDetails_gbx);
+            this.ContractConfiguration_tp.Controls.Add(this.Contract_dgv);
+            this.ContractConfiguration_tp.Controls.Add(this.Contract_lbl);
+            this.ContractConfiguration_tp.Controls.Add(this.ContractConfigClientCount_txt);
+            this.ContractConfiguration_tp.Controls.Add(this.ContractConfigClientCount_lbl);
+            this.ContractConfiguration_tp.Controls.Add(this.ContractDuraation_cbx);
+            this.ContractConfiguration_tp.Controls.Add(this.ContractDuration_lbl);
+            this.ContractConfiguration_tp.Controls.Add(this.ContractAvailability_lbl);
             this.ContractConfiguration_tp.Location = new System.Drawing.Point(4, 34);
             this.ContractConfiguration_tp.Name = "ContractConfiguration_tp";
             this.ContractConfiguration_tp.Size = new System.Drawing.Size(1156, 523);
             this.ContractConfiguration_tp.TabIndex = 2;
             this.ContractConfiguration_tp.Text = "Contract Configuration";
             this.ContractConfiguration_tp.UseVisualStyleBackColor = true;
+            // 
+            // ContractConfigUnavailable_btn
+            // 
+            this.ContractConfigUnavailable_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(73)))), ((int)(((byte)(73)))));
+            this.ContractConfigUnavailable_btn.ForeColor = System.Drawing.Color.White;
+            this.ContractConfigUnavailable_btn.Location = new System.Drawing.Point(33, 354);
+            this.ContractConfigUnavailable_btn.Name = "ContractConfigUnavailable_btn";
+            this.ContractConfigUnavailable_btn.Size = new System.Drawing.Size(211, 43);
+            this.ContractConfigUnavailable_btn.TabIndex = 23;
+            this.ContractConfigUnavailable_btn.Text = "Unvailable";
+            this.ContractConfigUnavailable_btn.UseVisualStyleBackColor = false;
+            // 
+            // ContractConfigAvailability_btn
+            // 
+            this.ContractConfigAvailability_btn.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.ContractConfigAvailability_btn.ForeColor = System.Drawing.Color.White;
+            this.ContractConfigAvailability_btn.Location = new System.Drawing.Point(33, 288);
+            this.ContractConfigAvailability_btn.Name = "ContractConfigAvailability_btn";
+            this.ContractConfigAvailability_btn.Size = new System.Drawing.Size(211, 43);
+            this.ContractConfigAvailability_btn.TabIndex = 22;
+            this.ContractConfigAvailability_btn.Text = "Available";
+            this.ContractConfigAvailability_btn.UseVisualStyleBackColor = false;
+            // 
+            // CreateContract_btn
+            // 
+            this.CreateContract_btn.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.CreateContract_btn.ForeColor = System.Drawing.Color.White;
+            this.CreateContract_btn.Location = new System.Drawing.Point(311, 461);
+            this.CreateContract_btn.Name = "CreateContract_btn";
+            this.CreateContract_btn.Size = new System.Drawing.Size(211, 43);
+            this.CreateContract_btn.TabIndex = 21;
+            this.CreateContract_btn.Text = "Create Contract";
+            this.CreateContract_btn.UseVisualStyleBackColor = false;
+            // 
+            // UpdateContract_btn
+            // 
+            this.UpdateContract_btn.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.UpdateContract_btn.ForeColor = System.Drawing.Color.White;
+            this.UpdateContract_btn.Location = new System.Drawing.Point(33, 461);
+            this.UpdateContract_btn.Name = "UpdateContract_btn";
+            this.UpdateContract_btn.Size = new System.Drawing.Size(211, 43);
+            this.UpdateContract_btn.TabIndex = 20;
+            this.UpdateContract_btn.Text = "Update Contract";
+            this.UpdateContract_btn.UseVisualStyleBackColor = false;
+            // 
+            // ContractConfigDetails_gbx
+            // 
+            this.ContractConfigDetails_gbx.Controls.Add(this.SLA_rtb);
+            this.ContractConfigDetails_gbx.Controls.Add(this.SLA_lbl);
+            this.ContractConfigDetails_gbx.Controls.Add(this.ContractConfigPriority_txt);
+            this.ContractConfigDetails_gbx.Controls.Add(this.ContractConfigPriority_lbl);
+            this.ContractConfigDetails_gbx.Controls.Add(this.Cost_txt);
+            this.ContractConfigDetails_gbx.Controls.Add(this.Cost_lbl);
+            this.ContractConfigDetails_gbx.Location = new System.Drawing.Point(873, 30);
+            this.ContractConfigDetails_gbx.Name = "ContractConfigDetails_gbx";
+            this.ContractConfigDetails_gbx.Size = new System.Drawing.Size(269, 474);
+            this.ContractConfigDetails_gbx.TabIndex = 19;
+            this.ContractConfigDetails_gbx.TabStop = false;
+            this.ContractConfigDetails_gbx.Text = "Details";
+            // 
+            // ContractConfigPriority_txt
+            // 
+            this.ContractConfigPriority_txt.Location = new System.Drawing.Point(26, 150);
+            this.ContractConfigPriority_txt.Name = "ContractConfigPriority_txt";
+            this.ContractConfigPriority_txt.Size = new System.Drawing.Size(209, 31);
+            this.ContractConfigPriority_txt.TabIndex = 15;
+            // 
+            // ContractConfigPriority_lbl
+            // 
+            this.ContractConfigPriority_lbl.AutoSize = true;
+            this.ContractConfigPriority_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.ContractConfigPriority_lbl.Location = new System.Drawing.Point(21, 122);
+            this.ContractConfigPriority_lbl.Name = "ContractConfigPriority_lbl";
+            this.ContractConfigPriority_lbl.Size = new System.Drawing.Size(74, 25);
+            this.ContractConfigPriority_lbl.TabIndex = 14;
+            this.ContractConfigPriority_lbl.Text = "Priority";
+            // 
+            // Cost_txt
+            // 
+            this.Cost_txt.Location = new System.Drawing.Point(26, 75);
+            this.Cost_txt.Name = "Cost_txt";
+            this.Cost_txt.Size = new System.Drawing.Size(209, 31);
+            this.Cost_txt.TabIndex = 11;
+            // 
+            // Cost_lbl
+            // 
+            this.Cost_lbl.AutoSize = true;
+            this.Cost_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.Cost_lbl.Location = new System.Drawing.Point(21, 44);
+            this.Cost_lbl.Name = "Cost_lbl";
+            this.Cost_lbl.Size = new System.Drawing.Size(49, 25);
+            this.Cost_lbl.TabIndex = 10;
+            this.Cost_lbl.Text = "Cost";
+            // 
+            // Contract_dgv
+            // 
+            this.Contract_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Contract_dgv.Location = new System.Drawing.Point(311, 62);
+            this.Contract_dgv.Name = "Contract_dgv";
+            this.Contract_dgv.RowHeadersWidth = 51;
+            this.Contract_dgv.RowTemplate.Height = 24;
+            this.Contract_dgv.Size = new System.Drawing.Size(542, 366);
+            this.Contract_dgv.TabIndex = 18;
+            // 
+            // Contract_lbl
+            // 
+            this.Contract_lbl.AutoSize = true;
+            this.Contract_lbl.Location = new System.Drawing.Point(306, 19);
+            this.Contract_lbl.Name = "Contract_lbl";
+            this.Contract_lbl.Size = new System.Drawing.Size(91, 25);
+            this.Contract_lbl.TabIndex = 17;
+            this.Contract_lbl.Text = "Contracts";
+            // 
+            // ContractConfigClientCount_txt
+            // 
+            this.ContractConfigClientCount_txt.Location = new System.Drawing.Point(33, 203);
+            this.ContractConfigClientCount_txt.Name = "ContractConfigClientCount_txt";
+            this.ContractConfigClientCount_txt.Size = new System.Drawing.Size(211, 31);
+            this.ContractConfigClientCount_txt.TabIndex = 16;
+            // 
+            // ContractConfigClientCount_lbl
+            // 
+            this.ContractConfigClientCount_lbl.AutoSize = true;
+            this.ContractConfigClientCount_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.ContractConfigClientCount_lbl.Location = new System.Drawing.Point(28, 161);
+            this.ContractConfigClientCount_lbl.Name = "ContractConfigClientCount_lbl";
+            this.ContractConfigClientCount_lbl.Size = new System.Drawing.Size(117, 25);
+            this.ContractConfigClientCount_lbl.TabIndex = 15;
+            this.ContractConfigClientCount_lbl.Text = "Client Count";
+            // 
+            // ContractDuraation_cbx
+            // 
+            this.ContractDuraation_cbx.FormattingEnabled = true;
+            this.ContractDuraation_cbx.Location = new System.Drawing.Point(33, 103);
+            this.ContractDuraation_cbx.Name = "ContractDuraation_cbx";
+            this.ContractDuraation_cbx.Size = new System.Drawing.Size(211, 33);
+            this.ContractDuraation_cbx.TabIndex = 14;
+            // 
+            // ContractDuration_lbl
+            // 
+            this.ContractDuration_lbl.AutoSize = true;
+            this.ContractDuration_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.ContractDuration_lbl.Location = new System.Drawing.Point(28, 62);
+            this.ContractDuration_lbl.Name = "ContractDuration_lbl";
+            this.ContractDuration_lbl.Size = new System.Drawing.Size(162, 25);
+            this.ContractDuration_lbl.TabIndex = 13;
+            this.ContractDuration_lbl.Text = "Contract Duration";
+            // 
+            // ContractAvailability_lbl
+            // 
+            this.ContractAvailability_lbl.AutoSize = true;
+            this.ContractAvailability_lbl.Location = new System.Drawing.Point(14, 19);
+            this.ContractAvailability_lbl.Name = "ContractAvailability_lbl";
+            this.ContractAvailability_lbl.Size = new System.Drawing.Size(179, 25);
+            this.ContractAvailability_lbl.TabIndex = 12;
+            this.ContractAvailability_lbl.Text = "Contract Availability";
+            // 
+            // SLA_lbl
+            // 
+            this.SLA_lbl.AutoSize = true;
+            this.SLA_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.SLA_lbl.Location = new System.Drawing.Point(21, 196);
+            this.SLA_lbl.Name = "SLA_lbl";
+            this.SLA_lbl.Size = new System.Drawing.Size(219, 25);
+            this.SLA_lbl.TabIndex = 16;
+            this.SLA_lbl.Text = "Service Level Agreement";
+            // 
+            // SLA_rtb
+            // 
+            this.SLA_rtb.Location = new System.Drawing.Point(26, 234);
+            this.SLA_rtb.Name = "SLA_rtb";
+            this.SLA_rtb.Size = new System.Drawing.Size(225, 215);
+            this.SLA_rtb.TabIndex = 17;
+            this.SLA_rtb.Text = "";
             // 
             // ContractManagerForm
             // 
@@ -591,6 +798,11 @@
             this.Details_gbx.ResumeLayout(false);
             this.Details_gbx.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Services_dgv)).EndInit();
+            this.ContractConfiguration_tp.ResumeLayout(false);
+            this.ContractConfiguration_tp.PerformLayout();
+            this.ContractConfigDetails_gbx.ResumeLayout(false);
+            this.ContractConfigDetails_gbx.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Contract_dgv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -613,17 +825,17 @@
         private System.Windows.Forms.Label JobDonePastYear_lbl;
         private System.Windows.Forms.TextBox ClientCountPastYear_txt;
         private System.Windows.Forms.Label ClientCountPastYear_lbl;
-        private System.Windows.Forms.ComboBox ContractTypePastMonth_cbx;
-        private System.Windows.Forms.Label ContractTypePastYear_lbl;
+        private System.Windows.Forms.ComboBox ContractTypePastYear_cbx;
+        private System.Windows.Forms.Label ContractDurationPastYear_lbl;
         private System.Windows.Forms.GroupBox ContractPerformancePastMonth_gbx;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label JobsCanceledPastMonth_lbl;
         private System.Windows.Forms.Label JobsDonePastMonth_lbl;
-        private System.Windows.Forms.TextBox ClientCount_txt;
+        private System.Windows.Forms.TextBox ClientCountPastMonth_txt;
         private System.Windows.Forms.Label ClientCount_lbl;
-        private System.Windows.Forms.ComboBox ContractType_cbx;
-        private System.Windows.Forms.Label ContractTypePastMonth_lbl;
+        private System.Windows.Forms.ComboBox ContractDurationPastMonth_cbx;
+        private System.Windows.Forms.Label ContractDurationPastMonth_lbl;
         private System.Windows.Forms.Label ContractCount_lbl;
         private System.Windows.Forms.ComboBox ServiceType_cbx;
         private System.Windows.Forms.Label ServiceType_lbl;
@@ -644,5 +856,23 @@
         private System.Windows.Forms.DataGridView Services_dgv;
         private System.Windows.Forms.Label Services_lbl;
         private System.Windows.Forms.TextBox ContractCount_txt;
+        private System.Windows.Forms.Button ContractConfigUnavailable_btn;
+        private System.Windows.Forms.Button ContractConfigAvailability_btn;
+        private System.Windows.Forms.Button CreateContract_btn;
+        private System.Windows.Forms.Button UpdateContract_btn;
+        private System.Windows.Forms.GroupBox ContractConfigDetails_gbx;
+        private System.Windows.Forms.TextBox ContractConfigPriority_txt;
+        private System.Windows.Forms.Label ContractConfigPriority_lbl;
+        private System.Windows.Forms.TextBox Cost_txt;
+        private System.Windows.Forms.Label Cost_lbl;
+        private System.Windows.Forms.DataGridView Contract_dgv;
+        private System.Windows.Forms.Label Contract_lbl;
+        private System.Windows.Forms.TextBox ContractConfigClientCount_txt;
+        private System.Windows.Forms.Label ContractConfigClientCount_lbl;
+        private System.Windows.Forms.ComboBox ContractDuraation_cbx;
+        private System.Windows.Forms.Label ContractDuration_lbl;
+        private System.Windows.Forms.Label ContractAvailability_lbl;
+        private System.Windows.Forms.RichTextBox SLA_rtb;
+        private System.Windows.Forms.Label SLA_lbl;
     }
 }
