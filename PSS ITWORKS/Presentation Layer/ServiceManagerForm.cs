@@ -21,5 +21,10 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
 
         }
+
+        private void Filter_txt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
