@@ -94,6 +94,11 @@ public class LoginController
         string hashedPassword = password;
         return hashedPassword;
     }
+
+    public void SetPassword(string username, string password, string newPassword)
+    {
+        api.SetPassword(username, password, newPassword);
+    }
 }
 
 

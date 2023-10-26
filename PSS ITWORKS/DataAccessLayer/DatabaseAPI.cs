@@ -480,10 +480,6 @@ namespace PSS_ITWORKS
         }
 
         //UserManagement--Working
-        public void SetPassword(string email, string password, string newPassword)
-        {
-            //work in progress
-        }
         public void InsertUser(EntityUser user)
         {
             try
@@ -504,12 +500,34 @@ namespace PSS_ITWORKS
                 cmd.Parameters.AddWithValue("@role", user.GetRole());
                 cmd.Parameters.AddWithValue("@contractId", user.GetContractId());
                 cmd.ExecuteNonQuery();
+                conn.Close();
                 ErrorHandler.DisplayError("query successful");
             }catch (Exception ex)
             {
                 ErrorHandler.DisplayError(ex);
+                conn.Close();
             }
 
+        }
+
+        public void SetPassword(string username, string password, string newPassword)
+        {
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("AdminPortalProcedures.SetPassword", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@password", password);
+                cmd.Parameters.AddWithValue("@newPassword", newPassword);
+                conn.Close();
+                ErrorHandler.DisplayError("query successful");
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                conn.Close();
+            }
         }
 
         public void UpdateUser(EntityUser user)

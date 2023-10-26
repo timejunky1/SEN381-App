@@ -117,14 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="Email_txt.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="Logo_img.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAMQAAACcCAYAAAAgewTxAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAHBFJREFUeF7tXQl0VMeVDTgxXuItOIud2AlezmTGk2UymSQnie3YSWaciRMnTjI5
+        vgAADr4B6kKxwAAAHBFJREFUeF7tXQl0VMeVDTgxXuItOIud2AlezmTGk2UymSQnie3YSWaciRMnTjI5
         yWR14mSS2GITNhiDMUYSWgApIIwxMru8hB2ElpZa+4ZAEiC0CwHa1drX1tpzX/drLOMCuvuv3ap7zj0g
         qbvqVb269V7V/7/+ByQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkfIN9bGTGwOjQdczrid3D
         fbO7hno+1j8yeBN+vhG8gXk9fZ6/KiHhv8BgvhaD/La2gY5PtvTb7ilpKX8yr7H06aM1mZHxp48cAhPA
