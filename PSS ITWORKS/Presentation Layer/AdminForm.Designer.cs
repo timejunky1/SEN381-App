@@ -28,19 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TextBox Email_txt;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminForm));
             this.Logout_btn = new System.Windows.Forms.Button();
             this.Admin_tc = new System.Windows.Forms.TabControl();
             this.CRUD_tp = new System.Windows.Forms.TabPage();
             this.infoCRUD_lbl = new System.Windows.Forms.Label();
             this.Number_txt = new System.Windows.Forms.TextBox();
-            this.DOB_dtp = new System.Windows.Forms.DateTimePicker();
-            this.Role_txt = new System.Windows.Forms.TextBox();
             this.Role_lbl = new System.Windows.Forms.Label();
-            this.Address_txt = new System.Windows.Forms.TextBox();
+            this.address_txt = new System.Windows.Forms.TextBox();
             this.Address_lbl = new System.Windows.Forms.Label();
-            this.DOB_lbl = new System.Windows.Forms.Label();
             this.Number_lbl = new System.Windows.Forms.Label();
             this.Surname_txt = new System.Windows.Forms.TextBox();
             this.Surname_lbl = new System.Windows.Forms.Label();
@@ -50,7 +46,6 @@
             this.Password_txt = new System.Windows.Forms.TextBox();
             this.Password_lbl = new System.Windows.Forms.Label();
             this.Username_txt = new System.Windows.Forms.TextBox();
-            this.Username_lbl = new System.Windows.Forms.Label();
             this.updateUser_btn = new System.Windows.Forms.Button();
             this.deleteUser_btn = new System.Windows.Forms.Button();
             this.addUser_btn = new System.Windows.Forms.Button();
@@ -80,24 +75,26 @@
             this.Clients_lbl = new System.Windows.Forms.Label();
             this.Welcome_lbl = new System.Windows.Forms.Label();
             this.Logo_img = new System.Windows.Forms.PictureBox();
-            Email_txt = new System.Windows.Forms.TextBox();
+            this.company_txt = new System.Windows.Forms.TextBox();
+            this.Company_lbl = new System.Windows.Forms.Label();
+            this.street_txt = new System.Windows.Forms.TextBox();
+            this.Street_lbl = new System.Windows.Forms.Label();
+            this.City_lbl = new System.Windows.Forms.Label();
+            this.city_txt = new System.Windows.Forms.TextBox();
+            this.Province_lbl = new System.Windows.Forms.Label();
+            this.province_txt = new System.Windows.Forms.TextBox();
+            this.zipCode_lbl = new System.Windows.Forms.Label();
+            this.zipCode_txt = new System.Windows.Forms.TextBox();
+            this.role_cmb = new System.Windows.Forms.ComboBox();
+            this.clientDetails_gb = new System.Windows.Forms.GroupBox();
             this.Admin_tc.SuspendLayout();
             this.CRUD_tp.SuspendLayout();
             this.systemSettings_tp.SuspendLayout();
             this.Users_tp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Users_dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).BeginInit();
+            this.clientDetails_gb.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // Email_txt
-            // 
-            Email_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            Email_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            Email_txt.Location = new System.Drawing.Point(29, 312);
-            Email_txt.Name = "Email_txt";
-            Email_txt.Size = new System.Drawing.Size(158, 29);
-            Email_txt.TabIndex = 33;
-            Email_txt.Tag = "";
             // 
             // Logout_btn
             // 
@@ -129,25 +126,20 @@
             // 
             // CRUD_tp
             // 
+            this.CRUD_tp.Controls.Add(this.clientDetails_gb);
+            this.CRUD_tp.Controls.Add(this.role_cmb);
             this.CRUD_tp.Controls.Add(this.infoCRUD_lbl);
             this.CRUD_tp.Controls.Add(this.Number_txt);
-            this.CRUD_tp.Controls.Add(this.DOB_dtp);
-            this.CRUD_tp.Controls.Add(this.Role_txt);
             this.CRUD_tp.Controls.Add(this.Role_lbl);
-            this.CRUD_tp.Controls.Add(this.Address_txt);
-            this.CRUD_tp.Controls.Add(this.Address_lbl);
-            this.CRUD_tp.Controls.Add(this.DOB_lbl);
             this.CRUD_tp.Controls.Add(this.Number_lbl);
             this.CRUD_tp.Controls.Add(this.Surname_txt);
             this.CRUD_tp.Controls.Add(this.Surname_lbl);
             this.CRUD_tp.Controls.Add(this.Name_txt);
             this.CRUD_tp.Controls.Add(this.Name_lbl);
-            this.CRUD_tp.Controls.Add(Email_txt);
             this.CRUD_tp.Controls.Add(this.Email_lbl);
             this.CRUD_tp.Controls.Add(this.Password_txt);
             this.CRUD_tp.Controls.Add(this.Password_lbl);
             this.CRUD_tp.Controls.Add(this.Username_txt);
-            this.CRUD_tp.Controls.Add(this.Username_lbl);
             this.CRUD_tp.Controls.Add(this.updateUser_btn);
             this.CRUD_tp.Controls.Add(this.deleteUser_btn);
             this.CRUD_tp.Controls.Add(this.addUser_btn);
@@ -176,79 +168,51 @@
             // 
             this.Number_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Number_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Number_txt.Location = new System.Drawing.Point(271, 312);
+            this.Number_txt.Location = new System.Drawing.Point(29, 230);
             this.Number_txt.Name = "Number_txt";
             this.Number_txt.Size = new System.Drawing.Size(158, 29);
             this.Number_txt.TabIndex = 47;
             this.Number_txt.Tag = "";
-            // 
-            // DOB_dtp
-            // 
-            this.DOB_dtp.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DOB_dtp.Location = new System.Drawing.Point(494, 154);
-            this.DOB_dtp.Name = "DOB_dtp";
-            this.DOB_dtp.Size = new System.Drawing.Size(158, 29);
-            this.DOB_dtp.TabIndex = 46;
-            // 
-            // Role_txt
-            // 
-            this.Role_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.Role_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Role_txt.Location = new System.Drawing.Point(494, 312);
-            this.Role_txt.Name = "Role_txt";
-            this.Role_txt.Size = new System.Drawing.Size(158, 29);
-            this.Role_txt.TabIndex = 45;
-            this.Role_txt.Tag = "";
             // 
             // Role_lbl
             // 
             this.Role_lbl.AutoSize = true;
             this.Role_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Role_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
-            this.Role_lbl.Location = new System.Drawing.Point(490, 288);
+            this.Role_lbl.Location = new System.Drawing.Point(267, 288);
             this.Role_lbl.Name = "Role_lbl";
             this.Role_lbl.Size = new System.Drawing.Size(41, 21);
             this.Role_lbl.TabIndex = 44;
             this.Role_lbl.Text = "Role";
             // 
-            // Address_txt
+            // address_txt
             // 
-            this.Address_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.Address_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Address_txt.Location = new System.Drawing.Point(494, 230);
-            this.Address_txt.Name = "Address_txt";
-            this.Address_txt.Size = new System.Drawing.Size(158, 29);
-            this.Address_txt.TabIndex = 43;
-            this.Address_txt.Tag = "";
+            this.address_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.address_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.address_txt.Location = new System.Drawing.Point(6, 138);
+            this.address_txt.Name = "address_txt";
+            this.address_txt.Size = new System.Drawing.Size(158, 29);
+            this.address_txt.TabIndex = 43;
+            this.address_txt.Tag = "";
+            this.address_txt.Text = "1";
             // 
             // Address_lbl
             // 
             this.Address_lbl.AutoSize = true;
             this.Address_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Address_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
-            this.Address_lbl.Location = new System.Drawing.Point(490, 206);
+            this.Address_lbl.Location = new System.Drawing.Point(2, 114);
             this.Address_lbl.Name = "Address_lbl";
-            this.Address_lbl.Size = new System.Drawing.Size(66, 21);
+            this.Address_lbl.Size = new System.Drawing.Size(112, 21);
             this.Address_lbl.TabIndex = 42;
-            this.Address_lbl.Text = "Address";
-            // 
-            // DOB_lbl
-            // 
-            this.DOB_lbl.AutoSize = true;
-            this.DOB_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DOB_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
-            this.DOB_lbl.Location = new System.Drawing.Point(490, 130);
-            this.DOB_lbl.Name = "DOB_lbl";
-            this.DOB_lbl.Size = new System.Drawing.Size(97, 21);
-            this.DOB_lbl.TabIndex = 40;
-            this.DOB_lbl.Text = "Date of Birth";
+            this.Address_lbl.Text = "Street Number";
             // 
             // Number_lbl
             // 
             this.Number_lbl.AutoSize = true;
             this.Number_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Number_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
-            this.Number_lbl.Location = new System.Drawing.Point(267, 288);
+            this.Number_lbl.Location = new System.Drawing.Point(25, 206);
             this.Number_lbl.Name = "Number_lbl";
             this.Number_lbl.Size = new System.Drawing.Size(125, 21);
             this.Number_lbl.TabIndex = 38;
@@ -301,7 +265,7 @@
             this.Email_lbl.AutoSize = true;
             this.Email_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Email_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
-            this.Email_lbl.Location = new System.Drawing.Point(25, 288);
+            this.Email_lbl.Location = new System.Drawing.Point(25, 130);
             this.Email_lbl.Name = "Email_lbl";
             this.Email_lbl.Size = new System.Drawing.Size(48, 21);
             this.Email_lbl.TabIndex = 32;
@@ -311,7 +275,7 @@
             // 
             this.Password_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Password_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Password_txt.Location = new System.Drawing.Point(29, 230);
+            this.Password_txt.Location = new System.Drawing.Point(29, 312);
             this.Password_txt.Name = "Password_txt";
             this.Password_txt.Size = new System.Drawing.Size(158, 29);
             this.Password_txt.TabIndex = 31;
@@ -322,7 +286,7 @@
             this.Password_lbl.AutoSize = true;
             this.Password_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Password_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
-            this.Password_lbl.Location = new System.Drawing.Point(25, 206);
+            this.Password_lbl.Location = new System.Drawing.Point(25, 288);
             this.Password_lbl.Name = "Password_lbl";
             this.Password_lbl.Size = new System.Drawing.Size(76, 21);
             this.Password_lbl.TabIndex = 30;
@@ -337,17 +301,6 @@
             this.Username_txt.Size = new System.Drawing.Size(158, 29);
             this.Username_txt.TabIndex = 28;
             this.Username_txt.Tag = "";
-            // 
-            // Username_lbl
-            // 
-            this.Username_lbl.AutoSize = true;
-            this.Username_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Username_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
-            this.Username_lbl.Location = new System.Drawing.Point(25, 130);
-            this.Username_lbl.Name = "Username_lbl";
-            this.Username_lbl.Size = new System.Drawing.Size(81, 21);
-            this.Username_lbl.TabIndex = 27;
-            this.Username_lbl.Text = "Username";
             // 
             // updateUser_btn
             // 
@@ -364,6 +317,7 @@
             this.updateUser_btn.TabIndex = 26;
             this.updateUser_btn.Text = "Update User";
             this.updateUser_btn.UseVisualStyleBackColor = false;
+            this.updateUser_btn.Click += new System.EventHandler(this.updateUser_btn_Click);
             // 
             // deleteUser_btn
             // 
@@ -380,6 +334,7 @@
             this.deleteUser_btn.TabIndex = 25;
             this.deleteUser_btn.Text = "Delete User";
             this.deleteUser_btn.UseVisualStyleBackColor = false;
+            this.deleteUser_btn.Click += new System.EventHandler(this.deleteUser_btn_Click);
             // 
             // addUser_btn
             // 
@@ -717,6 +672,146 @@
             this.Logo_img.TabIndex = 14;
             this.Logo_img.TabStop = false;
             // 
+            // company_txt
+            // 
+            this.company_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.company_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.company_txt.Location = new System.Drawing.Point(6, 62);
+            this.company_txt.Name = "company_txt";
+            this.company_txt.Size = new System.Drawing.Size(158, 29);
+            this.company_txt.TabIndex = 49;
+            this.company_txt.Tag = "";
+            this.company_txt.Text = "Some Company";
+            // 
+            // Company_lbl
+            // 
+            this.Company_lbl.AutoSize = true;
+            this.Company_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Company_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
+            this.Company_lbl.Location = new System.Drawing.Point(2, 38);
+            this.Company_lbl.Name = "Company_lbl";
+            this.Company_lbl.Size = new System.Drawing.Size(77, 21);
+            this.Company_lbl.TabIndex = 50;
+            this.Company_lbl.Text = "Company";
+            // 
+            // street_txt
+            // 
+            this.street_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.street_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.street_txt.Location = new System.Drawing.Point(6, 220);
+            this.street_txt.Name = "street_txt";
+            this.street_txt.Size = new System.Drawing.Size(158, 29);
+            this.street_txt.TabIndex = 51;
+            this.street_txt.Tag = "";
+            this.street_txt.Text = "Street";
+            // 
+            // Street_lbl
+            // 
+            this.Street_lbl.AutoSize = true;
+            this.Street_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Street_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
+            this.Street_lbl.Location = new System.Drawing.Point(2, 196);
+            this.Street_lbl.Name = "Street_lbl";
+            this.Street_lbl.Size = new System.Drawing.Size(96, 21);
+            this.Street_lbl.TabIndex = 52;
+            this.Street_lbl.Text = "Street Name";
+            // 
+            // City_lbl
+            // 
+            this.City_lbl.AutoSize = true;
+            this.City_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.City_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
+            this.City_lbl.Location = new System.Drawing.Point(173, 38);
+            this.City_lbl.Name = "City_lbl";
+            this.City_lbl.Size = new System.Drawing.Size(37, 21);
+            this.City_lbl.TabIndex = 54;
+            this.City_lbl.Text = "City";
+            // 
+            // city_txt
+            // 
+            this.city_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.city_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.city_txt.Location = new System.Drawing.Point(177, 62);
+            this.city_txt.Name = "city_txt";
+            this.city_txt.Size = new System.Drawing.Size(158, 29);
+            this.city_txt.TabIndex = 53;
+            this.city_txt.Tag = "";
+            this.city_txt.Text = "City";
+            // 
+            // Province_lbl
+            // 
+            this.Province_lbl.AutoSize = true;
+            this.Province_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Province_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
+            this.Province_lbl.Location = new System.Drawing.Point(173, 114);
+            this.Province_lbl.Name = "Province_lbl";
+            this.Province_lbl.Size = new System.Drawing.Size(70, 21);
+            this.Province_lbl.TabIndex = 56;
+            this.Province_lbl.Text = "Province";
+            // 
+            // province_txt
+            // 
+            this.province_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.province_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.province_txt.Location = new System.Drawing.Point(177, 138);
+            this.province_txt.Name = "province_txt";
+            this.province_txt.Size = new System.Drawing.Size(158, 29);
+            this.province_txt.TabIndex = 55;
+            this.province_txt.Tag = "";
+            this.province_txt.Text = "Province";
+            // 
+            // zipCode_lbl
+            // 
+            this.zipCode_lbl.AutoSize = true;
+            this.zipCode_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.zipCode_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
+            this.zipCode_lbl.Location = new System.Drawing.Point(173, 196);
+            this.zipCode_lbl.Name = "zipCode_lbl";
+            this.zipCode_lbl.Size = new System.Drawing.Size(72, 21);
+            this.zipCode_lbl.TabIndex = 58;
+            this.zipCode_lbl.Text = "Zip Code";
+            // 
+            // zipCode_txt
+            // 
+            this.zipCode_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.zipCode_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.zipCode_txt.Location = new System.Drawing.Point(177, 220);
+            this.zipCode_txt.Name = "zipCode_txt";
+            this.zipCode_txt.Size = new System.Drawing.Size(158, 29);
+            this.zipCode_txt.TabIndex = 57;
+            this.zipCode_txt.Tag = "";
+            this.zipCode_txt.Text = "Some Zipcode";
+            // 
+            // role_cmb
+            // 
+            this.role_cmb.FormattingEnabled = true;
+            this.role_cmb.Location = new System.Drawing.Point(271, 312);
+            this.role_cmb.Name = "role_cmb";
+            this.role_cmb.Size = new System.Drawing.Size(158, 40);
+            this.role_cmb.TabIndex = 59;
+            this.role_cmb.SelectedIndexChanged += new System.EventHandler(this.role_cmb_SelectedIndexChanged);
+            // 
+            // clientDetails_gb
+            // 
+            this.clientDetails_gb.Controls.Add(this.address_txt);
+            this.clientDetails_gb.Controls.Add(this.Address_lbl);
+            this.clientDetails_gb.Controls.Add(this.zipCode_lbl);
+            this.clientDetails_gb.Controls.Add(this.company_txt);
+            this.clientDetails_gb.Controls.Add(this.zipCode_txt);
+            this.clientDetails_gb.Controls.Add(this.Company_lbl);
+            this.clientDetails_gb.Controls.Add(this.Province_lbl);
+            this.clientDetails_gb.Controls.Add(this.street_txt);
+            this.clientDetails_gb.Controls.Add(this.province_txt);
+            this.clientDetails_gb.Controls.Add(this.Street_lbl);
+            this.clientDetails_gb.Controls.Add(this.City_lbl);
+            this.clientDetails_gb.Controls.Add(this.city_txt);
+            this.clientDetails_gb.Location = new System.Drawing.Point(475, 106);
+            this.clientDetails_gb.Name = "clientDetails_gb";
+            this.clientDetails_gb.Size = new System.Drawing.Size(367, 260);
+            this.clientDetails_gb.TabIndex = 60;
+            this.clientDetails_gb.TabStop = false;
+            this.clientDetails_gb.Text = "Client Details";
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -739,6 +834,8 @@
             this.Users_tp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Users_dgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).EndInit();
+            this.clientDetails_gb.ResumeLayout(false);
+            this.clientDetails_gb.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -770,12 +867,9 @@
         private System.Windows.Forms.Button addUser_btn;
         private System.Windows.Forms.Label infoCRUD_lbl;
         private System.Windows.Forms.TextBox Number_txt;
-        private System.Windows.Forms.DateTimePicker DOB_dtp;
-        private System.Windows.Forms.TextBox Role_txt;
         private System.Windows.Forms.Label Role_lbl;
-        private System.Windows.Forms.TextBox Address_txt;
+        private System.Windows.Forms.TextBox address_txt;
         private System.Windows.Forms.Label Address_lbl;
-        private System.Windows.Forms.Label DOB_lbl;
         private System.Windows.Forms.Label Number_lbl;
         private System.Windows.Forms.TextBox Surname_txt;
         private System.Windows.Forms.Label Surname_lbl;
@@ -785,7 +879,6 @@
         private System.Windows.Forms.TextBox Password_txt;
         private System.Windows.Forms.Label Password_lbl;
         private System.Windows.Forms.TextBox Username_txt;
-        private System.Windows.Forms.Label Username_lbl;
         private System.Windows.Forms.DataGridView Users_dgv;
         private System.Windows.Forms.Button employeeView_btn;
         private System.Windows.Forms.Button employeeFilter_btn;
@@ -796,5 +889,17 @@
         private System.Windows.Forms.Button clientsFilter_btn;
         private System.Windows.Forms.TextBox clientUsername_txt;
         private System.Windows.Forms.Label clientUsername_lbl;
+        private System.Windows.Forms.Label City_lbl;
+        private System.Windows.Forms.TextBox city_txt;
+        private System.Windows.Forms.Label Street_lbl;
+        private System.Windows.Forms.TextBox street_txt;
+        private System.Windows.Forms.Label Company_lbl;
+        private System.Windows.Forms.TextBox company_txt;
+        private System.Windows.Forms.Label zipCode_lbl;
+        private System.Windows.Forms.TextBox zipCode_txt;
+        private System.Windows.Forms.Label Province_lbl;
+        private System.Windows.Forms.TextBox province_txt;
+        private System.Windows.Forms.ComboBox role_cmb;
+        private System.Windows.Forms.GroupBox clientDetails_gb;
     }
 }

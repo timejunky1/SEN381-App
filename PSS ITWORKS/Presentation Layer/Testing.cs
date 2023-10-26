@@ -138,10 +138,10 @@ namespace PSS_ITWORKS.Presentation_Layer
                 new EntityService(id2+3, "test", 1, 1, 1, "test")
             };
             employees = new List<EntityUser> {
-                new EntityUser(id2, "test", "test", "test","test"),
-                new EntityUser(id2+1, "test", "test", "test","test"),
-                new EntityUser(id2+2, "test", "test", "test","test"),
-                new EntityUser(id2+3, "test", "test", "test","test")
+                new EntityUser(id2, "test", "test", "test","test","test"),
+                new EntityUser(id2+1, "test", "test", "test","test","test"),
+                new EntityUser(id2+2, "test", "test", "test","test","test"),
+                new EntityUser(id2+3, "test", "test", "test","test","test")
             };
             filter1 = filter_txt.Text;
             filter2 = dateTimePicker1.Text;
