@@ -78,6 +78,12 @@
     <Compile Include="LogicLayer\StrategyMethod\StrategyJobManager.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyServiceManager.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyUserManager.cs" />
+    <Compile Include="Presentation Layer\AssignmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Layer\AssignmentForm.Designer.cs">
+      <DependentUpon>AssignmentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation Layer\ClientForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +160,9 @@
     </Compile>
     <EmbeddedResource Include="Presentation Layer\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Layer\AssignmentForm.resx">
+      <DependentUpon>AssignmentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\CallForm.resx">
       <DependentUpon>CallForm.cs</DependentUpon>

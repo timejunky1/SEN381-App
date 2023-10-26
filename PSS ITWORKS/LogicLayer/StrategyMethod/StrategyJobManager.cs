@@ -66,45 +66,30 @@ namespace PSS_ITWORKS
             BindingSource bs = new BindingSource();
             bs = api.GetUnasignedJobs();
             return bs;
-            if (!string.IsNullOrEmpty(s1))
-            {
-                try
-                {
-                    bs = api.GetJobsAssignedToEmployeeName(s1);
-                }
-                catch (Exception ex)
-                {
-                    ErrorHandler.DisplayError(ex);
-                }
-            }
-            else if (!string.IsNullOrEmpty(s2))
-            {
-                try
-                {
-                    DateTime date = DateTime.Parse(s2);
-                    bs = api.GetJobsOnDate(date);
-                }
-                catch (Exception ex)
-                {
-                    ErrorHandler.DisplayError(ex);
-                }
-            }
-            return bs;
         }
-
         public BindingSource GetSpecific1(string s1)
         {
-            throw new NotImplementedException();
+            BindingSource bs = new BindingSource();
+            try
+            {
+                DateTime date = DateTime.Parse(s1);
+                return api.GetJobsOnDate(date);
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                return null;
+            }
         }
 
         public BindingSource GetSpecific2(string s2)
         {
-            throw new NotImplementedException();
+            return api.GetJobsAssignedToEmployeeName(s2);
         }
 
         public BindingSource GetSpecific1(int n1)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public BindingSource GetSpecific2(int n1)
