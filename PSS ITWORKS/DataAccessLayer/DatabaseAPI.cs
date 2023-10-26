@@ -520,6 +520,7 @@ namespace PSS_ITWORKS
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@password", password);
                 cmd.Parameters.AddWithValue("@newPassword", newPassword);
+                cmd.ExecuteNonQuery();
                 conn.Close();
                 ErrorHandler.DisplayError("query successful");
             }
