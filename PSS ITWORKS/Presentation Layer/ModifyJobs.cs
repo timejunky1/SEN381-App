@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace PSS_ITWORKS.Presentation_Layer
 {
-    public partial class ServiceManagerForm : Form
+    public partial class ModifyJobs : Form
     {
-        public ServiceManagerForm()
+        public ModifyJobs()
         {
             InitializeComponent();
-        }
-
-        private void ManagerForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Filter_txt_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
