@@ -108,6 +108,12 @@
     <Compile Include="Presentation Layer\ContractManagerForm.Designer.cs">
       <DependentUpon>ContractManagerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation Layer\ModifyJobs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Layer\ModifyJobs.Designer.cs">
+      <DependentUpon>ModifyJobs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation Layer\NewServiceRequest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\ContractManagerForm.resx">
       <DependentUpon>ContractManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Layer\ModifyJobs.resx">
+      <DependentUpon>ModifyJobs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\NewServiceRequest.resx">
       <DependentUpon>NewServiceRequest.cs</DependentUpon>
