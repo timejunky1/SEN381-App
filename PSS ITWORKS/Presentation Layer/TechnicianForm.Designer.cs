@@ -71,7 +71,6 @@
             // 
             // Logo_img
             // 
-            this.Logo_img.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Logo_img.BackgroundImage")));
             this.Logo_img.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Logo_img.Location = new System.Drawing.Point(12, 9);
             this.Logo_img.Name = "Logo_img";

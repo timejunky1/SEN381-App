@@ -795,6 +795,32 @@ namespace PSS_ITWORKS
         }
 
         //JobManagement--Working
+        public BindingSource GetTechnician(int id)
+        {
+            SqlDataReader reader;
+            BindingSource bs = new BindingSource();
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("ServicePortalProcedures.GetTechnician", conn);
+                cmd.Parameters.AddWithValue("@Id", id);
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    bs.DataSource = reader;
+                }
+                reader.Close();
+                conn.Close();
+                ErrorHandler.DisplayError("Query Successfull");
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                conn.Close();
+            }
+            return bs;
+        }
+
         public BindingSource GetJobSchedule()
         {
             SqlDataReader reader;

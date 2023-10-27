@@ -14,6 +14,7 @@ namespace PSS_ITWORKS.Presentation_Layer
     public partial class ServiceManagerForm : Form
     {
         StrategyContextManager cm;
+        AssignmentForm af = new AssignmentForm();
         public ServiceManagerForm()
         {
             InitializeComponent();
@@ -34,7 +35,7 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void assign_btn_Click(object sender, EventArgs e)
         {
-            
+            af.Show();
         }
     }
 }

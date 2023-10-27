@@ -1,13 +1,16 @@
 ﻿// StrategyJobManager.cs
 using PSS_ITWORKS.LogicLayer;
+using PSS_ITWORKS.ServiceLayer;
 using System;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PSS_ITWORKS
 {
     class StrategyJobManager : IStrategyAManagement
     {
         DatabaseAPI api = new DatabaseAPI();
+        SMSAPI sms = new SMSAPI();
         public BindingSource Get()
         {
             return api.GetJobSchedule();
@@ -21,8 +24,13 @@ namespace PSS_ITWORKS
                 foreach(EntityUser user in job.GetEmployees())
                 {
                     api.AssignJob(user.GetID(), job.GetId());
+                    string number = "+27";
+                    number = number + user.GetPhone();
+                    ErrorHandler.DisplayError(number);
+                    //sms.SendSMS("This is an example SMS from a Twilio account through a C# application", number);
                 }
-            }catch(Exception ex)
+            }
+            catch(Exception ex)
             {
                 ErrorHandler.DisplayError(ex);
             }
