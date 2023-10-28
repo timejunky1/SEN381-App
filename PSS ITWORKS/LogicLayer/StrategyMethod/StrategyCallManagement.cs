@@ -50,7 +50,7 @@ namespace PSS_ITWORKS
 
         public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
         {
-            return api.GetClientOverview(id1);
+            return api.GetClientOverview(s2);
         }
 
         public BindingSource GetSpecific1(string s1)

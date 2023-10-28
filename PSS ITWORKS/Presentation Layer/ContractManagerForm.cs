@@ -23,11 +23,25 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void ContractManagerForm_Load(object sender, EventArgs e)
         {
             context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+            chart1.DataSource = 
+
         }
 
         private void ServiceType_lbl_Click(object sender, EventArgs e)
         {
             Visible = true;
+        }
+
+        private void UpdateService_btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Months2_num_ValueChanged(object sender, EventArgs e)
+        {
+            int months = int.Parse(Months2_num.Value.ToString());
+            done2_dgv.DataSource = context.GetSpecific(1,  months, "Finished");
+            canceled2_dgv.DataSource = context.GetSpecific(1, months, "Finished");
         }
     }
 }

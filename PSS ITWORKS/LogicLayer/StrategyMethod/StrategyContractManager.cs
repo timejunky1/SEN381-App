@@ -1,6 +1,8 @@
 ﻿// StrategyContractManager.cs
+using Microsoft.SqlServer.Server;
 using PSS_ITWORKS.LogicLayer;
 using System;
+using System.Data;
 using System.Diagnostics.Contracts;
 using System.Windows.Forms;
 
@@ -11,8 +13,7 @@ namespace PSS_ITWORKS
         DatabaseAPI api = new DatabaseAPI();
         public BindingSource Get()
         {
-            ErrorHandler.DisplayError(new NotImplementedException());
-            return null;
+            return api.GetContracts();
         }
 
         public void Create(IEntity entity)
@@ -68,7 +69,14 @@ namespace PSS_ITWORKS
 
         public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
         {
-            return api.GetContractStats(id1, id2);
+            BindingSource bs = api.GetContractStats(id1, id2, s1);
+            BindingSource result = new BindingSource();
+            foreach(DataRow row in bs)
+            {
+                foreach(SqlDataRecord r in row);
+                    ;
+                result.Add(row);
+            }
         }
 
         public BindingSource GetSpecific1(string s1)

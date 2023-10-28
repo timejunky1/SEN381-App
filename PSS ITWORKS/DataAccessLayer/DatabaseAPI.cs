@@ -209,7 +209,31 @@ namespace PSS_ITWORKS
 
 
         //ContractManager-Working
-
+        public BindingSource GetContracts()
+        {
+            SqlDataReader reader;
+            BindingSource bs = new BindingSource();
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.GetContracts", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    bs.DataSource = reader;
+                }
+                reader.Close();
+                conn.Close();
+                ErrorHandler.DisplayError("Quary Successfully executed");
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                conn.Close();
+            }
+            return bs;
+        }
         public void CreateContract(EntityContract contract)
         {
             try
@@ -254,7 +278,7 @@ namespace PSS_ITWORKS
             conn.Close();
         }
 
-        public BindingSource GetContractStats(int contractId, int period)
+        public BindingSource GetContractStats(int contractId, int period, string status)
         {
             SqlDataReader reader;
             BindingSource bs = new BindingSource();
@@ -263,6 +287,7 @@ namespace PSS_ITWORKS
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("ContractPortalProcedures.GetContractStats", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@status", status);
                 cmd.Parameters.AddWithValue("@period", period);
                 cmd.Parameters.AddWithValue("@contractid", contractId);
                 reader = cmd.ExecuteReader();
