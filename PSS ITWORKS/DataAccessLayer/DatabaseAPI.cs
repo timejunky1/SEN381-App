@@ -254,7 +254,7 @@ namespace PSS_ITWORKS
             conn.Close();
         }
 
-        public async BindingSource GetContractStats(int contractId, int period)
+        public BindingSource GetContractStats(int contractId, int period)
         {
             SqlDataReader reader;
             BindingSource bs = new BindingSource();
