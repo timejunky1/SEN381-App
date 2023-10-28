@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea13 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Header_pnl = new System.Windows.Forms.Panel();
             this.Logout_btn = new System.Windows.Forms.Button();
             this.PSS_lbl = new System.Windows.Forms.Label();
@@ -37,12 +39,13 @@
             this.ContractManagement_tc = new System.Windows.Forms.TabControl();
             this.ContractPerformance_tp = new System.Windows.Forms.TabPage();
             this.ContractPerformancePastYear_gbx = new System.Windows.Forms.GroupBox();
-            this.JobCanceled2_lbl = new System.Windows.Forms.Label();
-            this.JobDone2_lbl = new System.Windows.Forms.Label();
+            this.Months2_num = new System.Windows.Forms.NumericUpDown();
             this.ClientCountPastYear_lbl = new System.Windows.Forms.Label();
             this.ContractType2_cbx = new System.Windows.Forms.ComboBox();
             this.ContractTypePastYear_lbl = new System.Windows.Forms.Label();
             this.ContractPerformancePastMonth_gbx = new System.Windows.Forms.GroupBox();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.months1_num = new System.Windows.Forms.NumericUpDown();
             this.Period_lbl = new System.Windows.Forms.Label();
             this.ContractType1_cbx = new System.Windows.Forms.ComboBox();
             this.ContractTypePastMonth_lbl = new System.Windows.Forms.Label();
@@ -68,21 +71,20 @@
             this.ServiceType_lbl = new System.Windows.Forms.Label();
             this.ServiceAvailability_lbl = new System.Windows.Forms.Label();
             this.ContractConfiguration_tp = new System.Windows.Forms.TabPage();
-            this.months1_num = new System.Windows.Forms.NumericUpDown();
-            this.Months2_num = new System.Windows.Forms.NumericUpDown();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.Header_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PSS_img)).BeginInit();
             this.ContractManagement_tc.SuspendLayout();
             this.ContractPerformance_tp.SuspendLayout();
             this.ContractPerformancePastYear_gbx.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Months2_num)).BeginInit();
             this.ContractPerformancePastMonth_gbx.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.months1_num)).BeginInit();
             this.ServiceConfiguration_tp.SuspendLayout();
             this.Details_gbx.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Services_dgv)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.months1_num)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Months2_num)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.SuspendLayout();
             // 
             // Header_pnl
@@ -94,7 +96,7 @@
             this.Header_pnl.Controls.Add(this.PSS_img);
             this.Header_pnl.Dock = System.Windows.Forms.DockStyle.Top;
             this.Header_pnl.Location = new System.Drawing.Point(0, 0);
-            this.Header_pnl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Header_pnl.Margin = new System.Windows.Forms.Padding(2);
             this.Header_pnl.Name = "Header_pnl";
             this.Header_pnl.Size = new System.Drawing.Size(923, 72);
             this.Header_pnl.TabIndex = 0;
@@ -105,7 +107,7 @@
             this.Logout_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Logout_btn.ForeColor = System.Drawing.Color.White;
             this.Logout_btn.Location = new System.Drawing.Point(749, 26);
-            this.Logout_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Logout_btn.Margin = new System.Windows.Forms.Padding(2);
             this.Logout_btn.Name = "Logout_btn";
             this.Logout_btn.Size = new System.Drawing.Size(118, 36);
             this.Logout_btn.TabIndex = 2;
@@ -127,7 +129,7 @@
             // PSS_img
             // 
             this.PSS_img.Location = new System.Drawing.Point(12, 9);
-            this.PSS_img.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PSS_img.Margin = new System.Windows.Forms.Padding(2);
             this.PSS_img.Name = "PSS_img";
             this.PSS_img.Size = new System.Drawing.Size(76, 61);
             this.PSS_img.TabIndex = 0;
@@ -140,20 +142,21 @@
             this.ContractManagement_tc.Controls.Add(this.ContractConfiguration_tp);
             this.ContractManagement_tc.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ContractManagement_tc.Location = new System.Drawing.Point(12, 100);
-            this.ContractManagement_tc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ContractManagement_tc.Margin = new System.Windows.Forms.Padding(2);
             this.ContractManagement_tc.Name = "ContractManagement_tc";
             this.ContractManagement_tc.SelectedIndex = 0;
             this.ContractManagement_tc.Size = new System.Drawing.Size(873, 456);
             this.ContractManagement_tc.TabIndex = 1;
+            this.ContractManagement_tc.SelectedIndexChanged += new System.EventHandler(this.ContractManagement_tc_SelectedIndexChanged);
             // 
             // ContractPerformance_tp
             // 
             this.ContractPerformance_tp.Controls.Add(this.ContractPerformancePastYear_gbx);
             this.ContractPerformance_tp.Controls.Add(this.ContractPerformancePastMonth_gbx);
             this.ContractPerformance_tp.Location = new System.Drawing.Point(4, 28);
-            this.ContractPerformance_tp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ContractPerformance_tp.Margin = new System.Windows.Forms.Padding(2);
             this.ContractPerformance_tp.Name = "ContractPerformance_tp";
-            this.ContractPerformance_tp.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ContractPerformance_tp.Padding = new System.Windows.Forms.Padding(2);
             this.ContractPerformance_tp.Size = new System.Drawing.Size(865, 424);
             this.ContractPerformance_tp.TabIndex = 0;
             this.ContractPerformance_tp.Text = "Contract Performance";
@@ -161,40 +164,37 @@
             // 
             // ContractPerformancePastYear_gbx
             // 
+            this.ContractPerformancePastYear_gbx.Controls.Add(this.chart2);
             this.ContractPerformancePastYear_gbx.Controls.Add(this.Months2_num);
-            this.ContractPerformancePastYear_gbx.Controls.Add(this.JobCanceled2_lbl);
-            this.ContractPerformancePastYear_gbx.Controls.Add(this.JobDone2_lbl);
             this.ContractPerformancePastYear_gbx.Controls.Add(this.ClientCountPastYear_lbl);
             this.ContractPerformancePastYear_gbx.Controls.Add(this.ContractType2_cbx);
             this.ContractPerformancePastYear_gbx.Controls.Add(this.ContractTypePastYear_lbl);
             this.ContractPerformancePastYear_gbx.Location = new System.Drawing.Point(15, 213);
-            this.ContractPerformancePastYear_gbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ContractPerformancePastYear_gbx.Margin = new System.Windows.Forms.Padding(2);
             this.ContractPerformancePastYear_gbx.Name = "ContractPerformancePastYear_gbx";
-            this.ContractPerformancePastYear_gbx.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ContractPerformancePastYear_gbx.Padding = new System.Windows.Forms.Padding(2);
             this.ContractPerformancePastYear_gbx.Size = new System.Drawing.Size(837, 195);
             this.ContractPerformancePastYear_gbx.TabIndex = 8;
             this.ContractPerformancePastYear_gbx.TabStop = false;
             this.ContractPerformancePastYear_gbx.Text = "Contract 2";
             // 
-            // JobCanceled2_lbl
+            // Months2_num
             // 
-            this.JobCanceled2_lbl.AutoSize = true;
-            this.JobCanceled2_lbl.Location = new System.Drawing.Point(533, 19);
-            this.JobCanceled2_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.JobCanceled2_lbl.Name = "JobCanceled2_lbl";
-            this.JobCanceled2_lbl.Size = new System.Drawing.Size(105, 20);
-            this.JobCanceled2_lbl.TabIndex = 5;
-            this.JobCanceled2_lbl.Text = "Jobs Canceled";
-            // 
-            // JobDone2_lbl
-            // 
-            this.JobDone2_lbl.AutoSize = true;
-            this.JobDone2_lbl.Location = new System.Drawing.Point(232, 20);
-            this.JobDone2_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.JobDone2_lbl.Name = "JobDone2_lbl";
-            this.JobDone2_lbl.Size = new System.Drawing.Size(80, 20);
-            this.JobDone2_lbl.TabIndex = 4;
-            this.JobDone2_lbl.Text = "Jobs Done";
+            this.Months2_num.Location = new System.Drawing.Point(14, 149);
+            this.Months2_num.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.Months2_num.Name = "Months2_num";
+            this.Months2_num.Size = new System.Drawing.Size(120, 27);
+            this.Months2_num.TabIndex = 8;
+            this.Months2_num.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.Months2_num.ValueChanged += new System.EventHandler(this.Months2_num_ValueChanged);
             // 
             // ClientCountPastYear_lbl
             // 
@@ -211,10 +211,11 @@
             // 
             this.ContractType2_cbx.FormattingEnabled = true;
             this.ContractType2_cbx.Location = new System.Drawing.Point(14, 76);
-            this.ContractType2_cbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ContractType2_cbx.Margin = new System.Windows.Forms.Padding(2);
             this.ContractType2_cbx.Name = "ContractType2_cbx";
             this.ContractType2_cbx.Size = new System.Drawing.Size(158, 27);
             this.ContractType2_cbx.TabIndex = 1;
+            this.ContractType2_cbx.SelectedIndexChanged += new System.EventHandler(this.ContractType2_cbx_SelectedIndexChanged);
             // 
             // ContractTypePastYear_lbl
             // 
@@ -235,13 +236,45 @@
             this.ContractPerformancePastMonth_gbx.Controls.Add(this.ContractType1_cbx);
             this.ContractPerformancePastMonth_gbx.Controls.Add(this.ContractTypePastMonth_lbl);
             this.ContractPerformancePastMonth_gbx.Location = new System.Drawing.Point(15, 16);
-            this.ContractPerformancePastMonth_gbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ContractPerformancePastMonth_gbx.Margin = new System.Windows.Forms.Padding(2);
             this.ContractPerformancePastMonth_gbx.Name = "ContractPerformancePastMonth_gbx";
-            this.ContractPerformancePastMonth_gbx.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ContractPerformancePastMonth_gbx.Padding = new System.Windows.Forms.Padding(2);
             this.ContractPerformancePastMonth_gbx.Size = new System.Drawing.Size(837, 192);
             this.ContractPerformancePastMonth_gbx.TabIndex = 0;
             this.ContractPerformancePastMonth_gbx.TabStop = false;
             this.ContractPerformancePastMonth_gbx.Text = "Contract1";
+            // 
+            // chart1
+            // 
+            this.chart1.BorderlineColor = System.Drawing.Color.Black;
+            this.chart1.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+            chartArea12.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea12);
+            this.chart1.Location = new System.Drawing.Point(236, 16);
+            this.chart1.Name = "chart1";
+            series12.ChartArea = "ChartArea1";
+            series12.Name = "Series1";
+            this.chart1.Series.Add(series12);
+            this.chart1.Size = new System.Drawing.Size(534, 158);
+            this.chart1.TabIndex = 9;
+            // 
+            // months1_num
+            // 
+            this.months1_num.Location = new System.Drawing.Point(14, 143);
+            this.months1_num.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.months1_num.Name = "months1_num";
+            this.months1_num.Size = new System.Drawing.Size(120, 27);
+            this.months1_num.TabIndex = 8;
+            this.months1_num.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.months1_num.ValueChanged += new System.EventHandler(this.months1_num_ValueChanged);
             // 
             // Period_lbl
             // 
@@ -258,10 +291,11 @@
             // 
             this.ContractType1_cbx.FormattingEnabled = true;
             this.ContractType1_cbx.Location = new System.Drawing.Point(14, 75);
-            this.ContractType1_cbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ContractType1_cbx.Margin = new System.Windows.Forms.Padding(2);
             this.ContractType1_cbx.Name = "ContractType1_cbx";
             this.ContractType1_cbx.Size = new System.Drawing.Size(158, 27);
             this.ContractType1_cbx.TabIndex = 1;
+            this.ContractType1_cbx.SelectedIndexChanged += new System.EventHandler(this.ContractType1_cbx_SelectedIndexChanged);
             // 
             // ContractTypePastMonth_lbl
             // 
@@ -289,9 +323,9 @@
             this.ServiceConfiguration_tp.Controls.Add(this.ServiceType_lbl);
             this.ServiceConfiguration_tp.Controls.Add(this.ServiceAvailability_lbl);
             this.ServiceConfiguration_tp.Location = new System.Drawing.Point(4, 28);
-            this.ServiceConfiguration_tp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ServiceConfiguration_tp.Margin = new System.Windows.Forms.Padding(2);
             this.ServiceConfiguration_tp.Name = "ServiceConfiguration_tp";
-            this.ServiceConfiguration_tp.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ServiceConfiguration_tp.Padding = new System.Windows.Forms.Padding(2);
             this.ServiceConfiguration_tp.Size = new System.Drawing.Size(865, 424);
             this.ServiceConfiguration_tp.TabIndex = 1;
             this.ServiceConfiguration_tp.Text = "Service Configuration";
@@ -302,7 +336,7 @@
             this.Unvailable_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(73)))), ((int)(((byte)(73)))));
             this.Unvailable_btn.ForeColor = System.Drawing.Color.White;
             this.Unvailable_btn.Location = new System.Drawing.Point(20, 284);
-            this.Unvailable_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Unvailable_btn.Margin = new System.Windows.Forms.Padding(2);
             this.Unvailable_btn.Name = "Unvailable_btn";
             this.Unvailable_btn.Size = new System.Drawing.Size(158, 35);
             this.Unvailable_btn.TabIndex = 11;
@@ -314,7 +348,7 @@
             this.Available_btn.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.Available_btn.ForeColor = System.Drawing.Color.White;
             this.Available_btn.Location = new System.Drawing.Point(20, 231);
-            this.Available_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Available_btn.Margin = new System.Windows.Forms.Padding(2);
             this.Available_btn.Name = "Available_btn";
             this.Available_btn.Size = new System.Drawing.Size(158, 35);
             this.Available_btn.TabIndex = 10;
@@ -326,7 +360,7 @@
             this.CreateService_btn.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.CreateService_btn.ForeColor = System.Drawing.Color.White;
             this.CreateService_btn.Location = new System.Drawing.Point(229, 371);
-            this.CreateService_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CreateService_btn.Margin = new System.Windows.Forms.Padding(2);
             this.CreateService_btn.Name = "CreateService_btn";
             this.CreateService_btn.Size = new System.Drawing.Size(158, 35);
             this.CreateService_btn.TabIndex = 9;
@@ -338,7 +372,7 @@
             this.UpdateService_btn.BackColor = System.Drawing.Color.CornflowerBlue;
             this.UpdateService_btn.ForeColor = System.Drawing.Color.White;
             this.UpdateService_btn.Location = new System.Drawing.Point(20, 371);
-            this.UpdateService_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.UpdateService_btn.Margin = new System.Windows.Forms.Padding(2);
             this.UpdateService_btn.Name = "UpdateService_btn";
             this.UpdateService_btn.Size = new System.Drawing.Size(158, 35);
             this.UpdateService_btn.TabIndex = 8;
@@ -357,9 +391,9 @@
             this.Details_gbx.Controls.Add(this.Price_lbl);
             this.Details_gbx.Controls.Add(this.Category_cbx);
             this.Details_gbx.Location = new System.Drawing.Point(650, 21);
-            this.Details_gbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Details_gbx.Margin = new System.Windows.Forms.Padding(2);
             this.Details_gbx.Name = "Details_gbx";
-            this.Details_gbx.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Details_gbx.Padding = new System.Windows.Forms.Padding(2);
             this.Details_gbx.Size = new System.Drawing.Size(202, 385);
             this.Details_gbx.TabIndex = 7;
             this.Details_gbx.TabStop = false;
@@ -368,7 +402,7 @@
             // Priority_txt
             // 
             this.Priority_txt.Location = new System.Drawing.Point(20, 311);
-            this.Priority_txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Priority_txt.Margin = new System.Windows.Forms.Padding(2);
             this.Priority_txt.Name = "Priority_txt";
             this.Priority_txt.Size = new System.Drawing.Size(158, 27);
             this.Priority_txt.TabIndex = 15;
@@ -387,7 +421,7 @@
             // Duration_txt
             // 
             this.Duration_txt.Location = new System.Drawing.Point(20, 219);
-            this.Duration_txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Duration_txt.Margin = new System.Windows.Forms.Padding(2);
             this.Duration_txt.Name = "Duration_txt";
             this.Duration_txt.Size = new System.Drawing.Size(158, 27);
             this.Duration_txt.TabIndex = 13;
@@ -406,7 +440,7 @@
             // Price_txt
             // 
             this.Price_txt.Location = new System.Drawing.Point(20, 141);
-            this.Price_txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Price_txt.Margin = new System.Windows.Forms.Padding(2);
             this.Price_txt.Name = "Price_txt";
             this.Price_txt.Size = new System.Drawing.Size(158, 27);
             this.Price_txt.TabIndex = 11;
@@ -437,7 +471,7 @@
             // 
             this.Category_cbx.FormattingEnabled = true;
             this.Category_cbx.Location = new System.Drawing.Point(20, 59);
-            this.Category_cbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Category_cbx.Margin = new System.Windows.Forms.Padding(2);
             this.Category_cbx.Name = "Category_cbx";
             this.Category_cbx.Size = new System.Drawing.Size(158, 27);
             this.Category_cbx.TabIndex = 9;
@@ -446,7 +480,7 @@
             // 
             this.Services_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Services_dgv.Location = new System.Drawing.Point(229, 47);
-            this.Services_dgv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Services_dgv.Margin = new System.Windows.Forms.Padding(2);
             this.Services_dgv.Name = "Services_dgv";
             this.Services_dgv.RowHeadersWidth = 51;
             this.Services_dgv.RowTemplate.Height = 24;
@@ -466,7 +500,7 @@
             // ContractCount_txt
             // 
             this.ContractCount_txt.Location = new System.Drawing.Point(20, 162);
-            this.ContractCount_txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ContractCount_txt.Margin = new System.Windows.Forms.Padding(2);
             this.ContractCount_txt.Name = "ContractCount_txt";
             this.ContractCount_txt.Size = new System.Drawing.Size(159, 27);
             this.ContractCount_txt.TabIndex = 4;
@@ -486,7 +520,7 @@
             // 
             this.ServiceType_cbx.FormattingEnabled = true;
             this.ServiceType_cbx.Location = new System.Drawing.Point(20, 80);
-            this.ServiceType_cbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ServiceType_cbx.Margin = new System.Windows.Forms.Padding(2);
             this.ServiceType_cbx.Name = "ServiceType_cbx";
             this.ServiceType_cbx.Size = new System.Drawing.Size(159, 27);
             this.ServiceType_cbx.TabIndex = 2;
@@ -516,41 +550,26 @@
             // ContractConfiguration_tp
             // 
             this.ContractConfiguration_tp.Location = new System.Drawing.Point(4, 28);
-            this.ContractConfiguration_tp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ContractConfiguration_tp.Margin = new System.Windows.Forms.Padding(2);
             this.ContractConfiguration_tp.Name = "ContractConfiguration_tp";
             this.ContractConfiguration_tp.Size = new System.Drawing.Size(865, 424);
             this.ContractConfiguration_tp.TabIndex = 2;
             this.ContractConfiguration_tp.Text = "Contract Configuration";
             this.ContractConfiguration_tp.UseVisualStyleBackColor = true;
             // 
-            // months1_num
+            // chart2
             // 
-            this.months1_num.Location = new System.Drawing.Point(14, 143);
-            this.months1_num.Name = "months1_num";
-            this.months1_num.Size = new System.Drawing.Size(120, 27);
-            this.months1_num.TabIndex = 8;
-            // 
-            // Months2_num
-            // 
-            this.Months2_num.Location = new System.Drawing.Point(14, 149);
-            this.Months2_num.Name = "Months2_num";
-            this.Months2_num.Size = new System.Drawing.Size(120, 27);
-            this.Months2_num.TabIndex = 8;
-            this.Months2_num.ValueChanged += new System.EventHandler(this.Months2_num_ValueChanged);
-            // 
-            // chart1
-            // 
-            this.chart1.BorderlineColor = System.Drawing.Color.Black;
-            this.chart1.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            this.chart1.Location = new System.Drawing.Point(236, 16);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(534, 158);
-            this.chart1.TabIndex = 9;
+            this.chart2.BorderlineColor = System.Drawing.Color.Black;
+            this.chart2.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+            chartArea13.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea13);
+            this.chart2.Location = new System.Drawing.Point(236, 25);
+            this.chart2.Name = "chart2";
+            series13.ChartArea = "ChartArea1";
+            series13.Name = "Series1";
+            this.chart2.Series.Add(series13);
+            this.chart2.Size = new System.Drawing.Size(534, 158);
+            this.chart2.TabIndex = 10;
             // 
             // ContractManagerForm
             // 
@@ -569,16 +588,17 @@
             this.ContractPerformance_tp.ResumeLayout(false);
             this.ContractPerformancePastYear_gbx.ResumeLayout(false);
             this.ContractPerformancePastYear_gbx.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Months2_num)).EndInit();
             this.ContractPerformancePastMonth_gbx.ResumeLayout(false);
             this.ContractPerformancePastMonth_gbx.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.months1_num)).EndInit();
             this.ServiceConfiguration_tp.ResumeLayout(false);
             this.ServiceConfiguration_tp.PerformLayout();
             this.Details_gbx.ResumeLayout(false);
             this.Details_gbx.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Services_dgv)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.months1_num)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Months2_num)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -595,8 +615,6 @@
         private System.Windows.Forms.TabPage ServiceConfiguration_tp;
         private System.Windows.Forms.TabPage ContractConfiguration_tp;
         private System.Windows.Forms.GroupBox ContractPerformancePastYear_gbx;
-        private System.Windows.Forms.Label JobCanceled2_lbl;
-        private System.Windows.Forms.Label JobDone2_lbl;
         private System.Windows.Forms.Label ClientCountPastYear_lbl;
         private System.Windows.Forms.ComboBox ContractType2_cbx;
         private System.Windows.Forms.Label ContractTypePastYear_lbl;
@@ -627,5 +645,6 @@
         private System.Windows.Forms.NumericUpDown Months2_num;
         private System.Windows.Forms.NumericUpDown months1_num;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
     }
 }

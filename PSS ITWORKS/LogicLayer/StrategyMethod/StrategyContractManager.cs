@@ -69,14 +69,7 @@ namespace PSS_ITWORKS
 
         public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
         {
-            BindingSource bs = api.GetContractStats(id1, id2, s1);
-            BindingSource result = new BindingSource();
-            foreach(DataRow row in bs)
-            {
-                foreach(SqlDataRecord r in row);
-                    ;
-                result.Add(row);
-            }
+            return api.GetContractStats(id1, id2, s1);
         }
 
         public BindingSource GetSpecific1(string s1)
