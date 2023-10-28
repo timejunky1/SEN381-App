@@ -254,7 +254,7 @@ namespace PSS_ITWORKS
             conn.Close();
         }
 
-        public BindingSource GetContractStats(int contractId, int period)
+        public async BindingSource GetContractStats(int contractId, int period)
         {
             SqlDataReader reader;
             BindingSource bs = new BindingSource();
@@ -740,7 +740,7 @@ namespace PSS_ITWORKS
                 conn.Close();
             }
         }
-        public BindingSource GetClientOverview(int clientId)
+        public BindingSource GetClientOverview(string clientName)
         {
             SqlDataReader reader;
             BindingSource bs = new BindingSource();
@@ -749,7 +749,7 @@ namespace PSS_ITWORKS
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("CallsPortalProcedures.GetClientOverview", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@clientid", clientId);
+                cmd.Parameters.AddWithValue("@name", clientName);
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
