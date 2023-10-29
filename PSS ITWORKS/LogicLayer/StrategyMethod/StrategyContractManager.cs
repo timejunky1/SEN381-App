@@ -30,7 +30,6 @@ namespace PSS_ITWORKS
             {
                 ErrorHandler.DisplayError(ex);
             }
-            
         }
 
         public void Delete(int ID, string s = "")
@@ -64,7 +63,7 @@ namespace PSS_ITWORKS
 
         public BindingSource Get(int ID)
         {
-            return api.GetClientAndContractInfo(ID);
+            return api.GetContractServices(ID);
         }
 
         public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
@@ -84,7 +83,7 @@ namespace PSS_ITWORKS
 
         public BindingSource GetSpecific1(int n1)
         {
-            throw new NotImplementedException();
+            return api.GetContract(n1);
         }
 
         public BindingSource GetSpecific2(int n1)

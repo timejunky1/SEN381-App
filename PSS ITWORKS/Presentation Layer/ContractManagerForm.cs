@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using Twilio.TwiML.Voice;
 
 namespace PSS_ITWORKS.Presentation_Layer
 {
@@ -16,10 +17,14 @@ namespace PSS_ITWORKS.Presentation_Layer
     {
         string[] months = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Des" };
         StrategyContextManager context;
+        BindingSource bs;
+        int serviceId;
+        int contractId;
+        string availability = "Available";
+        string availabilityC = "Available";
         public ContractManagerForm()
         {
             InitializeComponent();
-            context = new StrategyContextManager(new StrategyContractManager());
             chart1.ChartAreas[0].AxisY.Interval = 1;
             chart1.ChartAreas[0].AxisX.Interval = 1;
             chart2.ChartAreas[0].AxisY.Interval = 1;
@@ -48,29 +53,127 @@ namespace PSS_ITWORKS.Presentation_Layer
             series.LegendText = name;
             return series;
         }
-        private void ContractManagerForm_Load(object sender, EventArgs e)
+
+        void SetService()
         {
-            context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
-            BindingSource bs = context.Get();
-            foreach(IDataRecord dr in bs.List)
+            if (Services_dgv.SelectedRows.Count > 0)
             {
-                ContractType1_cbx.Items.Add(dr[0]);
-                ContractType2_cbx.Items.Add(dr[0]);
+                serviceId = int.Parse(Services_dgv.SelectedRows[0].Cells[0].Value.ToString());
+                title_txt.Text = Services_dgv.SelectedRows[0].Cells[1].Value.ToString(); ;
+                ServiceType_cbx.Text = Services_dgv.SelectedRows[0].Cells[1].Value.ToString();
+                duration_num.Value = int.Parse(Services_dgv.SelectedRows[0].Cells[2].Value.ToString());
+                priority_num.Value = int.Parse(Services_dgv.SelectedRows[0].Cells[3].Value.ToString());
+                //price_num.Value = int.Parse(Services_dgv.SelectedRows[0].Cells[4].Value.ToString());
+                setAvailability(Services_dgv.SelectedRows[0].Cells[6].Value.ToString());
+                ContractCount_txt.Text = Services_dgv.SelectedRows[0].Cells[6].Value.ToString();
             }
+            else
+            {
+                ServiceType_cbx.Text = Services_dgv.Rows[0].Cells[1].Value.ToString();
+                title_txt.Text = Services_dgv.Rows[0].Cells[1].Value.ToString();
+                duration_num.Value = int.Parse(Services_dgv.Rows[0].Cells[2].Value.ToString());
+                priority_num.Value = int.Parse(Services_dgv.Rows[0].Cells[3].Value.ToString());
+                //price_num.Value = int.Parse(Services_dgv.Rows[0].Cells[4].Value.ToString());
+                setAvailability(Services_dgv.Rows[0].Cells[6].Value.ToString());
+                ContractCount_txt.Text = Services_dgv.Rows[0].Cells[6].Value.ToString();
+                serviceId = 0;
+            }
+        }
+
+        void SetContract()
+        {
+            if (contractId > 0)
+            {
+                BindingSource bs = context.GetSpecific1(contractId);
+                foreach(IDataRecord dr in bs.List)
+                {
+                    sla_txt.Text = dr[1].ToString();
+                    durationC_num.Value = int.Parse(dr[2].ToString());
+                    priorityC_num.Value = int.Parse(dr[3].ToString());
+                    priceC_num.Value = int.Parse(dr[4].ToString());
+                    setAvailability(dr[5].ToString());
+                    clientCount_txt.Text = dr[6].ToString();
+                }
+                contract_services_dgv.DataSource = context.Get(contractId);
+                
+            }
+            else
+            {
+                contractId = 1;
+                SetContract();
+            }
+            ContractType1_cbx.Text = contractId.ToString();
+        }
+
+        void setAvailability(string a)
+        {
+            availability = a;
+            if (availability == "Available")
+            {
+                Available_btn.Enabled = false;
+                Unvailable_btn.Enabled = true;
+            }
+            else
+            {
+                Available_btn.Enabled = true;
+                Unvailable_btn.Enabled = false;
+            }
+        }
+
+        void setAvailabilityC(string a)
+        {
+            availabilityC = a;
+            if (availabilityC == "Available")
+            {
+                availableC_btn.Enabled = false;
+                unavailableC_btn.Enabled = true;
+            }
+            else
+            {
+                availableC_btn.Enabled = true;
+                unavailableC_btn.Enabled = false;
+            }
+        }
+
+        void setContractStats()
+        {
             ContractType1_cbx.SelectedIndex = 0;
             ContractType1_cbx.SelectedIndex = 1;
             chart1.Legends.Clear();
             chart1.Series.Clear();
             chart1.Legends.Add(new Legend());
-            chart1.Series.Add(GetValues(12, context.GetSpecific(ContractType1_cbx.SelectedIndex+1, 12, "Finished"), "Finished"));
+            chart1.Series.Add(GetValues(12, context.GetSpecific(ContractType1_cbx.SelectedIndex + 1, 12, "Finished"), "Finished"));
             chart1.Legends.Add(new Legend());
-            chart1.Series.Add(GetValues(12, context.GetSpecific(ContractType1_cbx.SelectedIndex+1, 12, "Canceled"), "Canceled"));
+            chart1.Series.Add(GetValues(12, context.GetSpecific(ContractType1_cbx.SelectedIndex + 1, 12, "Canceled"), "Canceled"));
             chart2.Legends.Clear();
             chart2.Series.Clear();
             chart2.Legends.Add(new Legend());
             chart2.Series.Add(GetValues(12, context.GetSpecific(2, 12, "Finished"), "Finished"));
             chart2.Legends.Add(new Legend());
             chart2.Series.Add(GetValues(12, context.GetSpecific(2, 12, "Canceled"), "Canceled"));
+        }
+        private void ContractManagerForm_Load(object sender, EventArgs e)
+        {
+            context = new StrategyContextManager(new StrategyServiceManager());
+            context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+            bs = context.Get();
+            foreach (IDataRecord dr in bs.List)
+            {
+                ServiceType_cbx.Items.Add(dr[0]);
+            }
+            Services_dgv.DataSource = bs;
+            SetService();
+            context = new StrategyContextManager(new StrategyContractManager());
+            context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+            bs = context.Get();
+            foreach (IDataRecord dr in bs.List)
+            {
+                ContractType1_cbx.Items.Add(dr[0]);
+                ContractType2_cbx.Items.Add(dr[0]);
+                contractType_cbx.Items.Add(dr[0]);
+            }
+            setContractStats();
+            SetContract();
         }
 
         private void ServiceType_lbl_Click(object sender, EventArgs e)
@@ -80,7 +183,7 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void UpdateService_btn_Click(object sender, EventArgs e)
         {
-
+            context.Update(new EntityService(serviceId, title_txt.Text, (int)duration_num.Value, (int)priority_num.Value, price_num.Value, availability));
         }
 
         private void Months2_num_ValueChanged(object sender, EventArgs e)
@@ -113,17 +216,87 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void ContractManagement_tc_SelectedIndexChanged(object sender, EventArgs e)
         {
+            MessageBox.Show(ContractManagement_tc.SelectedIndex.ToString());
             if(ContractManagement_tc.SelectedIndex == 1)
             {
                 context = new StrategyContextManager(new StrategyServiceManager());
                 context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
-                Services_dgv.DataSource = context.Get();
+                SetService();
+            }
+            else if(ContractManagement_tc.SelectedIndex == 2)
+            {
+                context = new StrategyContextManager(new StrategyContractManager());
+                context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+                SetContract();
             }
             else
             {
                 context = new StrategyContextManager(new StrategyContractManager());
                 context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+                setContractStats();
             }
+        }
+
+        private void Available_btn_Click(object sender, EventArgs e)
+        {
+            setAvailability("Available");
+
+        }
+
+        private void Unvailable_btn_Click(object sender, EventArgs e)
+        {
+            setAvailability("Unavailable");
+        }
+
+        private void Services_dgv_SelectionChanged(object sender, EventArgs e)
+        {
+            SetService();
+        }
+
+        private void CreateService_btn_Click(object sender, EventArgs e)
+        {
+            context.Create(new EntityService(serviceId, title_txt.Text, (int)duration_num.Value, (int)priority_num.Value, price_num.Value, availability));
+        }
+
+        private void availableC_btn_Click(object sender, EventArgs e)
+        {
+            setAvailabilityC("Available");
+        }
+
+        private void unavailableC_btn_Click(object sender, EventArgs e)
+        {
+            setAvailabilityC("Unavailable");
+        }
+
+        private void contractType_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            contractId = int.Parse(contractType_cbx.SelectedItem.ToString());
+            SetContract();
+        }
+
+        private void update_btn_Click(object sender, EventArgs e)
+        {
+            List<EntityService> services = new List<EntityService>();
+            foreach(DataGridViewRow r in contract_services_dgv.Rows)
+            {
+                services.Add(new EntityService(int.Parse(r.Cells[1].Value.ToString()), r.Cells[0].Value.ToString()));
+            }
+            context.Update(new EntityContract(contractId, sla_txt.Text, (int)durationC_num.Value, (float)priceC_num.Value, (int)priorityC_num.Value, availability, services));
+        }
+
+        private void crateC_btn_Click(object sender, EventArgs e)
+        {
+            List<EntityService> services = new List<EntityService>();
+            foreach (DataGridViewRow r in contract_services_dgv.Rows)
+            {
+                services.Add(new EntityService(int.Parse(r.Cells[1].Value.ToString()), r.Cells[0].Value.ToString()));
+            }
+            context.Create(new EntityContract(contractId, sla_txt.Text, (int)durationC_num.Value, (float)priceC_num.Value, (int)priorityC_num.Value, availability, services));
+        }
+
+        private void deleteC_btn_Click(object sender, EventArgs e)
+        {
+            context.Delete(contractId);
         }
     }
 }

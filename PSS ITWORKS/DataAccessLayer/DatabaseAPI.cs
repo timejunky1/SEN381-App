@@ -8,6 +8,7 @@ using System.Diagnostics.Contracts;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PSS_ITWORKS
 {
@@ -234,6 +235,32 @@ namespace PSS_ITWORKS
             }
             return bs;
         }
+        public BindingSource GetContract(int contractId)
+        {
+            SqlDataReader reader;
+            BindingSource bs = new BindingSource();
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.GetContractStats", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@contractId", contractId);
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    bs.DataSource = reader;
+                }
+                reader.Close();
+                conn.Close();
+                ErrorHandler.DisplayError("Quary Successfully executed");
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                conn.Close();
+            }
+            return bs;
+        }
         public void CreateContract(EntityContract contract)
         {
             try
@@ -382,6 +409,33 @@ namespace PSS_ITWORKS
                 ErrorHandler.DisplayError(ex);
                 conn.Close();
             }
+        }
+
+        public BindingSource GetContractServices(int contractId)
+        {
+            SqlDataReader reader;
+            BindingSource bs = new BindingSource();
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.GetContractStats", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@contractId", contractId);
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    bs.DataSource = reader;
+                }
+                reader.Close();
+                conn.Close();
+                ErrorHandler.DisplayError("Quary Successfully executed");
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                conn.Close();
+            }
+            return bs;
         }
 
         //Servicemanagement--working

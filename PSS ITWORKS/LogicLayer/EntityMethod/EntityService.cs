@@ -23,6 +23,12 @@ namespace PSS_ITWORKS.LogicLayer
             this.availability = availability;
         }
 
+        public EntityService(int id, string title)
+        {
+            Id = id;
+            this.title = title;
+        }
+
         public int GetId()
         {
             return Id;

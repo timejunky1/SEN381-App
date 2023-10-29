@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea13 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Header_pnl = new System.Windows.Forms.Panel();
             this.Logout_btn = new System.Windows.Forms.Button();
             this.PSS_lbl = new System.Windows.Forms.Label();
@@ -39,6 +39,7 @@
             this.ContractManagement_tc = new System.Windows.Forms.TabControl();
             this.ContractPerformance_tp = new System.Windows.Forms.TabPage();
             this.ContractPerformancePastYear_gbx = new System.Windows.Forms.GroupBox();
+            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.Months2_num = new System.Windows.Forms.NumericUpDown();
             this.ClientCountPastYear_lbl = new System.Windows.Forms.Label();
             this.ContractType2_cbx = new System.Windows.Forms.ComboBox();
@@ -50,19 +51,20 @@
             this.ContractType1_cbx = new System.Windows.Forms.ComboBox();
             this.ContractTypePastMonth_lbl = new System.Windows.Forms.Label();
             this.ServiceConfiguration_tp = new System.Windows.Forms.TabPage();
+            this.delete_btn = new System.Windows.Forms.Button();
             this.Unvailable_btn = new System.Windows.Forms.Button();
             this.Available_btn = new System.Windows.Forms.Button();
             this.CreateService_btn = new System.Windows.Forms.Button();
             this.UpdateService_btn = new System.Windows.Forms.Button();
             this.Details_gbx = new System.Windows.Forms.GroupBox();
-            this.Priority_txt = new System.Windows.Forms.TextBox();
+            this.priority_num = new System.Windows.Forms.NumericUpDown();
+            this.duration_num = new System.Windows.Forms.NumericUpDown();
+            this.price_num = new System.Windows.Forms.NumericUpDown();
+            this.title_txt = new System.Windows.Forms.TextBox();
             this.Priority_lbl = new System.Windows.Forms.Label();
-            this.Duration_txt = new System.Windows.Forms.TextBox();
             this.Duration_lbl = new System.Windows.Forms.Label();
-            this.Price_txt = new System.Windows.Forms.TextBox();
-            this.Category_lbl = new System.Windows.Forms.Label();
+            this.Title_lbl = new System.Windows.Forms.Label();
             this.Price_lbl = new System.Windows.Forms.Label();
-            this.Category_cbx = new System.Windows.Forms.ComboBox();
             this.Services_dgv = new System.Windows.Forms.DataGridView();
             this.Services_lbl = new System.Windows.Forms.Label();
             this.ContractCount_txt = new System.Windows.Forms.TextBox();
@@ -71,20 +73,52 @@
             this.ServiceType_lbl = new System.Windows.Forms.Label();
             this.ServiceAvailability_lbl = new System.Windows.Forms.Label();
             this.ContractConfiguration_tp = new System.Windows.Forms.TabPage();
-            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.servicesC_cbx = new System.Windows.Forms.ComboBox();
+            this.deleteC_btn = new System.Windows.Forms.Button();
+            this.contract_services_lbl = new System.Windows.Forms.Label();
+            this.contract_services_dgv = new System.Windows.Forms.DataGridView();
+            this.unavailableC_btn = new System.Windows.Forms.Button();
+            this.availableC_btn = new System.Windows.Forms.Button();
+            this.crateC_btn = new System.Windows.Forms.Button();
+            this.update_btn = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.priorityC_num = new System.Windows.Forms.NumericUpDown();
+            this.durationC_num = new System.Windows.Forms.NumericUpDown();
+            this.priceC_num = new System.Windows.Forms.NumericUpDown();
+            this.sla_txt = new System.Windows.Forms.TextBox();
+            this.priorityC_lbl = new System.Windows.Forms.Label();
+            this.durationC_lbl = new System.Windows.Forms.Label();
+            this.sla_lbl = new System.Windows.Forms.Label();
+            this.priceC_lbl = new System.Windows.Forms.Label();
+            this.clientCount_txt = new System.Windows.Forms.TextBox();
+            this.clientCount_lbl = new System.Windows.Forms.Label();
+            this.contractType_cbx = new System.Windows.Forms.ComboBox();
+            this.contract_Type_lbl = new System.Windows.Forms.Label();
+            this.contractAvailability_lbl = new System.Windows.Forms.Label();
+            this.add_btn = new System.Windows.Forms.Button();
+            this.remove_btn = new System.Windows.Forms.Button();
             this.Header_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PSS_img)).BeginInit();
             this.ContractManagement_tc.SuspendLayout();
             this.ContractPerformance_tp.SuspendLayout();
             this.ContractPerformancePastYear_gbx.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Months2_num)).BeginInit();
             this.ContractPerformancePastMonth_gbx.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.months1_num)).BeginInit();
             this.ServiceConfiguration_tp.SuspendLayout();
             this.Details_gbx.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.priority_num)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.duration_num)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.price_num)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Services_dgv)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
+            this.ContractConfiguration_tp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.contract_services_dgv)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.priorityC_num)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.durationC_num)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceC_num)).BeginInit();
             this.SuspendLayout();
             // 
             // Header_pnl
@@ -178,6 +212,20 @@
             this.ContractPerformancePastYear_gbx.TabStop = false;
             this.ContractPerformancePastYear_gbx.Text = "Contract 2";
             // 
+            // chart2
+            // 
+            this.chart2.BorderlineColor = System.Drawing.Color.Black;
+            this.chart2.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+            chartArea7.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea7);
+            this.chart2.Location = new System.Drawing.Point(236, 25);
+            this.chart2.Name = "chart2";
+            series7.ChartArea = "ChartArea1";
+            series7.Name = "Series1";
+            this.chart2.Series.Add(series7);
+            this.chart2.Size = new System.Drawing.Size(534, 158);
+            this.chart2.TabIndex = 10;
+            // 
             // Months2_num
             // 
             this.Months2_num.Location = new System.Drawing.Point(14, 149);
@@ -248,13 +296,13 @@
             // 
             this.chart1.BorderlineColor = System.Drawing.Color.Black;
             this.chart1.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea12.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea12);
+            chartArea8.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea8);
             this.chart1.Location = new System.Drawing.Point(236, 16);
             this.chart1.Name = "chart1";
-            series12.ChartArea = "ChartArea1";
-            series12.Name = "Series1";
-            this.chart1.Series.Add(series12);
+            series8.ChartArea = "ChartArea1";
+            series8.Name = "Series1";
+            this.chart1.Series.Add(series8);
             this.chart1.Size = new System.Drawing.Size(534, 158);
             this.chart1.TabIndex = 9;
             // 
@@ -310,6 +358,7 @@
             // 
             // ServiceConfiguration_tp
             // 
+            this.ServiceConfiguration_tp.Controls.Add(this.delete_btn);
             this.ServiceConfiguration_tp.Controls.Add(this.Unvailable_btn);
             this.ServiceConfiguration_tp.Controls.Add(this.Available_btn);
             this.ServiceConfiguration_tp.Controls.Add(this.CreateService_btn);
@@ -331,6 +380,18 @@
             this.ServiceConfiguration_tp.Text = "Service Configuration";
             this.ServiceConfiguration_tp.UseVisualStyleBackColor = true;
             // 
+            // delete_btn
+            // 
+            this.delete_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(73)))), ((int)(((byte)(73)))));
+            this.delete_btn.ForeColor = System.Drawing.Color.White;
+            this.delete_btn.Location = new System.Drawing.Point(443, 371);
+            this.delete_btn.Margin = new System.Windows.Forms.Padding(2);
+            this.delete_btn.Name = "delete_btn";
+            this.delete_btn.Size = new System.Drawing.Size(158, 35);
+            this.delete_btn.TabIndex = 12;
+            this.delete_btn.Text = "Delete";
+            this.delete_btn.UseVisualStyleBackColor = false;
+            // 
             // Unvailable_btn
             // 
             this.Unvailable_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(73)))), ((int)(((byte)(73)))));
@@ -342,6 +403,7 @@
             this.Unvailable_btn.TabIndex = 11;
             this.Unvailable_btn.Text = "Unvailable";
             this.Unvailable_btn.UseVisualStyleBackColor = false;
+            this.Unvailable_btn.Click += new System.EventHandler(this.Unvailable_btn_Click);
             // 
             // Available_btn
             // 
@@ -354,6 +416,7 @@
             this.Available_btn.TabIndex = 10;
             this.Available_btn.Text = "Available";
             this.Available_btn.UseVisualStyleBackColor = false;
+            this.Available_btn.Click += new System.EventHandler(this.Available_btn_Click);
             // 
             // CreateService_btn
             // 
@@ -366,6 +429,7 @@
             this.CreateService_btn.TabIndex = 9;
             this.CreateService_btn.Text = "Create Service";
             this.CreateService_btn.UseVisualStyleBackColor = false;
+            this.CreateService_btn.Click += new System.EventHandler(this.CreateService_btn_Click);
             // 
             // UpdateService_btn
             // 
@@ -382,14 +446,14 @@
             // 
             // Details_gbx
             // 
-            this.Details_gbx.Controls.Add(this.Priority_txt);
+            this.Details_gbx.Controls.Add(this.priority_num);
+            this.Details_gbx.Controls.Add(this.duration_num);
+            this.Details_gbx.Controls.Add(this.price_num);
+            this.Details_gbx.Controls.Add(this.title_txt);
             this.Details_gbx.Controls.Add(this.Priority_lbl);
-            this.Details_gbx.Controls.Add(this.Duration_txt);
             this.Details_gbx.Controls.Add(this.Duration_lbl);
-            this.Details_gbx.Controls.Add(this.Price_txt);
-            this.Details_gbx.Controls.Add(this.Category_lbl);
+            this.Details_gbx.Controls.Add(this.Title_lbl);
             this.Details_gbx.Controls.Add(this.Price_lbl);
-            this.Details_gbx.Controls.Add(this.Category_cbx);
             this.Details_gbx.Location = new System.Drawing.Point(650, 21);
             this.Details_gbx.Margin = new System.Windows.Forms.Padding(2);
             this.Details_gbx.Name = "Details_gbx";
@@ -399,13 +463,74 @@
             this.Details_gbx.TabStop = false;
             this.Details_gbx.Text = "Details";
             // 
-            // Priority_txt
+            // priority_num
             // 
-            this.Priority_txt.Location = new System.Drawing.Point(20, 311);
-            this.Priority_txt.Margin = new System.Windows.Forms.Padding(2);
-            this.Priority_txt.Name = "Priority_txt";
-            this.Priority_txt.Size = new System.Drawing.Size(158, 27);
-            this.Priority_txt.TabIndex = 15;
+            this.priority_num.Location = new System.Drawing.Point(20, 319);
+            this.priority_num.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.priority_num.Name = "priority_num";
+            this.priority_num.Size = new System.Drawing.Size(158, 27);
+            this.priority_num.TabIndex = 19;
+            // 
+            // duration_num
+            // 
+            this.duration_num.Location = new System.Drawing.Point(20, 218);
+            this.duration_num.Maximum = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
+            this.duration_num.Minimum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.duration_num.Name = "duration_num";
+            this.duration_num.Size = new System.Drawing.Size(158, 27);
+            this.duration_num.TabIndex = 18;
+            this.duration_num.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            // 
+            // price_num
+            // 
+            this.price_num.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.price_num.Location = new System.Drawing.Point(20, 141);
+            this.price_num.Maximum = new decimal(new int[] {
+            6000,
+            0,
+            0,
+            0});
+            this.price_num.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.price_num.Name = "price_num";
+            this.price_num.Size = new System.Drawing.Size(158, 27);
+            this.price_num.TabIndex = 17;
+            this.price_num.Value = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            // 
+            // title_txt
+            // 
+            this.title_txt.Location = new System.Drawing.Point(20, 59);
+            this.title_txt.Margin = new System.Windows.Forms.Padding(2);
+            this.title_txt.Name = "title_txt";
+            this.title_txt.Size = new System.Drawing.Size(158, 27);
+            this.title_txt.TabIndex = 16;
             // 
             // Priority_lbl
             // 
@@ -418,14 +543,6 @@
             this.Priority_lbl.TabIndex = 14;
             this.Priority_lbl.Text = "Priority";
             // 
-            // Duration_txt
-            // 
-            this.Duration_txt.Location = new System.Drawing.Point(20, 219);
-            this.Duration_txt.Margin = new System.Windows.Forms.Padding(2);
-            this.Duration_txt.Name = "Duration_txt";
-            this.Duration_txt.Size = new System.Drawing.Size(158, 27);
-            this.Duration_txt.TabIndex = 13;
-            // 
             // Duration_lbl
             // 
             this.Duration_lbl.AutoSize = true;
@@ -433,28 +550,20 @@
             this.Duration_lbl.Location = new System.Drawing.Point(16, 186);
             this.Duration_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Duration_lbl.Name = "Duration_lbl";
-            this.Duration_lbl.Size = new System.Drawing.Size(70, 20);
+            this.Duration_lbl.Size = new System.Drawing.Size(106, 20);
             this.Duration_lbl.TabIndex = 12;
-            this.Duration_lbl.Text = "Duration";
+            this.Duration_lbl.Text = "Duration(min)";
             // 
-            // Price_txt
+            // Title_lbl
             // 
-            this.Price_txt.Location = new System.Drawing.Point(20, 141);
-            this.Price_txt.Margin = new System.Windows.Forms.Padding(2);
-            this.Price_txt.Name = "Price_txt";
-            this.Price_txt.Size = new System.Drawing.Size(158, 27);
-            this.Price_txt.TabIndex = 11;
-            // 
-            // Category_lbl
-            // 
-            this.Category_lbl.AutoSize = true;
-            this.Category_lbl.ForeColor = System.Drawing.Color.Blue;
-            this.Category_lbl.Location = new System.Drawing.Point(16, 26);
-            this.Category_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.Category_lbl.Name = "Category_lbl";
-            this.Category_lbl.Size = new System.Drawing.Size(72, 20);
-            this.Category_lbl.TabIndex = 8;
-            this.Category_lbl.Text = "Category";
+            this.Title_lbl.AutoSize = true;
+            this.Title_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.Title_lbl.Location = new System.Drawing.Point(16, 26);
+            this.Title_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Title_lbl.Name = "Title_lbl";
+            this.Title_lbl.Size = new System.Drawing.Size(38, 20);
+            this.Title_lbl.TabIndex = 8;
+            this.Title_lbl.Text = "Title";
             // 
             // Price_lbl
             // 
@@ -467,15 +576,6 @@
             this.Price_lbl.TabIndex = 10;
             this.Price_lbl.Text = "Price";
             // 
-            // Category_cbx
-            // 
-            this.Category_cbx.FormattingEnabled = true;
-            this.Category_cbx.Location = new System.Drawing.Point(20, 59);
-            this.Category_cbx.Margin = new System.Windows.Forms.Padding(2);
-            this.Category_cbx.Name = "Category_cbx";
-            this.Category_cbx.Size = new System.Drawing.Size(158, 27);
-            this.Category_cbx.TabIndex = 9;
-            // 
             // Services_dgv
             // 
             this.Services_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -486,6 +586,7 @@
             this.Services_dgv.RowTemplate.Height = 24;
             this.Services_dgv.Size = new System.Drawing.Size(406, 297);
             this.Services_dgv.TabIndex = 6;
+            this.Services_dgv.SelectionChanged += new System.EventHandler(this.Services_dgv_SelectionChanged);
             // 
             // Services_lbl
             // 
@@ -549,6 +650,22 @@
             // 
             // ContractConfiguration_tp
             // 
+            this.ContractConfiguration_tp.Controls.Add(this.remove_btn);
+            this.ContractConfiguration_tp.Controls.Add(this.add_btn);
+            this.ContractConfiguration_tp.Controls.Add(this.servicesC_cbx);
+            this.ContractConfiguration_tp.Controls.Add(this.deleteC_btn);
+            this.ContractConfiguration_tp.Controls.Add(this.contract_services_lbl);
+            this.ContractConfiguration_tp.Controls.Add(this.contract_services_dgv);
+            this.ContractConfiguration_tp.Controls.Add(this.unavailableC_btn);
+            this.ContractConfiguration_tp.Controls.Add(this.availableC_btn);
+            this.ContractConfiguration_tp.Controls.Add(this.crateC_btn);
+            this.ContractConfiguration_tp.Controls.Add(this.update_btn);
+            this.ContractConfiguration_tp.Controls.Add(this.groupBox1);
+            this.ContractConfiguration_tp.Controls.Add(this.clientCount_txt);
+            this.ContractConfiguration_tp.Controls.Add(this.clientCount_lbl);
+            this.ContractConfiguration_tp.Controls.Add(this.contractType_cbx);
+            this.ContractConfiguration_tp.Controls.Add(this.contract_Type_lbl);
+            this.ContractConfiguration_tp.Controls.Add(this.contractAvailability_lbl);
             this.ContractConfiguration_tp.Location = new System.Drawing.Point(4, 28);
             this.ContractConfiguration_tp.Margin = new System.Windows.Forms.Padding(2);
             this.ContractConfiguration_tp.Name = "ContractConfiguration_tp";
@@ -557,19 +674,301 @@
             this.ContractConfiguration_tp.Text = "Contract Configuration";
             this.ContractConfiguration_tp.UseVisualStyleBackColor = true;
             // 
-            // chart2
+            // servicesC_cbx
             // 
-            this.chart2.BorderlineColor = System.Drawing.Color.Black;
-            this.chart2.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea13.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea13);
-            this.chart2.Location = new System.Drawing.Point(236, 25);
-            this.chart2.Name = "chart2";
-            series13.ChartArea = "ChartArea1";
-            series13.Name = "Series1";
-            this.chart2.Series.Add(series13);
-            this.chart2.Size = new System.Drawing.Size(534, 158);
-            this.chart2.TabIndex = 10;
+            this.servicesC_cbx.FormattingEnabled = true;
+            this.servicesC_cbx.Location = new System.Drawing.Point(446, 330);
+            this.servicesC_cbx.Margin = new System.Windows.Forms.Padding(2);
+            this.servicesC_cbx.Name = "servicesC_cbx";
+            this.servicesC_cbx.Size = new System.Drawing.Size(192, 27);
+            this.servicesC_cbx.TabIndex = 27;
+            // 
+            // deleteC_btn
+            // 
+            this.deleteC_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(73)))), ((int)(((byte)(73)))));
+            this.deleteC_btn.ForeColor = System.Drawing.Color.White;
+            this.deleteC_btn.Location = new System.Drawing.Point(446, 374);
+            this.deleteC_btn.Margin = new System.Windows.Forms.Padding(2);
+            this.deleteC_btn.Name = "deleteC_btn";
+            this.deleteC_btn.Size = new System.Drawing.Size(158, 35);
+            this.deleteC_btn.TabIndex = 26;
+            this.deleteC_btn.Text = "Delete";
+            this.deleteC_btn.UseVisualStyleBackColor = false;
+            this.deleteC_btn.Click += new System.EventHandler(this.deleteC_btn_Click);
+            // 
+            // contract_services_lbl
+            // 
+            this.contract_services_lbl.AutoSize = true;
+            this.contract_services_lbl.Location = new System.Drawing.Point(228, 24);
+            this.contract_services_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.contract_services_lbl.Name = "contract_services_lbl";
+            this.contract_services_lbl.Size = new System.Drawing.Size(135, 20);
+            this.contract_services_lbl.TabIndex = 25;
+            this.contract_services_lbl.Text = "Asociated Services";
+            // 
+            // contract_services_dgv
+            // 
+            this.contract_services_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.contract_services_dgv.Location = new System.Drawing.Point(232, 50);
+            this.contract_services_dgv.Margin = new System.Windows.Forms.Padding(2);
+            this.contract_services_dgv.Name = "contract_services_dgv";
+            this.contract_services_dgv.RowHeadersWidth = 51;
+            this.contract_services_dgv.RowTemplate.Height = 24;
+            this.contract_services_dgv.Size = new System.Drawing.Size(406, 271);
+            this.contract_services_dgv.TabIndex = 24;
+            // 
+            // unavailableC_btn
+            // 
+            this.unavailableC_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(73)))), ((int)(((byte)(73)))));
+            this.unavailableC_btn.ForeColor = System.Drawing.Color.White;
+            this.unavailableC_btn.Location = new System.Drawing.Point(23, 287);
+            this.unavailableC_btn.Margin = new System.Windows.Forms.Padding(2);
+            this.unavailableC_btn.Name = "unavailableC_btn";
+            this.unavailableC_btn.Size = new System.Drawing.Size(158, 35);
+            this.unavailableC_btn.TabIndex = 23;
+            this.unavailableC_btn.Text = "Unvailable";
+            this.unavailableC_btn.UseVisualStyleBackColor = false;
+            this.unavailableC_btn.Click += new System.EventHandler(this.unavailableC_btn_Click);
+            // 
+            // availableC_btn
+            // 
+            this.availableC_btn.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.availableC_btn.ForeColor = System.Drawing.Color.White;
+            this.availableC_btn.Location = new System.Drawing.Point(23, 234);
+            this.availableC_btn.Margin = new System.Windows.Forms.Padding(2);
+            this.availableC_btn.Name = "availableC_btn";
+            this.availableC_btn.Size = new System.Drawing.Size(158, 35);
+            this.availableC_btn.TabIndex = 22;
+            this.availableC_btn.Text = "Available";
+            this.availableC_btn.UseVisualStyleBackColor = false;
+            this.availableC_btn.Click += new System.EventHandler(this.availableC_btn_Click);
+            // 
+            // crateC_btn
+            // 
+            this.crateC_btn.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.crateC_btn.ForeColor = System.Drawing.Color.White;
+            this.crateC_btn.Location = new System.Drawing.Point(232, 374);
+            this.crateC_btn.Margin = new System.Windows.Forms.Padding(2);
+            this.crateC_btn.Name = "crateC_btn";
+            this.crateC_btn.Size = new System.Drawing.Size(158, 35);
+            this.crateC_btn.TabIndex = 21;
+            this.crateC_btn.Text = "Create Service";
+            this.crateC_btn.UseVisualStyleBackColor = false;
+            this.crateC_btn.Click += new System.EventHandler(this.crateC_btn_Click);
+            // 
+            // update_btn
+            // 
+            this.update_btn.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.update_btn.ForeColor = System.Drawing.Color.White;
+            this.update_btn.Location = new System.Drawing.Point(23, 374);
+            this.update_btn.Margin = new System.Windows.Forms.Padding(2);
+            this.update_btn.Name = "update_btn";
+            this.update_btn.Size = new System.Drawing.Size(158, 35);
+            this.update_btn.TabIndex = 20;
+            this.update_btn.Text = "Update Service";
+            this.update_btn.UseVisualStyleBackColor = false;
+            this.update_btn.Click += new System.EventHandler(this.update_btn_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.priorityC_num);
+            this.groupBox1.Controls.Add(this.durationC_num);
+            this.groupBox1.Controls.Add(this.priceC_num);
+            this.groupBox1.Controls.Add(this.sla_txt);
+            this.groupBox1.Controls.Add(this.priorityC_lbl);
+            this.groupBox1.Controls.Add(this.durationC_lbl);
+            this.groupBox1.Controls.Add(this.sla_lbl);
+            this.groupBox1.Controls.Add(this.priceC_lbl);
+            this.groupBox1.Location = new System.Drawing.Point(653, 24);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(202, 385);
+            this.groupBox1.TabIndex = 19;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Details";
+            // 
+            // priorityC_num
+            // 
+            this.priorityC_num.Location = new System.Drawing.Point(20, 319);
+            this.priorityC_num.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.priorityC_num.Name = "priorityC_num";
+            this.priorityC_num.Size = new System.Drawing.Size(158, 27);
+            this.priorityC_num.TabIndex = 19;
+            // 
+            // durationC_num
+            // 
+            this.durationC_num.Location = new System.Drawing.Point(20, 218);
+            this.durationC_num.Maximum = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
+            this.durationC_num.Minimum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.durationC_num.Name = "durationC_num";
+            this.durationC_num.Size = new System.Drawing.Size(158, 27);
+            this.durationC_num.TabIndex = 18;
+            this.durationC_num.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            // 
+            // priceC_num
+            // 
+            this.priceC_num.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.priceC_num.Location = new System.Drawing.Point(20, 141);
+            this.priceC_num.Maximum = new decimal(new int[] {
+            6000,
+            0,
+            0,
+            0});
+            this.priceC_num.Name = "priceC_num";
+            this.priceC_num.Size = new System.Drawing.Size(158, 27);
+            this.priceC_num.TabIndex = 17;
+            this.priceC_num.Value = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            // 
+            // sla_txt
+            // 
+            this.sla_txt.Location = new System.Drawing.Point(20, 59);
+            this.sla_txt.Margin = new System.Windows.Forms.Padding(2);
+            this.sla_txt.Name = "sla_txt";
+            this.sla_txt.Size = new System.Drawing.Size(158, 27);
+            this.sla_txt.TabIndex = 16;
+            // 
+            // priorityC_lbl
+            // 
+            this.priorityC_lbl.AutoSize = true;
+            this.priorityC_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.priorityC_lbl.Location = new System.Drawing.Point(16, 278);
+            this.priorityC_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.priorityC_lbl.Name = "priorityC_lbl";
+            this.priorityC_lbl.Size = new System.Drawing.Size(60, 20);
+            this.priorityC_lbl.TabIndex = 14;
+            this.priorityC_lbl.Text = "Priority";
+            // 
+            // durationC_lbl
+            // 
+            this.durationC_lbl.AutoSize = true;
+            this.durationC_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.durationC_lbl.Location = new System.Drawing.Point(16, 186);
+            this.durationC_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.durationC_lbl.Name = "durationC_lbl";
+            this.durationC_lbl.Size = new System.Drawing.Size(106, 20);
+            this.durationC_lbl.TabIndex = 12;
+            this.durationC_lbl.Text = "Duration(min)";
+            // 
+            // sla_lbl
+            // 
+            this.sla_lbl.AutoSize = true;
+            this.sla_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.sla_lbl.Location = new System.Drawing.Point(16, 26);
+            this.sla_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.sla_lbl.Name = "sla_lbl";
+            this.sla_lbl.Size = new System.Drawing.Size(34, 20);
+            this.sla_lbl.TabIndex = 8;
+            this.sla_lbl.Text = "SLA";
+            // 
+            // priceC_lbl
+            // 
+            this.priceC_lbl.AutoSize = true;
+            this.priceC_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.priceC_lbl.Location = new System.Drawing.Point(16, 106);
+            this.priceC_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.priceC_lbl.Name = "priceC_lbl";
+            this.priceC_lbl.Size = new System.Drawing.Size(43, 20);
+            this.priceC_lbl.TabIndex = 10;
+            this.priceC_lbl.Text = "Price";
+            // 
+            // clientCount_txt
+            // 
+            this.clientCount_txt.Location = new System.Drawing.Point(23, 165);
+            this.clientCount_txt.Margin = new System.Windows.Forms.Padding(2);
+            this.clientCount_txt.Name = "clientCount_txt";
+            this.clientCount_txt.Size = new System.Drawing.Size(159, 27);
+            this.clientCount_txt.TabIndex = 16;
+            // 
+            // clientCount_lbl
+            // 
+            this.clientCount_lbl.AutoSize = true;
+            this.clientCount_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.clientCount_lbl.Location = new System.Drawing.Point(19, 131);
+            this.clientCount_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.clientCount_lbl.Name = "clientCount_lbl";
+            this.clientCount_lbl.Size = new System.Drawing.Size(93, 20);
+            this.clientCount_lbl.TabIndex = 15;
+            this.clientCount_lbl.Text = "Client Count";
+            // 
+            // contractType_cbx
+            // 
+            this.contractType_cbx.FormattingEnabled = true;
+            this.contractType_cbx.Location = new System.Drawing.Point(23, 83);
+            this.contractType_cbx.Margin = new System.Windows.Forms.Padding(2);
+            this.contractType_cbx.Name = "contractType_cbx";
+            this.contractType_cbx.Size = new System.Drawing.Size(159, 27);
+            this.contractType_cbx.TabIndex = 14;
+            this.contractType_cbx.SelectedIndexChanged += new System.EventHandler(this.contractType_cbx_SelectedIndexChanged);
+            // 
+            // contract_Type_lbl
+            // 
+            this.contract_Type_lbl.AutoSize = true;
+            this.contract_Type_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.contract_Type_lbl.Location = new System.Drawing.Point(19, 50);
+            this.contract_Type_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.contract_Type_lbl.Name = "contract_Type_lbl";
+            this.contract_Type_lbl.Size = new System.Drawing.Size(103, 20);
+            this.contract_Type_lbl.TabIndex = 13;
+            this.contract_Type_lbl.Text = "Contract Type";
+            // 
+            // contractAvailability_lbl
+            // 
+            this.contractAvailability_lbl.AutoSize = true;
+            this.contractAvailability_lbl.Location = new System.Drawing.Point(9, 15);
+            this.contractAvailability_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.contractAvailability_lbl.Name = "contractAvailability_lbl";
+            this.contractAvailability_lbl.Size = new System.Drawing.Size(147, 20);
+            this.contractAvailability_lbl.TabIndex = 12;
+            this.contractAvailability_lbl.Text = "Contract Availability";
+            // 
+            // add_btn
+            // 
+            this.add_btn.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.add_btn.ForeColor = System.Drawing.Color.White;
+            this.add_btn.Location = new System.Drawing.Point(232, 325);
+            this.add_btn.Margin = new System.Windows.Forms.Padding(2);
+            this.add_btn.Name = "add_btn";
+            this.add_btn.Size = new System.Drawing.Size(93, 35);
+            this.add_btn.TabIndex = 28;
+            this.add_btn.Text = "Add";
+            this.add_btn.UseVisualStyleBackColor = false;
+            // 
+            // remove_btn
+            // 
+            this.remove_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(73)))), ((int)(((byte)(73)))));
+            this.remove_btn.ForeColor = System.Drawing.Color.White;
+            this.remove_btn.Location = new System.Drawing.Point(338, 325);
+            this.remove_btn.Margin = new System.Windows.Forms.Padding(2);
+            this.remove_btn.Name = "remove_btn";
+            this.remove_btn.Size = new System.Drawing.Size(88, 35);
+            this.remove_btn.TabIndex = 29;
+            this.remove_btn.Text = "Remove";
+            this.remove_btn.UseVisualStyleBackColor = false;
             // 
             // ContractManagerForm
             // 
@@ -588,6 +987,7 @@
             this.ContractPerformance_tp.ResumeLayout(false);
             this.ContractPerformancePastYear_gbx.ResumeLayout(false);
             this.ContractPerformancePastYear_gbx.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Months2_num)).EndInit();
             this.ContractPerformancePastMonth_gbx.ResumeLayout(false);
             this.ContractPerformancePastMonth_gbx.PerformLayout();
@@ -597,8 +997,18 @@
             this.ServiceConfiguration_tp.PerformLayout();
             this.Details_gbx.ResumeLayout(false);
             this.Details_gbx.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.priority_num)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.duration_num)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.price_num)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Services_dgv)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
+            this.ContractConfiguration_tp.ResumeLayout(false);
+            this.ContractConfiguration_tp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.contract_services_dgv)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.priorityC_num)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.durationC_num)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceC_num)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -631,14 +1041,10 @@
         private System.Windows.Forms.Button CreateService_btn;
         private System.Windows.Forms.Button UpdateService_btn;
         private System.Windows.Forms.GroupBox Details_gbx;
-        private System.Windows.Forms.TextBox Priority_txt;
         private System.Windows.Forms.Label Priority_lbl;
-        private System.Windows.Forms.TextBox Duration_txt;
         private System.Windows.Forms.Label Duration_lbl;
-        private System.Windows.Forms.TextBox Price_txt;
-        private System.Windows.Forms.Label Category_lbl;
+        private System.Windows.Forms.Label Title_lbl;
         private System.Windows.Forms.Label Price_lbl;
-        private System.Windows.Forms.ComboBox Category_cbx;
         private System.Windows.Forms.DataGridView Services_dgv;
         private System.Windows.Forms.Label Services_lbl;
         private System.Windows.Forms.TextBox ContractCount_txt;
@@ -646,5 +1052,34 @@
         private System.Windows.Forms.NumericUpDown months1_num;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
+        private System.Windows.Forms.TextBox title_txt;
+        private System.Windows.Forms.NumericUpDown priority_num;
+        private System.Windows.Forms.NumericUpDown duration_num;
+        private System.Windows.Forms.NumericUpDown price_num;
+        private System.Windows.Forms.Button unavailableC_btn;
+        private System.Windows.Forms.Button availableC_btn;
+        private System.Windows.Forms.Button crateC_btn;
+        private System.Windows.Forms.Button update_btn;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.NumericUpDown priorityC_num;
+        private System.Windows.Forms.NumericUpDown durationC_num;
+        private System.Windows.Forms.NumericUpDown priceC_num;
+        private System.Windows.Forms.TextBox sla_txt;
+        private System.Windows.Forms.Label priorityC_lbl;
+        private System.Windows.Forms.Label durationC_lbl;
+        private System.Windows.Forms.Label sla_lbl;
+        private System.Windows.Forms.Label priceC_lbl;
+        private System.Windows.Forms.TextBox clientCount_txt;
+        private System.Windows.Forms.Label clientCount_lbl;
+        private System.Windows.Forms.ComboBox contractType_cbx;
+        private System.Windows.Forms.Label contract_Type_lbl;
+        private System.Windows.Forms.Label contractAvailability_lbl;
+        private System.Windows.Forms.DataGridView contract_services_dgv;
+        private System.Windows.Forms.Label contract_services_lbl;
+        private System.Windows.Forms.ComboBox servicesC_cbx;
+        private System.Windows.Forms.Button deleteC_btn;
+        private System.Windows.Forms.Button delete_btn;
+        private System.Windows.Forms.Button remove_btn;
+        private System.Windows.Forms.Button add_btn;
     }
 }
