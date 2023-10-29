@@ -12,9 +12,11 @@ namespace PSS_ITWORKS.Presentation_Layer
 {
     public partial class Technician : Form
     {
-        public Technician()
+        private Dashboard dashboard;
+        public Technician(Dashboard dashboard)
         {
             InitializeComponent();
+            this.dashboard = dashboard;
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -35,6 +37,13 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void label8_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Logout_btn_Click(object sender, EventArgs e)
+        {
+            
+            dashboard.Show();
+            this.Close();
         }
     }
 }

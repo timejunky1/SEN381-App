@@ -13,17 +13,19 @@ namespace PSS_ITWORKS.Presentation_Layer
 {
     public partial class ServiceManagerForm : Form
     {
+        private Dashboard dashboard;
         StrategyContextManager cm;
         AssignmentForm af = new AssignmentForm();
-        public ServiceManagerForm()
+        public ServiceManagerForm(Dashboard dashboard)
         {
             InitializeComponent();
+            this.dashboard = dashboard;
         }
 
         private void ManagerForm_Load(object sender, EventArgs e)
         {
             cm = new StrategyContextManager(new StrategyJobManager());
-            cm.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+            cm.Connect(@"Data Source=DESKTOP-TBBSO02\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
             Request_dgv.DataSource = cm.GetSpecific();
             AssignmentSchedule_dgv.DataSource = cm.Get();
         }
@@ -36,6 +38,13 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void assign_btn_Click(object sender, EventArgs e)
         {
             af.Show();
+        }
+
+        private void Logout_btn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            dashboard.Show();
+
         }
     }
 }

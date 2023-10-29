@@ -13,11 +13,13 @@ namespace PSS_ITWORKS.Presentation_Layer
 {
     public partial class ContractManagerForm : Form
     {
+        private Dashboard dashboard;
         StrategyContextManager context;
-        public ContractManagerForm()
+        public ContractManagerForm(Dashboard dashboard)
         {
             InitializeComponent();
             context = new StrategyContextManager(new StrategyContractManager());
+            this.dashboard = dashboard;
         }
 
         private void ContractManagerForm_Load(object sender, EventArgs e)
@@ -28,6 +30,13 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void ServiceType_lbl_Click(object sender, EventArgs e)
         {
             Visible = true;
+        }
+
+        private void Logout_btn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            dashboard.Show();
+
         }
     }
 }

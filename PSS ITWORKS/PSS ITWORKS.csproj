@@ -130,6 +130,12 @@
     <Compile Include="Presentation Layer\ContractManagerForm.Designer.cs">
       <DependentUpon>ContractManagerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation Layer\Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Layer\Dashboard.Designer.cs">
+      <DependentUpon>Dashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation Layer\ModifyJobs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,8 +190,17 @@
     <EmbeddedResource Include="Presentation Layer\CallForm.resx">
       <DependentUpon>CallForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Layer\ClientForm.resx">
+      <DependentUpon>ClientForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Layer\ClientManagerForm.resx">
+      <DependentUpon>ClientManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\ContractManagerForm.resx">
       <DependentUpon>ContractManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Layer\Dashboard.resx">
+      <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\ModifyJobs.resx">
       <DependentUpon>ModifyJobs.cs</DependentUpon>
@@ -198,6 +213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\ServiceManagerForm.resx">
       <DependentUpon>ServiceManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Layer\TechnicianForm.resx">
+      <DependentUpon>TechnicianForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\Testing.resx">
       <DependentUpon>Testing.cs</DependentUpon>

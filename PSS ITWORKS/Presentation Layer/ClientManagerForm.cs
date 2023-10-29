@@ -12,14 +12,22 @@ namespace PSS_ITWORKS.Presentation_Layer
 {
     public partial class ClientManagerForm : Form
     {
-        public ClientManagerForm()
+        private Dashboard dashboard;
+        public ClientManagerForm(Dashboard dashboard)
         {
             InitializeComponent();
+            this.dashboard = dashboard;
         }
 
         private void ClientManagerForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void Logout_btn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            dashboard.Show();
         }
     }
 }

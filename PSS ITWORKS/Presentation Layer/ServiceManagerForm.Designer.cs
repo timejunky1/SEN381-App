@@ -33,6 +33,7 @@
             this.Logout_btn = new System.Windows.Forms.Button();
             this.ServiceManager_tc = new System.Windows.Forms.TabControl();
             this.Assignment_tp = new System.Windows.Forms.TabPage();
+            this.assign_btn = new System.Windows.Forms.Button();
             this.Assignement_dtp = new System.Windows.Forms.DateTimePicker();
             this.AssignmentSchedule_dgv = new System.Windows.Forms.DataGridView();
             this.Request_dgv = new System.Windows.Forms.DataGridView();
@@ -57,7 +58,6 @@
             this.JobsFilter_txt = new System.Windows.Forms.TextBox();
             this.JobsFilter_lbl = new System.Windows.Forms.Label();
             this.Jobs_lbl = new System.Windows.Forms.Label();
-            this.assign_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PSS_img)).BeginInit();
             this.ServiceManager_tc.SuspendLayout();
             this.Assignment_tp.SuspendLayout();
@@ -74,7 +74,7 @@
             // PSS_img
             // 
             this.PSS_img.Location = new System.Drawing.Point(12, 9);
-            this.PSS_img.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PSS_img.Margin = new System.Windows.Forms.Padding(2);
             this.PSS_img.Name = "PSS_img";
             this.PSS_img.Size = new System.Drawing.Size(76, 61);
             this.PSS_img.TabIndex = 0;
@@ -87,7 +87,7 @@
             this.PSS_lbl.Location = new System.Drawing.Point(94, 26);
             this.PSS_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.PSS_lbl.Name = "PSS_lbl";
-            this.PSS_lbl.Size = new System.Drawing.Size(598, 32);
+            this.PSS_lbl.Size = new System.Drawing.Size(599, 32);
             this.PSS_lbl.TabIndex = 1;
             this.PSS_lbl.Text = "Welcome back <name> <surname> (Service Manager)";
             // 
@@ -97,12 +97,13 @@
             this.Logout_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Logout_btn.ForeColor = System.Drawing.Color.White;
             this.Logout_btn.Location = new System.Drawing.Point(749, 26);
-            this.Logout_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Logout_btn.Margin = new System.Windows.Forms.Padding(2);
             this.Logout_btn.Name = "Logout_btn";
             this.Logout_btn.Size = new System.Drawing.Size(118, 36);
             this.Logout_btn.TabIndex = 2;
             this.Logout_btn.Text = "Logout";
             this.Logout_btn.UseVisualStyleBackColor = false;
+            this.Logout_btn.Click += new System.EventHandler(this.Logout_btn_Click);
             // 
             // ServiceManager_tc
             // 
@@ -112,7 +113,7 @@
             this.ServiceManager_tc.Controls.Add(this.Jobs_tp);
             this.ServiceManager_tc.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ServiceManager_tc.Location = new System.Drawing.Point(12, 94);
-            this.ServiceManager_tc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ServiceManager_tc.Margin = new System.Windows.Forms.Padding(2);
             this.ServiceManager_tc.Name = "ServiceManager_tc";
             this.ServiceManager_tc.SelectedIndex = 0;
             this.ServiceManager_tc.Size = new System.Drawing.Size(873, 456);
@@ -127,18 +128,28 @@
             this.Assignment_tp.Controls.Add(this.AssignementSchedule_lbl);
             this.Assignment_tp.Controls.Add(this.AssignementRequest_lbl);
             this.Assignment_tp.Location = new System.Drawing.Point(4, 34);
-            this.Assignment_tp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Assignment_tp.Margin = new System.Windows.Forms.Padding(2);
             this.Assignment_tp.Name = "Assignment_tp";
-            this.Assignment_tp.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Assignment_tp.Padding = new System.Windows.Forms.Padding(2);
             this.Assignment_tp.Size = new System.Drawing.Size(865, 418);
             this.Assignment_tp.TabIndex = 0;
             this.Assignment_tp.Text = "Assignment";
             this.Assignment_tp.UseVisualStyleBackColor = true;
             // 
+            // assign_btn
+            // 
+            this.assign_btn.Location = new System.Drawing.Point(486, 358);
+            this.assign_btn.Name = "assign_btn";
+            this.assign_btn.Size = new System.Drawing.Size(117, 34);
+            this.assign_btn.TabIndex = 5;
+            this.assign_btn.Text = "Assign Job";
+            this.assign_btn.UseVisualStyleBackColor = true;
+            this.assign_btn.Click += new System.EventHandler(this.assign_btn_Click);
+            // 
             // Assignement_dtp
             // 
             this.Assignement_dtp.Location = new System.Drawing.Point(671, 360);
-            this.Assignement_dtp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Assignement_dtp.Margin = new System.Windows.Forms.Padding(2);
             this.Assignement_dtp.Name = "Assignement_dtp";
             this.Assignement_dtp.Size = new System.Drawing.Size(160, 32);
             this.Assignement_dtp.TabIndex = 4;
@@ -147,7 +158,7 @@
             // 
             this.AssignmentSchedule_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.AssignmentSchedule_dgv.Location = new System.Drawing.Point(448, 47);
-            this.AssignmentSchedule_dgv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AssignmentSchedule_dgv.Margin = new System.Windows.Forms.Padding(2);
             this.AssignmentSchedule_dgv.Name = "AssignmentSchedule_dgv";
             this.AssignmentSchedule_dgv.RowHeadersWidth = 51;
             this.AssignmentSchedule_dgv.RowTemplate.Height = 24;
@@ -158,7 +169,7 @@
             // 
             this.Request_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Request_dgv.Location = new System.Drawing.Point(25, 47);
-            this.Request_dgv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Request_dgv.Margin = new System.Windows.Forms.Padding(2);
             this.Request_dgv.Name = "Request_dgv";
             this.Request_dgv.RowHeadersWidth = 51;
             this.Request_dgv.RowTemplate.Height = 24;
@@ -195,9 +206,9 @@
             this.Schedule_tp.Controls.Add(this.AssignmentFilter_lbl);
             this.Schedule_tp.Controls.Add(this.Schedule_lbl);
             this.Schedule_tp.Location = new System.Drawing.Point(4, 34);
-            this.Schedule_tp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Schedule_tp.Margin = new System.Windows.Forms.Padding(2);
             this.Schedule_tp.Name = "Schedule_tp";
-            this.Schedule_tp.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Schedule_tp.Padding = new System.Windows.Forms.Padding(2);
             this.Schedule_tp.Size = new System.Drawing.Size(865, 418);
             this.Schedule_tp.TabIndex = 1;
             this.Schedule_tp.Text = "Schedule";
@@ -207,7 +218,7 @@
             // 
             this.Schedule_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Schedule_dgv.Location = new System.Drawing.Point(211, 26);
-            this.Schedule_dgv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Schedule_dgv.Margin = new System.Windows.Forms.Padding(2);
             this.Schedule_dgv.Name = "Schedule_dgv";
             this.Schedule_dgv.RowHeadersWidth = 51;
             this.Schedule_dgv.RowTemplate.Height = 24;
@@ -219,7 +230,7 @@
             this.AssignmentFilter_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(228)))), ((int)(((byte)(91)))));
             this.AssignmentFilter_btn.ForeColor = System.Drawing.Color.White;
             this.AssignmentFilter_btn.Location = new System.Drawing.Point(27, 115);
-            this.AssignmentFilter_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AssignmentFilter_btn.Margin = new System.Windows.Forms.Padding(2);
             this.AssignmentFilter_btn.Name = "AssignmentFilter_btn";
             this.AssignmentFilter_btn.Size = new System.Drawing.Size(158, 35);
             this.AssignmentFilter_btn.TabIndex = 3;
@@ -230,7 +241,7 @@
             // 
             this.Filter_txt.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Filter_txt.Location = new System.Drawing.Point(27, 75);
-            this.Filter_txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Filter_txt.Margin = new System.Windows.Forms.Padding(2);
             this.Filter_txt.Name = "Filter_txt";
             this.Filter_txt.Size = new System.Drawing.Size(160, 26);
             this.Filter_txt.TabIndex = 2;
@@ -268,7 +279,7 @@
             this.Technicians_tp.Controls.Add(this.TechFilter_lbl);
             this.Technicians_tp.Controls.Add(this.Technician_lcl);
             this.Technicians_tp.Location = new System.Drawing.Point(4, 34);
-            this.Technicians_tp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Technicians_tp.Margin = new System.Windows.Forms.Padding(2);
             this.Technicians_tp.Name = "Technicians_tp";
             this.Technicians_tp.Size = new System.Drawing.Size(865, 418);
             this.Technicians_tp.TabIndex = 2;
@@ -279,7 +290,7 @@
             // 
             this.Technician_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Technician_dgv.Location = new System.Drawing.Point(207, 26);
-            this.Technician_dgv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Technician_dgv.Margin = new System.Windows.Forms.Padding(2);
             this.Technician_dgv.Name = "Technician_dgv";
             this.Technician_dgv.RowHeadersWidth = 51;
             this.Technician_dgv.RowTemplate.Height = 24;
@@ -291,7 +302,7 @@
             this.TechFilter_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(228)))), ((int)(((byte)(91)))));
             this.TechFilter_btn.ForeColor = System.Drawing.Color.White;
             this.TechFilter_btn.Location = new System.Drawing.Point(23, 115);
-            this.TechFilter_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TechFilter_btn.Margin = new System.Windows.Forms.Padding(2);
             this.TechFilter_btn.Name = "TechFilter_btn";
             this.TechFilter_btn.Size = new System.Drawing.Size(158, 35);
             this.TechFilter_btn.TabIndex = 8;
@@ -302,7 +313,7 @@
             // 
             this.TechFilter_txt.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TechFilter_txt.Location = new System.Drawing.Point(23, 75);
-            this.TechFilter_txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TechFilter_txt.Margin = new System.Windows.Forms.Padding(2);
             this.TechFilter_txt.Name = "TechFilter_txt";
             this.TechFilter_txt.Size = new System.Drawing.Size(160, 26);
             this.TechFilter_txt.TabIndex = 7;
@@ -340,7 +351,7 @@
             this.Jobs_tp.Controls.Add(this.JobsFilter_lbl);
             this.Jobs_tp.Controls.Add(this.Jobs_lbl);
             this.Jobs_tp.Location = new System.Drawing.Point(4, 34);
-            this.Jobs_tp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Jobs_tp.Margin = new System.Windows.Forms.Padding(2);
             this.Jobs_tp.Name = "Jobs_tp";
             this.Jobs_tp.Size = new System.Drawing.Size(865, 418);
             this.Jobs_tp.TabIndex = 3;
@@ -352,7 +363,7 @@
             this.ModifyJobs_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(228)))), ((int)(((byte)(91)))));
             this.ModifyJobs_btn.ForeColor = System.Drawing.Color.White;
             this.ModifyJobs_btn.Location = new System.Drawing.Point(24, 167);
-            this.ModifyJobs_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ModifyJobs_btn.Margin = new System.Windows.Forms.Padding(2);
             this.ModifyJobs_btn.Name = "ModifyJobs_btn";
             this.ModifyJobs_btn.Size = new System.Drawing.Size(158, 35);
             this.ModifyJobs_btn.TabIndex = 10;
@@ -363,7 +374,7 @@
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(207, 26);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
@@ -375,7 +386,7 @@
             this.JobsFilter_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(228)))), ((int)(((byte)(91)))));
             this.JobsFilter_btn.ForeColor = System.Drawing.Color.White;
             this.JobsFilter_btn.Location = new System.Drawing.Point(23, 115);
-            this.JobsFilter_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.JobsFilter_btn.Margin = new System.Windows.Forms.Padding(2);
             this.JobsFilter_btn.Name = "JobsFilter_btn";
             this.JobsFilter_btn.Size = new System.Drawing.Size(158, 35);
             this.JobsFilter_btn.TabIndex = 8;
@@ -386,7 +397,7 @@
             // 
             this.JobsFilter_txt.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JobsFilter_txt.Location = new System.Drawing.Point(23, 75);
-            this.JobsFilter_txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.JobsFilter_txt.Margin = new System.Windows.Forms.Padding(2);
             this.JobsFilter_txt.Name = "JobsFilter_txt";
             this.JobsFilter_txt.Size = new System.Drawing.Size(160, 26);
             this.JobsFilter_txt.TabIndex = 7;
@@ -414,16 +425,6 @@
             this.Jobs_lbl.Size = new System.Drawing.Size(39, 20);
             this.Jobs_lbl.TabIndex = 5;
             this.Jobs_lbl.Text = "Jobs";
-            // 
-            // assign_btn
-            // 
-            this.assign_btn.Location = new System.Drawing.Point(486, 358);
-            this.assign_btn.Name = "assign_btn";
-            this.assign_btn.Size = new System.Drawing.Size(117, 34);
-            this.assign_btn.TabIndex = 5;
-            this.assign_btn.Text = "Assign Job";
-            this.assign_btn.UseVisualStyleBackColor = true;
-            this.assign_btn.Click += new System.EventHandler(this.assign_btn_Click);
             // 
             // ServiceManagerForm
             // 
