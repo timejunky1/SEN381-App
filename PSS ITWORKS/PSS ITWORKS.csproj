@@ -199,6 +199,9 @@
     <EmbeddedResource Include="Presentation Layer\ServiceManagerForm.resx">
       <DependentUpon>ServiceManagerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Layer\TechnicianForm.resx">
+      <DependentUpon>TechnicianForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\Testing.resx">
       <DependentUpon>Testing.cs</DependentUpon>
     </EmbeddedResource>

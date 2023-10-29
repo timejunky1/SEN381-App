@@ -37,23 +37,22 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 
         public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
         {
-            return api.GetServiceOverview(id1);
             return api.GetClientDetails(id1);
         }
 
         public BindingSource GetSpecific1(string s1)
         {
-            throw new NotImplementedException();
+            return api.GetServiceOverview(s1);
         }
 
         public BindingSource GetSpecific1(int n1)
         {
-            throw new NotImplementedException();
+            return api.GetTechnicianSchedule(n1);
         }
 
         public BindingSource GetSpecific2(string s2)
         {
-            throw new NotImplementedException();
+            return api.GetClientOverview(s2);
         }
 
         public BindingSource GetSpecific2(int n1)

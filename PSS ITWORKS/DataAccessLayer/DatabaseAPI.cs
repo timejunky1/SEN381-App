@@ -1080,7 +1080,7 @@ namespace PSS_ITWORKS
             return bs;
         }
 
-        public BindingSource GetServiceOverview(int serviceId)
+        public BindingSource GetServiceOverview(string service)
         {
             SqlDataReader reader;
             BindingSource bs = new BindingSource();
@@ -1089,7 +1089,7 @@ namespace PSS_ITWORKS
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("TechnicalPortalProcedures.GetServiceOverview", conn);
                 cmd.CommandType= CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@serviceId", serviceId);
+                cmd.Parameters.AddWithValue("@service", service);
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -1097,14 +1097,13 @@ namespace PSS_ITWORKS
                 }
                 reader.Close();
                 conn.Close();
+                ErrorHandler.DisplayError("Query successful");
             }
             catch (Exception ex)
             {
                 ErrorHandler.DisplayError(ex);
                 conn.Close();
             }
-
-            MessageBox.Show("GetServiceOverview");
             return bs;
         }
 
@@ -1115,7 +1114,9 @@ namespace PSS_ITWORKS
             try
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("TechnicianPortalProcedures.GetTechnicianSchedule", conn);
+                SqlCommand cmd = new SqlCommand("TechnicalPortalProcedures.GetTechnicianSchedule", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@employeeId", employeeId);
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -1123,14 +1124,13 @@ namespace PSS_ITWORKS
                 }
                 reader.Close();
                 conn.Close();
+                ErrorHandler.DisplayError("Query successful");
             }
             catch (Exception ex)
             {
                 ErrorHandler.DisplayError(ex);
                 conn.Close();
             }
-
-            MessageBox.Show("GetTechnicianSchedule");
             return bs;
         }
     }
