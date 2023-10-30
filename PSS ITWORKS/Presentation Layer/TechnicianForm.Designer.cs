@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Technician));
             this.Logo_img = new System.Windows.Forms.PictureBox();
             this.Welcome_lbl = new System.Windows.Forms.Label();
             this.Technical_tc = new System.Windows.Forms.TabControl();
@@ -37,7 +36,7 @@
             this.TLMInfo_lbl = new System.Windows.Forms.Label();
             this.TLM_lbl = new System.Windows.Forms.Label();
             this.taskUpdates_tp = new System.Windows.Forms.TabPage();
-            this.jobStatus_dud = new System.Windows.Forms.DomainUpDown();
+            this.status_cbx = new System.Windows.Forms.ComboBox();
             this.jobStatus_lbl = new System.Windows.Forms.Label();
             this.jobNotes_lbl = new System.Windows.Forms.Label();
             this.jobNotes_rtb = new System.Windows.Forms.RichTextBox();
@@ -57,6 +56,7 @@
             this.Schedule_dgv = new System.Windows.Forms.DataGridView();
             this.Schedule_lbl = new System.Windows.Forms.Label();
             this.Logout_btn = new System.Windows.Forms.Button();
+            this.pssDataSet1 = new PSS_ITWORKS.PSSDataSet();
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).BeginInit();
             this.Technical_tc.SuspendLayout();
             this.taskList_tp.SuspendLayout();
@@ -67,6 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.clientDetails_dgv)).BeginInit();
             this.Schedule_tp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Schedule_dgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pssDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // Logo_img
@@ -116,7 +117,6 @@
             this.taskList_tp.TabIndex = 0;
             this.taskList_tp.Text = "Task List";
             this.taskList_tp.UseVisualStyleBackColor = true;
-            this.taskList_tp.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // taskList_dgv
             // 
@@ -147,11 +147,10 @@
             this.TLM_lbl.Size = new System.Drawing.Size(219, 30);
             this.TLM_lbl.TabIndex = 14;
             this.TLM_lbl.Text = "Task List Management";
-            this.TLM_lbl.Click += new System.EventHandler(this.label1_Click);
             // 
             // taskUpdates_tp
             // 
-            this.taskUpdates_tp.Controls.Add(this.jobStatus_dud);
+            this.taskUpdates_tp.Controls.Add(this.status_cbx);
             this.taskUpdates_tp.Controls.Add(this.jobStatus_lbl);
             this.taskUpdates_tp.Controls.Add(this.jobNotes_lbl);
             this.taskUpdates_tp.Controls.Add(this.jobNotes_rtb);
@@ -170,14 +169,13 @@
             this.taskUpdates_tp.Text = "Task Updates";
             this.taskUpdates_tp.UseVisualStyleBackColor = true;
             // 
-            // jobStatus_dud
+            // status_cbx
             // 
-            this.jobStatus_dud.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jobStatus_dud.Location = new System.Drawing.Point(299, 267);
-            this.jobStatus_dud.Name = "jobStatus_dud";
-            this.jobStatus_dud.Size = new System.Drawing.Size(159, 29);
-            this.jobStatus_dud.TabIndex = 25;
-            this.jobStatus_dud.Text = "domainUpDown1";
+            this.status_cbx.FormattingEnabled = true;
+            this.status_cbx.Location = new System.Drawing.Point(299, 267);
+            this.status_cbx.Name = "status_cbx";
+            this.status_cbx.Size = new System.Drawing.Size(156, 40);
+            this.status_cbx.TabIndex = 25;
             // 
             // jobStatus_lbl
             // 
@@ -224,6 +222,7 @@
             this.submitUpdate_btn.TabIndex = 21;
             this.submitUpdate_btn.Text = "Submit";
             this.submitUpdate_btn.UseVisualStyleBackColor = false;
+            this.submitUpdate_btn.Click += new System.EventHandler(this.submitUpdate_btn_Click);
             // 
             // searchJob_btn
             // 
@@ -282,7 +281,6 @@
             this.taskUpdate_lbl.Size = new System.Drawing.Size(342, 30);
             this.taskUpdate_lbl.TabIndex = 16;
             this.taskUpdate_lbl.Text = "Task Updates and Progress Tracking";
-            this.taskUpdate_lbl.Click += new System.EventHandler(this.label4_Click);
             // 
             // clientDetails_tp
             // 
@@ -351,7 +349,6 @@
             this.clientDetails_lbl.Size = new System.Drawing.Size(135, 30);
             this.clientDetails_lbl.TabIndex = 18;
             this.clientDetails_lbl.Text = "Client Details";
-            this.clientDetails_lbl.Click += new System.EventHandler(this.label8_Click);
             // 
             // Schedule_tp
             // 
@@ -372,6 +369,7 @@
             this.Schedule_dgv.Name = "Schedule_dgv";
             this.Schedule_dgv.Size = new System.Drawing.Size(843, 307);
             this.Schedule_dgv.TabIndex = 21;
+            this.Schedule_dgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Schedule_dgv_CellDoubleClick);
             // 
             // Schedule_lbl
             // 
@@ -399,6 +397,11 @@
             this.Logout_btn.Text = "Logout";
             this.Logout_btn.UseVisualStyleBackColor = false;
             // 
+            // pssDataSet1
+            // 
+            this.pssDataSet1.DataSetName = "PSSDataSet";
+            this.pssDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // Technician
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -412,6 +415,7 @@
             this.Name = "Technician";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TechnicianForm";
+            this.Load += new System.EventHandler(this.Technician_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).EndInit();
             this.Technical_tc.ResumeLayout(false);
             this.taskList_tp.ResumeLayout(false);
@@ -426,6 +430,7 @@
             this.Schedule_tp.ResumeLayout(false);
             this.Schedule_tp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Schedule_dgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pssDataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -448,7 +453,6 @@
         private System.Windows.Forms.Label taskUpdate_lbl;
         private System.Windows.Forms.TextBox jobID_txt;
         private System.Windows.Forms.Label JobID_lbl;
-        private System.Windows.Forms.DomainUpDown jobStatus_dud;
         private System.Windows.Forms.Label jobStatus_lbl;
         private System.Windows.Forms.Label jobNotes_lbl;
         private System.Windows.Forms.RichTextBox jobNotes_rtb;
@@ -461,5 +465,7 @@
         private System.Windows.Forms.Button filterDetails_btn;
         private System.Windows.Forms.DataGridView Schedule_dgv;
         private System.Windows.Forms.Label Schedule_lbl;
+        private System.Windows.Forms.ComboBox status_cbx;
+        private PSSDataSet pssDataSet1;
     }
 }

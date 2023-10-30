@@ -37,28 +37,31 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 
         public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
         {
-            return api.GetServiceOverview(id1);
             return api.GetClientDetails(id1);
         }
 
         public BindingSource GetSpecific1(string s1)
         {
-            throw new NotImplementedException();
+            ErrorHandler.DisplayError($"GS1, {s1}");
+            return api.GetServiceOverview(int.Parse(s1));
         }
 
         public BindingSource GetSpecific1(int n1)
         {
-            throw new NotImplementedException();
+            ErrorHandler.DisplayError($"GI1, {n1}");
+            return api.GetTechnicianSchedule(n1);
         }
 
         public BindingSource GetSpecific2(string s2)
         {
-            throw new NotImplementedException();
+            ErrorHandler.DisplayError($"GS2, {s2}");
+            return api.GetClientOverview(s2);
         }
 
-        public BindingSource GetSpecific2(int n1)
+        public BindingSource GetSpecific2(int n2)
         {
-            throw new NotImplementedException();
+            ErrorHandler.DisplayError($"GI2, {n2}");
+            return api.GetJob(n2);
         }
 
         public void Update(IEntity entity)

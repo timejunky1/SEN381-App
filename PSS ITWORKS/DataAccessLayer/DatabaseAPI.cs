@@ -1202,14 +1202,13 @@ namespace PSS_ITWORKS
                 }
                 reader.Close();
                 conn.Close();
+                ErrorHandler.DisplayError("Query successful");
             }
             catch (Exception ex)
             {
                 ErrorHandler.DisplayError(ex);
                 conn.Close();
             }
-
-            MessageBox.Show("GetServiceOverview");
             return bs;
         }
 
@@ -1220,7 +1219,9 @@ namespace PSS_ITWORKS
             try
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("TechnicianPortalProcedures.GetTechnicianSchedule", conn);
+                SqlCommand cmd = new SqlCommand("TechnicalPortalProcedures.GetTechnicianSchedule", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@employeeId", employeeId);
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -1228,14 +1229,40 @@ namespace PSS_ITWORKS
                 }
                 reader.Close();
                 conn.Close();
+                ErrorHandler.DisplayError("Query successful");
             }
             catch (Exception ex)
             {
                 ErrorHandler.DisplayError(ex);
                 conn.Close();
             }
+            return bs;
+        }
 
-            MessageBox.Show("GetTechnicianSchedule");
+        public BindingSource GetJob(int jobId)
+        {
+            SqlDataReader reader;
+            BindingSource bs = new BindingSource();
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("TechnicalPortalProcedures.GetJob", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@jobId", jobId);
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    bs.DataSource = reader;
+                }
+                reader.Close();
+                conn.Close();
+                ErrorHandler.DisplayError("Query successful"+ $" Job Id = {jobId}");
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                conn.Close();
+            }
             return bs;
         }
     }
