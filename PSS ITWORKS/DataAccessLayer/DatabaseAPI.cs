@@ -1080,7 +1080,7 @@ namespace PSS_ITWORKS
             return bs;
         }
 
-        public BindingSource GetServiceOverview(string service)
+        public BindingSource GetServiceOverview(int serviceId)
         {
             SqlDataReader reader;
             BindingSource bs = new BindingSource();
@@ -1089,7 +1089,7 @@ namespace PSS_ITWORKS
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("TechnicalPortalProcedures.GetServiceOverview", conn);
                 cmd.CommandType= CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@service", service);
+                cmd.Parameters.AddWithValue("@serviceId", serviceId);
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -1125,6 +1125,33 @@ namespace PSS_ITWORKS
                 reader.Close();
                 conn.Close();
                 ErrorHandler.DisplayError("Query successful");
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                conn.Close();
+            }
+            return bs;
+        }
+
+        public BindingSource GetJob(int jobId)
+        {
+            SqlDataReader reader;
+            BindingSource bs = new BindingSource();
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("TechnicalPortalProcedures.GetJob", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@jobId", jobId);
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    bs.DataSource = reader;
+                }
+                reader.Close();
+                conn.Close();
+                ErrorHandler.DisplayError("Query successful"+ $" Job Id = {jobId}");
             }
             catch (Exception ex)
             {
