@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Header_pnl = new System.Windows.Forms.Panel();
             this.Logout_btn = new System.Windows.Forms.Button();
             this.PSS_lbl = new System.Windows.Forms.Label();
@@ -147,6 +147,7 @@
             this.Logout_btn.TabIndex = 2;
             this.Logout_btn.Text = "Logout";
             this.Logout_btn.UseVisualStyleBackColor = false;
+            this.Logout_btn.Click += new System.EventHandler(this.Logout_btn_Click);
             // 
             // PSS_lbl
             // 
@@ -216,13 +217,13 @@
             // 
             this.chart2.BorderlineColor = System.Drawing.Color.Black;
             this.chart2.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea7.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea7);
+            chartArea1.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea1);
             this.chart2.Location = new System.Drawing.Point(236, 25);
             this.chart2.Name = "chart2";
-            series7.ChartArea = "ChartArea1";
-            series7.Name = "Series1";
-            this.chart2.Series.Add(series7);
+            series1.ChartArea = "ChartArea1";
+            series1.Name = "Series1";
+            this.chart2.Series.Add(series1);
             this.chart2.Size = new System.Drawing.Size(534, 158);
             this.chart2.TabIndex = 10;
             // 
@@ -296,13 +297,13 @@
             // 
             this.chart1.BorderlineColor = System.Drawing.Color.Black;
             this.chart1.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea8.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea8);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
             this.chart1.Location = new System.Drawing.Point(236, 16);
             this.chart1.Name = "chart1";
-            series8.ChartArea = "ChartArea1";
-            series8.Name = "Series1";
-            this.chart1.Series.Add(series8);
+            series2.ChartArea = "ChartArea1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(534, 158);
             this.chart1.TabIndex = 9;
             // 

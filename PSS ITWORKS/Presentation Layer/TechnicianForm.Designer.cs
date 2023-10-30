@@ -86,7 +86,7 @@
             this.Welcome_lbl.ForeColor = System.Drawing.Color.Black;
             this.Welcome_lbl.Location = new System.Drawing.Point(94, 26);
             this.Welcome_lbl.Name = "Welcome_lbl";
-            this.Welcome_lbl.Size = new System.Drawing.Size(547, 32);
+            this.Welcome_lbl.Size = new System.Drawing.Size(546, 32);
             this.Welcome_lbl.TabIndex = 11;
             this.Welcome_lbl.Text = "Welcome back <Name> <Surname> (Technician )";
             // 

@@ -15,6 +15,7 @@ namespace PSS_ITWORKS.Presentation_Layer
 {
     public partial class ContractManagerForm : Form
     {
+        Dashboard dashbord;
         string[] months = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Des" };
         StrategyContextManager context;
         BindingSource bs;
@@ -22,8 +23,9 @@ namespace PSS_ITWORKS.Presentation_Layer
         int contractId;
         string availability = "Available";
         string availabilityC = "Available";
-        public ContractManagerForm()
+        public ContractManagerForm(Dashboard dashbord)
         {
+            this.dashbord = dashbord;
             InitializeComponent();
             chart1.ChartAreas[0].AxisY.Interval = 1;
             chart1.ChartAreas[0].AxisX.Interval = 1;
@@ -326,6 +328,12 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void deleteC_btn_Click(object sender, EventArgs e)
         {
             context.Delete(contractId);
+        }
+
+        private void Logout_btn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            dashbord.Show();
         }
     }
 }

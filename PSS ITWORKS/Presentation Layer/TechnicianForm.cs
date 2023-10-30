@@ -16,12 +16,13 @@ namespace PSS_ITWORKS.Presentation_Layer
     public partial class Technician : Form
     {
         StrategyContextManager context;
+        Dashboard dashboard;
         int technicianId = 2;
         int jobId = 0;
-        public Technician()
+        public Technician(Dashboard dashboard)
         {
             InitializeComponent();
-            
+            this.dashboard = dashboard;
         }
 
         private void Technician_Load(object sender, EventArgs e)
@@ -155,6 +156,12 @@ namespace PSS_ITWORKS.Presentation_Layer
                 jobNotes_rtb.Text = dr[6].ToString();
             }
             Technical_tc.SelectedIndex = 2;
+        }
+
+        private void Logout_btn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            dashboard.Show();
         }
     }
 }
