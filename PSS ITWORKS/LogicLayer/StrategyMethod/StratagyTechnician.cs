@@ -58,10 +58,10 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
             return api.GetClientOverview(s2);
         }
 
-        public BindingSource GetSpecific2(int n1)
+        public BindingSource GetSpecific2(int n2)
         {
-            ErrorHandler.DisplayError($"GI2, {n1}");
-            return api.GetJob(n1);
+            ErrorHandler.DisplayError($"GI2, {n2}");
+            return api.GetJob(n2);
         }
 
         public void Update(IEntity entity)

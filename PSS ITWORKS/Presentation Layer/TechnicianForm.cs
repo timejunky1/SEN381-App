@@ -17,7 +17,7 @@ namespace PSS_ITWORKS.Presentation_Layer
     {
         StrategyContextManager context;
         int technicianId = 2;
-        int jobId = 1;
+        int jobId = 0;
         public Technician()
         {
             InitializeComponent();
@@ -28,6 +28,8 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             context = new StrategyContextManager(new StratagyTechnician());
             context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+            BindingSource bs = context.GetSpecific2(jobId);
+            LoadDetails(bs);
             jobID_txt.Text = "0";
             status_cbx.Items.Clear();
             status_cbx.Items.Add("Finished");
