@@ -77,7 +77,6 @@ namespace PSS_ITWORKS
             string username = UserName_txt.Text;
             string password = Password_txt.Text;
 
-            // Call the method in LoginController to handle the login
             loginController.HandleLoginButtonClick(username, password, this, WelcomeLabel_txt);
 
 

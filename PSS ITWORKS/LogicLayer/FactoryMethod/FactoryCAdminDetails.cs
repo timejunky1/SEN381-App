@@ -12,13 +12,13 @@ namespace PSS_ITWORKS
         {
             this.loginController = loginController;
         }
-        public void ShowUserInterface(LogIn loginForm)
+        public void ShowUserInterface(Dashboard dashboard)
         {
             string name = loginController.GetUserInfo().Name;
             string surname = loginController.GetUserInfo().Surname;
-            AdminForm adminForm = new AdminForm();
+            AdminForm adminForm = new AdminForm(dashboard);
             adminForm.Show();
-            loginForm.Close();
+            dashboard.Hide();
         }
 
     }

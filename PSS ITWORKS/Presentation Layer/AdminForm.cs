@@ -16,7 +16,8 @@ namespace PSS_ITWORKS.Presentation_Layer
         LoginController loginController;
         protected StrategyContextManager cm;
         int UserId;
-        public AdminForm()
+        private Dashboard dashboard;
+        public AdminForm(Dashboard dashboard)
         {
             InitializeComponent();
             role_cmb.Items.Clear();
@@ -30,6 +31,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             role_cmb.Items.Add("Client");
             clientDetails_gb.Visible = false;
             clientDetails_gb.Enabled = false;
+            this.dashboard = dashboard;
         }
 
         private void AdminForm_Load(object sender, EventArgs e)
@@ -94,6 +96,13 @@ namespace PSS_ITWORKS.Presentation_Layer
                 clientDetails_gb.Visible = false;
                 clientDetails_gb.Enabled = false;
             }
+        }
+
+        private void Logout_btn_Click(object sender, EventArgs e)
+        {
+            
+            this.Close();
+            dashboard.Show();
         }
     }
 }

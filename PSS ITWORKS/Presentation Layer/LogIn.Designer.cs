@@ -111,6 +111,7 @@
             this.Password_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Password_txt.Location = new System.Drawing.Point(428, 264);
             this.Password_txt.Name = "Password_txt";
+            this.Password_txt.PasswordChar = '*';
             this.Password_txt.Size = new System.Drawing.Size(232, 29);
             this.Password_txt.TabIndex = 6;
             this.Password_txt.TextChanged += new System.EventHandler(this.Password_txt_TextChanged);
