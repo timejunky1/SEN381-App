@@ -73,6 +73,8 @@
             this.ServiceType_lbl = new System.Windows.Forms.Label();
             this.ServiceAvailability_lbl = new System.Windows.Forms.Label();
             this.ContractConfiguration_tp = new System.Windows.Forms.TabPage();
+            this.remove_btn = new System.Windows.Forms.Button();
+            this.add_btn = new System.Windows.Forms.Button();
             this.servicesC_cbx = new System.Windows.Forms.ComboBox();
             this.deleteC_btn = new System.Windows.Forms.Button();
             this.contract_services_lbl = new System.Windows.Forms.Label();
@@ -95,8 +97,6 @@
             this.contractType_cbx = new System.Windows.Forms.ComboBox();
             this.contract_Type_lbl = new System.Windows.Forms.Label();
             this.contractAvailability_lbl = new System.Windows.Forms.Label();
-            this.add_btn = new System.Windows.Forms.Button();
-            this.remove_btn = new System.Windows.Forms.Button();
             this.Header_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PSS_img)).BeginInit();
             this.ContractManagement_tc.SuspendLayout();
@@ -479,12 +479,7 @@
             // 
             this.duration_num.Location = new System.Drawing.Point(20, 218);
             this.duration_num.Maximum = new decimal(new int[] {
-            120,
-            0,
-            0,
-            0});
-            this.duration_num.Minimum = new decimal(new int[] {
-            30,
+            1000,
             0,
             0,
             0});
@@ -506,12 +501,7 @@
             0});
             this.price_num.Location = new System.Drawing.Point(20, 141);
             this.price_num.Maximum = new decimal(new int[] {
-            6000,
-            0,
-            0,
-            0});
-            this.price_num.Minimum = new decimal(new int[] {
-            1000,
+            10000,
             0,
             0,
             0});
@@ -674,6 +664,30 @@
             this.ContractConfiguration_tp.Text = "Contract Configuration";
             this.ContractConfiguration_tp.UseVisualStyleBackColor = true;
             // 
+            // remove_btn
+            // 
+            this.remove_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(73)))), ((int)(((byte)(73)))));
+            this.remove_btn.ForeColor = System.Drawing.Color.White;
+            this.remove_btn.Location = new System.Drawing.Point(338, 325);
+            this.remove_btn.Margin = new System.Windows.Forms.Padding(2);
+            this.remove_btn.Name = "remove_btn";
+            this.remove_btn.Size = new System.Drawing.Size(88, 35);
+            this.remove_btn.TabIndex = 29;
+            this.remove_btn.Text = "Remove";
+            this.remove_btn.UseVisualStyleBackColor = false;
+            // 
+            // add_btn
+            // 
+            this.add_btn.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.add_btn.ForeColor = System.Drawing.Color.White;
+            this.add_btn.Location = new System.Drawing.Point(232, 325);
+            this.add_btn.Margin = new System.Windows.Forms.Padding(2);
+            this.add_btn.Name = "add_btn";
+            this.add_btn.Size = new System.Drawing.Size(93, 35);
+            this.add_btn.TabIndex = 28;
+            this.add_btn.Text = "Add";
+            this.add_btn.UseVisualStyleBackColor = false;
+            // 
             // servicesC_cbx
             // 
             this.servicesC_cbx.FormattingEnabled = true;
@@ -804,12 +818,7 @@
             // 
             this.durationC_num.Location = new System.Drawing.Point(20, 218);
             this.durationC_num.Maximum = new decimal(new int[] {
-            120,
-            0,
-            0,
-            0});
-            this.durationC_num.Minimum = new decimal(new int[] {
-            30,
+            12,
             0,
             0,
             0});
@@ -817,7 +826,7 @@
             this.durationC_num.Size = new System.Drawing.Size(158, 27);
             this.durationC_num.TabIndex = 18;
             this.durationC_num.Value = new decimal(new int[] {
-            30,
+            12,
             0,
             0,
             0});
@@ -870,9 +879,9 @@
             this.durationC_lbl.Location = new System.Drawing.Point(16, 186);
             this.durationC_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.durationC_lbl.Name = "durationC_lbl";
-            this.durationC_lbl.Size = new System.Drawing.Size(106, 20);
+            this.durationC_lbl.Size = new System.Drawing.Size(131, 20);
             this.durationC_lbl.TabIndex = 12;
-            this.durationC_lbl.Text = "Duration(min)";
+            this.durationC_lbl.Text = "Duration(months)";
             // 
             // sla_lbl
             // 
@@ -945,30 +954,6 @@
             this.contractAvailability_lbl.Size = new System.Drawing.Size(147, 20);
             this.contractAvailability_lbl.TabIndex = 12;
             this.contractAvailability_lbl.Text = "Contract Availability";
-            // 
-            // add_btn
-            // 
-            this.add_btn.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.add_btn.ForeColor = System.Drawing.Color.White;
-            this.add_btn.Location = new System.Drawing.Point(232, 325);
-            this.add_btn.Margin = new System.Windows.Forms.Padding(2);
-            this.add_btn.Name = "add_btn";
-            this.add_btn.Size = new System.Drawing.Size(93, 35);
-            this.add_btn.TabIndex = 28;
-            this.add_btn.Text = "Add";
-            this.add_btn.UseVisualStyleBackColor = false;
-            // 
-            // remove_btn
-            // 
-            this.remove_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(73)))), ((int)(((byte)(73)))));
-            this.remove_btn.ForeColor = System.Drawing.Color.White;
-            this.remove_btn.Location = new System.Drawing.Point(338, 325);
-            this.remove_btn.Margin = new System.Windows.Forms.Padding(2);
-            this.remove_btn.Name = "remove_btn";
-            this.remove_btn.Size = new System.Drawing.Size(88, 35);
-            this.remove_btn.TabIndex = 29;
-            this.remove_btn.Text = "Remove";
-            this.remove_btn.UseVisualStyleBackColor = false;
             // 
             // ContractManagerForm
             // 

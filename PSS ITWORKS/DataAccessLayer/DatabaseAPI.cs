@@ -218,7 +218,6 @@ namespace PSS_ITWORKS
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("ContractPortalProcedures.GetContracts", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -242,7 +241,7 @@ namespace PSS_ITWORKS
             try
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.GetContractStats", conn);
+                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.GetContract", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@contractId", contractId);
                 reader = cmd.ExecuteReader();
@@ -418,7 +417,7 @@ namespace PSS_ITWORKS
             try
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.GetContractStats", conn);
+                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.GetContractServices", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@contractId", contractId);
                 reader = cmd.ExecuteReader();
@@ -447,6 +446,33 @@ namespace PSS_ITWORKS
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("ContractPortalProcedures.GetServices", conn);
+                reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    bs.DataSource = reader;
+                }
+                reader.Close();
+                conn.Close();
+                ErrorHandler.DisplayError("Quary Successfully executed");
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+                conn.Close();
+            }
+            return bs;
+        }
+
+        public BindingSource GetService(int serviceId)
+        {
+            SqlDataReader reader;
+            BindingSource bs = new BindingSource();
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.GetService", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@serviceId", serviceId);
                 reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {

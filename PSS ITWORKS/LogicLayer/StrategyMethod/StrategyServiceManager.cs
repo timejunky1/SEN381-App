@@ -50,7 +50,7 @@ namespace PSS_ITWORKS
 
         public BindingSource Get(int ID)
         {
-            throw new System.NotImplementedException();
+            return api.GetService(ID);
         }
 
         public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")

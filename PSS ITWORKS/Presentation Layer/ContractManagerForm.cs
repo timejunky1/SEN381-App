@@ -58,24 +58,45 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             if (Services_dgv.SelectedRows.Count > 0)
             {
-                serviceId = int.Parse(Services_dgv.SelectedRows[0].Cells[0].Value.ToString());
-                title_txt.Text = Services_dgv.SelectedRows[0].Cells[1].Value.ToString(); ;
-                ServiceType_cbx.Text = Services_dgv.SelectedRows[0].Cells[1].Value.ToString();
-                duration_num.Value = int.Parse(Services_dgv.SelectedRows[0].Cells[2].Value.ToString());
-                priority_num.Value = int.Parse(Services_dgv.SelectedRows[0].Cells[3].Value.ToString());
-                //price_num.Value = int.Parse(Services_dgv.SelectedRows[0].Cells[4].Value.ToString());
-                setAvailability(Services_dgv.SelectedRows[0].Cells[6].Value.ToString());
-                ContractCount_txt.Text = Services_dgv.SelectedRows[0].Cells[6].Value.ToString();
+                BindingSource bs = context.Get(int.Parse(Services_dgv.SelectedRows[0].Cells[0].Value.ToString()));
+                foreach (IDataRecord dr in bs.List)
+                {
+                    ServiceType_cbx.Text = dr[1].ToString();
+                    title_txt.Text = dr[1].ToString();
+                    duration_num.Value = int.Parse(dr[2].ToString());
+                    priority_num.Value = int.Parse(dr[3].ToString());
+                    try
+                    {
+                        price_num.Value = int.Parse(dr[4].ToString());
+                    }
+                    catch
+                    {
+                        priceC_num.Value = 0;
+                    }
+                    setAvailability(dr[5].ToString());
+                    ContractCount_txt.Text = dr[6].ToString();
+                }
             }
             else
             {
-                ServiceType_cbx.Text = Services_dgv.Rows[0].Cells[1].Value.ToString();
-                title_txt.Text = Services_dgv.Rows[0].Cells[1].Value.ToString();
-                duration_num.Value = int.Parse(Services_dgv.Rows[0].Cells[2].Value.ToString());
-                priority_num.Value = int.Parse(Services_dgv.Rows[0].Cells[3].Value.ToString());
-                //price_num.Value = int.Parse(Services_dgv.Rows[0].Cells[4].Value.ToString());
-                setAvailability(Services_dgv.Rows[0].Cells[6].Value.ToString());
-                ContractCount_txt.Text = Services_dgv.Rows[0].Cells[6].Value.ToString();
+                BindingSource bs = context.Get(serviceId);
+                foreach(IDataRecord dr in bs.List)
+                {
+                    ServiceType_cbx.Text = dr[1].ToString();
+                    title_txt.Text = dr[1].ToString();
+                    duration_num.Value = int.Parse(dr[2].ToString());
+                    priority_num.Value = int.Parse(dr[3].ToString());
+                    try
+                    {
+                        price_num.Value = int.Parse(dr[4].ToString());
+                    }
+                    catch
+                    {
+                        priceC_num.Value = 0;
+                    }
+                    setAvailability(dr[5].ToString());
+                    ContractCount_txt.Text = dr[6].ToString();
+                }
                 serviceId = 0;
             }
         }
@@ -90,7 +111,15 @@ namespace PSS_ITWORKS.Presentation_Layer
                     sla_txt.Text = dr[1].ToString();
                     durationC_num.Value = int.Parse(dr[2].ToString());
                     priorityC_num.Value = int.Parse(dr[3].ToString());
-                    priceC_num.Value = int.Parse(dr[4].ToString());
+                    try
+                    {
+                        priceC_num.Value = int.Parse(dr[4].ToString());
+                    }
+                    catch
+                    {
+                        priceC_num.Value = 0;
+                    }
+                    MessageBox.Show(dr[4].ToString());
                     setAvailability(dr[5].ToString());
                     clientCount_txt.Text = dr[6].ToString();
                 }
