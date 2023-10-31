@@ -14,7 +14,7 @@ namespace PSS_ITWORKS.LogicLayer
         private DateTime timeEnd;
         private string status;
         private string notes;
-        List<EntityUser> employees;
+        List<EntityEmployee> employees;
         List<EntityCall> calls;
 
         public EntityJob(int id, int clientId, int serviceId, DateTime timeBegin, DateTime timeEnd, string status, string notes)
@@ -28,7 +28,7 @@ namespace PSS_ITWORKS.LogicLayer
             this.notes = notes;
         }
 
-        public EntityJob(int id, int clientId, int serviceId, DateTime timeBegin, DateTime timeEnd, string status, string notes, List<EntityUser> employees)
+        public EntityJob(int id, int clientId, int serviceId, DateTime timeBegin, DateTime timeEnd, string status, string notes, List<EntityEmployee> employees)
         {
             Id = id;
             this.clientId = clientId;
@@ -89,7 +89,7 @@ namespace PSS_ITWORKS.LogicLayer
             return notes;
         }
 
-        public List<EntityUser> GetEmployees()
+        public List<EntityEmployee> GetEmployees()
         {
             return employees;
         }

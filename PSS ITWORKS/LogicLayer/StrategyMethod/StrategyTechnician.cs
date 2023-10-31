@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 {
-    internal class StratagyTechnician : IStrategyAManagement
+    internal class StrategyTechnician : IStrategyAManagement
     {
         DatabaseAPI api = new DatabaseAPI();
 

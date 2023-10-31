@@ -68,7 +68,8 @@
   <ItemGroup>
     <Compile Include="DataAccessLayer\DatabaseAPI.cs" />
     <Compile Include="LogicLayer\EntityMethod\EntityCall.cs" />
-    <Compile Include="LogicLayer\EntityMethod\EntityUser.cs" />
+    <Compile Include="LogicLayer\EntityMethod\EntityClient.cs" />
+    <Compile Include="LogicLayer\EntityMethod\EntityEmployee.cs" />
     <Compile Include="LogicLayer\EntityMethod\EntityContract.cs" />
     <Compile Include="LogicLayer\EntityMethod\EntityJob.cs" />
     <Compile Include="LogicLayer\EntityMethod\EntityService.cs" />
@@ -86,7 +87,7 @@
     <Compile Include="LogicLayer\FactoryMethod\FactoryCCallEmployeeDetails.cs" />
     <Compile Include="LogicLayer\FactoryMethod\FactoryCServiceManagerDetails.cs" />
     <Compile Include="LogicLayer\FactoryMethod\FactoryIUser.cs" />
-    <Compile Include="LogicLayer\StrategyMethod\StratagyTechnician.cs" />
+    <Compile Include="LogicLayer\StrategyMethod\StrategyTechnician.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyClient.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyCallManagement.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyClientManager.cs" />

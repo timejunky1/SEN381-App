@@ -27,7 +27,7 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void Technician_Load(object sender, EventArgs e)
         {
-            context = new StrategyContextManager(new StratagyTechnician());
+            context = new StrategyContextManager(new StrategyTechnician());
             context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
             BindingSource bs = context.GetSpecific2(jobId);
             LoadDetails(bs);

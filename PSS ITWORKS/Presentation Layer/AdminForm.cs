@@ -46,7 +46,7 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void addUser_btn_Click(object sender, EventArgs e)
         {
-            EntityUser user = null;
+            EntityEmployee user = null;
             try
             {
                 user = new EntityUser(UserId, company_txt.Text, Name_txt.Text, Surname_txt.Text, 1,
@@ -69,7 +69,7 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void updateUser_btn_Click(object sender, EventArgs e)
         {
-            EntityUser user = null;
+            EntityEmployee user = null;
             try
             {
                 user = new EntityUser(UserId, company_txt.Text, Name_txt.Text, Surname_txt.Text, 1,
