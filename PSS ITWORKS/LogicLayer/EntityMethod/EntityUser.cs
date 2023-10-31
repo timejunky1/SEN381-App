@@ -38,6 +38,15 @@ namespace PSS_ITWORKS.LogicLayer
             this.contractInitiationDate = contractInitiationDate;
             this.role = role;
         }
+        public EntityUser(int id, string name, string surname, string phone,  string email, string role)
+        {
+            this.id = id;
+            this.name = name;
+            this.surname = surname;
+            this.phone = phone;
+            this.email = email;
+            this.role = role;
+        }
 
         public int GetID()
         {

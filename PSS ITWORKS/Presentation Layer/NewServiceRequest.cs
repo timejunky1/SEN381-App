@@ -10,13 +10,11 @@ using System.Windows.Forms;
 
 namespace PSS_ITWORKS.Presentation_Layer
 {
-    public partial class ClientForm : Form
+    public partial class ServiceRequestForm : Form
     {
-        public ClientForm()
+        public ServiceRequestForm()
         {
             InitializeComponent();
         }
-
-
     }
 }

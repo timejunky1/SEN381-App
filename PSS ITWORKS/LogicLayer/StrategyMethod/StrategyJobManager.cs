@@ -1,13 +1,16 @@
 ﻿// StrategyJobManager.cs
 using PSS_ITWORKS.LogicLayer;
+using PSS_ITWORKS.ServiceLayer;
 using System;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PSS_ITWORKS
 {
     class StrategyJobManager : IStrategyAManagement
     {
-        DatabaseAPI api;
+        DatabaseAPI api = new DatabaseAPI();
+        SMSAPI sms = new SMSAPI();
         public BindingSource Get()
         {
             return api.GetJobSchedule();
@@ -18,15 +21,23 @@ namespace PSS_ITWORKS
             try
             {
                 EntityJob job = entity as EntityJob;
-                api.AssignJob(job);
-            }catch(Exception ex)
+                foreach(EntityUser user in job.GetEmployees())
+                {
+                    api.AssignJob(user.GetID(), job.GetId());
+                    string number = "+27";
+                    number = number + user.GetPhone();
+                    ErrorHandler.DisplayError(number);
+                    //sms.SendSMS("This is an example SMS from a Twilio account through a C# application", number);
+                }
+            }
+            catch(Exception ex)
             {
                 ErrorHandler.DisplayError(ex);
             }
             
         }
 
-        public void Delete(int ID)
+        public void Delete(int ID, string s = "")
         {
             MessageBox.Show("Delete something");
         }
@@ -36,7 +47,11 @@ namespace PSS_ITWORKS
             try
             {
                 EntityJob job = entity as EntityJob;
-                api.UpdateAssignedJob(job);
+                api.DeleteEmployeeJobRef(job.GetId());
+                foreach (EntityUser employee in job.GetEmployees())
+                {
+                    api.AddEmployeeJobRef(job.GetId(), employee.GetID());
+                }
             }
             catch (Exception ex)
             {
@@ -46,7 +61,7 @@ namespace PSS_ITWORKS
 
         public void Connect(string myString)
         {
-            MessageBox.Show("Connect to or something");
+            api.SetConnection(myString);
         }
 
         public BindingSource Get(int ID)
@@ -56,29 +71,38 @@ namespace PSS_ITWORKS
 
         public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
         {
-            if (!string.IsNullOrEmpty(s1))
+            BindingSource bs = new BindingSource();
+            bs = api.GetUnasignedJobs();
+            return bs;
+        }
+        public BindingSource GetSpecific1(string s1)
+        {
+            BindingSource bs = new BindingSource();
+            try
             {
-                try
-                {
-                    return api.GetJobsAssignedToEmployeeName(s1);
-                }
-                catch (Exception ex)
-                {
-                    ErrorHandler.DisplayError(ex);
-                }
+                DateTime date = DateTime.Parse(s1);
+                return api.GetJobsOnDate(date);
             }
-            if (!string.IsNullOrEmpty(s2))
+            catch (Exception ex)
             {
-                try
-                {
-                    DateTime date = DateTime.Parse(s1);
-                    return api.UnassignedJobsOnDate(date);
-                }catch(Exception ex)
-                {
-                    ErrorHandler.DisplayError(ex);
-                }
+                ErrorHandler.DisplayError(ex);
+                return null;
             }
-            throw new System.NotImplementedException();
+        }
+
+        public BindingSource GetSpecific2(string s2)
+        {
+            return api.GetJobsAssignedToEmployeeName(s2);
+        }
+
+        public BindingSource GetSpecific1(int n1)
+        {
+            throw new NotSupportedException();
+        }
+
+        public BindingSource GetSpecific2(int n1)
+        {
+            throw new NotImplementedException();
         }
     }
 }

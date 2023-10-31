@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 {
-    internal class StrategyClient : IStrategyAManagement
+    internal class StratagyTechnician : IStrategyAManagement
     {
         DatabaseAPI api = new DatabaseAPI();
         public void Connect(string myString)
@@ -17,15 +17,7 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 
         public void Create(IEntity entity)
         {
-            try
-            {
-                EntityJob job = entity as EntityJob;
-                api.CreateServiceRequest(job);
-            }
-            catch(Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-            }
+            throw new NotImplementedException();
         }
 
         public void Delete(int ID, string s = "")
@@ -35,18 +27,18 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 
         public BindingSource Get()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public BindingSource Get(int ID)
         {
-            BindingSource bs = api.GetClientWithDetails(ID);
-            return bs;
+            return api.GetTechnicianTaskList(ID);
         }
 
         public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
         {
-            throw new NotImplementedException();
+            return api.GetServiceOverview(id1);
+            return api.GetClientDetails(id1);
         }
 
         public BindingSource GetSpecific1(string s1)
@@ -71,7 +63,15 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 
         public void Update(IEntity entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                EntityJob job = entity as EntityJob;
+                api.UpdateJobNotesAndStatus(job);
+            }
+            catch(Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+            }
         }
     }
 }

@@ -10,11 +10,31 @@ using System.Windows.Forms;
 
 namespace PSS_ITWORKS.Presentation_Layer
 {
-    public partial class TechnicianForm : Form
+    public partial class Technician : Form
     {
-        public TechnicianForm()
+        public Technician()
         {
             InitializeComponent();
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

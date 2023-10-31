@@ -7,7 +7,7 @@ namespace PSS_ITWORKS
 {
     class StrategyServiceManager : IStrategyAManagement
     {
-        DatabaseAPI api;
+        DatabaseAPI api = new DatabaseAPI();
         public BindingSource Get()
         {
             return api.GetServices();
@@ -25,7 +25,7 @@ namespace PSS_ITWORKS
             }
         }
 
-        public void Delete(int ID)
+        public void Delete(int ID, string s = "")
         {
             api.DeleteService(ID);
         }
@@ -56,6 +56,26 @@ namespace PSS_ITWORKS
         public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
         {
             throw new System.NotImplementedException();
+        }
+
+        public BindingSource GetSpecific1(string s1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific2(string s2)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific1(int n1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific2(int n1)
+        {
+            throw new NotImplementedException();
         }
     }
 }

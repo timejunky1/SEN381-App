@@ -2,125 +2,85 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
+using System.Xml.Linq;
 
 public class LoginController
 {
+    private DatabaseAPI api = new DatabaseAPI();
     private string connectionString = @"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True";
+    UserInfo userInfo;
+
+    // Property to access the Name
+    public class UserInfo
+    {
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Role { get; set; }
+        // Other properties if needed
+    }
+    public void Connect()
+    {
+        api.SetConnection(connectionString);
+    }
+
+    public void HandleLoginButtonClick(string username, string password, LogIn loginForm, Label welcomeLabel)
+    {
+        // Check if username and password are not empty
+        if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+        {
+            // Authenticate the user using the LoginController
+            bool isAuthenticated = AuthenticateUser(username, password);
+
+            if (isAuthenticated)
+            {
+                // User is authenticated, you can proceed to fetch name and surname and role
+
+                // Open the correct portal based on the user's role using a Factory
+                FactoryAMainFactory factory = new FactoryUserFactory(this);
+                FactoryIUser userPortal = factory.CreateUser(userInfo.Role);
+                userPortal.ShowUserInterface(loginForm);
+
+                // Display a welcome message
+                welcomeLabel.Text = $"Welcome, {userInfo.Name} {userInfo.Surname}";
+
+                // Close the login form (you can uncomment this line if needed)
+                // loginForm.Close();
+            }
+            else
+            {
+                // Authentication failed
+                MessageBox.Show("Invalid username or password. Please try again.");
+            }
+        }
+        else
+        {
+            // Username or password is empty
+            MessageBox.Show("Username and password are required.");
+        }
+    }
 
     public bool AuthenticateUser(string username, string password)
     {
-        using (SqlConnection connection = new SqlConnection(connectionString))
-        {
-            connection.Open();
+        userInfo = api.GetUserInformation(username);
+        MessageBox.Show(userInfo.Name);
+        return api.AuthenticateUser(username, password);
+    }
+    //this stored procedure was not implemented yet
 
-            using (SqlCommand command = new SqlCommand("LogInProcedures.AuthenticateUser", connection))
-            {
-                command.CommandType = CommandType.StoredProcedure;
-
-                // Set the parameters for the stored procedure
-                command.Parameters.AddWithValue("@Username", username);
-                command.Parameters.AddWithValue("@Password", HashPassword(password));
-                command.Parameters.AddWithValue("@UserRole", null);
-
-                // Output parameter to capture the result
-                var result = new SqlParameter
-                {
-                    ParameterName = "@Result",
-                    SqlDbType = SqlDbType.Int,
-                    Direction = ParameterDirection.Output
-                };
-
-                command.Parameters.Add(result);
-
-                // Execute the stored procedure
-                command.ExecuteNonQuery();
-
-                // Check the result to authenticate the user
-                int authenticationResult = Convert.ToInt32(result.Value);
-
-                return authenticationResult == 1;
-            }
-        }
+    public UserInfo GetUserInfo()
+    {
+        return userInfo;
     }
 
     public string GetUserRole(string username)
     {
-        using (SqlConnection connection = new SqlConnection(connectionString))
-        {
-            connection.Open();
-
-            using (SqlCommand command = new SqlCommand("sp_GetUserRole", connection))
-            {
-                command.CommandType = CommandType.StoredProcedure;
-
-                // Set the parameters for the stored procedure
-                command.Parameters.AddWithValue("@Username", username);
-
-                // Output parameter to capture the user's role
-                var roleParam = new SqlParameter
-                {
-                    ParameterName = "@Role",
-                    SqlDbType = SqlDbType.VarChar,
-                    Size = 30,
-                    Direction = ParameterDirection.Output
-                };
-
-                command.Parameters.Add(roleParam);
-
-                // Execute the stored procedure
-                command.ExecuteNonQuery();
-
-                // Retrieve the role from the output parameter
-                string role = roleParam.Value.ToString();
-
-                return role;
-            }
-        }
+        return api.GetUserRole(username);
     }
 
     public string FetchNameAndSurname(string username)
     {
-        using (SqlConnection connection = new SqlConnection(connectionString))
-        {
-            connection.Open();
-
-            using (SqlCommand command = new SqlCommand("sp_FetchNameAndSurname", connection))
-            {
-                command.CommandType = CommandType.StoredProcedure;
-
-                // Set the parameters for the stored procedure
-                command.Parameters.AddWithValue("@Username", username);
-
-                // Output parameters to capture the name and surname
-                var nameParam = new SqlParameter
-                {
-                    ParameterName = "@Name",
-                    SqlDbType = SqlDbType.VarChar,
-                    Size = 50,
-                    Direction = ParameterDirection.Output
-                };
-
-                var surnameParam = new SqlParameter
-                {
-                    ParameterName = "@Surname",
-                    SqlDbType = SqlDbType.VarChar,
-                    Size = 50,
-                    Direction = ParameterDirection.Output
-                };
-
-                command.Parameters.Add(nameParam);
-                command.Parameters.Add(surnameParam);
-
-                // Execute the stored procedure
-                command.ExecuteNonQuery();
-
-                // Retrieve the name and surname from the output parameters
-                string name = nameParam.Value.ToString();
-                string surname = surnameParam.Value.ToString();
-
-                return $"{name} {surname}";
-            }
-        }
+        return api.FetchNameAndSurname(username);
     }
 
 
@@ -129,9 +89,16 @@ public class LoginController
     {
         // Implement password hashing logic here (e.g., SHA-256)
         // Return the hashed password
-       // string salt = BCrypt.Net.BCrypt.GenerateSalt(12); // 12 is the work factor (adjust as needed)
+        // string salt = BCrypt.Net.BCrypt.GenerateSalt(12); // 12 is the work factor (adjust as needed)
         //string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
         string hashedPassword = password;
         return hashedPassword;
     }
+
+    public void SetPassword(string username, string password, string newPassword)
+    {
+        api.SetPassword(username, password, newPassword);
+    }
 }
+
+

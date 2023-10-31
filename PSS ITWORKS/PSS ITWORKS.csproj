@@ -36,8 +36,21 @@
     <Reference Include="BCrypt.Net, Version=0.1.4141.31969, Culture=neutral, PublicKeyToken=f3bc8f8c31beeb49, processorArchitecture=MSIL">
       <HintPath>packages\BCrypt.Net.0.1.0\lib\net35\BCrypt.Net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=1.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IdentityModel.Logging.1.1.2\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IdentityModel.Tokens.5.1.2\lib\net451\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\System.IdentityModel.Tokens.Jwt.5.1.2\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +60,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Twilio, Version=6.14.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Twilio.6.14.1\lib\net451\Twilio.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccessLayer\DatabaseAPI.cs" />
@@ -64,12 +80,12 @@
     <Compile Include="LogicLayer\StrategyMethod\IStrategyManagement.cs" />
     <Compile Include="LogicLayer\LoginController.cs" />
     <Compile Include="LogicLayer\Scheduler.cs" />
-    <Compile Include="LogicLayer\ServiceRequest.cs" />
     <Compile Include="LogicLayer\FactoryMethod\FactoryAMainFactory.cs" />
     <Compile Include="LogicLayer\FactoryMethod\FactoryCAdminDetails.cs" />
     <Compile Include="LogicLayer\FactoryMethod\FactoryCCallEmployeeDetails.cs" />
     <Compile Include="LogicLayer\FactoryMethod\FactoryCServiceManagerDetails.cs" />
     <Compile Include="LogicLayer\FactoryMethod\FactoryIUser.cs" />
+    <Compile Include="LogicLayer\StrategyMethod\StratagyTechnician.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyClient.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyCallManagement.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyClientManager.cs" />
@@ -78,6 +94,12 @@
     <Compile Include="LogicLayer\StrategyMethod\StrategyJobManager.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyServiceManager.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyUserManager.cs" />
+    <Compile Include="Presentation Layer\AssignmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Layer\AssignmentForm.Designer.cs">
+      <DependentUpon>AssignmentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation Layer\ClientForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +129,18 @@
     </Compile>
     <Compile Include="Presentation Layer\ContractManagerForm.Designer.cs">
       <DependentUpon>ContractManagerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation Layer\ModifyJobs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Layer\ModifyJobs.Designer.cs">
+      <DependentUpon>ModifyJobs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation Layer\NewServiceRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Layer\NewServiceRequest.Designer.cs">
+      <DependentUpon>NewServiceRequest.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation Layer\Testing.cs">
       <SubType>Form</SubType>
@@ -140,8 +174,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PSSDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ServiceLayer\SMSAPI.cs" />
     <EmbeddedResource Include="Presentation Layer\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Layer\AssignmentForm.resx">
+      <DependentUpon>AssignmentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\CallForm.resx">
       <DependentUpon>CallForm.cs</DependentUpon>
@@ -149,8 +187,17 @@
     <EmbeddedResource Include="Presentation Layer\ContractManagerForm.resx">
       <DependentUpon>ContractManagerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Layer\ModifyJobs.resx">
+      <DependentUpon>ModifyJobs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Layer\NewServiceRequest.resx">
+      <DependentUpon>NewServiceRequest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\LogIn.resx">
       <DependentUpon>LogIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Layer\ServiceManagerForm.resx">
+      <DependentUpon>ServiceManagerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\Testing.resx">
       <DependentUpon>Testing.cs</DependentUpon>

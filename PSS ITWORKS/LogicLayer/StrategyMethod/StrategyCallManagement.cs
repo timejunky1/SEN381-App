@@ -8,7 +8,7 @@ namespace PSS_ITWORKS
 {
     public class StrategyCallManagement : IStrategyAManagement
     {
-        DatabaseAPI api;
+        DatabaseAPI api = new DatabaseAPI();
         public BindingSource Get()
         {
             MessageBox.Show("Get something");
@@ -28,7 +28,7 @@ namespace PSS_ITWORKS
             }
         }
 
-        public void Delete(int ID)
+        public void Delete(int ID, string s = "")
         {
             MessageBox.Show("Delete something");
         }
@@ -40,7 +40,7 @@ namespace PSS_ITWORKS
 
         public void Connect(string myString)
         {
-            MessageBox.Show("Connect to or something");
+            api.SetConnection(myString);
         }
 
         public BindingSource Get(int ID)
@@ -51,6 +51,26 @@ namespace PSS_ITWORKS
         public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
         {
             return api.GetClientOverview(id1);
+        }
+
+        public BindingSource GetSpecific1(string s1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific2(string s2)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific1(int n1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific2(int n1)
+        {
+            throw new NotImplementedException();
         }
     }
 }

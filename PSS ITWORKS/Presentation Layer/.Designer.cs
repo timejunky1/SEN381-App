@@ -1,6 +1,6 @@
 ﻿namespace PSS_ITWORKS.Presentation_Layer
 {
-    partial class _
+    partial class ClientForm
     {
         /// <summary>
         /// Required designer variable.
