@@ -10,61 +10,28 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
     internal class StrategyClient : IStrategyAManagement
     {
         DatabaseAPI api = new DatabaseAPI();
+
         public void Connect(string myString)
         {
-            api.SetConnection(myString);
+            throw new NotImplementedException();
         }
 
         public void Create(IEntity entity)
         {
-            try
-            {
-                EntityJob job = entity as EntityJob;
-                api.CreateServiceRequest(job);
-            }
-            catch(Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-            }
+            throw new NotImplementedException();
         }
 
-        public void Delete(int ID, string s = "")
+        public void Delete(int ID)
         {
             throw new NotImplementedException();
         }
 
-        public BindingSource Get()
+        public List<IEntity> Get()
         {
             throw new NotImplementedException();
         }
 
-        public BindingSource Get(int ID)
-        {
-            BindingSource bs = api.GetClientWithDetails(ID);
-            return bs;
-        }
-
-        public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
-        {
-            throw new NotImplementedException();
-        }
-
-        public BindingSource GetSpecific1(string s1)
-        {
-            throw new NotImplementedException();
-        }
-
-        public BindingSource GetSpecific1(int n1)
-        {
-            throw new NotImplementedException();
-        }
-
-        public BindingSource GetSpecific2(string s2)
-        {
-            throw new NotImplementedException();
-        }
-
-        public BindingSource GetSpecific2(int n1)
+        public IEntity Get(int ID)
         {
             throw new NotImplementedException();
         }

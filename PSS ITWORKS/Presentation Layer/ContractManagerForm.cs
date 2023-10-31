@@ -81,13 +81,14 @@ namespace PSS_ITWORKS.Presentation_Layer
             }
             else
             {
-                BindingSource bs = context.Get(serviceId);
-                foreach(IDataRecord dr in bs.List)
+                List<IEntity> list = context.Get();
+                foreach(IEntity entity in bs.list)
                 {
-                    ServiceType_cbx.Text = dr[1].ToString();
-                    title_txt.Text = dr[1].ToString();
-                    duration_num.Value = int.Parse(dr[2].ToString());
-                    priority_num.Value = int.Parse(dr[3].ToString());
+                    EntityService service = entity as EntityService;
+                    ServiceType_cbx.Text = service.GetTitle();
+                    title_txt.Text = service.GetTitle();
+                    duration_num.Value = service.GetDuration();
+                    priority_num.Value = service.GetDuration();
                     try
                     {
                         price_num.Value = int.Parse(dr[4].ToString());
@@ -187,7 +188,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             context = new StrategyContextManager(new StrategyServiceManager());
             context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
-            bs = context.Get();
+            List<IEntity> list = context.Get();
             foreach (IDataRecord dr in bs.List)
             {
                 ServiceType_cbx.Items.Add(dr[0]);
@@ -196,6 +197,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             SetService();
             context = new StrategyContextManager(new StrategyContractManager());
             context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+            List<IEntity> list = context.Get();
             bs = context.Get();
             foreach (IDataRecord dr in bs.List)
             {

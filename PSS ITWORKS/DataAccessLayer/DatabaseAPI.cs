@@ -212,18 +212,17 @@ namespace PSS_ITWORKS
         //ContractManager-Working
         public BindingSource GetContracts()
         {
-            SqlDataReader reader;
-            BindingSource bs = new BindingSource();
             try
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("ContractPortalProcedures.GetContracts", conn);
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
+
+                int contractId = new SqlParameter
                 {
-                    bs.DataSource = reader;
-                }
-                reader.Close();
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                
                 conn.Close();
                 ErrorHandler.DisplayError("Quary Successfully executed");
             }

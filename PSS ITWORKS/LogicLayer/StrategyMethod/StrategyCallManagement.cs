@@ -2,6 +2,7 @@
 using PSS_ITWORKS.LogicLayer;
 using PSS_ITWORKS.PSSDataSetTableAdapters;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace PSS_ITWORKS
@@ -9,66 +10,33 @@ namespace PSS_ITWORKS
     public class StrategyCallManagement : IStrategyAManagement
     {
         DatabaseAPI api = new DatabaseAPI();
-        public BindingSource Get()
+
+        public void Connect(string myString)
         {
-            MessageBox.Show("Get something");
-            return null;
+            throw new NotImplementedException();
         }
 
         public void Create(IEntity entity)
         {
-            try
-            {
-                EntityJob job = entity as EntityJob;
-                api.CreateServiceRequest(job);
-            }
-            catch(Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-            }
+            throw new NotImplementedException();
         }
 
-        public void Delete(int ID, string s = "")
+        public void Delete(int ID)
         {
-            MessageBox.Show("Delete something");
+            throw new NotImplementedException();
+        }
+
+        public List<IEntity> Get()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEntity Get(int ID)
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(IEntity entity)
-        {
-            MessageBox.Show("Update something");
-        }
-
-        public void Connect(string myString)
-        {
-            api.SetConnection(myString);
-        }
-
-        public BindingSource Get(int ID)
-        {
-            return api.GetEmployeeOverview(ID);
-        }
-
-        public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
-        {
-            throw new NotImplementedException();
-        }
-
-        public BindingSource GetSpecific1(string s1)
-        {
-            return api.GetClientOverview(s1);
-        }
-
-        public BindingSource GetSpecific2(string s2)
-        {
-            throw new NotImplementedException();
-        }
-
-        public BindingSource GetSpecific1(int n1)
-        {
-            throw new NotImplementedException();
-        }
-
-        public BindingSource GetSpecific2(int n1)
         {
             throw new NotImplementedException();
         }

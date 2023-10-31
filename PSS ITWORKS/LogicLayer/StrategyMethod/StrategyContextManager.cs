@@ -1,6 +1,7 @@
 ﻿// StrategyContextManager.cs
 using PSS_ITWORKS.LogicLayer;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace PSS_ITWORKS
@@ -11,15 +12,13 @@ namespace PSS_ITWORKS
         private readonly int id;
         private readonly string connectionString;
 
-        public StrategyContextManager(IStrategyAManagement strategy)
+        StrategyContextManager(IStrategyAManagement _strategy)
         {
-            _strategy = strategy;
+            this._strategy = _strategy;
         }
-
-        public BindingSource Get()
+        public void Connect(string myString)
         {
-            BindingSource bs = _strategy.Get();
-            return bs;
+            _strategy.Connect(myString);
         }
 
         public void Create(IEntity entity)
@@ -27,49 +26,24 @@ namespace PSS_ITWORKS
             _strategy.Create(entity);
         }
 
-        public void Delete(int ID, string s = "")
+        public void Delete(int id)
         {
-            _strategy.Delete(ID);
+            _strategy.Delete(id);
+        }
+
+        public List<IEntity> Get()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IEntity Get(int ID)
+        {
+            throw new System.NotImplementedException();
         }
 
         public void Update(IEntity entity)
         {
-
-            _strategy.Update(entity);
-        }
-
-        public void Connect(string myString)
-        {
-            _strategy.Connect(myString);
-        }
-
-        public BindingSource Get(int id)
-        {
-            BindingSource bs = _strategy.Get(id);
-            return bs;
-        }
-
-        public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
-        {
-            BindingSource bs = _strategy.GetSpecific(id1, id2, s1, s2);
-            return bs;
-        }
-
-        public BindingSource GetSpecific1(string s1)
-        {
-            return _strategy.GetSpecific1(s1);
-        }
-        public BindingSource GetSpecific2(string s2)
-        {
-            return _strategy.GetSpecific2(s2);
-        }
-        public BindingSource GetSpecific1(int n1)
-        {
-            return _strategy.GetSpecific1(n1);
-        }
-        public BindingSource GetSpecific2(int n2)
-        {
-            return _strategy.GetSpecific1(n2);
+            throw new System.NotImplementedException();
         }
     }
 }

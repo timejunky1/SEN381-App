@@ -1,5 +1,6 @@
 ﻿// StrategyClientManager.cs
 using PSS_ITWORKS.LogicLayer;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace PSS_ITWORKS
@@ -7,59 +8,33 @@ namespace PSS_ITWORKS
     class StrategyClientManager : IStrategyAManagement
     {
         DatabaseAPI api = new DatabaseAPI();
-        public BindingSource Get()
+
+        public void Connect(string myString)
         {
-            MessageBox.Show("Get something");
-            return null;
+            throw new System.NotImplementedException();
         }
 
         public void Create(IEntity entity)
         {
-            MessageBox.Show("Create something");
+            throw new System.NotImplementedException();
         }
 
         public void Delete(int ID, string s = "")
         {
-            MessageBox.Show("Delete something");
+            throw new System.NotImplementedException();
+        }
+
+        public List<IEntity> Get()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IEntity Get(int ID)
+        {
+            throw new System.NotImplementedException();
         }
 
         public void Update(IEntity entity)
-        {
-            MessageBox.Show("Update something");
-        }
-
-        public void Connect(string myString)
-        {
-            api.SetConnection(myString);
-        }
-
-        public BindingSource Get(int ID)
-        {
-            return api.GetClientAndContractInfo(ID);
-        }
-
-        public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
-        {
-            return api.GetClientJobs(id1);
-            return api.GetClientInfo(id1);
-        }
-
-        public BindingSource GetSpecific1(string s1)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public BindingSource GetSpecific2(string s2)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public BindingSource GetSpecific1(int n1)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public BindingSource GetSpecific2(int n1)
         {
             throw new System.NotImplementedException();
         }
