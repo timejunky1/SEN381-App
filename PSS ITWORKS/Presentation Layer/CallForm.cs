@@ -42,9 +42,28 @@ namespace PSS_ITWORKS.Presentation_Layer
         ///Call form, History tab search
         private void Search_btn_Click(object sender, EventArgs e)
         {
-            string ClientName = SearchClientName_txt.Text;
-            int clientId = int.Parse(ClientName);
+            string clientName = SearchClientName_txt.Text;
+            int clientId = int.Parse(clientName);
             PastServiceRequest_dgv.DataSource = data.GetClientOverview(clientId);
+        }
+
+        private void SearchClient_btn_Click(object sender, EventArgs e)
+        {
+            string name = SearchClientName_txt.Text;
+            string number = ClientNumber_txt.Text;
+
+            if (number == null && name != null)
+            {
+                ///search according to name
+            }
+            else if (number != null && name == null)
+            {
+                ///search according to number
+            }
+            else
+            {
+                MessageBox.Show("Please enter a Client's name or number to search")
+            }
         }
     }
 }

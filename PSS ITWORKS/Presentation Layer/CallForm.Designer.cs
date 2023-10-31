@@ -426,6 +426,7 @@
             this.SearchClient_btn.TabIndex = 5;
             this.SearchClient_btn.Text = "Search";
             this.SearchClient_btn.UseVisualStyleBackColor = false;
+            this.SearchClient_btn.Click += new System.EventHandler(this.SearchClient_btn_Click);
             // 
             // ClientNumber_txt
             // 
