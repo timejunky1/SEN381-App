@@ -824,8 +824,9 @@
             this.Controls.Add(this.Admin_tc);
             this.Controls.Add(this.Welcome_lbl);
             this.Controls.Add(this.Logo_img);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AdminForm";
-            this.Text = "AdminForm";
+            this.Text = "Admin";
             this.Load += new System.EventHandler(this.AdminForm_Load);
             this.Admin_tc.ResumeLayout(false);
             this.CRUD_tp.ResumeLayout(false);
