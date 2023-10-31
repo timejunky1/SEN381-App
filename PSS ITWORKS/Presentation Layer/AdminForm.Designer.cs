@@ -411,6 +411,7 @@
             this.Email_lbl.Size = new System.Drawing.Size(48, 21);
             this.Email_lbl.TabIndex = 32;
             this.Email_lbl.Text = "Email";
+            this.Email_lbl.Click += new System.EventHandler(this.Email_lbl_Click);
             // 
             // Password_txt
             // 
@@ -799,7 +800,7 @@
             this.Welcome_lbl.ForeColor = System.Drawing.Color.Black;
             this.Welcome_lbl.Location = new System.Drawing.Point(94, 29);
             this.Welcome_lbl.Name = "Welcome_lbl";
-            this.Welcome_lbl.Size = new System.Drawing.Size(498, 32);
+            this.Welcome_lbl.Size = new System.Drawing.Size(497, 32);
             this.Welcome_lbl.TabIndex = 15;
             this.Welcome_lbl.Text = "Welcome back <Name> <Surname> (Admin)";
             // 

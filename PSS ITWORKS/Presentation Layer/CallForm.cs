@@ -36,5 +36,10 @@ namespace PSS_ITWORKS.Presentation_Layer
             dashboard.Show();
 
         }
+
+        private void PSS_img_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -104,5 +104,10 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.Close();
             dashboard.Show();
         }
+
+        private void Email_lbl_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

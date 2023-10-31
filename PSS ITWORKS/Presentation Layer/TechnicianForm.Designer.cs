@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Technician));
             this.Logo_img = new System.Windows.Forms.PictureBox();
             this.Welcome_lbl = new System.Windows.Forms.Label();
             this.Technical_tc = new System.Windows.Forms.TabControl();
@@ -72,6 +73,7 @@
             // 
             // Logo_img
             // 
+            this.Logo_img.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Logo_img.BackgroundImage")));
             this.Logo_img.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Logo_img.Location = new System.Drawing.Point(12, 9);
             this.Logo_img.Name = "Logo_img";
@@ -413,9 +415,10 @@
             this.Controls.Add(this.Technical_tc);
             this.Controls.Add(this.Welcome_lbl);
             this.Controls.Add(this.Logo_img);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Technician";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TechnicianForm";
+            this.Text = "Technician";
             this.Load += new System.EventHandler(this.Technician_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).EndInit();
             this.Technical_tc.ResumeLayout(false);
