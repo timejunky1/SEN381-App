@@ -54,9 +54,10 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
             throw new NotImplementedException();
         }
 
+        // Get client overview
         public BindingSource GetSpecific1(int n1)
         {
-            throw new NotImplementedException();
+            return api.GetClientOverview(n1);
         }
 
         public BindingSource GetSpecific2(string s2)
@@ -64,8 +65,10 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
             throw new NotImplementedException();
         }
 
+        // Get client Service requests
         public BindingSource GetSpecific2(int n1)
         {
+            // return api.get
             throw new NotImplementedException();
         }
 
