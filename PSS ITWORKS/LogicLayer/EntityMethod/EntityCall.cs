@@ -10,16 +10,18 @@ namespace PSS_ITWORKS.LogicLayer
         private int Id;
         private int employeeId;
         private int clientId;
+        private int jobId;
         private string clientname;
         private string clientRole;
         private string description;
         private DateTime callTime;
 
-        public EntityCall(int id, int employeeId, int clientId, string clientname, string clientRole, string description, DateTime callTime)
+        public EntityCall(int id, int employeeId, int clientId, int jobid, string clientname, string clientRole, string description, DateTime callTime)
         {
             Id = id;
             this.employeeId = employeeId;
             this.clientId = clientId;
+            this.jobId = jobid;
             this.clientname = clientname;
             this.clientRole = clientRole;
             this.description = description;
@@ -36,17 +38,17 @@ namespace PSS_ITWORKS.LogicLayer
             return employeeId;
         }
 
-        public int ClientId()
+        public int GetClientId()
         {
             return clientId;
         }
 
-        public string ClientName()
+        public string GetClientName()
         {
             return clientname;
         }
 
-        public string ClientRole()
+        public string GetClientRole()
         {
             return clientRole;
         }
@@ -56,11 +58,14 @@ namespace PSS_ITWORKS.LogicLayer
             return description;
         }
 
-        public DateTime DateTime()
+        public DateTime GetcallTime()
         {
             return callTime;
         }
 
-        
+        public int GetJobId()
+        {
+            return jobId;
+        }
     }
 }
