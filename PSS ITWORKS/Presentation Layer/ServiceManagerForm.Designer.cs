@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServiceManagerForm));
             this.PSS_img = new System.Windows.Forms.PictureBox();
             this.PSS_lbl = new System.Windows.Forms.Label();
             this.Logout_btn = new System.Windows.Forms.Button();
@@ -73,6 +74,8 @@
             // 
             // PSS_img
             // 
+            this.PSS_img.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PSS_img.BackgroundImage")));
+            this.PSS_img.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PSS_img.Location = new System.Drawing.Point(12, 9);
             this.PSS_img.Margin = new System.Windows.Forms.Padding(2);
             this.PSS_img.Name = "PSS_img";
@@ -87,14 +90,17 @@
             this.PSS_lbl.Location = new System.Drawing.Point(94, 26);
             this.PSS_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.PSS_lbl.Name = "PSS_lbl";
-            this.PSS_lbl.Size = new System.Drawing.Size(599, 32);
+            this.PSS_lbl.Size = new System.Drawing.Size(605, 32);
             this.PSS_lbl.TabIndex = 1;
-            this.PSS_lbl.Text = "Welcome back <name> <surname> (Service Manager)";
+            this.PSS_lbl.Text = "Welcome back <Name> <Surname> (Service Manager)";
             // 
             // Logout_btn
             // 
             this.Logout_btn.BackColor = System.Drawing.Color.Firebrick;
-            this.Logout_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Logout_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.Logout_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Logout_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Logout_btn.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Logout_btn.ForeColor = System.Drawing.Color.White;
             this.Logout_btn.Location = new System.Drawing.Point(749, 26);
             this.Logout_btn.Margin = new System.Windows.Forms.Padding(2);
@@ -430,6 +436,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(923, 560);
             this.Controls.Add(this.ServiceManager_tc);
             this.Controls.Add(this.Logout_btn);
