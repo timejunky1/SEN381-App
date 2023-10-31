@@ -13,6 +13,7 @@ namespace PSS_ITWORKS.Presentation_Layer
     public partial class CallForm : Form
     {
         DatabaseAPI data = new DatabaseAPI();
+        DataTable dt = new DataTable();
         public CallForm()
         {
             InitializeComponent();
@@ -32,7 +33,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             ///display data in data grid view according to to active tabs
             if (CallEmployee_tc.SelectedTab == CallEmployee_tc.TabPages["Dashboard_tp"])
             {
-                Dashboard_dgv.DataSource = data.GetJobsAssignedToEmployeeName(name);
+                dt = data.GetJobsAssignedToEmployeeName(name);
             }
             else if (CallEmployee_tc.SelectedTab == CallEmployee_tc.TabPages["ServiceRequest_tp"])
             {
@@ -43,8 +44,16 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void Search_btn_Click(object sender, EventArgs e)
         {
             string clientName = SearchClientName_txt.Text;
-            int clientId = int.Parse(clientName);
-            PastServiceRequest_dgv.DataSource = data.GetClientOverview(clientId);
+            if (clientName == null)
+            {
+                MessageBox.Show("Please enter the client's name to search");
+            }
+            else 
+            {
+                int clientId = int.Parse(clientName);
+                PastServiceRequest_dgv.DataSource = data.GetClientOverview(clientId);
+            }
+            
         }
 
         private void SearchClient_btn_Click(object sender, EventArgs e)
@@ -62,7 +71,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             }
             else
             {
-                MessageBox.Show("Please enter a Client's name or number to search")
+                MessageBox.Show("Please enter a Client's name or number to search");
             }
         }
     }
