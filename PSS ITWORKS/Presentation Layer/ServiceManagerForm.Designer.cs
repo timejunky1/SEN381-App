@@ -117,7 +117,7 @@
             this.ServiceManager_tc.Controls.Add(this.Schedule_tp);
             this.ServiceManager_tc.Controls.Add(this.Technicians_tp);
             this.ServiceManager_tc.Controls.Add(this.Jobs_tp);
-            this.ServiceManager_tc.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ServiceManager_tc.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ServiceManager_tc.Location = new System.Drawing.Point(12, 94);
             this.ServiceManager_tc.Margin = new System.Windows.Forms.Padding(2);
             this.ServiceManager_tc.Name = "ServiceManager_tc";
@@ -133,31 +133,38 @@
             this.Assignment_tp.Controls.Add(this.Request_dgv);
             this.Assignment_tp.Controls.Add(this.AssignementSchedule_lbl);
             this.Assignment_tp.Controls.Add(this.AssignementRequest_lbl);
-            this.Assignment_tp.Location = new System.Drawing.Point(4, 34);
+            this.Assignment_tp.Location = new System.Drawing.Point(4, 39);
             this.Assignment_tp.Margin = new System.Windows.Forms.Padding(2);
             this.Assignment_tp.Name = "Assignment_tp";
             this.Assignment_tp.Padding = new System.Windows.Forms.Padding(2);
-            this.Assignment_tp.Size = new System.Drawing.Size(865, 418);
+            this.Assignment_tp.Size = new System.Drawing.Size(865, 413);
             this.Assignment_tp.TabIndex = 0;
             this.Assignment_tp.Text = "Assignment";
             this.Assignment_tp.UseVisualStyleBackColor = true;
             // 
             // assign_btn
             // 
-            this.assign_btn.Location = new System.Drawing.Point(486, 358);
+            this.assign_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(183)))), ((int)(((byte)(132)))));
+            this.assign_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.assign_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.assign_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.assign_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.assign_btn.ForeColor = System.Drawing.Color.White;
+            this.assign_btn.Location = new System.Drawing.Point(448, 358);
             this.assign_btn.Name = "assign_btn";
             this.assign_btn.Size = new System.Drawing.Size(117, 34);
             this.assign_btn.TabIndex = 5;
             this.assign_btn.Text = "Assign Job";
-            this.assign_btn.UseVisualStyleBackColor = true;
+            this.assign_btn.UseVisualStyleBackColor = false;
             this.assign_btn.Click += new System.EventHandler(this.assign_btn_Click);
             // 
             // Assignement_dtp
             // 
-            this.Assignement_dtp.Location = new System.Drawing.Point(671, 360);
+            this.Assignement_dtp.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Assignement_dtp.Location = new System.Drawing.Point(570, 360);
             this.Assignement_dtp.Margin = new System.Windows.Forms.Padding(2);
             this.Assignement_dtp.Name = "Assignement_dtp";
-            this.Assignement_dtp.Size = new System.Drawing.Size(160, 32);
+            this.Assignement_dtp.Size = new System.Drawing.Size(270, 29);
             this.Assignement_dtp.TabIndex = 4;
             // 
             // AssignmentSchedule_dgv
@@ -185,22 +192,22 @@
             // AssignementSchedule_lbl
             // 
             this.AssignementSchedule_lbl.AutoSize = true;
-            this.AssignementSchedule_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AssignementSchedule_lbl.Location = new System.Drawing.Point(445, 12);
+            this.AssignementSchedule_lbl.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AssignementSchedule_lbl.Location = new System.Drawing.Point(443, 20);
             this.AssignementSchedule_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.AssignementSchedule_lbl.Name = "AssignementSchedule_lbl";
-            this.AssignementSchedule_lbl.Size = new System.Drawing.Size(71, 20);
+            this.AssignementSchedule_lbl.Size = new System.Drawing.Size(89, 25);
             this.AssignementSchedule_lbl.TabIndex = 1;
             this.AssignementSchedule_lbl.Text = "Schedule";
             // 
             // AssignementRequest_lbl
             // 
             this.AssignementRequest_lbl.AutoSize = true;
-            this.AssignementRequest_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AssignementRequest_lbl.Location = new System.Drawing.Point(21, 12);
+            this.AssignementRequest_lbl.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AssignementRequest_lbl.Location = new System.Drawing.Point(20, 20);
             this.AssignementRequest_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.AssignementRequest_lbl.Name = "AssignementRequest_lbl";
-            this.AssignementRequest_lbl.Size = new System.Drawing.Size(69, 20);
+            this.AssignementRequest_lbl.Size = new System.Drawing.Size(86, 25);
             this.AssignementRequest_lbl.TabIndex = 0;
             this.AssignementRequest_lbl.Text = "Requests";
             // 
@@ -211,11 +218,11 @@
             this.Schedule_tp.Controls.Add(this.Filter_txt);
             this.Schedule_tp.Controls.Add(this.AssignmentFilter_lbl);
             this.Schedule_tp.Controls.Add(this.Schedule_lbl);
-            this.Schedule_tp.Location = new System.Drawing.Point(4, 34);
+            this.Schedule_tp.Location = new System.Drawing.Point(4, 39);
             this.Schedule_tp.Margin = new System.Windows.Forms.Padding(2);
             this.Schedule_tp.Name = "Schedule_tp";
             this.Schedule_tp.Padding = new System.Windows.Forms.Padding(2);
-            this.Schedule_tp.Size = new System.Drawing.Size(865, 418);
+            this.Schedule_tp.Size = new System.Drawing.Size(865, 413);
             this.Schedule_tp.TabIndex = 1;
             this.Schedule_tp.Text = "Schedule";
             this.Schedule_tp.UseVisualStyleBackColor = true;
@@ -234,7 +241,12 @@
             // AssignmentFilter_btn
             // 
             this.AssignmentFilter_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(228)))), ((int)(((byte)(91)))));
-            this.AssignmentFilter_btn.ForeColor = System.Drawing.Color.White;
+            this.AssignmentFilter_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.AssignmentFilter_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AssignmentFilter_btn.FlatAppearance.BorderSize = 0;
+            this.AssignmentFilter_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AssignmentFilter_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AssignmentFilter_btn.ForeColor = System.Drawing.Color.Black;
             this.AssignmentFilter_btn.Location = new System.Drawing.Point(27, 115);
             this.AssignmentFilter_btn.Margin = new System.Windows.Forms.Padding(2);
             this.AssignmentFilter_btn.Name = "AssignmentFilter_btn";
@@ -245,11 +257,11 @@
             // 
             // Filter_txt
             // 
-            this.Filter_txt.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Filter_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Filter_txt.Location = new System.Drawing.Point(27, 75);
             this.Filter_txt.Margin = new System.Windows.Forms.Padding(2);
             this.Filter_txt.Name = "Filter_txt";
-            this.Filter_txt.Size = new System.Drawing.Size(160, 26);
+            this.Filter_txt.Size = new System.Drawing.Size(160, 29);
             this.Filter_txt.TabIndex = 2;
             this.Filter_txt.Text = "Filter by technician/service";
             this.Filter_txt.TextChanged += new System.EventHandler(this.Filter_txt_TextChanged);
@@ -257,23 +269,23 @@
             // AssignmentFilter_lbl
             // 
             this.AssignmentFilter_lbl.AutoSize = true;
-            this.AssignmentFilter_lbl.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AssignmentFilter_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.AssignmentFilter_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AssignmentFilter_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
             this.AssignmentFilter_lbl.Location = new System.Drawing.Point(22, 53);
             this.AssignmentFilter_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.AssignmentFilter_lbl.Name = "AssignmentFilter_lbl";
-            this.AssignmentFilter_lbl.Size = new System.Drawing.Size(39, 19);
+            this.AssignmentFilter_lbl.Size = new System.Drawing.Size(45, 21);
             this.AssignmentFilter_lbl.TabIndex = 1;
             this.AssignmentFilter_lbl.Text = "Filter";
             // 
             // Schedule_lbl
             // 
             this.Schedule_lbl.AutoSize = true;
-            this.Schedule_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Schedule_lbl.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Schedule_lbl.Location = new System.Drawing.Point(23, 15);
             this.Schedule_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Schedule_lbl.Name = "Schedule_lbl";
-            this.Schedule_lbl.Size = new System.Drawing.Size(71, 20);
+            this.Schedule_lbl.Size = new System.Drawing.Size(89, 25);
             this.Schedule_lbl.TabIndex = 0;
             this.Schedule_lbl.Text = "Schedule";
             // 
@@ -284,10 +296,10 @@
             this.Technicians_tp.Controls.Add(this.TechFilter_txt);
             this.Technicians_tp.Controls.Add(this.TechFilter_lbl);
             this.Technicians_tp.Controls.Add(this.Technician_lcl);
-            this.Technicians_tp.Location = new System.Drawing.Point(4, 34);
+            this.Technicians_tp.Location = new System.Drawing.Point(4, 39);
             this.Technicians_tp.Margin = new System.Windows.Forms.Padding(2);
             this.Technicians_tp.Name = "Technicians_tp";
-            this.Technicians_tp.Size = new System.Drawing.Size(865, 418);
+            this.Technicians_tp.Size = new System.Drawing.Size(865, 413);
             this.Technicians_tp.TabIndex = 2;
             this.Technicians_tp.Text = "Technicians";
             this.Technicians_tp.UseVisualStyleBackColor = true;
@@ -306,7 +318,12 @@
             // TechFilter_btn
             // 
             this.TechFilter_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(228)))), ((int)(((byte)(91)))));
-            this.TechFilter_btn.ForeColor = System.Drawing.Color.White;
+            this.TechFilter_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.TechFilter_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.TechFilter_btn.FlatAppearance.BorderSize = 0;
+            this.TechFilter_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TechFilter_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TechFilter_btn.ForeColor = System.Drawing.Color.Black;
             this.TechFilter_btn.Location = new System.Drawing.Point(23, 115);
             this.TechFilter_btn.Margin = new System.Windows.Forms.Padding(2);
             this.TechFilter_btn.Name = "TechFilter_btn";
@@ -317,34 +334,34 @@
             // 
             // TechFilter_txt
             // 
-            this.TechFilter_txt.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TechFilter_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TechFilter_txt.Location = new System.Drawing.Point(23, 75);
             this.TechFilter_txt.Margin = new System.Windows.Forms.Padding(2);
             this.TechFilter_txt.Name = "TechFilter_txt";
-            this.TechFilter_txt.Size = new System.Drawing.Size(160, 26);
+            this.TechFilter_txt.Size = new System.Drawing.Size(160, 29);
             this.TechFilter_txt.TabIndex = 7;
             this.TechFilter_txt.Text = "Filter by technician";
             // 
             // TechFilter_lbl
             // 
             this.TechFilter_lbl.AutoSize = true;
-            this.TechFilter_lbl.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TechFilter_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.TechFilter_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TechFilter_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
             this.TechFilter_lbl.Location = new System.Drawing.Point(19, 53);
             this.TechFilter_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.TechFilter_lbl.Name = "TechFilter_lbl";
-            this.TechFilter_lbl.Size = new System.Drawing.Size(39, 19);
+            this.TechFilter_lbl.Size = new System.Drawing.Size(45, 21);
             this.TechFilter_lbl.TabIndex = 6;
             this.TechFilter_lbl.Text = "Filter";
             // 
             // Technician_lcl
             // 
             this.Technician_lcl.AutoSize = true;
-            this.Technician_lcl.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Technician_lcl.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Technician_lcl.Location = new System.Drawing.Point(20, 15);
             this.Technician_lcl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Technician_lcl.Name = "Technician_lcl";
-            this.Technician_lcl.Size = new System.Drawing.Size(87, 20);
+            this.Technician_lcl.Size = new System.Drawing.Size(109, 25);
             this.Technician_lcl.TabIndex = 5;
             this.Technician_lcl.Text = "Technicians";
             // 
@@ -356,18 +373,24 @@
             this.Jobs_tp.Controls.Add(this.JobsFilter_txt);
             this.Jobs_tp.Controls.Add(this.JobsFilter_lbl);
             this.Jobs_tp.Controls.Add(this.Jobs_lbl);
-            this.Jobs_tp.Location = new System.Drawing.Point(4, 34);
+            this.Jobs_tp.Location = new System.Drawing.Point(4, 39);
             this.Jobs_tp.Margin = new System.Windows.Forms.Padding(2);
             this.Jobs_tp.Name = "Jobs_tp";
-            this.Jobs_tp.Size = new System.Drawing.Size(865, 418);
+            this.Jobs_tp.Size = new System.Drawing.Size(865, 413);
             this.Jobs_tp.TabIndex = 3;
             this.Jobs_tp.Text = "Jobs";
             this.Jobs_tp.UseVisualStyleBackColor = true;
+            this.Jobs_tp.Click += new System.EventHandler(this.Jobs_tp_Click);
             // 
             // ModifyJobs_btn
             // 
             this.ModifyJobs_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(228)))), ((int)(((byte)(91)))));
-            this.ModifyJobs_btn.ForeColor = System.Drawing.Color.White;
+            this.ModifyJobs_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ModifyJobs_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ModifyJobs_btn.FlatAppearance.BorderSize = 0;
+            this.ModifyJobs_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ModifyJobs_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ModifyJobs_btn.ForeColor = System.Drawing.Color.Black;
             this.ModifyJobs_btn.Location = new System.Drawing.Point(24, 167);
             this.ModifyJobs_btn.Margin = new System.Windows.Forms.Padding(2);
             this.ModifyJobs_btn.Name = "ModifyJobs_btn";
@@ -390,7 +413,12 @@
             // JobsFilter_btn
             // 
             this.JobsFilter_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(228)))), ((int)(((byte)(91)))));
-            this.JobsFilter_btn.ForeColor = System.Drawing.Color.White;
+            this.JobsFilter_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.JobsFilter_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.JobsFilter_btn.FlatAppearance.BorderSize = 0;
+            this.JobsFilter_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.JobsFilter_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JobsFilter_btn.ForeColor = System.Drawing.Color.Black;
             this.JobsFilter_btn.Location = new System.Drawing.Point(23, 115);
             this.JobsFilter_btn.Margin = new System.Windows.Forms.Padding(2);
             this.JobsFilter_btn.Name = "JobsFilter_btn";
@@ -401,34 +429,34 @@
             // 
             // JobsFilter_txt
             // 
-            this.JobsFilter_txt.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JobsFilter_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JobsFilter_txt.Location = new System.Drawing.Point(23, 75);
             this.JobsFilter_txt.Margin = new System.Windows.Forms.Padding(2);
             this.JobsFilter_txt.Name = "JobsFilter_txt";
-            this.JobsFilter_txt.Size = new System.Drawing.Size(160, 26);
+            this.JobsFilter_txt.Size = new System.Drawing.Size(160, 29);
             this.JobsFilter_txt.TabIndex = 7;
             this.JobsFilter_txt.Text = "Filter by technician";
             // 
             // JobsFilter_lbl
             // 
             this.JobsFilter_lbl.AutoSize = true;
-            this.JobsFilter_lbl.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JobsFilter_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.JobsFilter_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JobsFilter_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
             this.JobsFilter_lbl.Location = new System.Drawing.Point(19, 53);
             this.JobsFilter_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.JobsFilter_lbl.Name = "JobsFilter_lbl";
-            this.JobsFilter_lbl.Size = new System.Drawing.Size(39, 19);
+            this.JobsFilter_lbl.Size = new System.Drawing.Size(45, 21);
             this.JobsFilter_lbl.TabIndex = 6;
             this.JobsFilter_lbl.Text = "Filter";
             // 
             // Jobs_lbl
             // 
             this.Jobs_lbl.AutoSize = true;
-            this.Jobs_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Jobs_lbl.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Jobs_lbl.Location = new System.Drawing.Point(20, 15);
             this.Jobs_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Jobs_lbl.Name = "Jobs_lbl";
-            this.Jobs_lbl.Size = new System.Drawing.Size(39, 20);
+            this.Jobs_lbl.Size = new System.Drawing.Size(49, 25);
             this.Jobs_lbl.TabIndex = 5;
             this.Jobs_lbl.Text = "Jobs";
             // 
@@ -442,8 +470,9 @@
             this.Controls.Add(this.Logout_btn);
             this.Controls.Add(this.PSS_lbl);
             this.Controls.Add(this.PSS_img);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ServiceManagerForm";
-            this.Text = "ServiceManagerForm";
+            this.Text = "Service Manager";
             this.Load += new System.EventHandler(this.ManagerForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PSS_img)).EndInit();
             this.ServiceManager_tc.ResumeLayout(false);

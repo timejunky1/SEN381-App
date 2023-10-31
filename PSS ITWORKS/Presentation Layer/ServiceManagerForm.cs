@@ -46,5 +46,10 @@ namespace PSS_ITWORKS.Presentation_Layer
             dashboard.Show();
 
         }
+
+        private void Jobs_tp_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -386,7 +386,7 @@
             // 
             // Logout_btn
             // 
-            this.Logout_btn.BackColor = System.Drawing.Color.Firebrick;
+            this.Logout_btn.BackColor = System.Drawing.Color.FloralWhite;
             this.Logout_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.Logout_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Logout_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
