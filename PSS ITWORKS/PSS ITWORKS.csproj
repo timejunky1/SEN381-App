@@ -136,11 +136,11 @@
     <Compile Include="Presentation Layer\ModifyJobs.Designer.cs">
       <DependentUpon>ModifyJobs.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation Layer\NewServiceRequest.cs">
+    <Compile Include="Presentation Layer\NewServiceRequestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation Layer\NewServiceRequest.Designer.cs">
-      <DependentUpon>NewServiceRequest.cs</DependentUpon>
+    <Compile Include="Presentation Layer\NewServiceRequestForm.Designer.cs">
+      <DependentUpon>NewServiceRequestForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation Layer\Testing.cs">
       <SubType>Form</SubType>
@@ -190,8 +190,8 @@
     <EmbeddedResource Include="Presentation Layer\ModifyJobs.resx">
       <DependentUpon>ModifyJobs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation Layer\NewServiceRequest.resx">
-      <DependentUpon>NewServiceRequest.cs</DependentUpon>
+    <EmbeddedResource Include="Presentation Layer\NewServiceRequestForm.resx">
+      <DependentUpon>NewServiceRequestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\LogIn.resx">
       <DependentUpon>LogIn.cs</DependentUpon>

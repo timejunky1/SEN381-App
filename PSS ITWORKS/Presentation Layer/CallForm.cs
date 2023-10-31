@@ -28,7 +28,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             string[] message = PSS_lbl.Text.Split(' ');
             string name = message[2];
-            int empID;
+            int empID = 2;////EmpId is hardcoded, will be changed when login details is modified to get employee name and ID
 
             ///display data in data grid view according to to active tabs
             if (CallEmployee_tc.SelectedTab == CallEmployee_tc.TabPages["Dashboard_tp"])
@@ -38,7 +38,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             }
             else if (CallEmployee_tc.SelectedTab == CallEmployee_tc.TabPages["ServiceRequest_tp"])
             {
-                PastRequests_dgv.DataSource = callManagement.GetSpecific(name);
+                PastRequests_dgv.DataSource = callManagement.Get(empID);
             }
         }
         ///Call form, History tab search
@@ -51,8 +51,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             }
             else 
             {
-                int clientId = int.Parse(clientName);
-                PastServiceRequest_dgv.DataSource = data.GetClientOverview(clientId);
+                PastServiceRequest_dgv.DataSource = callManagement.GetSpecific1(clientName);
             }
             
         }
@@ -74,6 +73,13 @@ namespace PSS_ITWORKS.Presentation_Layer
             {
                 MessageBox.Show("Please enter a Client's name or number to search");
             }
+        }
+
+        private void NewServiceRequest_btn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            NewServiceRequestForm form = new NewServiceRequestForm();
+            form.Show();
         }
     }
 }

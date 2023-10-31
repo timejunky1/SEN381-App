@@ -50,12 +50,12 @@ namespace PSS_ITWORKS
 
         public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
         {
-            return api.GetClientOverview(id1);
+            throw new NotImplementedException();
         }
 
         public BindingSource GetSpecific1(string s1)
         {
-            throw new NotImplementedException();
+            return api.GetClientOverview(s1);
         }
 
         public BindingSource GetSpecific2(string s2)

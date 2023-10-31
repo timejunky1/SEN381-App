@@ -224,6 +224,7 @@
             this.NewServiceRequest_btn.TabIndex = 1;
             this.NewServiceRequest_btn.Text = "New Service Request";
             this.NewServiceRequest_btn.UseVisualStyleBackColor = false;
+            this.NewServiceRequest_btn.Click += new System.EventHandler(this.NewServiceRequest_btn_Click);
             // 
             // ServiceRequest_lbl
             // 
