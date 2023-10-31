@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PSS_ITWORKS.Presentation_Layer;
 
 namespace PSS_ITWORKS.Presentation_Layer
 {
@@ -78,7 +79,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void NewServiceRequest_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            NewServiceRequestForm form = new NewServiceRequestForm();
+            ServiceRequestForm form = new ServiceRequestForm();
             form.Show();
         }
     }
