@@ -44,7 +44,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         }
 
 
-        // Use methods to find the client, their contracts, and scheduled jobs in db
+        // Use methods to find the client in db
         
         private void FindClientDetails(int clientID)
         {
@@ -58,6 +58,7 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         }
 
+        // Use methods to find the client contracts
         private void FindClientContract(int clientID)
         {
             // with strategy find the client contract in db
@@ -69,7 +70,7 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         }
 
-
+        // Use methods to find the client jobs in 
         private void FindClientJobs(int clientID)
         {
             // with strategy find the client jobs in db

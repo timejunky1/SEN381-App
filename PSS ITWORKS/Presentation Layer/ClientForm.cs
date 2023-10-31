@@ -577,10 +577,13 @@ namespace PSS_ITWORKS.Presentation_Layer
             //On Form load clear all outputs
             ClearDataGridViews();
 
-        }
+            // populate the datagridviews
+            MaintenanceOverview();
+            ServiceRequest();
+            ClientHistory();
+            ContractDetails();
+            LiveChat();
 
-        private void Dashboard_tbp_Click(object sender, EventArgs e)
-        {
 
         }
 
@@ -682,6 +685,9 @@ namespace PSS_ITWORKS.Presentation_Layer
             clientHistory_dgv.Refresh();
         }
 
+        private void Dashboard_tbp_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
