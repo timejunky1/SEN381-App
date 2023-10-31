@@ -584,11 +584,8 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         }
 
-        // method to clear inputs
-        private void ClearInputs()
-        {
-            
-        }
+        
+
 
         // Method for populating the Maintenacce overview
         private void MaintenanceOverview()
@@ -615,9 +612,55 @@ namespace PSS_ITWORKS.Presentation_Layer
             serviceStatusFeedback_dgv.DataSource = theClient.GetSpecific2(id);
         }
 
+        // Method to get client Contract details
+        private void ContractDetails()
+        {
+            int id = 1;// temp id
+
+
+            BindingSource bsContract = theClient.Get(id);
+            
+            string contractID = bsContract[9].ToString();
+
+            BindingSource bsDetailsContract = theClient.GetSpecific2(contractID);
 
 
 
+            //int contract = int.Parse(contractValue);
+
+
+            // populate the text boxes
+            //contractType_txt.Text = bsContract[0].ToString();
+            //coverage_txt.Text = bsContract[1].ToString();
+            //experationDate_txt.Text = bsContract[2].ToString();
+
+
+        }
+
+        // Method to get client Communication 'Live chat'
+        private void LiveChat()
+        {
+            // Not sure what we want to do here
+        }
+
+        // Method get Client jobs history
+        private void ClientHistory()
+        {
+            int id = 1;// temp id
+
+            clientHistory_dgv.DataSource = null;
+            clientHistory_dgv.Rows.Clear();
+            clientHistory_dgv.Refresh();
+            clientHistory_dgv.DataSource = theClient.GetSpecific3(id);// replace with correct method for getting history
+        }
+
+
+
+        // method to clear inputs
+        private void ClearInputs()
+        {
+
+        }
 
         // method to clear datagridviews
         private void ClearDataGridViews()

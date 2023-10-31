@@ -60,9 +60,13 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
             return api.GetClientOverview(n1);
         }
 
+
+        // Get contract details wit contract id
         public BindingSource GetSpecific2(string s2)
         {
-            throw new NotImplementedException();
+            int id = Convert.ToInt32(s2);
+            return api.GetContracts(id);
+            
         }
 
         // Get client Service requests
