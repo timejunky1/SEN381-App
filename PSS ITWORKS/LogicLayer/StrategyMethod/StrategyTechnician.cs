@@ -28,12 +28,20 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 
         public List<IEntity> Get()
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public IEntity Get(int ID)
         {
-            throw new NotImplementedException();
+            EntityEmployee technician = api.GetEmployee(ID);
+            List<EntityJob> jobs = new List<EntityJob>();
+            List<int> jobIds = api.GetJobEmployeeref();
+            foreach(int id in jobIds)
+            {
+                jobs.Add(api.GetJob(id));
+            }
+            technician.SetJobs(jobs);
+            return technician;
         }
 
         public void Update(IEntity entity)

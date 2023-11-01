@@ -33,7 +33,28 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 
         public IEntity Get(int ID)
         {
-            throw new NotImplementedException();
+            EntityClient client = null;
+            client = api.GetClient(ID);
+            List<EntityJob> jobs= api.GetJobs();
+            foreach(EntityJob job in jobs)
+            {
+                if(job.GetClientId() == client.GetID())
+                {
+                    jobs.Add(job);
+                }
+            }
+            client.SetJobs(jobs);
+            List<EntityCall> calls = api.GetCalls();
+            foreach (EntityCall call in calls)
+            {
+                if (call.GetClientId() == client.GetID())
+                {
+                    calls.Add(call);
+                }
+            }
+            client.SetCalls(calls);
+            return client;
+
         }
 
         public void Update(IEntity entity)

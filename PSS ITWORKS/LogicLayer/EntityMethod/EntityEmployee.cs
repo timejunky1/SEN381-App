@@ -17,12 +17,11 @@ namespace PSS_ITWORKS.LogicLayer
         private string zipCode;
         private string phone;
         private string email;
-        private DateTime contractInitiationDate;
         private string role;
         List<EntityJob> jobs;
         List<EntityCall> calls;
 
-        public EntityEmployee(int id, string name, string surname, int streetNumber, string streetName, string city, string province, string zipCode, string phone, string email, DateTime contractInitiationDate, string role, List<EntityJob> jobs)
+        public EntityEmployee(int id, string name, string surname, string role, string phone, string email, int streetNumber, string streetName, string city, string province, string zipCode)
         {
             this.id = id;
             this.name = name;
@@ -34,25 +33,16 @@ namespace PSS_ITWORKS.LogicLayer
             this.zipCode = zipCode;
             this.phone = phone;
             this.email = email;
-            this.contractInitiationDate = contractInitiationDate;
             this.role = role;
+        }
+
+        public void SetJobs(List<EntityJob> jobs)
+        {
             this.jobs = jobs;
         }
 
-        public EntityEmployee(int id, string name, string surname, int streetNumber, string streetName, string city, string province, string zipCode, string phone, string email, DateTime contractInitiationDate, string role, List<EntityCall> calls)
+        public void SetCalls(List<EntityCall> calls)
         {
-            this.id = id;
-            this.name = name;
-            this.surname = surname;
-            this.streetNumber = streetNumber;
-            this.streetName = streetName;
-            this.city = city;
-            this.province = province;
-            this.zipCode = zipCode;
-            this.phone = phone;
-            this.email = email;
-            this.contractInitiationDate = contractInitiationDate;
-            this.role = role;
             this.calls = calls;
         }
 

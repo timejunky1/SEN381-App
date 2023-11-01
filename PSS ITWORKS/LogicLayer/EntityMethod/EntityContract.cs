@@ -27,6 +27,11 @@ namespace PSS_ITWORKS.LogicLayer
             this.services = services;
         }
 
+        public void SetServices(List<EntityService> services)
+        {
+            this.services = services;
+        }
+        
         public int GetId()
         {
             return Id;

@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace PSS_ITWORKS.LogicLayer
 {
-    class EntityUser : IEntity
+    class EntityClient : IEntity
     {
         private int id;
         private string companyName;
@@ -24,7 +24,7 @@ namespace PSS_ITWORKS.LogicLayer
         List<EntityJob> jobs;
         List<EntityCall> calls;
 
-        public EntityUser(int id, string companyName, string name, string surname, int contractId, int streetNumber, string streetName, string city, string province, string zipCode, string phone, string email, DateTime contractInitiationDate, string role, List<EntityJob> jobs)
+        public EntityClient(int id, string companyName, string name, string surname, string role, int contractId, string phone, string email, DateTime contractInitiationDate, int streetNumber, string streetName, string city, string province, string zipCode)
         {
             this.id = id;
             this.companyName = companyName;
@@ -40,25 +40,15 @@ namespace PSS_ITWORKS.LogicLayer
             this.email = email;
             this.contractInitiationDate = contractInitiationDate;
             this.role = role;
+        }
+
+        public void SetJobs(List<EntityJob> jobs)
+        {
             this.jobs = jobs;
         }
 
-        public EntityUser(int id, string companyName, string name, string surname, int contractId, int streetNumber, string streetName, string city, string province, string zipCode, string phone, string email, DateTime contractInitiationDate, string role, List<EntityCall> calls)
+        public void SetCalls(List<EntityCall> calls)
         {
-            this.id = id;
-            this.companyName = companyName;
-            this.name = name;
-            this.surname = surname;
-            this.contractId = contractId;
-            this.streetNumber = streetNumber;
-            this.streetName = streetName;
-            this.city = city;
-            this.province = province;
-            this.zipCode = zipCode;
-            this.phone = phone;
-            this.email = email;
-            this.contractInitiationDate = contractInitiationDate;
-            this.role = role;
             this.calls = calls;
         }
 
