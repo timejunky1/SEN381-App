@@ -35,7 +35,7 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
         {
             EntityEmployee technician = api.GetEmployee(ID);
             List<EntityJob> jobs = new List<EntityJob>();
-            List<int> jobIds = api.GetJobEmployeeref();
+            List<int> jobIds = api.GetJobEmployeeRef(employeeId: ID);
             foreach(int id in jobIds)
             {
                 jobs.Add(api.GetJob(id));

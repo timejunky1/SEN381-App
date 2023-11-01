@@ -566,7 +566,7 @@ namespace PSS_ITWORKS
 
         //References
 
-        public List<int> GetJobEmployeeRef()
+        public List<int> GetJobEmployeeRef(int jobId = 0, int employeeId = 0)
         {
             List<int> ids = null;
             using (conn)
@@ -581,7 +581,7 @@ namespace PSS_ITWORKS
             return ids;
         }
 
-        public List<int> GetJobCallReff()
+        public List<int> GetJobCallReff(int jobId = 0, int callId = 0)
         {
             List<int> ids = null;
             using (conn)
@@ -596,7 +596,7 @@ namespace PSS_ITWORKS
             return ids;
         }
 
-        public List<int> GetContractRef()
+        public List<int> GetContractRef(int contractId = 0, int serviceId = 0)
         {
             List<int> ids = null;
             using (conn)
