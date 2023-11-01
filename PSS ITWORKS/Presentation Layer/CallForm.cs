@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PSS_ITWORKS.Presentation_Layer;
+using System.Data.SqlClient;
 
 namespace PSS_ITWORKS.Presentation_Layer
 {
@@ -15,6 +16,18 @@ namespace PSS_ITWORKS.Presentation_Layer
     {
         StrategyCallManagement callManagement;
         BindingSource bs;
+        SqlConnection con;
+
+        void getContractInfo()
+        {
+            ///// Coverage_txt.Text = I dont know what the coverage represents
+            int durationInMonths = int.Parse(ContractOverview_dgv.SelectedRows[0].Cells[3].Value.ToString());
+            ContractDuration_txt.Text = durationInMonths.ToString();
+            DateTime date = DateTime.Parse(ContractOverview_dgv.SelectedRows[0].Cells[7].Value.ToString());
+            DateTime experationDate = date.AddMonths(durationInMonths);
+            ExperationDate_txt.Text = experationDate.ToString();
+
+        }
         public CallForm()
         {
             InitializeComponent();
@@ -60,15 +73,21 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void SearchClient_btn_Click(object sender, EventArgs e)
         {
             string name = SearchClientName_txt.Text;
+            SqlDataReader reader;
+            BindingSource bs = new BindingSource();
+ 
+            con.Open();
+            SqlCommand cmd = new SqlCommand("SELECT c.*, cl.contract_initiation_date FROM contract JOIN client cl ON c.contract_id = cl.contract_id WHERE cl.name = @client_name;");
+            cmd.Parameters.AddWithValue("@@client_name", name);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            cmd.ExecuteNonQuery();
+            con.Close();
 
-            if (name != null)
-            {
-                ///search according to name
-            }
-            else
-            {
-                MessageBox.Show("Please enter a Client's name or number to search");
-            }
+            ContractOverview_dgv.DataSource = ds;
+            getContractInfo();
+                
         }
 
         private void NewServiceRequest_btn_Click(object sender, EventArgs e)

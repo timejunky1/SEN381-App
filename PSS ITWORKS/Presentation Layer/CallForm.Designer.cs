@@ -246,9 +246,9 @@
             this.ContractDetailsOverview_gbx.Controls.Add(this.ExperationDate_txt);
             this.ContractDetailsOverview_gbx.Controls.Add(this.ExperationDate_lbl);
             this.ContractDetailsOverview_gbx.Controls.Add(this.Coverage_txt);
-            this.ContractDetailsOverview_gbx.Controls.Add(this.Coverage_lbl);
             this.ContractDetailsOverview_gbx.Controls.Add(this.ContractDuration_txt);
             this.ContractDetailsOverview_gbx.Controls.Add(this.ContractDuration_lbl);
+            this.ContractDetailsOverview_gbx.Controls.Add(this.Coverage_lbl);
             this.ContractDetailsOverview_gbx.Location = new System.Drawing.Point(20, 144);
             this.ContractDetailsOverview_gbx.Name = "ContractDetailsOverview_gbx";
             this.ContractDetailsOverview_gbx.Size = new System.Drawing.Size(1116, 376);
@@ -276,7 +276,7 @@
             // 
             // Coverage_txt
             // 
-            this.Coverage_txt.Location = new System.Drawing.Point(414, 321);
+            this.Coverage_txt.Location = new System.Drawing.Point(57, 321);
             this.Coverage_txt.Name = "Coverage_txt";
             this.Coverage_txt.Size = new System.Drawing.Size(209, 32);
             this.Coverage_txt.TabIndex = 3;
@@ -285,7 +285,7 @@
             // 
             this.Coverage_lbl.AutoSize = true;
             this.Coverage_lbl.ForeColor = System.Drawing.Color.Blue;
-            this.Coverage_lbl.Location = new System.Drawing.Point(409, 276);
+            this.Coverage_lbl.Location = new System.Drawing.Point(52, 276);
             this.Coverage_lbl.Name = "Coverage_lbl";
             this.Coverage_lbl.Size = new System.Drawing.Size(87, 25);
             this.Coverage_lbl.TabIndex = 2;
@@ -293,7 +293,7 @@
             // 
             // ContractDuration_txt
             // 
-            this.ContractDuration_txt.Location = new System.Drawing.Point(68, 316);
+            this.ContractDuration_txt.Location = new System.Drawing.Point(414, 316);
             this.ContractDuration_txt.Name = "ContractDuration_txt";
             this.ContractDuration_txt.Size = new System.Drawing.Size(209, 32);
             this.ContractDuration_txt.TabIndex = 1;
@@ -302,7 +302,7 @@
             // 
             this.ContractDuration_lbl.AutoSize = true;
             this.ContractDuration_lbl.ForeColor = System.Drawing.Color.Blue;
-            this.ContractDuration_lbl.Location = new System.Drawing.Point(63, 276);
+            this.ContractDuration_lbl.Location = new System.Drawing.Point(409, 276);
             this.ContractDuration_lbl.Name = "ContractDuration_lbl";
             this.ContractDuration_lbl.Size = new System.Drawing.Size(156, 25);
             this.ContractDuration_lbl.TabIndex = 0;
