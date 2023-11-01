@@ -31,7 +31,18 @@ namespace PSS_ITWORKS
 
         public IEntity Get(int ID)
         {
-            throw new System.NotImplementedException();
+            EntityClient client =  api.GetClient(ID);
+            List<EntityJob> jobs = client.GetJobs();
+            List<EntityJob> clientJobs = new List<EntityJob>();
+            foreach (EntityJob job in jobs)
+            {
+                if(job.GetClientId() == ID)
+                {
+                    clientJobs.Add(job);
+                }
+            }
+            client.SetJobs(clientJobs);
+            return client;
         }
 
         public void Update(IEntity entity)

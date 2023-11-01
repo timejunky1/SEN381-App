@@ -95,7 +95,7 @@
     <Compile Include="LogicLayer\StrategyMethod\StrategyContractManager.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyJobManager.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyServiceManager.cs" />
-    <Compile Include="LogicLayer\StrategyMethod\StrategyUserManager.cs" />
+    <Compile Include="LogicLayer\StrategyMethod\StratagyEmployeeManagement.cs" />
     <Compile Include="Presentation Layer\AssignmentForm.cs">
       <SubType>Form</SubType>
     </Compile>

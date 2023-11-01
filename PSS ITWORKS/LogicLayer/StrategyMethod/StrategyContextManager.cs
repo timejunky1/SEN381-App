@@ -12,7 +12,7 @@ namespace PSS_ITWORKS
         private readonly int id;
         private readonly string connectionString;
 
-        StrategyContextManager(IStrategyAManagement _strategy)
+        public StrategyContextManager(IStrategyAManagement _strategy)
         {
             this._strategy = _strategy;
         }

@@ -80,7 +80,7 @@ namespace PSS_ITWORKS.Presentation_Layer
                     entity = new  EntityJob(id1,1,1,DateTime.Now,DateTime.Now,"test", "test", employees);
                     break;
                 case 6:
-                    context = new StrategyContextManager(new StrategyUserManager());
+                    context = new StrategyContextManager(new StratagyEmployeeManagement());
                     context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
                     entity = new EntityUser(id1, "test", "test", "test", 1, 1, "test", "test", "test", "test", "test", "testEmail", DateTime.Now, "Technician");
                     break;

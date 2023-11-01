@@ -36,12 +36,15 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void AdminForm_Load(object sender, EventArgs e)
         {
-            loginController = new LoginController();
-            loginController.Connect();
-            cm = new StrategyContextManager(new StrategyUserManager());
-            cm.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+            cm = new StrategyContextManager(new StrategyClientManager());
             Users_dgv.DataSource = cm.Get();
-            UserId = 0;
+            int id = 0;
+            try
+            {
+                EntityClient client = cm.Get(id) as EntityClient;
+            }
+
+            cm = new StrategyContextManager(new StratagyEmployeeManagement());
         }
 
         private void addUser_btn_Click(object sender, EventArgs e)
@@ -64,7 +67,7 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void deleteUser_btn_Click(object sender, EventArgs e)
         {
-            cm.Delete(UserId, role_cmb.Text);
+            cm.Delete(UserId);
         }
 
         private void updateUser_btn_Click(object sender, EventArgs e)
