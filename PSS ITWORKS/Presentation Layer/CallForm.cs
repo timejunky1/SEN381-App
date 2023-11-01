@@ -60,15 +60,10 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void SearchClient_btn_Click(object sender, EventArgs e)
         {
             string name = SearchClientName_txt.Text;
-            string number = ClientNumber_txt.Text;
 
-            if (number == null && name != null)
+            if (name != null)
             {
                 ///search according to name
-            }
-            else if (number != null && name == null)
-            {
-                ///search according to number
             }
             else
             {
