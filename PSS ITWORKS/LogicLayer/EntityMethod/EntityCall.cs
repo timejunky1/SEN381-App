@@ -12,14 +12,16 @@ namespace PSS_ITWORKS.LogicLayer
         private int clientId;
         private int jobId;
         private DateTime callTime;
+        private string description;
 
-        public EntityCall(int id, int employeeId, int clientId, int jobid, DateTime callTime)
+        public EntityCall(int id, int employeeId, int clientId, int jobid, DateTime callTime, string description)
         {
             Id = id;
             this.employeeId = employeeId;
             this.clientId = clientId;
             this.jobId = jobid;
             this.callTime = callTime;
+            this.description = description;
         }
 
         public int GetId()

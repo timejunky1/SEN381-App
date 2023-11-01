@@ -28,18 +28,15 @@ namespace PSS_ITWORKS.LogicLayer
             this.notes = notes;
         }
 
-        public EntityJob(int id, int clientId, int serviceId, DateTime timeBegin, DateTime timeEnd, string status, string description, string notes, List<EntityEmployee> employees)
+        public void SetEmployee(List<EntityEmployee> employees)
         {
-            Id = id;
-            this.clientId = clientId;
-            this.serviceId = serviceId;
-            this.timeBegin = timeBegin;
-            this.timeEnd = timeEnd;
-            this.status = status;
-            this.notes = notes;
             this.employees = employees;
         }
 
+        public void SetCalls(List<EntityCall> calls)
+        {
+            this.calls = calls;
+        }
         public int GetId()
         {
             return Id;

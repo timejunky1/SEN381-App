@@ -331,45 +331,6 @@ namespace PSS_ITWORKS
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.ExecuteNonQuery();
-                    command.Parameters.AddWithValue("@clientid", clientId);
-
-                    var nameParam = new SqlParameter
-                    {
-                        ParameterName = "@name",
-                        SqlDbType = SqlDbType.VarChar,
-                        Size = 50,
-                        Direction = ParameterDirection.Output
-                    };
-
-                    var surnameParam = new SqlParameter
-                    {
-                        ParameterName = "@surname",
-                        SqlDbType = SqlDbType.VarChar,
-                        Size = 50,
-                        Direction = ParameterDirection.Output
-                    };
-
-                    var roleParam = new SqlParameter
-                    {
-                        ParameterName = "@role",
-                        SqlDbType = SqlDbType.VarChar,
-                        Size = 30,
-                        Direction = ParameterDirection.Output
-                    };
-                    var idperam = new SqlParameter
-                    {
-                        ParameterName = "@userId",
-                        SqlDbType = SqlDbType.VarChar,
-                        Size = 30,
-                        Direction = ParameterDirection.Output
-                    };
-
-                    command.Parameters.Add(nameParam);
-                    command.Parameters.Add(surnameParam);
-                    command.Parameters.Add(roleParam);
-                    command.Parameters.Add(idperam);
-
-                    client = new EntityClient()
                 }
             }
             return client;
@@ -605,9 +566,49 @@ namespace PSS_ITWORKS
 
         //References
 
-        public List<int> GetJobEmployeeref()
+        public List<int> GetJobEmployeeRef()
         {
-            return new List<int>();
+            List<int> ids = null;
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+            return ids;
+        }
+
+        public List<int> GetJobCallReff()
+        {
+            List<int> ids = null;
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+            return ids;
+        }
+
+        public List<int> GetContractRef()
+        {
+            List<int> ids = null;
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+            return ids;
         }
     }
 }
