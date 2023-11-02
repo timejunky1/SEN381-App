@@ -9,17 +9,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PSS_ITWORKS.Presentation_Layer;
 using System.Data.SqlClient;
+using PSS_ITWORKS.LogicLayer;
 
 namespace PSS_ITWORKS.Presentation_Layer
 {
     public partial class CallForm : Form
     {
-        StrategyCallManagement callManagement;
+        StrategyContextManager strategyContextManager;
         BindingSource bs;
         SqlConnection con;
 
         void getContractInfo()
         {
+
             ///// Coverage_txt.Text = I dont know what the coverage represents
             int durationInMonths = int.Parse(ContractOverview_dgv.SelectedRows[0].Cells[3].Value.ToString());
             ContractDuration_txt.Text = durationInMonths.ToString();
@@ -35,6 +37,12 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void label2_Click(object sender, EventArgs e)
         {
+            strategyContextManager = new StrategyContextManager(new StratagyEmployeeManagement());
+            strategyContextManager.Connect("conn string");
+            strategyContextManager.Get();
+            strategyContextManager.Get(6);
+            strategyContextManager.Create(new EntityJob());
+
             Visible = true;
         }
 
@@ -48,11 +56,11 @@ namespace PSS_ITWORKS.Presentation_Layer
             if (CallEmployee_tc.SelectedTab == CallEmployee_tc.TabPages["Dashboard_tp"])
             {
                 //dt = data.GetJobsAssignedToEmployeeName(name);
-                Dashboard_dgv.DataSource = callManagement.Get(empID);
+                Dashboard_dgv.DataSource = strategyContextManager.Get(empID);
             }
             else if (CallEmployee_tc.SelectedTab == CallEmployee_tc.TabPages["ServiceRequest_tp"])
             {
-                PastRequests_dgv.DataSource = callManagement.Get(empID);
+                PastRequests_dgv.DataSource = strategyContextManager.Get(empID);
             }
         }
         ///Call form, History tab search
@@ -71,18 +79,29 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void SearchClient_btn_Click(object sender, EventArgs e)
         {
-            string name = SearchClientName_txt.Text;
-            SqlDataReader reader;
-            BindingSource bs = new BindingSource();
- 
-            con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT c.*, cl.contract_initiation_date FROM contract JOIN client cl ON c.contract_id = cl.contract_id WHERE cl.name = @client_name;");
-            cmd.Parameters.AddWithValue("@@client_name", name);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            cmd.ExecuteNonQuery();
-            con.Close();
+            EntityClient client = new EntityClient();
+            strategyContextManager = new StrategyContextManager(new StrategyContractManager());
+            strategyContextManager.Connect("conn string");
+            List<IEntity> entities =  strategyContextManager.Get();
+            List<EntityContract> contracts = new List<EntityContract>();
+            foreach(IEntity ent in entities)
+            {
+                EntityContract c = ent as EntityContract;
+                if(c.GetId() == client.GetContractId())
+                {
+                    contracts.Add(c);
+                }
+            }
+            ContractOverview_dgv.DataSource = contracts;
+            //con.Open();
+            //
+            //SqlCommand cmd = new SqlCommand("SELECT c.*, cl.contract_initiation_date FROM contract JOIN client cl ON c.contract_id = cl.contract_id WHERE cl.name = @client_name;");
+            //cmd.Parameters.AddWithValue("@@client_name", name);
+            //SqlDataAdapter da = new SqlDataAdapter(cmd);
+            //DataSet ds = new DataSet();
+            //da.Fill(ds);
+            //cmd.ExecuteNonQuery();
+            //con.Close();
 
             ContractOverview_dgv.DataSource = ds;
             getContractInfo();
@@ -92,7 +111,9 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void NewServiceRequest_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            ServiceRequestForm form = new ServiceRequestForm();
+            int employeeId = 0;
+            int customerId = 0;
+            ServiceRequestForm form = new ServiceRequestForm(employeeId, customerId);
             form.Show();
         }
     }

@@ -20,7 +20,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         EntityJob job;
         BindingSource bs;
         
-        public ServiceRequestForm()
+        public ServiceRequestForm(int employeeid, int customerId)
         {
             InitializeComponent();
         }
