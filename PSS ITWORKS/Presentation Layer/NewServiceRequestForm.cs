@@ -15,18 +15,60 @@ namespace PSS_ITWORKS.Presentation_Layer
 {
     public partial class ServiceRequestForm : Form
     {
-        SqlConnection con;
-        StrategyCallManagement callManagement;
-        EntityJob job;
-        BindingSource bs;
+        StrategyContextManager context;
+        string conn = @"Data Source = DESKTOP - 8GCK8IN\SQLEXPRESS; Initial Catalog = PSS; Integrated Security = True";
+        
+        public int clientId = 0;
+        public int empId = 0;
+
+        void LoadPriority()
+        {
+
+        }
+
+        void LoadService(int clientId)
+        {
+            int clientID = 0;
+            int contractID = 0;
+            context = new StrategyContextManager(new StrategyClientManager());
+            context.Connect(conn);
+
+            List<IEntity> entities = (List<IEntity>)context.Get();
+            List<EntityContract> contracts = new List<EntityContract>();
+            foreach (IEntity ent in entities)
+            {
+                EntityContract c = ent as EntityContract;
+                if (c.GetId() == contractID)
+                {
+                    contracts.Add(c.GetServices());
+
+                }
+            }
+
+            context = new StrategyContextManager(new StrategyContractManager());
+            context.Connect(conn);
+
+            List<IEntity> entity = (List<IEntity>)context.Get();
+
+
+            if (contractID == 0)
+            {
+                
+            }
+
+            
+        }
         
         public ServiceRequestForm(int employeeid, int customerId)
         {
+            empId = employeeid;
+            clientId = customerId;
             InitializeComponent();
         }
 
         private void ServiceRequestForm_Load(object sender, EventArgs e)
         {
+            
             /////Populate Priority combo box
             con.Open();
             SqlCommand cmd = new SqlCommand("SELECT service_id,DISTINCT priority, DISTINCT title FROM service");
