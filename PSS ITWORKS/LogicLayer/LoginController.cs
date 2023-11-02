@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using PSS_ITWORKS.Presentation_Layer;
 
 public class LoginController
 {
@@ -11,13 +12,13 @@ public class LoginController
     private string connectionString = @"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True";
     UserInfo userInfo;
 
-    // Property to access the Name
+
     public class UserInfo
     {
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Role { get; set; }
-        // Other properties if needed
+
     }
     public void Connect()
     {
@@ -26,36 +27,29 @@ public class LoginController
 
     public void HandleLoginButtonClick(string username, string password, LogIn loginForm, Label welcomeLabel)
     {
-        // Check if username and password are not empty
+
         if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
         {
-            // Authenticate the user using the LoginController
+
             bool isAuthenticated = AuthenticateUser(username, password);
 
             if (isAuthenticated)
             {
-                // User is authenticated, you can proceed to fetch name and surname and role
 
-                // Open the correct portal based on the user's role using a Factory
-                FactoryAMainFactory factory = new FactoryUserFactory(this);
-                FactoryIUser userPortal = factory.CreateUser(userInfo.Role);
-                userPortal.ShowUserInterface(loginForm);
+                Dashboard dashboard = new Dashboard(this, userInfo, loginForm);
+                dashboard.Show();
 
-                // Display a welcome message
-                welcomeLabel.Text = $"Welcome, {userInfo.Name} {userInfo.Surname}";
-
-                // Close the login form (you can uncomment this line if needed)
-                // loginForm.Close();
+                loginForm.Close();
             }
             else
             {
-                // Authentication failed
+ 
                 MessageBox.Show("Invalid username or password. Please try again.");
             }
         }
         else
         {
-            // Username or password is empty
+ 
             MessageBox.Show("Username and password are required.");
         }
     }
@@ -66,7 +60,7 @@ public class LoginController
         MessageBox.Show(userInfo.Name);
         return api.AuthenticateUser(username, password);
     }
-    //this stored procedure was not implemented yet
+   
 
     public UserInfo GetUserInfo()
     {

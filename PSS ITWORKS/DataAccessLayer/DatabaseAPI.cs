@@ -2,12 +2,14 @@
 
 using PSS_ITWORKS.LogicLayer;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics.Contracts;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PSS_ITWORKS
 {
@@ -95,16 +97,25 @@ namespace PSS_ITWORKS
                         Size = 30,
                         Direction = ParameterDirection.Output
                     };
+                    var idperam = new SqlParameter
+                    {
+                        ParameterName = "@userId",
+                        SqlDbType = SqlDbType.VarChar,
+                        Size = 30,
+                        Direction = ParameterDirection.Output
+                    };
 
                     command.Parameters.Add(nameParam);
                     command.Parameters.Add(surnameParam);
                     command.Parameters.Add(roleParam);
+                    command.Parameters.Add(idperam);
 
                     command.ExecuteNonQuery();
 
                     string name = nameParam.Value.ToString();
                     string surname = surnameParam.Value.ToString();
                     string role = roleParam.Value.ToString();
+                    int userId = int.Parse(idperam.Value.ToString());
 
                     userInfo = new LoginController.UserInfo { Name = name, Surname = surname, Role = role };
                 }
@@ -118,85 +129,6 @@ namespace PSS_ITWORKS
             return userInfo;
         }
 
-        public string GetUserRole(string username)
-        {
-            string role = "";
-            try
-            {
-
-                using (conn)
-                {
-                    using (SqlCommand command = new SqlCommand("sp_GetUserRole", conn))
-                    {
-                        command.CommandType = CommandType.StoredProcedure;
-
-                        command.Parameters.AddWithValue("@Username", username);
-
-                        var roleParam = new SqlParameter
-                        {
-                            ParameterName = "@Role",
-                            SqlDbType = SqlDbType.VarChar,
-                            Size = 30,
-                            Direction = ParameterDirection.Output
-                        };
-
-                        command.Parameters.Add(roleParam);
-
-                        command.ExecuteNonQuery();
-
-                        role = roleParam.Value.ToString();
-
-                    }
-                }
-            }
-            catch(Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-            }
-            return role;
-        }
-
-        public string FetchNameAndSurname(string username)
-        {
-            using (SqlConnection connection = new SqlConnection(conn.ConnectionString))
-            {
-                connection.Open();
-
-                using (SqlCommand command = new SqlCommand("sp_FetchNameAndSurname", connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.AddWithValue("@Username", username);
-
-                    var nameParam = new SqlParameter
-                    {
-                        ParameterName = "@Name",
-                        SqlDbType = SqlDbType.VarChar,
-                        Size = 50,
-                        Direction = ParameterDirection.Output
-                    };
-
-                    var surnameParam = new SqlParameter
-                    {
-                        ParameterName = "@Surname",
-                        SqlDbType = SqlDbType.VarChar,
-                        Size = 50,
-                        Direction = ParameterDirection.Output
-                    };
-
-                    command.Parameters.Add(nameParam);
-                    command.Parameters.Add(surnameParam);
-
-                    command.ExecuteNonQuery();
-
-                    string name = nameParam.Value.ToString();
-                    string surname = surnameParam.Value.ToString();
-
-                    return $"{name} {surname}";
-                }
-            }
-        }
-
         private string HashPassword(string password)
         {
             // Implement password hashing logic here (e.g., SHA-256)
@@ -208,932 +140,475 @@ namespace PSS_ITWORKS
         }
 
 
-        //ContractManager-Working
-
-        public void CreateContract(EntityContract contract)
+        //Employee
+        public void InsertEmployee(EntityEmployee employee)
         {
-            try
+            using (conn)
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.CreateContract", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@SLA", contract.GetSLA());
-                cmd.Parameters.AddWithValue("@duration", contract.GetDuration());
-                cmd.Parameters.AddWithValue("@priority", contract.GetPriority());
-                cmd.Parameters.AddWithValue("@cost", contract.GetCost());
-                cmd.Parameters.AddWithValue("@availability", contract.GetAvailability());
-                cmd.ExecuteNonQuery();
-                ErrorHandler.DisplayError("Quary Successfully executed");
+                using(SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType= CommandType.StoredProcedure;
+                    command.ExecuteNonQuery ();
+                }
             }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-            }
-            conn.Close();
         }
+
+        public void UpdateEmployee(EntityEmployee employee)
+        {
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void DeleteEmployee(int employeeid)
+        {
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public EntityEmployee GetEmployee(int employeeId)
+        {
+            EntityEmployee employee = null;
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+            return employee;
+        }
+
+        public List<EntityEmployee> GetEmployees()
+        {
+            List<EntityEmployee> employees = null;
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+            return employees;
+        }
+
+        //Call
+        public void InsertCall(EntityCall call)
+        {
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void UpdateCall(EntityCall call)
+        {
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void DeleteCall(int callId)
+        {
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public EntityCall GetCall(int callId)
+        {
+            EntityCall call = null;
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+            return call;
+        }
+
+        public List<EntityCall> GetCalls()
+        {
+            List<EntityCall> calls = new List<EntityCall>();
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+            return calls;
+        }
+
+        //Client
+
+        public void InsertClient(EntityClient client)
+        {
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void UpdateClient(EntityClient client)
+        {
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void DeleteClient(int clientId)
+        {
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public EntityClient GetClient (int clientId)
+        {
+            EntityClient client = null;
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+            return client;
+        }
+
+        public List<EntityClient> GetClients()
+        {
+            List<EntityClient> clients = null;
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+            return clients;
+        }
+
+        //Contract
+
+        public void InsertContract(EntityContract contract)
+        {
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
         public void UpdateContract(EntityContract contract)
         {
-            try
+            using (conn)
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.UpdateContract", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@contractId", contract.GetId());
-                cmd.Parameters.AddWithValue("@SLA", contract.GetSLA());
-                cmd.Parameters.AddWithValue("@duration", contract.GetDuration());
-                cmd.Parameters.AddWithValue("@priority", contract.GetPriority());
-                cmd.Parameters.AddWithValue("@cost", contract.GetCost());
-                cmd.Parameters.AddWithValue("@availability", contract.GetAvailability());
-                cmd.ExecuteNonQuery();
-                ErrorHandler.DisplayError("Quary Successfully executed");
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
             }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-            }
-            conn.Close();
         }
 
-        public BindingSource GetContractStats(int contractId, int period)
-        {
-            SqlDataReader reader;
-            BindingSource bs = new BindingSource();
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.GetContractStats", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@period", period);
-                cmd.Parameters.AddWithValue("@contractid", contractId);
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    bs.DataSource = reader;
-                }
-                reader.Close();
-                conn.Close();
-                ErrorHandler.DisplayError("Quary Successfully executed");
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-            return bs;
-        }
         public void DeleteContract(int contractId)
         {
-            try
+            using (conn)
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.DeleteContract", conn);
-                cmd.CommandType= CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@contractId", contractId);
-                cmd.ExecuteNonQuery();
-                conn.Close();
-                ErrorHandler.DisplayError("Quary Successfully executed");
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-        }
-
-        public void AddContractRef(int contractId, int serviceId)
-        {
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.AddContractRef", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@contractId", contractId);
-                cmd.Parameters.AddWithValue("@serviceId", serviceId);
-                cmd.ExecuteNonQuery();
-                conn.Close();
-                ErrorHandler.DisplayError("Quary Successfully executed");
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-        }
-
-        public void AddContractRef(int serviceId)
-        {
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.AddContractRef", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@serviceId", serviceId);
-                cmd.ExecuteNonQuery();
-                conn.Close();
-                ErrorHandler.DisplayError("Quary Successfully executed");
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-        }
-
-        public void DeleteContractRef(int contractId, int serviceId)
-        {
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.DeleteContractRef", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@contractId", contractId);
-                cmd.Parameters.AddWithValue("@serviceId", serviceId);
-                cmd.ExecuteNonQuery();
-                conn.Close();
-                ErrorHandler.DisplayError("Quary Successfully executed");
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-        }
-
-        //Servicemanagement--working
-        public BindingSource GetServices()
-        {
-            SqlDataReader reader;
-            BindingSource bs = new BindingSource();
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.GetServices", conn);
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
+                using (SqlCommand command = new SqlCommand())
                 {
-                    bs.DataSource = reader;
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
                 }
-                reader.Close();
-                conn.Close();
-                ErrorHandler.DisplayError("Quary Successfully executed");
             }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-            return bs;
         }
-        public void DeleteService(int serviceId)
+
+        public EntityContract GetContract(int contractid)
         {
-            try
+            EntityContract contract = null;
+            using (conn)
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.DeleteService", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@serviceId", serviceId);
-                cmd.ExecuteNonQuery();
-                conn.Close();
-                ErrorHandler.DisplayError("Quary Successfully executed");
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
             }
-            catch (Exception ex)
+            return contract;
+        }
+
+        public List<EntityContract> GetContracts()
+        {
+            List<EntityContract> contracts = null;
+            using (conn)
             {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+            return contracts;
+        }
+
+        //Job
+
+        public void InsertJob(EntityJob job)
+        {
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void UpdateJob(EntityJob job)
+        {
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void DeleteJob(int jobId)
+        {
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public EntityJob GetJob(int jobId)
+        {
+            EntityJob job = null;
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+            return job;
+        }
+
+        public List<EntityJob> GetJobs()
+        {
+            List<EntityJob> jobs = null;
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
+            }
+            return jobs;
+        }
+
+        //Service
+
+        public void InsertService(EntityService service)
+        {
+            using (conn)
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
+                }
             }
         }
 
         public void UpdateService(EntityService service)
         {
-            try
+            using (conn)
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.UpdateService", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@serviceId", service.GetId());
-                cmd.Parameters.AddWithValue("@title", service.GetTitle());
-                cmd.Parameters.AddWithValue("@duration", service.GetDuration());
-                cmd.Parameters.AddWithValue("@priority", service.GetPriority());
-                cmd.Parameters.AddWithValue("@cost", service.GetCost());
-                cmd.Parameters.AddWithValue("@availability", service.GetAvailability());
-                cmd.ExecuteNonQuery();
-                conn.Close();
-                ErrorHandler.DisplayError("Quary Successfully executed");
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-        }
-
-        public void CreateService(EntityService service)
-        {
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("ContractPortalProcedures.CreateService", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@title", service.GetTitle());
-                cmd.Parameters.AddWithValue("@duration", service.GetDuration());
-                cmd.Parameters.AddWithValue("@priority", service.GetPriority());
-                cmd.Parameters.AddWithValue("@cost", service.GetCost());
-                cmd.Parameters.AddWithValue("@availability", service.GetAvailability());
-                cmd.ExecuteNonQuery();
-                conn.Close();
-                ErrorHandler.DisplayError("Quary Successfully executed");
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-        }
-
-        //Client--Working
-
-        public BindingSource GetClientWithDetails(int clientId)
-        {
-            SqlDataReader reader;
-            BindingSource bs = new BindingSource();
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("ClientPortalProcedures.GetClientsWithDetails", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@clientId", clientId);
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
+                using (SqlCommand command = new SqlCommand())
                 {
-                    bs.DataSource = reader;
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
                 }
-                reader.Close();
-                ErrorHandler.DisplayError("Quary Successfully executed");
-            }
-            catch(Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-            }
-            conn.Close();
-            MessageBox.Show("GetClientDetails");
-            return bs;
-        }
-
-        //UserManagement--Working
-        public void InsertUser(EntityUser user)
-        {
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("AdminPortalProcedures.InsertUser", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@companyName", user.GetCompanyName());
-                cmd.Parameters.AddWithValue("@name", user.GetName());
-                cmd.Parameters.AddWithValue("@surname", user.GetSurname());
-                cmd.Parameters.AddWithValue("@email", user.GetEmail());
-                cmd.Parameters.AddWithValue("@phone", user.GetPhone());
-                cmd.Parameters.AddWithValue("@streetNumber", user.GetStreetNumber());
-                cmd.Parameters.AddWithValue("@street", user.GetStreetName());
-                cmd.Parameters.AddWithValue("@city", user.GetCity());
-                cmd.Parameters.AddWithValue("@province", user.GetProvince());
-                cmd.Parameters.AddWithValue("@zipcode", user.GetZipCode());
-                cmd.Parameters.AddWithValue("@role", user.GetRole());
-                cmd.Parameters.AddWithValue("@contractId", user.GetContractId());
-                cmd.ExecuteNonQuery();
-                conn.Close();
-                ErrorHandler.DisplayError("query successful");
-            }catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-
-        }
-
-        public void SetPassword(string username, string password, string newPassword)
-        {
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("AdminPortalProcedures.SetPassword", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@username", username);
-                cmd.Parameters.AddWithValue("@password", password);
-                cmd.Parameters.AddWithValue("@newPassword", newPassword);
-                cmd.ExecuteNonQuery();
-                conn.Close();
-                ErrorHandler.DisplayError("query successful");
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
             }
         }
 
-        public void UpdateUser(EntityUser user)
+        public void DeleteService(EntityService service)
         {
-            try
+            using (conn)
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("AdminPortalProcedures.UpdateUser", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@id", user.GetID());
-                cmd.Parameters.AddWithValue("@companyName", user.GetCompanyName());
-                cmd.Parameters.AddWithValue("@name", user.GetName());
-                cmd.Parameters.AddWithValue("@surname", user.GetSurname());
-                cmd.Parameters.AddWithValue("@email", user.GetEmail());
-                cmd.Parameters.AddWithValue("@phone", user.GetPhone());
-                cmd.Parameters.AddWithValue("@streetNumber", user.GetStreetNumber());
-                cmd.Parameters.AddWithValue("@street", user.GetStreetName());
-                cmd.Parameters.AddWithValue("@city", user.GetCity());
-                cmd.Parameters.AddWithValue("@province", user.GetProvince());
-                cmd.Parameters.AddWithValue("@zipcode", user.GetZipCode());
-                cmd.Parameters.AddWithValue("@role", user.GetRole());
-                cmd.Parameters.AddWithValue("@contractId", user.GetContractId());
-                cmd.ExecuteNonQuery();
-                ErrorHandler.DisplayError("query successful");
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-            }
-        }
-
-        public BindingSource ViewAllUsers()
-        {
-            SqlDataReader reader;
-            BindingSource bs = new BindingSource();
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("AdminPortalProcedures.ViewAllUsers", conn);
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
+                using (SqlCommand command = new SqlCommand())
                 {
-                    bs.DataSource = reader;
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
                 }
-                reader.Close();
-                conn.Close();
             }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-
-            MessageBox.Show("ViewUsers");
-            return bs;
         }
 
-        public BindingSource FilterUsers(string username)
+        public EntityService GetService(int serviceid)
         {
-            SqlDataReader reader;
-            BindingSource bs = new BindingSource();
-            try
+            EntityService service = null;
+            using (conn)
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("AdminPortalProcedures.FilterUsers", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue ("@username", username);
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
+                using (SqlCommand command = new SqlCommand())
                 {
-                    bs.DataSource = reader;
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
                 }
-                reader.Close();
-                conn.Close();
             }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-
-            MessageBox.Show("GetServices");
-            return bs;
+            return service;
         }
 
-        public void DeleteUser(int id, string role)
+        public List<EntityService> GetServices()
         {
-            try
+            List<EntityService> services = null;
+            using (conn)
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("AdminPortalProcedures.DeleteUser", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@id", id);
-                cmd.Parameters.AddWithValue("role", role);
-                cmd.ExecuteNonQuery();
-                conn.Close();
-                ErrorHandler.DisplayError("Quary Successfull");
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-        }
-
-        //ClientManagement--Working
-
-        public BindingSource GetClientAndContractInfo(int clientId)
-        {
-            SqlDataReader reader;
-            BindingSource bs = new BindingSource();
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("ClientManagementProcedures.GetClientAndContractInfo", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@clientID", clientId);
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
+                using (SqlCommand command = new SqlCommand())
                 {
-                    bs.DataSource = reader;
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
                 }
-                reader.Close();
-                conn.Close();
-                ErrorHandler.DisplayError("query succesful");
             }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-            return bs;
+            return services;
         }
 
-        public BindingSource GetClientInfo(int clientId)
+        //References
+
+        public List<int> GetJobEmployeeRef(int jobId = 0, int employeeId = 0)
         {
-            SqlDataReader reader;
-            BindingSource bs = new BindingSource();
-            try
+            List<int> ids = null;
+            using (conn)
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("ClientManagementProcedures.GetClientInfo", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@clientId", clientId);
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
+                using (SqlCommand command = new SqlCommand())
                 {
-                    bs.DataSource = reader;
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
                 }
-                reader.Close();
-                conn.Close();
-                ErrorHandler.DisplayError("query succesful");
             }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
+            return ids;
+        }
 
-            MessageBox.Show("GetClientInfo");
-            return bs;
-        }//Also Used At CallManagement
-
-        public BindingSource GetClientJobs(int clientId)
+        public List<int> GetJobCallReff(int jobId = 0, int callId = 0)
         {
-            SqlDataReader reader;
-            BindingSource bs = new BindingSource();
-            try
+            List<int> ids = null;
+            using (conn)
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("ClientManagementProcedures.GetClientJobs", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@clientID", clientId);
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
+                using (SqlCommand command = new SqlCommand())
                 {
-                    bs.DataSource = reader;
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
                 }
-                reader.Close();
-                conn.Close();
-                ErrorHandler.DisplayError("quary successful");
             }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-            return bs;
+            return ids;
         }
 
-        //CallManagement--Working
-        public void CreateServiceRequest(EntityJob job)
+        public List<int> GetContractRef(int contractId = 0, int serviceId = 0)
         {
-            try
+            List<int> ids = null;
+            using (conn)
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("ClientPortalProcedures.CreateServiceRequest", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@clientId", job.GetClientId());
-                cmd.Parameters.AddWithValue("@serviceId", job.GetServiceId());
-                cmd.Parameters.AddWithValue("@notes", job.GetNotes());
-                cmd.ExecuteNonQuery();
-                conn.Close();
-                ErrorHandler.DisplayError($"query successful");
-            }
-            catch(Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-        }
-        public BindingSource GetClientOverview(string clientName)
-        {
-            SqlDataReader reader;
-            BindingSource bs = new BindingSource();
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("CallsPortalProcedures.GetClientOverview", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@name", clientName);
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
+                using (SqlCommand command = new SqlCommand())
                 {
-                    bs.DataSource = reader;
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.ExecuteNonQuery();
                 }
-                reader.Close();
-                conn.Close();
-                ErrorHandler.DisplayError("query successful");
             }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-
-            return bs;
-        }
-        public BindingSource GetEmployeeOverview(int employeeId)
-        {
-            SqlDataReader reader;
-            BindingSource bs = new BindingSource();
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("CallsPortalProcedures.GetEmployeeOverview", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    bs.DataSource = reader;
-                }
-                reader.Close();
-                conn.Close();
-                ErrorHandler.DisplayError("query successful");
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-            return bs;
-        }
-
-        //JobManagement--Working
-        public BindingSource GetTechnician(int id)
-        {
-            SqlDataReader reader;
-            BindingSource bs = new BindingSource();
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("ServicePortalProcedures.GetTechnician", conn);
-                cmd.Parameters.AddWithValue("@Id", id);
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    bs.DataSource = reader;
-                }
-                reader.Close();
-                conn.Close();
-                ErrorHandler.DisplayError("Query Successfull");
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-            return bs;
-        }
-
-        public BindingSource GetJobSchedule()
-        {
-            SqlDataReader reader;
-            BindingSource bs = new BindingSource();
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("ServicePortalProcedures.GetJobSchedule", conn);
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    bs.DataSource = reader;
-                }
-                reader.Close();
-                conn.Close();
-                ErrorHandler.DisplayError("Query Successfull");
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-            return bs;
-        }
-
-        public void AssignJob(int employeeId, int jobId)
-        {
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("ServicePortalProcedures.AssignJob", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                cmd.Parameters.AddWithValue("@jobId", jobId);
-                cmd.ExecuteNonQuery();
-                conn.Close();
-                ErrorHandler.DisplayError("Query Successfull");
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-        }
-
-        public void UpdateAssignedJob(EntityJob job)
-        {
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("ServicePortalProcedures.UpdateAssignedJob", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
-                conn.Close();
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-        }
-
-        public void DeleteEmployeeJobRef(int jobId)
-        {
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("ServicePortalProcedures.DeleteEmployeeJobRef", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@jobId", jobId);
-                cmd.ExecuteNonQuery();
-                conn.Close();
-                ErrorHandler.DisplayError("Quary Successfull");
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-        }
-
-        public void AddEmployeeJobRef(int jobId, int employeeId)
-        {
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("ServicePortalProcedures.AddEmployeeJobRef", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                cmd.Parameters.AddWithValue("@jobId", jobId);
-                cmd.ExecuteNonQuery();
-                conn.Close();
-                ErrorHandler.DisplayError("Quary Successfull");
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-        }
-
-        public BindingSource GetJobsOnDate(DateTime date)
-        {
-            SqlDataReader reader;
-            BindingSource bs = new BindingSource();
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("ServicePortalProcedures.GetJobsOnDate", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@specificDate", date);
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    bs.DataSource = reader;
-                }
-                reader.Close();
-                conn.Close();
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-
-            MessageBox.Show("UnassignedJobsOnDate");
-            return bs;
-        }
-
-        public BindingSource GetJobsAssignedToEmployeeName(string employeeName)
-        {
-            SqlDataReader reader;
-            BindingSource bs = new BindingSource();
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("ServicePortalProcedures.GetJobsAssignedToEmployeeByName", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@employeeName", employeeName);
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    bs.DataSource = reader;
-                }
-                reader.Close();
-                conn.Close();
-                ErrorHandler.DisplayError("Query Successful");
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-            return bs;
-        }
-
-        public BindingSource GetUnasignedJobs()
-        {
-            SqlDataReader reader;
-            BindingSource bs = new BindingSource();
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("ServicePortalProcedures.GetUnassignedJobs", conn);
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    bs.DataSource = reader;
-                }
-                reader.Close();
-                conn.Close();
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-
-            MessageBox.Show("GetUnassignedJobs");
-            return bs;
-        }
-
-        //TechnicalPortalProcedures--Working
-
-        public BindingSource GetTechnicianTaskList(int employeeId)
-        {
-            SqlDataReader reader;
-            BindingSource bs = new BindingSource();
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("TechnicalPortalProcedures.GetTechnicianTaskList", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    bs.DataSource = reader;
-                }
-                reader.Close();
-                conn.Close();
-                ErrorHandler.DisplayError("Query Successfull");
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-
-            return bs;
-        }
-
-        public void UpdateJobNotesAndStatus(EntityJob job)
-        {
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("TechnicalPortalProcedures.GetTechnicianTaskList", conn);
-                cmd.CommandType= CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@clientId", job.GetId());
-                cmd.Parameters.AddWithValue("@jobNotes", job.GetNotes());
-                cmd.Parameters.AddWithValue("@jobStartus", job.GetStatus());
-                conn.Close();
-                ErrorHandler.DisplayError($"{job.GetNotes()}, {job.GetStatus()}");
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-        }
-
-        public BindingSource GetClientDetails(int clientId)
-        {
-            SqlDataReader reader;
-            BindingSource bs = new BindingSource();
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("TechnicalPortalProcedures.GetClientDetails", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@clientId", clientId);
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    bs.DataSource = reader;
-                }
-                reader.Close();
-                conn.Close();
-                ErrorHandler.DisplayError("quary successful");
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-            return bs;
-        }
-
-        public BindingSource GetServiceOverview(int serviceId)
-        {
-            SqlDataReader reader;
-            BindingSource bs = new BindingSource();
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("TechnicalPortalProcedures.GetServiceOverview", conn);
-                cmd.CommandType= CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@serviceId", serviceId);
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    bs.DataSource = reader;
-                }
-                reader.Close();
-                conn.Close();
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-
-            MessageBox.Show("GetServiceOverview");
-            return bs;
-        }
-
-        public BindingSource GetTechnicianSchedule(int employeeId)
-        {
-            SqlDataReader reader;
-            BindingSource bs = new BindingSource();
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("TechnicianPortalProcedures.GetTechnicianSchedule", conn);
-                reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    bs.DataSource = reader;
-                }
-                reader.Close();
-                conn.Close();
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-                conn.Close();
-            }
-
-            MessageBox.Show("GetTechnicianSchedule");
-            return bs;
+            return ids;
         }
     }
-
-    
 }

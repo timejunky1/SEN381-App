@@ -51,6 +51,7 @@
       <HintPath>packages\System.IdentityModel.Tokens.Jwt.5.1.2\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
     </Reference>
     <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -67,7 +68,8 @@
   <ItemGroup>
     <Compile Include="DataAccessLayer\DatabaseAPI.cs" />
     <Compile Include="LogicLayer\EntityMethod\EntityCall.cs" />
-    <Compile Include="LogicLayer\EntityMethod\EntityUser.cs" />
+    <Compile Include="LogicLayer\EntityMethod\EntityClient.cs" />
+    <Compile Include="LogicLayer\EntityMethod\EntityEmployee.cs" />
     <Compile Include="LogicLayer\EntityMethod\EntityContract.cs" />
     <Compile Include="LogicLayer\EntityMethod\EntityJob.cs" />
     <Compile Include="LogicLayer\EntityMethod\EntityService.cs" />
@@ -85,7 +87,7 @@
     <Compile Include="LogicLayer\FactoryMethod\FactoryCCallEmployeeDetails.cs" />
     <Compile Include="LogicLayer\FactoryMethod\FactoryCServiceManagerDetails.cs" />
     <Compile Include="LogicLayer\FactoryMethod\FactoryIUser.cs" />
-    <Compile Include="LogicLayer\StrategyMethod\StratagyTechnician.cs" />
+    <Compile Include="LogicLayer\StrategyMethod\StrategyTechnician.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyClient.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyCallManagement.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyClientManager.cs" />
@@ -93,7 +95,7 @@
     <Compile Include="LogicLayer\StrategyMethod\StrategyContractManager.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyJobManager.cs" />
     <Compile Include="LogicLayer\StrategyMethod\StrategyServiceManager.cs" />
-    <Compile Include="LogicLayer\StrategyMethod\StrategyUserManager.cs" />
+    <Compile Include="LogicLayer\StrategyMethod\StratagyEmployeeManagement.cs" />
     <Compile Include="Presentation Layer\AssignmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +131,12 @@
     </Compile>
     <Compile Include="Presentation Layer\ContractManagerForm.Designer.cs">
       <DependentUpon>ContractManagerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation Layer\Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Layer\Dashboard.Designer.cs">
+      <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation Layer\ModifyJobs.cs">
       <SubType>Form</SubType>
@@ -184,8 +192,17 @@
     <EmbeddedResource Include="Presentation Layer\CallForm.resx">
       <DependentUpon>CallForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Layer\ClientForm.resx">
+      <DependentUpon>ClientForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Layer\ClientManagerForm.resx">
+      <DependentUpon>ClientManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\ContractManagerForm.resx">
       <DependentUpon>ContractManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Layer\Dashboard.resx">
+      <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\ModifyJobs.resx">
       <DependentUpon>ModifyJobs.cs</DependentUpon>
@@ -198,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\ServiceManagerForm.resx">
       <DependentUpon>ServiceManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Layer\TechnicianForm.resx">
+      <DependentUpon>TechnicianForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation Layer\Testing.resx">
       <DependentUpon>Testing.cs</DependentUpon>

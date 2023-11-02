@@ -10,22 +10,16 @@ using System.Windows.Forms;
 
 namespace PSS_ITWORKS.Presentation_Layer
 {
-    public partial class ClientForm : Form
+    public partial class ServiceRequestForm : Form
     {
-        private Dashboard dashboard;
-
-        public ClientForm(Dashboard dashboard)
+        public ServiceRequestForm()
         {
             InitializeComponent();
-            this.dashboard = dashboard;
         }
 
-
-
-        private void LogOut_btn_Click(object sender, EventArgs e)
+        private void Description_lbl_Click(object sender, EventArgs e)
         {
-            this.Close();
-            dashboard.Show();
+
         }
     }
 }

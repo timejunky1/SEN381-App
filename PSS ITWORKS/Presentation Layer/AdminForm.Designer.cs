@@ -32,11 +32,23 @@
             this.Logout_btn = new System.Windows.Forms.Button();
             this.Admin_tc = new System.Windows.Forms.TabControl();
             this.CRUD_tp = new System.Windows.Forms.TabPage();
+            this.clientDetails_gb = new System.Windows.Forms.GroupBox();
+            this.address_txt = new System.Windows.Forms.TextBox();
+            this.Address_lbl = new System.Windows.Forms.Label();
+            this.zipCode_lbl = new System.Windows.Forms.Label();
+            this.company_txt = new System.Windows.Forms.TextBox();
+            this.zipCode_txt = new System.Windows.Forms.TextBox();
+            this.Company_lbl = new System.Windows.Forms.Label();
+            this.Province_lbl = new System.Windows.Forms.Label();
+            this.street_txt = new System.Windows.Forms.TextBox();
+            this.province_txt = new System.Windows.Forms.TextBox();
+            this.Street_lbl = new System.Windows.Forms.Label();
+            this.City_lbl = new System.Windows.Forms.Label();
+            this.city_txt = new System.Windows.Forms.TextBox();
+            this.role_cmb = new System.Windows.Forms.ComboBox();
             this.infoCRUD_lbl = new System.Windows.Forms.Label();
             this.Number_txt = new System.Windows.Forms.TextBox();
             this.Role_lbl = new System.Windows.Forms.Label();
-            this.address_txt = new System.Windows.Forms.TextBox();
-            this.Address_lbl = new System.Windows.Forms.Label();
             this.Number_lbl = new System.Windows.Forms.Label();
             this.Surname_txt = new System.Windows.Forms.TextBox();
             this.Surname_lbl = new System.Windows.Forms.Label();
@@ -75,25 +87,13 @@
             this.Clients_lbl = new System.Windows.Forms.Label();
             this.Welcome_lbl = new System.Windows.Forms.Label();
             this.Logo_img = new System.Windows.Forms.PictureBox();
-            this.company_txt = new System.Windows.Forms.TextBox();
-            this.Company_lbl = new System.Windows.Forms.Label();
-            this.street_txt = new System.Windows.Forms.TextBox();
-            this.Street_lbl = new System.Windows.Forms.Label();
-            this.City_lbl = new System.Windows.Forms.Label();
-            this.city_txt = new System.Windows.Forms.TextBox();
-            this.Province_lbl = new System.Windows.Forms.Label();
-            this.province_txt = new System.Windows.Forms.TextBox();
-            this.zipCode_lbl = new System.Windows.Forms.Label();
-            this.zipCode_txt = new System.Windows.Forms.TextBox();
-            this.role_cmb = new System.Windows.Forms.ComboBox();
-            this.clientDetails_gb = new System.Windows.Forms.GroupBox();
             this.Admin_tc.SuspendLayout();
             this.CRUD_tp.SuspendLayout();
+            this.clientDetails_gb.SuspendLayout();
             this.systemSettings_tp.SuspendLayout();
             this.Users_tp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Users_dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).BeginInit();
-            this.clientDetails_gb.SuspendLayout();
             this.SuspendLayout();
             // 
             // Logout_btn
@@ -108,8 +108,9 @@
             this.Logout_btn.Name = "Logout_btn";
             this.Logout_btn.Size = new System.Drawing.Size(118, 36);
             this.Logout_btn.TabIndex = 17;
-            this.Logout_btn.Text = "Logout";
+            this.Logout_btn.Text = "Back To Dashboard";
             this.Logout_btn.UseVisualStyleBackColor = false;
+            this.Logout_btn.Click += new System.EventHandler(this.Logout_btn_Click);
             // 
             // Admin_tc
             // 
@@ -153,6 +154,168 @@
             this.CRUD_tp.Text = "CRUD";
             this.CRUD_tp.UseVisualStyleBackColor = true;
             // 
+            // clientDetails_gb
+            // 
+            this.clientDetails_gb.Controls.Add(this.address_txt);
+            this.clientDetails_gb.Controls.Add(this.Address_lbl);
+            this.clientDetails_gb.Controls.Add(this.zipCode_lbl);
+            this.clientDetails_gb.Controls.Add(this.company_txt);
+            this.clientDetails_gb.Controls.Add(this.zipCode_txt);
+            this.clientDetails_gb.Controls.Add(this.Company_lbl);
+            this.clientDetails_gb.Controls.Add(this.Province_lbl);
+            this.clientDetails_gb.Controls.Add(this.street_txt);
+            this.clientDetails_gb.Controls.Add(this.province_txt);
+            this.clientDetails_gb.Controls.Add(this.Street_lbl);
+            this.clientDetails_gb.Controls.Add(this.City_lbl);
+            this.clientDetails_gb.Controls.Add(this.city_txt);
+            this.clientDetails_gb.Location = new System.Drawing.Point(475, 106);
+            this.clientDetails_gb.Name = "clientDetails_gb";
+            this.clientDetails_gb.Size = new System.Drawing.Size(367, 260);
+            this.clientDetails_gb.TabIndex = 60;
+            this.clientDetails_gb.TabStop = false;
+            this.clientDetails_gb.Text = "Client Details";
+            // 
+            // address_txt
+            // 
+            this.address_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.address_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.address_txt.Location = new System.Drawing.Point(6, 138);
+            this.address_txt.Name = "address_txt";
+            this.address_txt.Size = new System.Drawing.Size(158, 29);
+            this.address_txt.TabIndex = 43;
+            this.address_txt.Tag = "";
+            this.address_txt.Text = "1";
+            // 
+            // Address_lbl
+            // 
+            this.Address_lbl.AutoSize = true;
+            this.Address_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Address_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
+            this.Address_lbl.Location = new System.Drawing.Point(2, 114);
+            this.Address_lbl.Name = "Address_lbl";
+            this.Address_lbl.Size = new System.Drawing.Size(112, 21);
+            this.Address_lbl.TabIndex = 42;
+            this.Address_lbl.Text = "Street Number";
+            // 
+            // zipCode_lbl
+            // 
+            this.zipCode_lbl.AutoSize = true;
+            this.zipCode_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.zipCode_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
+            this.zipCode_lbl.Location = new System.Drawing.Point(173, 196);
+            this.zipCode_lbl.Name = "zipCode_lbl";
+            this.zipCode_lbl.Size = new System.Drawing.Size(72, 21);
+            this.zipCode_lbl.TabIndex = 58;
+            this.zipCode_lbl.Text = "Zip Code";
+            // 
+            // company_txt
+            // 
+            this.company_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.company_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.company_txt.Location = new System.Drawing.Point(6, 62);
+            this.company_txt.Name = "company_txt";
+            this.company_txt.Size = new System.Drawing.Size(158, 29);
+            this.company_txt.TabIndex = 49;
+            this.company_txt.Tag = "";
+            this.company_txt.Text = "Some Company";
+            // 
+            // zipCode_txt
+            // 
+            this.zipCode_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.zipCode_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.zipCode_txt.Location = new System.Drawing.Point(177, 220);
+            this.zipCode_txt.Name = "zipCode_txt";
+            this.zipCode_txt.Size = new System.Drawing.Size(158, 29);
+            this.zipCode_txt.TabIndex = 57;
+            this.zipCode_txt.Tag = "";
+            this.zipCode_txt.Text = "Some Zipcode";
+            // 
+            // Company_lbl
+            // 
+            this.Company_lbl.AutoSize = true;
+            this.Company_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Company_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
+            this.Company_lbl.Location = new System.Drawing.Point(2, 38);
+            this.Company_lbl.Name = "Company_lbl";
+            this.Company_lbl.Size = new System.Drawing.Size(77, 21);
+            this.Company_lbl.TabIndex = 50;
+            this.Company_lbl.Text = "Company";
+            // 
+            // Province_lbl
+            // 
+            this.Province_lbl.AutoSize = true;
+            this.Province_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Province_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
+            this.Province_lbl.Location = new System.Drawing.Point(173, 114);
+            this.Province_lbl.Name = "Province_lbl";
+            this.Province_lbl.Size = new System.Drawing.Size(70, 21);
+            this.Province_lbl.TabIndex = 56;
+            this.Province_lbl.Text = "Province";
+            // 
+            // street_txt
+            // 
+            this.street_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.street_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.street_txt.Location = new System.Drawing.Point(6, 220);
+            this.street_txt.Name = "street_txt";
+            this.street_txt.Size = new System.Drawing.Size(158, 29);
+            this.street_txt.TabIndex = 51;
+            this.street_txt.Tag = "";
+            this.street_txt.Text = "Street";
+            // 
+            // province_txt
+            // 
+            this.province_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.province_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.province_txt.Location = new System.Drawing.Point(177, 138);
+            this.province_txt.Name = "province_txt";
+            this.province_txt.Size = new System.Drawing.Size(158, 29);
+            this.province_txt.TabIndex = 55;
+            this.province_txt.Tag = "";
+            this.province_txt.Text = "Province";
+            // 
+            // Street_lbl
+            // 
+            this.Street_lbl.AutoSize = true;
+            this.Street_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Street_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
+            this.Street_lbl.Location = new System.Drawing.Point(2, 196);
+            this.Street_lbl.Name = "Street_lbl";
+            this.Street_lbl.Size = new System.Drawing.Size(96, 21);
+            this.Street_lbl.TabIndex = 52;
+            this.Street_lbl.Text = "Street Name";
+            // 
+            // City_lbl
+            // 
+            this.City_lbl.AutoSize = true;
+            this.City_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.City_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
+            this.City_lbl.Location = new System.Drawing.Point(173, 38);
+            this.City_lbl.Name = "City_lbl";
+            this.City_lbl.Size = new System.Drawing.Size(37, 21);
+            this.City_lbl.TabIndex = 54;
+            this.City_lbl.Text = "City";
+            // 
+            // city_txt
+            // 
+            this.city_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.city_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.city_txt.Location = new System.Drawing.Point(177, 62);
+            this.city_txt.Name = "city_txt";
+            this.city_txt.Size = new System.Drawing.Size(158, 29);
+            this.city_txt.TabIndex = 53;
+            this.city_txt.Tag = "";
+            this.city_txt.Text = "City";
+            // 
+            // role_cmb
+            // 
+            this.role_cmb.FormattingEnabled = true;
+            this.role_cmb.Location = new System.Drawing.Point(271, 312);
+            this.role_cmb.Name = "role_cmb";
+            this.role_cmb.Size = new System.Drawing.Size(158, 40);
+            this.role_cmb.TabIndex = 59;
+            this.role_cmb.SelectedIndexChanged += new System.EventHandler(this.role_cmb_SelectedIndexChanged);
+            // 
             // infoCRUD_lbl
             // 
             this.infoCRUD_lbl.AutoSize = true;
@@ -184,28 +347,6 @@
             this.Role_lbl.Size = new System.Drawing.Size(41, 21);
             this.Role_lbl.TabIndex = 44;
             this.Role_lbl.Text = "Role";
-            // 
-            // address_txt
-            // 
-            this.address_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.address_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.address_txt.Location = new System.Drawing.Point(6, 138);
-            this.address_txt.Name = "address_txt";
-            this.address_txt.Size = new System.Drawing.Size(158, 29);
-            this.address_txt.TabIndex = 43;
-            this.address_txt.Tag = "";
-            this.address_txt.Text = "1";
-            // 
-            // Address_lbl
-            // 
-            this.Address_lbl.AutoSize = true;
-            this.Address_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Address_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
-            this.Address_lbl.Location = new System.Drawing.Point(2, 114);
-            this.Address_lbl.Name = "Address_lbl";
-            this.Address_lbl.Size = new System.Drawing.Size(112, 21);
-            this.Address_lbl.TabIndex = 42;
-            this.Address_lbl.Text = "Street Number";
             // 
             // Number_lbl
             // 
@@ -270,6 +411,7 @@
             this.Email_lbl.Size = new System.Drawing.Size(48, 21);
             this.Email_lbl.TabIndex = 32;
             this.Email_lbl.Text = "Email";
+            this.Email_lbl.Click += new System.EventHandler(this.Email_lbl_Click);
             // 
             // Password_txt
             // 
@@ -672,146 +814,6 @@
             this.Logo_img.TabIndex = 14;
             this.Logo_img.TabStop = false;
             // 
-            // company_txt
-            // 
-            this.company_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.company_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.company_txt.Location = new System.Drawing.Point(6, 62);
-            this.company_txt.Name = "company_txt";
-            this.company_txt.Size = new System.Drawing.Size(158, 29);
-            this.company_txt.TabIndex = 49;
-            this.company_txt.Tag = "";
-            this.company_txt.Text = "Some Company";
-            // 
-            // Company_lbl
-            // 
-            this.Company_lbl.AutoSize = true;
-            this.Company_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Company_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
-            this.Company_lbl.Location = new System.Drawing.Point(2, 38);
-            this.Company_lbl.Name = "Company_lbl";
-            this.Company_lbl.Size = new System.Drawing.Size(77, 21);
-            this.Company_lbl.TabIndex = 50;
-            this.Company_lbl.Text = "Company";
-            // 
-            // street_txt
-            // 
-            this.street_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.street_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.street_txt.Location = new System.Drawing.Point(6, 220);
-            this.street_txt.Name = "street_txt";
-            this.street_txt.Size = new System.Drawing.Size(158, 29);
-            this.street_txt.TabIndex = 51;
-            this.street_txt.Tag = "";
-            this.street_txt.Text = "Street";
-            // 
-            // Street_lbl
-            // 
-            this.Street_lbl.AutoSize = true;
-            this.Street_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Street_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
-            this.Street_lbl.Location = new System.Drawing.Point(2, 196);
-            this.Street_lbl.Name = "Street_lbl";
-            this.Street_lbl.Size = new System.Drawing.Size(96, 21);
-            this.Street_lbl.TabIndex = 52;
-            this.Street_lbl.Text = "Street Name";
-            // 
-            // City_lbl
-            // 
-            this.City_lbl.AutoSize = true;
-            this.City_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.City_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
-            this.City_lbl.Location = new System.Drawing.Point(173, 38);
-            this.City_lbl.Name = "City_lbl";
-            this.City_lbl.Size = new System.Drawing.Size(37, 21);
-            this.City_lbl.TabIndex = 54;
-            this.City_lbl.Text = "City";
-            // 
-            // city_txt
-            // 
-            this.city_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.city_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.city_txt.Location = new System.Drawing.Point(177, 62);
-            this.city_txt.Name = "city_txt";
-            this.city_txt.Size = new System.Drawing.Size(158, 29);
-            this.city_txt.TabIndex = 53;
-            this.city_txt.Tag = "";
-            this.city_txt.Text = "City";
-            // 
-            // Province_lbl
-            // 
-            this.Province_lbl.AutoSize = true;
-            this.Province_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Province_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
-            this.Province_lbl.Location = new System.Drawing.Point(173, 114);
-            this.Province_lbl.Name = "Province_lbl";
-            this.Province_lbl.Size = new System.Drawing.Size(70, 21);
-            this.Province_lbl.TabIndex = 56;
-            this.Province_lbl.Text = "Province";
-            // 
-            // province_txt
-            // 
-            this.province_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.province_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.province_txt.Location = new System.Drawing.Point(177, 138);
-            this.province_txt.Name = "province_txt";
-            this.province_txt.Size = new System.Drawing.Size(158, 29);
-            this.province_txt.TabIndex = 55;
-            this.province_txt.Tag = "";
-            this.province_txt.Text = "Province";
-            // 
-            // zipCode_lbl
-            // 
-            this.zipCode_lbl.AutoSize = true;
-            this.zipCode_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.zipCode_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
-            this.zipCode_lbl.Location = new System.Drawing.Point(173, 196);
-            this.zipCode_lbl.Name = "zipCode_lbl";
-            this.zipCode_lbl.Size = new System.Drawing.Size(72, 21);
-            this.zipCode_lbl.TabIndex = 58;
-            this.zipCode_lbl.Text = "Zip Code";
-            // 
-            // zipCode_txt
-            // 
-            this.zipCode_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.zipCode_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.zipCode_txt.Location = new System.Drawing.Point(177, 220);
-            this.zipCode_txt.Name = "zipCode_txt";
-            this.zipCode_txt.Size = new System.Drawing.Size(158, 29);
-            this.zipCode_txt.TabIndex = 57;
-            this.zipCode_txt.Tag = "";
-            this.zipCode_txt.Text = "Some Zipcode";
-            // 
-            // role_cmb
-            // 
-            this.role_cmb.FormattingEnabled = true;
-            this.role_cmb.Location = new System.Drawing.Point(271, 312);
-            this.role_cmb.Name = "role_cmb";
-            this.role_cmb.Size = new System.Drawing.Size(158, 40);
-            this.role_cmb.TabIndex = 59;
-            this.role_cmb.SelectedIndexChanged += new System.EventHandler(this.role_cmb_SelectedIndexChanged);
-            // 
-            // clientDetails_gb
-            // 
-            this.clientDetails_gb.Controls.Add(this.address_txt);
-            this.clientDetails_gb.Controls.Add(this.Address_lbl);
-            this.clientDetails_gb.Controls.Add(this.zipCode_lbl);
-            this.clientDetails_gb.Controls.Add(this.company_txt);
-            this.clientDetails_gb.Controls.Add(this.zipCode_txt);
-            this.clientDetails_gb.Controls.Add(this.Company_lbl);
-            this.clientDetails_gb.Controls.Add(this.Province_lbl);
-            this.clientDetails_gb.Controls.Add(this.street_txt);
-            this.clientDetails_gb.Controls.Add(this.province_txt);
-            this.clientDetails_gb.Controls.Add(this.Street_lbl);
-            this.clientDetails_gb.Controls.Add(this.City_lbl);
-            this.clientDetails_gb.Controls.Add(this.city_txt);
-            this.clientDetails_gb.Location = new System.Drawing.Point(475, 106);
-            this.clientDetails_gb.Name = "clientDetails_gb";
-            this.clientDetails_gb.Size = new System.Drawing.Size(367, 260);
-            this.clientDetails_gb.TabIndex = 60;
-            this.clientDetails_gb.TabStop = false;
-            this.clientDetails_gb.Text = "Client Details";
-            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -822,20 +824,21 @@
             this.Controls.Add(this.Admin_tc);
             this.Controls.Add(this.Welcome_lbl);
             this.Controls.Add(this.Logo_img);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AdminForm";
-            this.Text = "AdminForm";
+            this.Text = "Admin";
             this.Load += new System.EventHandler(this.AdminForm_Load);
             this.Admin_tc.ResumeLayout(false);
             this.CRUD_tp.ResumeLayout(false);
             this.CRUD_tp.PerformLayout();
+            this.clientDetails_gb.ResumeLayout(false);
+            this.clientDetails_gb.PerformLayout();
             this.systemSettings_tp.ResumeLayout(false);
             this.systemSettings_tp.PerformLayout();
             this.Users_tp.ResumeLayout(false);
             this.Users_tp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Users_dgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).EndInit();
-            this.clientDetails_gb.ResumeLayout(false);
-            this.clientDetails_gb.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,13 +1,12 @@
-﻿// StrategyCCallManagement.cs
+﻿// StrategyUserManager.cs
 using PSS_ITWORKS.LogicLayer;
-using PSS_ITWORKS.PSSDataSetTableAdapters;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace PSS_ITWORKS
 {
-    public class StrategyCallManagement : IStrategyAManagement
+    class StratagyEmployeeManagement : IStrategyAManagement
     {
         DatabaseAPI api = new DatabaseAPI();
 

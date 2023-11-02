@@ -16,7 +16,8 @@ namespace PSS_ITWORKS.Presentation_Layer
         LoginController loginController;
         protected StrategyContextManager cm;
         int UserId;
-        public AdminForm()
+        private Dashboard dashboard;
+        public AdminForm(Dashboard dashboard)
         {
             InitializeComponent();
             role_cmb.Items.Clear();
@@ -30,21 +31,25 @@ namespace PSS_ITWORKS.Presentation_Layer
             role_cmb.Items.Add("Client");
             clientDetails_gb.Visible = false;
             clientDetails_gb.Enabled = false;
+            this.dashboard = dashboard;
         }
 
         private void AdminForm_Load(object sender, EventArgs e)
         {
-            loginController = new LoginController();
-            loginController.Connect();
-            cm = new StrategyContextManager(new StrategyUserManager());
-            cm.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+            cm = new StrategyContextManager(new StrategyClientManager());
             Users_dgv.DataSource = cm.Get();
-            UserId = 0;
+            int id = 0;
+            try
+            {
+                EntityClient client = cm.Get(id) as EntityClient;
+            }
+
+            cm = new StrategyContextManager(new StratagyEmployeeManagement());
         }
 
         private void addUser_btn_Click(object sender, EventArgs e)
         {
-            EntityUser user = null;
+            EntityEmployee user = null;
             try
             {
                 user = new EntityUser(UserId, company_txt.Text, Name_txt.Text, Surname_txt.Text, 1,
@@ -62,12 +67,12 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void deleteUser_btn_Click(object sender, EventArgs e)
         {
-            cm.Delete(UserId, role_cmb.Text);
+            cm.Delete(UserId);
         }
 
         private void updateUser_btn_Click(object sender, EventArgs e)
         {
-            EntityUser user = null;
+            EntityEmployee user = null;
             try
             {
                 user = new EntityUser(UserId, company_txt.Text, Name_txt.Text, Surname_txt.Text, 1,
@@ -94,6 +99,18 @@ namespace PSS_ITWORKS.Presentation_Layer
                 clientDetails_gb.Visible = false;
                 clientDetails_gb.Enabled = false;
             }
+        }
+
+        private void Logout_btn_Click(object sender, EventArgs e)
+        {
+            
+            this.Close();
+            dashboard.Show();
+        }
+
+        private void Email_lbl_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

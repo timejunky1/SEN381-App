@@ -23,7 +23,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         string filter2 = "";
         BindingSource bindingSource;
         List<EntityService> services;
-        List<EntityUser> employees;
+        List<EntityEmployee> employees;
         public Testing()
         {
             InitializeComponent();
@@ -80,12 +80,12 @@ namespace PSS_ITWORKS.Presentation_Layer
                     entity = new  EntityJob(id1,1,1,DateTime.Now,DateTime.Now,"test", "test", employees);
                     break;
                 case 6:
-                    context = new StrategyContextManager(new StrategyUserManager());
+                    context = new StrategyContextManager(new StratagyEmployeeManagement());
                     context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
                     entity = new EntityUser(id1, "test", "test", "test", 1, 1, "test", "test", "test", "test", "test", "testEmail", DateTime.Now, "Technician");
                     break;
                 case 7:
-                    context = new StrategyContextManager(new StratagyTechnician());
+                    context = new StrategyContextManager(new StrategyTechnician());
                     context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
                     entity = new EntityJob(id1, 1, 1, DateTime.Now, DateTime.Now, "test", "test");
                     break;
@@ -137,7 +137,7 @@ namespace PSS_ITWORKS.Presentation_Layer
                 new EntityService(id2+2, "test", 1, 1, 1, "test"),
                 new EntityService(id2+3, "test", 1, 1, 1, "test")
             };
-            employees = new List<EntityUser> {
+            employees = new List<EntityEmployee> {
                 new EntityUser(id2, "test", "test", "test","test","0123456789"),
                 new EntityUser(id2+1, "test", "test", "test","test","0123456789"),
                 new EntityUser(id2+2, "test", "test", "test","test","0123456789"),

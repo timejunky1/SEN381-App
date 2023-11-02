@@ -1,13 +1,13 @@
-﻿// StrategyCCallManagement.cs
-using PSS_ITWORKS.LogicLayer;
-using PSS_ITWORKS.PSSDataSetTableAdapters;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PSS_ITWORKS
+namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 {
-    public class StrategyCallManagement : IStrategyAManagement
+    internal class StrategyTechnician : IStrategyAManagement
     {
         DatabaseAPI api = new DatabaseAPI();
 
@@ -28,12 +28,20 @@ namespace PSS_ITWORKS
 
         public List<IEntity> Get()
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public IEntity Get(int ID)
         {
-            throw new NotImplementedException();
+            EntityEmployee technician = api.GetEmployee(ID);
+            List<EntityJob> jobs = new List<EntityJob>();
+            List<int> jobIds = api.GetJobEmployeeRef(employeeId: ID);
+            foreach(int id in jobIds)
+            {
+                jobs.Add(api.GetJob(id));
+            }
+            technician.SetJobs(jobs);
+            return technician;
         }
 
         public void Update(IEntity entity)

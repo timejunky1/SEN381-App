@@ -10,63 +10,51 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
     internal class StrategyClient : IStrategyAManagement
     {
         DatabaseAPI api = new DatabaseAPI();
+
         public void Connect(string myString)
         {
-            api.SetConnection(myString);
+            throw new NotImplementedException();
         }
 
         public void Create(IEntity entity)
         {
-            try
+            throw new NotImplementedException();
+        }
+
+        public void Delete(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<IEntity> Get()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEntity Get(int ID)
+        {
+            EntityClient client = null;
+            client = api.GetClient(ID);
+            List<EntityJob> jobs= api.GetJobs();
+            foreach(EntityJob job in jobs)
             {
-                EntityJob job = entity as EntityJob;
-                api.CreateServiceRequest(job);
+                if(job.GetClientId() == client.GetID())
+                {
+                    jobs.Add(job);
+                }
             }
-            catch(Exception ex)
+            client.SetJobs(jobs);
+            List<EntityCall> calls = api.GetCalls();
+            foreach (EntityCall call in calls)
             {
-                ErrorHandler.DisplayError(ex);
+                if (call.GetClientId() == client.GetID())
+                {
+                    calls.Add(call);
+                }
             }
-        }
+            client.SetCalls(calls);
+            return client;
 
-        public void Delete(int ID, string s = "")
-        {
-            throw new NotImplementedException();
-        }
-
-        public BindingSource Get()
-        {
-            throw new NotImplementedException();
-        }
-
-        public BindingSource Get(int ID)
-        {
-            BindingSource bs = api.GetClientWithDetails(ID);
-            return bs;
-        }
-
-        public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
-        {
-            throw new NotImplementedException();
-        }
-
-        public BindingSource GetSpecific1(string s1)
-        {
-            throw new NotImplementedException();
-        }
-
-        public BindingSource GetSpecific1(int n1)
-        {
-            throw new NotImplementedException();
-        }
-
-        public BindingSource GetSpecific2(string s2)
-        {
-            throw new NotImplementedException();
-        }
-
-        public BindingSource GetSpecific2(int n1)
-        {
-            throw new NotImplementedException();
         }
 
         public void Update(IEntity entity)
