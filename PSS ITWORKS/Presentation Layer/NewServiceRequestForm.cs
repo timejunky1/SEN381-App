@@ -48,7 +48,6 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void Submit_btn_Click(object sender, EventArgs e)
         {
-            int customerID = int.Parse(CustomerID_txt.Text);
             int contractNumber = int.Parse(ContactNumber_txt.Text);
             string email = EmailAddress_txt.Text;
             string equipSerialNo = EquipmentSerialNumber_txt.Text;
@@ -59,8 +58,6 @@ namespace PSS_ITWORKS.Presentation_Layer
             ServiceType_cbx.SelectedItem.ToString();
             int serviceType = (int)ServiceType_cbx.ValueMember[ServiceTypeIndex];
             string desc = "Equipment Serial Number: " + equipSerialNo + " " + Description_rbx.Text;
-
-            job = new EntityJob(customerID, serviceType, desc);
             callManagement.Create(job);
 
             MessageBox.Show("Service Request successfully created");
@@ -72,6 +69,11 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.Close();
             CallForm callForm = new CallForm();
             callForm.ShowDialog();
+        }
+
+        private void Submit_btn_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

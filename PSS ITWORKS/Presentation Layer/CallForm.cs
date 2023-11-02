@@ -65,7 +65,6 @@ namespace PSS_ITWORKS.Presentation_Layer
             }
             else 
             {
-                PastServiceRequest_dgv.DataSource = callManagement.GetSpecific1(clientName);
             }
             
         }
