@@ -19,7 +19,7 @@ namespace PSS_ITWORKS
             throw new System.NotImplementedException();
         }
 
-        public void Delete(int ID, string s = "")
+        public void Delete(int ID)
         {
             throw new System.NotImplementedException();
         }
