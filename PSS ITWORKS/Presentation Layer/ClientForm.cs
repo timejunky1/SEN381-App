@@ -569,6 +569,7 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void newRequest_btn_Click(object sender, EventArgs e)
         {
+            // Make sure where this button should go/do
 
         }
 
@@ -577,7 +578,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             //On Form load clear all outputs
             ClearDataGridViews();
 
-            // populate the datagridviews
+            // populate the datagridviews with details of current client
             MaintenanceOverview();
             ServiceRequest();
             ClientHistory();
@@ -662,7 +663,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         // method to clear inputs
         private void ClearInputs()
         {
-
+            // if any inputs needed clear all with this method
         }
 
         // method to clear datagridviews

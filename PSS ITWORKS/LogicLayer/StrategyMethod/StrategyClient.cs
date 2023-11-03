@@ -65,7 +65,7 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
         public BindingSource GetSpecific2(string s2)
         {
             int id = Convert.ToInt32(s2);
-            return api.GetContracts(id);
+            //return api.GetContracts(id);
             
         }
 
