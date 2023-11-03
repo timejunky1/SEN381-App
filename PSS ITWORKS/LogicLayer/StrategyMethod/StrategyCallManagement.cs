@@ -18,22 +18,33 @@ namespace PSS_ITWORKS
 
         public void Create(IEntity entity)
         {
+            EntityCall call = new EntityCall();
+            foreach (var item in entity)
+            {
+
+            }
+
+            api.InsertCall(entity);
             throw new NotImplementedException();
         }
 
         public void Delete(int ID)
         {
-            throw new NotImplementedException();
+            api.DeleteCall(ID);
         }
 
         public List<IEntity> Get()
         {
-            throw new NotImplementedException();
+            List<EntityCall> calls = null;
+            calls = api.GetCalls();
+            return calls;
         }
 
         public IEntity Get(int ID)
         {
-            throw new NotImplementedException();
+            EntityCall call = null;
+            call = api.GetCalls(ID);
+            return call;
         }
 
         public void Update(IEntity entity)
