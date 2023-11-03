@@ -16,6 +16,7 @@ namespace PSS_ITWORKS.LogicLayer
         private string notes;
         List<EntityEmployee> employees;
         List<EntityCall> calls;
+        private int priority;
 
         public EntityJob(int id, int clientId, int serviceId, DateTime timeBegin, DateTime timeEnd, string status, string notes)
         {
@@ -26,6 +27,16 @@ namespace PSS_ITWORKS.LogicLayer
             this.timeEnd = timeEnd;
             this.status = status;
             this.notes = notes;
+        }
+
+        public void SetPriotity(int priority)
+        {
+            this.priority = priority;
+        }
+
+        public int GetPriotity()
+        {
+            return this.priority;
         }
 
         public void SetEmployee(List<EntityEmployee> employees)

@@ -65,11 +65,6 @@ namespace PSS_ITWORKS.LogicLayer
             return availability;
         }
 
-        public List<EntityService> GetServices()
-        {
-            return services;
-        }
-
         public string GetTitle()
         {
             return title;

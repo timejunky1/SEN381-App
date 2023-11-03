@@ -754,7 +754,7 @@ namespace PSS_ITWORKS
                                     reader.GetString(1),
                                     reader.GetString(2),
                                     reader.GetInt16(3),
-                                    reader.GetDecimal(4),
+                                    (float)reader.GetDecimal(4),
                                     reader.GetInt16(5),
                                     reader.GetString(6)
                                     );
@@ -778,14 +778,39 @@ namespace PSS_ITWORKS
         public List<EntityContract> GetContracts()
         {
             List<EntityContract> contracts = null;
-            using (conn)
+            try
             {
-                conn.Open();
-                using (SqlCommand command = new SqlCommand())
+                using (conn)
                 {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.ExecuteNonQuery();
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("contractProcedures.GetContract"))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                EntityContract contract = new EntityContract(
+                                    reader.GetInt16(0),
+                                    reader.GetString(1),
+                                    reader.GetString(2),
+                                    reader.GetInt16(3),
+                                    (float)reader.GetDecimal(4),
+                                    reader.GetInt16(5),
+                                    reader.GetString(6)
+                                    );
+                            }
+                            if (!reader.HasRows)
+                            {
+                                ErrorHandler.DisplayError("No Data");
+                            }
+                            reader.Close();
+                        }
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
             }
             return contracts;
         }
@@ -1111,29 +1136,71 @@ namespace PSS_ITWORKS
         public List<int> GetJobEmployeeRef(int jobId = 0, int employeeId = 0)
         {
             List<int> ids = null;
-            using (conn)
+            try
             {
-                conn.Open();
-                using (SqlCommand command = new SqlCommand())
+                using (conn)
                 {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.ExecuteNonQuery();
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("referenceProcedures.GetJobEmployeeRef"))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@jobId", jobId);//INT
+                        command.Parameters.AddWithValue("@employeeId", jobId);//INT
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = reader.GetInt32(0);
+                                ids.Add(id);
+                            }
+                            if (!reader.HasRows)
+                            {
+                                ErrorHandler.DisplayError("No Data");
+                            }
+                            reader.Close();
+                        }
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
             }
             return ids;
         }
 
-        public List<int> GetJobCallReff(int jobId = 0, int callId = 0)
+        public List<int> GetJobCallRef(int jobId = 0, int callId = 0)
         {
             List<int> ids = null;
-            using (conn)
+            try
             {
-                conn.Open();
-                using (SqlCommand command = new SqlCommand())
+                using (conn)
                 {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.ExecuteNonQuery();
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("referenceProcedures.GetJobCallRef"))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@jobId", jobId);//INT
+                        command.Parameters.AddWithValue("@callId", callId);//INT
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = reader.GetInt32(0);
+                                ids.Add(id);
+                            }
+                            if (!reader.HasRows)
+                            {
+                                ErrorHandler.DisplayError("No Data");
+                            }
+                            reader.Close();
+                        }
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
             }
             return ids;
         }
@@ -1141,18 +1208,175 @@ namespace PSS_ITWORKS
         public List<int> GetContractRef(int contractId = 0, int serviceId = 0)
         {
             List<int> ids = null;
-            using (conn)
+            try
             {
-                conn.Open();
-                using (SqlCommand command = new SqlCommand())
+                using (conn)
                 {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.ExecuteNonQuery();
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("referenceProcedures.GetContractRef"))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@contractId", contractId);//INT
+                        command.Parameters.AddWithValue("@serviceId", serviceId);//INT
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = reader.GetInt32(0);
+                                ids.Add(id);
+                            }
+                            if (!reader.HasRows)
+                            {
+                                ErrorHandler.DisplayError("No Data");
+                            }
+                            reader.Close();
+                        }
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
             }
             return ids;
         }
 
+        public void DeleteJobEmployeeRef(int jobId, int employeeId)
+        {
+            try
+            {
+                using (conn)
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("referenceProcedures.DeleteJobEmployeeRef"))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@jobId", jobId);//INT
+                        command.Parameters.AddWithValue("@employeeId", employeeId);//INT
+                        command.ExecuteNonQuery();
+                    }
+                }
+                ErrorHandler.DisplayError("Successfully Deleted References");
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+            }
+        }
 
+        public void DeleteJobCallRef(int jobId, int callId)
+        {
+            try
+            {
+                using (conn)
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("referenceProcedures.DeleteJobEmployeeRef"))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@jobId", jobId);//INT
+                        command.Parameters.AddWithValue("@callId", callId);//INT
+                        command.ExecuteNonQuery();
+                    }
+                }
+                ErrorHandler.DisplayError("Successfully Deleted References");
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+            }
+        }
+
+        public void DeleteContractRef(int contractId, int serviceId)
+        {
+            try
+            {
+                using (conn)
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("referenceProcedures.DeleteJobEmployeeRef"))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@contractId", contractId);//INT
+                        command.Parameters.AddWithValue("@serviceId", serviceId);//INT
+                        command.ExecuteNonQuery();
+                    }
+                }
+                ErrorHandler.DisplayError("Successfully Deleted References");
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+            }
+        }
+
+        public void InsertJobEmployeeRef(int jobId, int employeeId)
+        {
+            try
+            {
+                using (conn)
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("referenceProcedures.InsertJobEmployeeRef"))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@jobId", jobId);//INT
+                        command.Parameters.AddWithValue("@employeeId", employeeId);//INT
+                        command.ExecuteNonQuery();
+                    }
+                }
+                ErrorHandler.DisplayError("Successfully Inserted References");
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+            }
+        }
+
+        public void InsertJobCallRef(int jobId, int callId)
+        {
+            try
+            {
+                using (conn)
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("referenceProcedures.InsertJobEmployeeRef"))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@jobId", jobId);//INT
+                        command.Parameters.AddWithValue("@callId", callId);//INT
+                        command.ExecuteNonQuery();
+                    }
+                }
+                ErrorHandler.DisplayError("Successfully Inserted References");
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+            }
+        }
+
+        public void InsertContractRef(int contractId, int serviceId)
+        {
+            try
+            {
+                using (conn)
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("referenceProcedures.InsertJobEmployeeRef"))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@contractId", contractId);//INT
+                        command.Parameters.AddWithValue("@serviceId", serviceId);//INT
+                        command.ExecuteNonQuery();
+                    }
+                }
+                ErrorHandler.DisplayError("Successfully Inserted References");
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+            }
+        }
     }
 }
