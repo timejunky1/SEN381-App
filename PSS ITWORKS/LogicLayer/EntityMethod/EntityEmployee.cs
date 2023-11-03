@@ -71,11 +71,6 @@ namespace PSS_ITWORKS.LogicLayer
             return email;
         }
 
-        public DateTime GetContractInitiationDate()
-        {
-            return contractInitiationDate;
-        }
-
         public int GetStreetNumber()
         {
             return streetNumber;

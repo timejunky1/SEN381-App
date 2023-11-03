@@ -18,6 +18,7 @@ public class LoginController
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Role { get; set; }
+        public int ID { get; set; }
 
     }
     public void Connect()
@@ -65,6 +66,11 @@ public class LoginController
     public UserInfo GetUserInfo()
     {
         return userInfo;
+    }
+
+    public int getID(UserInfo)
+    {
+        return ID;
     }
 
     public string GetUserRole(string username)

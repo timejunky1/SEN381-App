@@ -7,7 +7,8 @@ namespace PSS_ITWORKS.LogicLayer
 {
     class EntityContract : IEntity
     {
-        private int Id;
+        private int id;
+        private string title;
         private string SLA;
         private int duration;
         private float cost;
@@ -15,18 +16,20 @@ namespace PSS_ITWORKS.LogicLayer
         private string availability;
         List<EntityService> services;
 
-        public EntityContract(int id, string sLA, int duration, float cost, int priority, string availability, List<EntityService> services)
+        public EntityContract(int id, string title, string sLA, int duration, float cost, int priority, string availability)
         {
-            Id = id;
+            this.id = id;
             SLA = sLA;
             this.duration = duration;
             this.cost = cost;
             this.priority = priority;
             this.availability = availability;
-            this.services = services;
-            this.services = services;
+            this.title = title;
         }
-
+        public List<EntityService> GetServices()
+        {
+            return services;
+        }
         public void SetServices(List<EntityService> services)
         {
             this.services = services;
@@ -34,7 +37,7 @@ namespace PSS_ITWORKS.LogicLayer
         
         public int GetId()
         {
-            return Id;
+            return id;
         }
 
         public string GetSLA()
@@ -65,6 +68,11 @@ namespace PSS_ITWORKS.LogicLayer
         public List<EntityService> GetServices()
         {
             return services;
+        }
+
+        public string GetTitle()
+        {
+            return title;
         }
     }
 }
