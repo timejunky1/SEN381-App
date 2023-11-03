@@ -20,6 +20,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         
         public int clientId = 0;
         public int empId = 0;
+        List<EntityService> services;
 
 
         void LoadService()
@@ -44,7 +45,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             context.Connect(conn);
 
             List<IEntity> entity = (List<IEntity>)context.Get();
-            List<EntityService> services = new List<EntityService>();
+            ///List<EntityService> services = new List<EntityService>();
             List<EntityContract> contract = new List<EntityContract>();
 
             if (contractID != 0)
@@ -58,11 +59,19 @@ namespace PSS_ITWORKS.Presentation_Layer
 
                     }
                 }
+                
                 foreach (EntityContract c in contract)
                 {
                     EntityContract contract1 = c as EntityContract;
-                    ServiceType_cbx.Items.Add(contract1.GetServices());
+                    services = contract1.GetServices();
                     
+                }
+
+                //populate serviceType_cbx
+                foreach(EntityService service in services)
+                {
+                    ServiceType_cbx.Items.Add(service.GetTitle());
+
                 }
 
             }
@@ -70,7 +79,12 @@ namespace PSS_ITWORKS.Presentation_Layer
             {
                 foreach(EntityContract c in contract)
                 {
-                    ServiceType_cbx.Items.Add(c.GetServices());
+                    services = c.GetServices();
+                    foreach (EntityService service in services)
+                    {
+                        ServiceType_cbx.Items.Add(service.GetTitle());
+
+                    }
 
                 }
                 
@@ -99,7 +113,14 @@ namespace PSS_ITWORKS.Presentation_Layer
             LoadService();
         }
 
-        private void Submit_btn_Click(object sender, EventArgs e)
+        private void Close_btn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            CallForm callForm = new CallForm();
+            callForm.ShowDialog();
+        }
+
+        private void Submit_btn_Click_1(object sender, EventArgs e)
         {
             StrategyContextManager context = new StrategyContextManager(new StrategyCallManagement());
             context.Connect(conn);
@@ -112,35 +133,36 @@ namespace PSS_ITWORKS.Presentation_Layer
             int priority = (int)PriorityLevel__cbx.Items[selectedIndex];
             int ServiceTypeIndex = ServiceType_cbx.SelectedIndex;
             ServiceType_cbx.SelectedItem.ToString();
-            int serviceType = (int)ServiceType_cbx.ValueMember[ServiceTypeIndex];
+            string serviceType = ServiceType_cbx.ValueMember[ServiceTypeIndex].ToString();
+            int serviceID = 0;
+
+            foreach (EntityService service in services)
+            {
+                if (service.GetTitle() == serviceType)
+                {
+                    serviceID = service.GetId();
+                }
+
+
+            }
+
+
             string desc = "Equipment Serial Number: " + equipSerialNo + " " + Description_rbx.Text;
             string status = "Pending";
 
             ///// add call log
-            EntityCall call = new EntityCall(0, empId, clientId, date , desc);
+            EntityCall call = new EntityCall(0, empId, clientId, date, desc);
             context.Create(call);
 
             ///add job
             context = new StrategyContextManager(new StrategyJobManager());
             context.Connect(conn);
-            EntityJob job = new EntityJob(0, clientId, serviceType, DateTime.Now, DateTime.Now, status, "");
+            EntityJob job = new EntityJob(0, clientId, serviceID, DateTime.Now, DateTime.Now, status, "");
             context.Create(job);
 
 
 
             MessageBox.Show("Service Request successfully created");
-
-        }
-
-        private void Close_btn_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            CallForm callForm = new CallForm();
-            callForm.ShowDialog();
-        }
-
-        private void Submit_btn_Click_1(object sender, EventArgs e)
-        {
 
         }
     }
