@@ -117,7 +117,7 @@ namespace PSS_ITWORKS
                     string role = roleParam.Value.ToString();
                     int userId = int.Parse(idperam.Value.ToString());
 
-                    userInfo = new LoginController.UserInfo { Name = name, Surname = surname, Role = role };
+                    userInfo = new LoginController.UserInfo { Name = name, Surname = surname, Role = role, ID = userId};
                 }
                 conn.Close();
             }
@@ -250,7 +250,7 @@ namespace PSS_ITWORKS
             }
         }
 
-        public EntityCall GetCall(int callId)
+        public EntityCall GetCalls(int callId)
         {
             EntityCall call = null;
             using (conn)

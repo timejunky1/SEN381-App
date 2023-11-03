@@ -44,12 +44,14 @@
             this.ServiceRequest_lbl = new System.Windows.Forms.Label();
             this.Client_tp = new System.Windows.Forms.TabPage();
             this.ContractDetailsOverview_gbx = new System.Windows.Forms.GroupBox();
+            this.ContractOverview_dgv = new System.Windows.Forms.DataGridView();
             this.ExperationDate_txt = new System.Windows.Forms.TextBox();
             this.ExperationDate_lbl = new System.Windows.Forms.Label();
-            this.Coverage_txt = new System.Windows.Forms.TextBox();
-            this.Coverage_lbl = new System.Windows.Forms.Label();
+            this.Priority_txt = new System.Windows.Forms.TextBox();
             this.ContractDuration_txt = new System.Windows.Forms.TextBox();
             this.ContractDuration_lbl = new System.Windows.Forms.Label();
+            this.Priority_lbl = new System.Windows.Forms.Label();
+            this.SearchClient_btn = new System.Windows.Forms.Button();
             this.ClientName_txt = new System.Windows.Forms.TextBox();
             this.ClientName_lbl = new System.Windows.Forms.Label();
             this.SearchClient_lbl = new System.Windows.Forms.Label();
@@ -59,8 +61,8 @@
             this.SearchClientName_lbl = new System.Windows.Forms.Label();
             this.PastServiceRequest_dgv = new System.Windows.Forms.DataGridView();
             this.PastServiceRequest_lbl = new System.Windows.Forms.Label();
-            this.SearchClient_btn = new System.Windows.Forms.Button();
-            this.ContractOverview_dgv = new System.Windows.Forms.DataGridView();
+            this.NewServiceClientName_txt = new System.Windows.Forms.TextBox();
+            this.NewServiceClientName_lbl = new System.Windows.Forms.Label();
             this.Header_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PSS_img)).BeginInit();
             this.CallEmployee_tc.SuspendLayout();
@@ -70,9 +72,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.PastRequests_dgv)).BeginInit();
             this.Client_tp.SuspendLayout();
             this.ContractDetailsOverview_gbx.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ContractOverview_dgv)).BeginInit();
             this.History_tbp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PastServiceRequest_dgv)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ContractOverview_dgv)).BeginInit();
             this.SuspendLayout();
             // 
             // Header_pnl
@@ -175,6 +177,8 @@
             // 
             // ServiceRequest_tp
             // 
+            this.ServiceRequest_tp.Controls.Add(this.NewServiceClientName_lbl);
+            this.ServiceRequest_tp.Controls.Add(this.NewServiceClientName_txt);
             this.ServiceRequest_tp.Controls.Add(this.PastRequests_dgv);
             this.ServiceRequest_tp.Controls.Add(this.PastRequests_lbl);
             this.ServiceRequest_tp.Controls.Add(this.NewServiceRequest_btn);
@@ -209,7 +213,7 @@
             // NewServiceRequest_btn
             // 
             this.NewServiceRequest_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.NewServiceRequest_btn.Location = new System.Drawing.Point(27, 54);
+            this.NewServiceRequest_btn.Location = new System.Drawing.Point(391, 67);
             this.NewServiceRequest_btn.Name = "NewServiceRequest_btn";
             this.NewServiceRequest_btn.Size = new System.Drawing.Size(211, 43);
             this.NewServiceRequest_btn.TabIndex = 1;
@@ -245,16 +249,26 @@
             this.ContractDetailsOverview_gbx.Controls.Add(this.ContractOverview_dgv);
             this.ContractDetailsOverview_gbx.Controls.Add(this.ExperationDate_txt);
             this.ContractDetailsOverview_gbx.Controls.Add(this.ExperationDate_lbl);
-            this.ContractDetailsOverview_gbx.Controls.Add(this.Coverage_txt);
+            this.ContractDetailsOverview_gbx.Controls.Add(this.Priority_txt);
             this.ContractDetailsOverview_gbx.Controls.Add(this.ContractDuration_txt);
             this.ContractDetailsOverview_gbx.Controls.Add(this.ContractDuration_lbl);
-            this.ContractDetailsOverview_gbx.Controls.Add(this.Coverage_lbl);
+            this.ContractDetailsOverview_gbx.Controls.Add(this.Priority_lbl);
             this.ContractDetailsOverview_gbx.Location = new System.Drawing.Point(20, 144);
             this.ContractDetailsOverview_gbx.Name = "ContractDetailsOverview_gbx";
             this.ContractDetailsOverview_gbx.Size = new System.Drawing.Size(1116, 376);
             this.ContractDetailsOverview_gbx.TabIndex = 6;
             this.ContractDetailsOverview_gbx.TabStop = false;
             this.ContractDetailsOverview_gbx.Text = "Contract Details Overview";
+            // 
+            // ContractOverview_dgv
+            // 
+            this.ContractOverview_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ContractOverview_dgv.Location = new System.Drawing.Point(41, 32);
+            this.ContractOverview_dgv.Name = "ContractOverview_dgv";
+            this.ContractOverview_dgv.RowHeadersWidth = 51;
+            this.ContractOverview_dgv.RowTemplate.Height = 24;
+            this.ContractOverview_dgv.Size = new System.Drawing.Size(1039, 241);
+            this.ContractOverview_dgv.TabIndex = 6;
             // 
             // ExperationDate_txt
             // 
@@ -274,22 +288,13 @@
             this.ExperationDate_lbl.Text = "Experation Date";
             this.ExperationDate_lbl.Click += new System.EventHandler(this.label2_Click);
             // 
-            // Coverage_txt
+            // Priority_txt
             // 
-            this.Coverage_txt.Location = new System.Drawing.Point(57, 321);
-            this.Coverage_txt.Name = "Coverage_txt";
-            this.Coverage_txt.Size = new System.Drawing.Size(209, 32);
-            this.Coverage_txt.TabIndex = 3;
-            // 
-            // Coverage_lbl
-            // 
-            this.Coverage_lbl.AutoSize = true;
-            this.Coverage_lbl.ForeColor = System.Drawing.Color.Blue;
-            this.Coverage_lbl.Location = new System.Drawing.Point(52, 276);
-            this.Coverage_lbl.Name = "Coverage_lbl";
-            this.Coverage_lbl.Size = new System.Drawing.Size(87, 25);
-            this.Coverage_lbl.TabIndex = 2;
-            this.Coverage_lbl.Text = "Coverage";
+            this.Priority_txt.Location = new System.Drawing.Point(57, 321);
+            this.Priority_txt.Name = "Priority_txt";
+            this.Priority_txt.Size = new System.Drawing.Size(209, 32);
+            this.Priority_txt.TabIndex = 3;
+            this.Priority_txt.TextChanged += new System.EventHandler(this.Title_txt_TextChanged);
             // 
             // ContractDuration_txt
             // 
@@ -307,6 +312,28 @@
             this.ContractDuration_lbl.Size = new System.Drawing.Size(156, 25);
             this.ContractDuration_lbl.TabIndex = 0;
             this.ContractDuration_lbl.Text = "Contract Duration";
+            // 
+            // Priority_lbl
+            // 
+            this.Priority_lbl.AutoSize = true;
+            this.Priority_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.Priority_lbl.Location = new System.Drawing.Point(52, 276);
+            this.Priority_lbl.Name = "Priority_lbl";
+            this.Priority_lbl.Size = new System.Drawing.Size(72, 25);
+            this.Priority_lbl.TabIndex = 2;
+            this.Priority_lbl.Text = "Priority";
+            // 
+            // SearchClient_btn
+            // 
+            this.SearchClient_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.SearchClient_btn.ForeColor = System.Drawing.Color.Black;
+            this.SearchClient_btn.Location = new System.Drawing.Point(434, 84);
+            this.SearchClient_btn.Name = "SearchClient_btn";
+            this.SearchClient_btn.Size = new System.Drawing.Size(211, 43);
+            this.SearchClient_btn.TabIndex = 5;
+            this.SearchClient_btn.Text = "Search";
+            this.SearchClient_btn.UseVisualStyleBackColor = false;
+            this.SearchClient_btn.Click += new System.EventHandler(this.SearchClient_btn_Click);
             // 
             // ClientName_txt
             // 
@@ -394,27 +421,22 @@
             this.PastServiceRequest_lbl.TabIndex = 0;
             this.PastServiceRequest_lbl.Text = "Past Service Request, Maintanance activities and invoices";
             // 
-            // SearchClient_btn
+            // NewServiceClientName_txt
             // 
-            this.SearchClient_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.SearchClient_btn.ForeColor = System.Drawing.Color.Black;
-            this.SearchClient_btn.Location = new System.Drawing.Point(434, 84);
-            this.SearchClient_btn.Name = "SearchClient_btn";
-            this.SearchClient_btn.Size = new System.Drawing.Size(211, 43);
-            this.SearchClient_btn.TabIndex = 5;
-            this.SearchClient_btn.Text = "Search";
-            this.SearchClient_btn.UseVisualStyleBackColor = false;
-            this.SearchClient_btn.Click += new System.EventHandler(this.SearchClient_btn_Click);
+            this.NewServiceClientName_txt.Location = new System.Drawing.Point(48, 78);
+            this.NewServiceClientName_txt.Name = "NewServiceClientName_txt";
+            this.NewServiceClientName_txt.Size = new System.Drawing.Size(187, 32);
+            this.NewServiceClientName_txt.TabIndex = 4;
             // 
-            // ContractOverview_dgv
+            // NewServiceClientName_lbl
             // 
-            this.ContractOverview_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ContractOverview_dgv.Location = new System.Drawing.Point(41, 32);
-            this.ContractOverview_dgv.Name = "ContractOverview_dgv";
-            this.ContractOverview_dgv.RowHeadersWidth = 51;
-            this.ContractOverview_dgv.RowTemplate.Height = 24;
-            this.ContractOverview_dgv.Size = new System.Drawing.Size(1039, 241);
-            this.ContractOverview_dgv.TabIndex = 6;
+            this.NewServiceClientName_lbl.AutoSize = true;
+            this.NewServiceClientName_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.NewServiceClientName_lbl.Location = new System.Drawing.Point(43, 41);
+            this.NewServiceClientName_lbl.Name = "NewServiceClientName_lbl";
+            this.NewServiceClientName_lbl.Size = new System.Drawing.Size(112, 25);
+            this.NewServiceClientName_lbl.TabIndex = 5;
+            this.NewServiceClientName_lbl.Text = "Client Name";
             // 
             // CallForm
             // 
@@ -440,10 +462,10 @@
             this.Client_tp.PerformLayout();
             this.ContractDetailsOverview_gbx.ResumeLayout(false);
             this.ContractDetailsOverview_gbx.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ContractOverview_dgv)).EndInit();
             this.History_tbp.ResumeLayout(false);
             this.History_tbp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PastServiceRequest_dgv)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ContractOverview_dgv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -470,8 +492,8 @@
         private System.Windows.Forms.GroupBox ContractDetailsOverview_gbx;
         private System.Windows.Forms.TextBox ExperationDate_txt;
         private System.Windows.Forms.Label ExperationDate_lbl;
-        private System.Windows.Forms.TextBox Coverage_txt;
-        private System.Windows.Forms.Label Coverage_lbl;
+        private System.Windows.Forms.TextBox Priority_txt;
+        private System.Windows.Forms.Label Priority_lbl;
         private System.Windows.Forms.TextBox ContractDuration_txt;
         private System.Windows.Forms.Label ContractDuration_lbl;
         private System.Windows.Forms.TextBox ClientName_txt;
@@ -484,5 +506,7 @@
         private System.Windows.Forms.Label PastServiceRequest_lbl;
         private System.Windows.Forms.Button SearchClient_btn;
         private System.Windows.Forms.DataGridView ContractOverview_dgv;
+        private System.Windows.Forms.Label NewServiceClientName_lbl;
+        private System.Windows.Forms.TextBox NewServiceClientName_txt;
     }
 }
