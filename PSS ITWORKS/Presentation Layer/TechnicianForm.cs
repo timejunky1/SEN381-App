@@ -150,8 +150,8 @@ namespace PSS_ITWORKS.Presentation_Layer
             foreach (IDataRecord dr in bs.List)
             {
                 MessageBox.Show(dr[0].ToString() + ", " + dr[1].ToString() + ", " + dr[2].ToString());
-                clientDetails_dgv.DataSource = context.GetSpecific(int.Parse(dr[1].ToString()));
-                serviceOverview_dgv.DataSource = context.GetSpecific1(dr[2].ToString());
+                clientDetails_dgv.DataSource = context.Get(int.Parse(dr[1].ToString()));
+                serviceOverview_dgv.DataSource = context.Get(dr[2].ToString());
                 status_cbx.Text = dr[5].ToString();
                 jobNotes_rtb.Text = dr[6].ToString();
             }

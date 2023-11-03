@@ -18,6 +18,7 @@ namespace PSS_ITWORKS
 
         public void Create(IEntity entity)
         {
+            api.InsertCall(entity as EntityCall);
             throw new NotImplementedException();
         }
 
@@ -28,11 +29,13 @@ namespace PSS_ITWORKS
 
         public List<IEntity> Get()
         {
+            api.GetCalls();
             throw new NotImplementedException();
         }
 
         public IEntity Get(int ID)
         {
+            return api.GetCall(ID);
             throw new NotImplementedException();
         }
 

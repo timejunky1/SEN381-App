@@ -18,6 +18,8 @@ namespace PSS_ITWORKS.Presentation_Layer
         StrategyContextManager strategyContextManager;
         BindingSource bs;
         SqlConnection con;
+        EntityEmployee employee;
+        EntityClient employeeClient;
 
         void getContractInfo()
         {
