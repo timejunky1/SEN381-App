@@ -21,39 +21,60 @@ namespace PSS_ITWORKS.Presentation_Layer
         public int clientId = 0;
         public int empId = 0;
 
-        void LoadPriority()
-        {
 
-        }
-
-        void LoadService(int clientId)
+        void LoadService()
         {
-            int clientID = 0;
             int contractID = 0;
             context = new StrategyContextManager(new StrategyClientManager());
             context.Connect(conn);
-
+            //// Get contractId
             List<IEntity> entities = (List<IEntity>)context.Get();
-            List<EntityContract> contracts = new List<EntityContract>();
+            List<EntityClient> client = new List<EntityClient>();
             foreach (IEntity ent in entities)
             {
-                EntityContract c = ent as EntityContract;
-                if (c.GetId() == contractID)
+                EntityClient c = ent as EntityClient;
+                if (c.GetID() == clientId)
                 {
-                    contracts.Add(c.GetServices());
+                    contractID = c.GetContractId();
 
                 }
             }
-
+            ///Get Services from ContractId
             context = new StrategyContextManager(new StrategyContractManager());
             context.Connect(conn);
 
             List<IEntity> entity = (List<IEntity>)context.Get();
+            List<EntityService> services = new List<EntityService>();
+            List<EntityContract> contract = new List<EntityContract>();
 
-
-            if (contractID == 0)
+            if (contractID != 0)
             {
+                foreach (IEntity ent in entities)
+                {
+                    EntityContract c = ent as EntityContract;
+                    if (c.GetId() == contractID)
+                    {
+                        contract.Add(c);
+
+                    }
+                }
+                foreach (EntityContract c in contract)
+                {
+                    EntityContract contract1 = c as EntityContract;
+                    ServiceType_cbx.Items.Add(contract1.GetServices());
+                    
+                }
+
+            }
+            else
+            {
+                foreach(EntityContract c in contract)
+                {
+                    ServiceType_cbx.Items.Add(c.GetServices());
+
+                }
                 
+
             }
 
             
@@ -70,26 +91,19 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             
             /////Populate Priority combo box
-            con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT service_id,DISTINCT priority, DISTINCT title FROM service");
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            cmd.ExecuteNonQuery();
-            con.Close();
-
-            PriorityLevel__cbx.DataSource = ds.Tables[0];
-            PriorityLevel__cbx.DisplayMember = "priority";
-            PriorityLevel__cbx.ValueMember = "service_id";
-
+            for (int i = 0; i>6; i++)
+            {
+                PriorityLevel__cbx.Items.Add(i.ToString());
+            }
             /////Populate Service Type combo box
-            ServiceType_cbx.DataSource = ds.Tables[0];
-            ServiceType_cbx.DisplayMember = "title";
-            ServiceType_cbx.ValueMember = "service_id";
+            LoadService();
         }
 
         private void Submit_btn_Click(object sender, EventArgs e)
         {
+            StrategyContextManager context = new StrategyContextManager(new StrategyCallManagement());
+            context.Connect(conn);
+            DateTime date = DateTime.Now;
             int contractNumber = int.Parse(ContactNumber_txt.Text);
             string email = EmailAddress_txt.Text;
             string equipSerialNo = EquipmentSerialNumber_txt.Text;
@@ -100,7 +114,19 @@ namespace PSS_ITWORKS.Presentation_Layer
             ServiceType_cbx.SelectedItem.ToString();
             int serviceType = (int)ServiceType_cbx.ValueMember[ServiceTypeIndex];
             string desc = "Equipment Serial Number: " + equipSerialNo + " " + Description_rbx.Text;
-            callManagement.Create(job);
+            string status = "Pending";
+
+            ///// add call log
+            EntityCall call = new EntityCall(0, empId, clientId, date , desc);
+            context.Create(call);
+
+            ///add job
+            context = new StrategyContextManager(new StrategyJobManager());
+            context.Connect(conn);
+            EntityJob job = new EntityJob(0, clientId, serviceType, DateTime.Now, DateTime.Now, status, "");
+            context.Create(job);
+
+
 
             MessageBox.Show("Service Request successfully created");
 
