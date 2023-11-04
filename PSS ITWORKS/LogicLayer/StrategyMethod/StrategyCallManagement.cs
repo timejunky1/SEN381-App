@@ -20,7 +20,6 @@ namespace PSS_ITWORKS
         {
             EntityCall call = entity as EntityCall;
             api.InsertCall(call);
-            throw new NotImplementedException();
         }
 
         public void Delete(int ID)
@@ -30,8 +29,14 @@ namespace PSS_ITWORKS
 
         public List<IEntity> Get()
         {
+            List<EntityCall> calls = api.GetCalls();
+            List<IEntity> list = new List<IEntity>();
+            foreach (EntityCall call in calls)
+            {
+                list.Add(call);
+            }
 
-            return api.GetCalls();
+            return list;
         }
 
         public IEntity Get(int ID)
