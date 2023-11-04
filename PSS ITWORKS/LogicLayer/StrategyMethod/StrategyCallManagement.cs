@@ -13,18 +13,13 @@ namespace PSS_ITWORKS
 
         public void Connect(string myString)
         {
-            throw new NotImplementedException();
+            api.SetConnection(myString);
         }
 
         public void Create(IEntity entity)
         {
-            EntityCall call = new EntityCall();
-            foreach (var item in entity)
-            {
-
-            }
-
-            api.InsertCall(entity);
+            EntityCall call = entity as EntityCall;
+            api.InsertCall(call);
             throw new NotImplementedException();
         }
 
@@ -35,9 +30,8 @@ namespace PSS_ITWORKS
 
         public List<IEntity> Get()
         {
-            List<EntityCall> calls = null;
-            calls = api.GetCalls();
-            return calls;
+
+            return api.GetCalls();
         }
 
         public IEntity Get(int ID)
