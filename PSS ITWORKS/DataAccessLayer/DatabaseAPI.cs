@@ -1145,7 +1145,7 @@ namespace PSS_ITWORKS
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@jobId", jobId);//INT
-                        command.Parameters.AddWithValue("@employeeId", jobId);//INT
+                        command.Parameters.AddWithValue("@employeeId", employeeId);//INT
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
@@ -1241,7 +1241,7 @@ namespace PSS_ITWORKS
             return ids;
         }
 
-        public void DeleteJobEmployeeRef(int jobId, int employeeId)
+        public void DeleteJobEmployeeRef(int jobId = 0, int employeeId = 0)
         {
             try
             {
@@ -1264,7 +1264,7 @@ namespace PSS_ITWORKS
             }
         }
 
-        public void DeleteJobCallRef(int jobId, int callId)
+        public void DeleteJobCallRef(int jobId = 0, int callId = 0)
         {
             try
             {
@@ -1287,7 +1287,7 @@ namespace PSS_ITWORKS
             }
         }
 
-        public void DeleteContractRef(int contractId, int serviceId)
+        public void DeleteContractRef(int contractId = 0, int serviceId = 0)
         {
             try
             {

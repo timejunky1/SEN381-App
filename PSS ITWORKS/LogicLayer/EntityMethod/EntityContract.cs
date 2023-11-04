@@ -15,6 +15,7 @@ namespace PSS_ITWORKS.LogicLayer
         private int priority;
         private string availability;
         List<EntityService> services;
+        List<EntityClient> clients;
 
         public EntityContract(int id, string title, string sLA, int duration, float cost, int priority, string availability)
         {
@@ -25,6 +26,16 @@ namespace PSS_ITWORKS.LogicLayer
             this.priority = priority;
             this.availability = availability;
             this.title = title;
+        }
+
+        public void SetClients(List<EntityClient> clients)
+        {
+            this.clients = clients;
+        }
+
+        public List<EntityClient> GetClients()
+        {
+            return this.clients;
         }
         public List<EntityService> GetServices()
         {

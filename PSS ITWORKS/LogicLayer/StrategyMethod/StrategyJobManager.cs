@@ -15,32 +15,64 @@ namespace PSS_ITWORKS
 
         public void Connect(string myString)
         {
-            throw new NotImplementedException();
+            api.SetConnection(myString);
         }
 
         public void Create(IEntity entity)
         {
-            throw new NotImplementedException();
+            EntityJob job = entity as EntityJob;
+            api.InsertJob(job);
         }
 
         public void Delete(int ID)
         {
-            throw new NotImplementedException();
+            api.DeleteJob(ID);
         }
 
         public List<IEntity> Get()
         {
-            throw new NotImplementedException();
+            List<EntityJob> jobs = api.GetJobs();
+            List<IEntity> entities = new List<IEntity>();
+            foreach (EntityJob job in jobs)
+            {
+                entities.Add(job);
+            }
+            return entities;
         }
 
         public IEntity Get(int ID)
         {
-            throw new NotImplementedException();
+            EntityJob job = api.GetJob(ID);
+            List<int> employeeIds = api.GetJobEmployeeRef(jobId: ID);
+            List<EntityEmployee> jobEmployees = new List<EntityEmployee>();
+            foreach (int employeeId in employeeIds)
+            {
+                jobEmployees.Add(api.GetEmployee(employeeId));
+            }
+            job.SetEmployees(jobEmployees);
+            List<int> callIds = api.GetJobCallRef(jobId: ID);
+            List<EntityCall> calls = new List<EntityCall>();
+            foreach (int callId in callIds)
+            {
+                calls.Add(api.GetCall(callId));
+            }
+            job.SetCalls(calls);
+            return job;
         }
 
         public void Update(IEntity entity)
         {
-            throw new NotImplementedException();
+            EntityJob job = entity as EntityJob;
+            EntityClient jobClient = api.GetClient(job.GetClientId());
+            EntityService service = api.GetService(job.GetServiceId());
+            api.DeleteJobEmployeeRef(jobId: job.GetClientId());
+            foreach(EntityEmployee employee in job.GetEmployees())
+            {
+                api.InsertJobEmployeeRef(job.GetId(), employee.GetID());
+                string SMS = $"Service: {service.GetTitle()}\nClient: {jobClient.GetName()} {jobClient.GetSurname()}\nAddress: {jobClient.GetStreetNumber()} {jobClient.GetStreetName()}";
+                sms.SendSMS(SMS, employee.GetPhone());
+            }
+            api.UpdateJob(job);
         }
     }
 }

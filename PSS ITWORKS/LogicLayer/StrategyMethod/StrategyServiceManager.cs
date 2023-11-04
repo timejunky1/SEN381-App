@@ -12,32 +12,48 @@ namespace PSS_ITWORKS
 
         public void Connect(string myString)
         {
-            throw new NotImplementedException();
+            api.SetConnection(myString);
         }
 
         public void Create(IEntity entity)
         {
-            throw new NotImplementedException();
+            EntityService service = entity as EntityService;
+            api.InsertService(service);
         }
 
         public void Delete(int ID)
         {
-            throw new NotImplementedException();
+            api.DeleteService(ID);
         }
 
         public List<IEntity> Get()
         {
-            throw new NotImplementedException();
+            List<EntityService> services = api.GetServices();
+            List<IEntity> entities = new List<IEntity>();
+            foreach (EntityService service in services)
+            {
+                entities.Add(service);
+            }
+            return entities;
         }
 
         public IEntity Get(int ID)
         {
-            throw new NotImplementedException();
+            EntityService sevice = api.GetService(ID);
+            List<EntityContract> contracts = new List<EntityContract>();
+            List<int> contractIds = api.GetContractRef(serviceId: ID);
+            foreach (int contractId in contractIds)
+            {
+                contracts.Add(api.GetContract(contractId));
+            }
+            sevice.SetContracts(contracts);
+            return sevice;
         }
 
         public void Update(IEntity entity)
         {
-            throw new NotImplementedException();
+            EntityService service = entity as EntityService;
+            api.UpdateService(service);
         }
     }
 }

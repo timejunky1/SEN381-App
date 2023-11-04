@@ -39,7 +39,7 @@ namespace PSS_ITWORKS.LogicLayer
             return this.priority;
         }
 
-        public void SetEmployee(List<EntityEmployee> employees)
+        public void SetEmployees(List<EntityEmployee> employees)
         {
             this.employees = employees;
         }
