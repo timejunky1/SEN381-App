@@ -12,32 +12,58 @@ namespace PSS_ITWORKS
 
         public void Connect(string myString)
         {
-            throw new NotImplementedException();
+            api.SetConnection(myString);
         }
 
         public void Create(IEntity entity)
         {
-            throw new NotImplementedException();
+            EntityEmployee employee = entity as EntityEmployee;
+            api.InsertEmployee(employee);
         }
 
         public void Delete(int ID)
         {
-            throw new NotImplementedException();
+            api.DeleteEmployee(ID);
         }
 
         public List<IEntity> Get()
         {
-            throw new NotImplementedException();
+            List<IEntity> entities = new List<IEntity>();
+            List<EntityEmployee> employees = api.GetEmployees();
+            foreach (EntityEmployee employee in employees)
+            {
+                entities.Add(employee);
+            }
+            return entities;
         }
 
         public IEntity Get(int ID)
         {
-            throw new NotImplementedException();
+            EntityEmployee employee = api.GetEmployee(ID);
+            List<int> jobIds = api.GetJobEmployeeRef(employeeId: ID);
+            List<EntityJob> jobs = new List<EntityJob>();
+            foreach(int i in jobIds)
+            {
+                jobs.Add(api.GetJob(i));
+            }
+            List<EntityCall> calls = api.GetCalls();
+            List<EntityCall> employeeCalls = new List<EntityCall>();
+            foreach (EntityCall call in calls)
+            {
+                if(call.GetEmployeeId() == ID)
+                {
+                    employeeCalls.Add(call);
+                }
+            }
+            employee.SetJobs(jobs);
+            employee.SetCalls(employeeCalls);
+            return employee;
         }
 
         public void Update(IEntity entity)
         {
-            throw new NotImplementedException();
+            EntityEmployee entityEmployee = entity as EntityEmployee;
+            api.UpdateEmployee(entityEmployee);
         }
     }
 }

@@ -28,7 +28,14 @@ namespace PSS_ITWORKS
 
         public List<IEntity> Get()
         {
-            throw new NotImplementedException();
+            List<EntityCall> calls = api.GetCalls();
+            List<IEntity> entities = new List<IEntity>();
+            foreach (EntityCall call in calls)
+            {
+                entities.Add(call);
+            }
+
+            return entities;
         }
 
         public IEntity Get(int ID)
