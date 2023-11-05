@@ -64,10 +64,5 @@ namespace PSS_ITWORKS.LogicLayer
         {
             return availability;
         }
-
-        public List<EntityContract> GetContracts()
-        {
-            return contracts;
-        }
     }
 }

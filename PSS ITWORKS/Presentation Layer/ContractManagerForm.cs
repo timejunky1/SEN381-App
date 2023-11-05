@@ -18,7 +18,9 @@ namespace PSS_ITWORKS.Presentation_Layer
         Dashboard dashbord;
         string[] months = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Des" };
         StrategyContextManager context;
-        BindingSource bs;
+        List<EntityContract> contracts = new List<EntityContract>();
+        List<EntityService> services = new List<EntityService>();
+        List<EntityService> allServices = new List<EntityService>();
         int serviceId;
         int contractId;
         string availability = "Available";
@@ -28,7 +30,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         int m1;
         int m2;
         int serviceid;
-        string connString = @"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True"
+        string connString = @"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True";
         public ContractManagerForm(Dashboard dashbord)
         {
             this.dashbord = dashbord;
@@ -77,6 +79,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             price_num.Value = service.GetCost();
             setAvailability(service.GetAvailability());
             ContractCount_txt.Text = service.GetContracts().Count().ToString();
+
         }
 
         void SetContract()
@@ -92,14 +95,19 @@ namespace PSS_ITWORKS.Presentation_Layer
                 priceC_num.Value = (Decimal)contract.GetCost();
                 setAvailability(contract.GetAvailability());
                 clientCount_txt.Text = contract.GetClients().Count.ToString();
-                contract_services_dgv.DataSource = context.Get(contractId);            
+                contract_services_dgv.DataSource = context.Get(contractId);
+                foreach (EntityService s in contract.GetServices())
+                {
+                    services.Add(s);
+                }
+                ContractType1_cbx.Text = contract.GetTitle();
+
             }
             else
             {
                 contractId = 1;
                 SetContract();
             }
-            ContractType1_cbx.Text = contractId.ToString();
         }
 
         void setAvailability(string a)
@@ -185,12 +193,10 @@ namespace PSS_ITWORKS.Presentation_Layer
                 EntityService service = entity as EntityService;
                 ServiceType_cbx.Items.Add(service.GetTitle());
             }
-            Services_dgv.DataSource = bs;
             SetService();
             context = new StrategyContextManager(new StrategyContractManager());
             context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
             entities = context.Get();
-            List<EntityContract> contracts = new List<EntityContract>();
             foreach (IEntity entity in entities)
             {
                 EntityContract contract = entity as EntityContract;
@@ -293,23 +299,16 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void update_btn_Click(object sender, EventArgs e)
         {
-            new EntityContract(contractId, sla_txt.Text, (int)durationC_num.Value, (float)priceC_num.Value, (int)priorityC_num.Value, availability
-            List <EntityService> services = new List<EntityService>();
-            foreach(DataGridViewRow r in contract_services_dgv.Rows)
-            {
-                services.Add(new EntityService(int.Parse(r.Cells[1].Value.ToString()), r.Cells[0].Value.ToString()));
-            }
-            context.Update(, services));
+
+            EntityContract contract = new EntityContract(contractId, contractType_cbx.Text, sla_txt.Text, (int)durationC_num.Value, priceC_num.Value, (int)priorityC_num.Value, availability);
+            contract.SetServices(services);
         }
 
         private void crateC_btn_Click(object sender, EventArgs e)
         {
-            List<EntityService> services = new List<EntityService>();
-            foreach (DataGridViewRow r in contract_services_dgv.Rows)
-            {
-                services.Add(new EntityService(int.Parse(r.Cells[1].Value.ToString()), r.Cells[0].Value.ToString()));
-            }
-            context.Create(new EntityContract(contractId, sla_txt.Text, (int)durationC_num.Value, (float)priceC_num.Value, (int)priorityC_num.Value, availability, services));
+            EntityContract contract = new EntityContract(contractId, contractType_cbx.Text, sla_txt.Text, (int)durationC_num.Value, priceC_num.Value, (int)priorityC_num.Value, availability);
+            contract.SetServices(services);
+            context.Create(contract);
         }
 
         private void deleteC_btn_Click(object sender, EventArgs e)
@@ -325,7 +324,24 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void add_btn_Click(object sender, EventArgs e)
         {
+            foreach(EntityService service in allServices)
+            {
+                if (service.GetTitle() == servicesC_cbx.Text)
+                {
+                    services.Add(service);
+                }
+            }
+        }
 
+        private void remove_btn_Click(object sender, EventArgs e)
+        {
+            foreach (EntityService service in allServices)
+            {
+                if (service.GetTitle() == servicesC_cbx.Text)
+                {
+                    services.Remove(service);
+                }
+            }
         }
     }
 }
