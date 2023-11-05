@@ -11,13 +11,13 @@ namespace PSS_ITWORKS.LogicLayer
         private string title;
         private string SLA;
         private int duration;
-        private float cost;
+        private decimal cost;
         private int priority;
         private string availability;
         List<EntityService> services;
         List<EntityClient> clients;
 
-        public EntityContract(int id, string title, string sLA, int duration, float cost, int priority, string availability)
+        public EntityContract(int id, string title, string sLA, int duration, decimal cost, int priority, string availability)
         {
             this.id = id;
             SLA = sLA;
@@ -61,7 +61,7 @@ namespace PSS_ITWORKS.LogicLayer
             return duration;
         }
 
-        public float GetCost()
+        public decimal GetCost()
         {
             return cost;
         }

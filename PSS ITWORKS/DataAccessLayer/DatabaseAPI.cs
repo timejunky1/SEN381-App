@@ -754,7 +754,7 @@ namespace PSS_ITWORKS
                                     reader.GetString(1),
                                     reader.GetString(2),
                                     reader.GetInt16(3),
-                                    (float)reader.GetDecimal(4),
+                                    reader.GetDecimal(4),
                                     reader.GetInt16(5),
                                     reader.GetString(6)
                                     );
@@ -794,7 +794,7 @@ namespace PSS_ITWORKS
                                     reader.GetString(1),
                                     reader.GetString(2),
                                     reader.GetInt16(3),
-                                    (float)reader.GetDecimal(4),
+                                    reader.GetDecimal(4),
                                     reader.GetInt16(5),
                                     reader.GetString(6)
                                     );
