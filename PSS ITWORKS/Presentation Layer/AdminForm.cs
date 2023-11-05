@@ -43,6 +43,10 @@ namespace PSS_ITWORKS.Presentation_Layer
             {
                 EntityClient client = cm.Get(id) as EntityClient;
             }
+            catch
+            {
+
+            }
 
             cm = new StrategyContextManager(new StratagyEmployeeManagement());
         }

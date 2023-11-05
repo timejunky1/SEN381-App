@@ -68,19 +68,10 @@ public class LoginController
         return userInfo;
     }
 
-    public int getID(UserInfo)
+    public int getID(UserInfo userInfo)
     {
+        int ID = userInfo.ID;
         return ID;
-    }
-
-    public string GetUserRole(string username)
-    {
-        return api.GetUserRole(username);
-    }
-
-    public string FetchNameAndSurname(string username)
-    {
-        return api.FetchNameAndSurname(username);
     }
 
 
@@ -97,7 +88,7 @@ public class LoginController
 
     public void SetPassword(string username, string password, string newPassword)
     {
-        api.SetPassword(username, password, newPassword);
+        api.ResetPassword(username, password, newPassword);
     }
 }
 
