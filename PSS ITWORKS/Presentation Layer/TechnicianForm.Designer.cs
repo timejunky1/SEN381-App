@@ -313,6 +313,7 @@
             this.filterDetails_btn.TabIndex = 23;
             this.filterDetails_btn.Text = "Filter";
             this.filterDetails_btn.UseVisualStyleBackColor = false;
+            this.filterDetails_btn.Click += new System.EventHandler(this.filterDetails_btn_Click);
             // 
             // serviceOverview_dgv
             // 
