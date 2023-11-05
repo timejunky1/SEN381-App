@@ -55,6 +55,7 @@
             this.Technician_lcl = new System.Windows.Forms.Label();
             this.Jobs_tp = new System.Windows.Forms.TabPage();
             this.ModifyJobs_pnl = new System.Windows.Forms.Panel();
+            this.SubmitChanges_btn = new System.Windows.Forms.Button();
             this.ChangeTech_lbx = new System.Windows.Forms.ListBox();
             this.Notes_rtb = new System.Windows.Forms.RichTextBox();
             this.status_cbx = new System.Windows.Forms.ComboBox();
@@ -68,13 +69,12 @@
             this.ChangeService_lbl = new System.Windows.Forms.Label();
             this.Service_cbx = new System.Windows.Forms.ComboBox();
             this.ModifyJobs_btn = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.JobsByTech_dgv = new System.Windows.Forms.DataGridView();
             this.JobsFilter_btn = new System.Windows.Forms.Button();
             this.JobsFilter_txt = new System.Windows.Forms.TextBox();
             this.JobsFilter_lbl = new System.Windows.Forms.Label();
             this.Jobs_lbl = new System.Windows.Forms.Label();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.SubmitChanges_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PSS_img)).BeginInit();
             this.ServiceManager_tc.SuspendLayout();
             this.Assignment_tp.SuspendLayout();
@@ -86,7 +86,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Technician_dgv)).BeginInit();
             this.Jobs_tp.SuspendLayout();
             this.ModifyJobs_pnl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.JobsByTech_dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -356,7 +356,7 @@
             this.TechFilter_txt.Name = "TechFilter_txt";
             this.TechFilter_txt.Size = new System.Drawing.Size(212, 34);
             this.TechFilter_txt.TabIndex = 7;
-            this.TechFilter_txt.Text = "Filter by technician";
+            this.TechFilter_txt.Text = "Filter by service";
             // 
             // TechFilter_lbl
             // 
@@ -383,7 +383,7 @@
             // 
             this.Jobs_tp.Controls.Add(this.ModifyJobs_pnl);
             this.Jobs_tp.Controls.Add(this.ModifyJobs_btn);
-            this.Jobs_tp.Controls.Add(this.dataGridView2);
+            this.Jobs_tp.Controls.Add(this.JobsByTech_dgv);
             this.Jobs_tp.Controls.Add(this.JobsFilter_btn);
             this.Jobs_tp.Controls.Add(this.JobsFilter_txt);
             this.Jobs_tp.Controls.Add(this.JobsFilter_lbl);
@@ -416,6 +416,24 @@
             this.ModifyJobs_pnl.Name = "ModifyJobs_pnl";
             this.ModifyJobs_pnl.Size = new System.Drawing.Size(855, 466);
             this.ModifyJobs_pnl.TabIndex = 11;
+            // 
+            // SubmitChanges_btn
+            // 
+            this.SubmitChanges_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(183)))), ((int)(((byte)(132)))));
+            this.SubmitChanges_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.SubmitChanges_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SubmitChanges_btn.FlatAppearance.BorderSize = 0;
+            this.SubmitChanges_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SubmitChanges_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SubmitChanges_btn.ForeColor = System.Drawing.Color.White;
+            this.SubmitChanges_btn.Location = new System.Drawing.Point(56, 405);
+            this.SubmitChanges_btn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SubmitChanges_btn.Name = "SubmitChanges_btn";
+            this.SubmitChanges_btn.Size = new System.Drawing.Size(211, 43);
+            this.SubmitChanges_btn.TabIndex = 12;
+            this.SubmitChanges_btn.Text = "Submit Changes";
+            this.SubmitChanges_btn.UseVisualStyleBackColor = false;
+            this.SubmitChanges_btn.Click += new System.EventHandler(this.SubmitChanges_btn_Click);
             // 
             // ChangeTech_lbx
             // 
@@ -554,16 +572,16 @@
             this.ModifyJobs_btn.UseVisualStyleBackColor = false;
             this.ModifyJobs_btn.Click += new System.EventHandler(this.ModifyJobs_btn_Click);
             // 
-            // dataGridView2
+            // JobsByTech_dgv
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(276, 32);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(855, 466);
-            this.dataGridView2.TabIndex = 9;
+            this.JobsByTech_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.JobsByTech_dgv.Location = new System.Drawing.Point(276, 32);
+            this.JobsByTech_dgv.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.JobsByTech_dgv.Name = "JobsByTech_dgv";
+            this.JobsByTech_dgv.RowHeadersWidth = 51;
+            this.JobsByTech_dgv.RowTemplate.Height = 24;
+            this.JobsByTech_dgv.Size = new System.Drawing.Size(855, 466);
+            this.JobsByTech_dgv.TabIndex = 9;
             // 
             // JobsFilter_btn
             // 
@@ -614,24 +632,6 @@
             this.Jobs_lbl.TabIndex = 5;
             this.Jobs_lbl.Text = "Jobs";
             // 
-            // SubmitChanges_btn
-            // 
-            this.SubmitChanges_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(183)))), ((int)(((byte)(132)))));
-            this.SubmitChanges_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.SubmitChanges_btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SubmitChanges_btn.FlatAppearance.BorderSize = 0;
-            this.SubmitChanges_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SubmitChanges_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SubmitChanges_btn.ForeColor = System.Drawing.Color.White;
-            this.SubmitChanges_btn.Location = new System.Drawing.Point(56, 405);
-            this.SubmitChanges_btn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.SubmitChanges_btn.Name = "SubmitChanges_btn";
-            this.SubmitChanges_btn.Size = new System.Drawing.Size(211, 43);
-            this.SubmitChanges_btn.TabIndex = 12;
-            this.SubmitChanges_btn.Text = "Submit Changes";
-            this.SubmitChanges_btn.UseVisualStyleBackColor = false;
-            this.SubmitChanges_btn.Click += new System.EventHandler(this.SubmitChanges_btn_Click);
-            // 
             // ServiceManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -663,7 +663,7 @@
             this.Jobs_tp.PerformLayout();
             this.ModifyJobs_pnl.ResumeLayout(false);
             this.ModifyJobs_pnl.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.JobsByTech_dgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -696,7 +696,7 @@
         private System.Windows.Forms.Label TechFilter_lbl;
         private System.Windows.Forms.Label Technician_lcl;
         private System.Windows.Forms.Button ModifyJobs_btn;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView JobsByTech_dgv;
         private System.Windows.Forms.Button JobsFilter_btn;
         private System.Windows.Forms.TextBox JobsFilter_txt;
         private System.Windows.Forms.Label JobsFilter_lbl;
