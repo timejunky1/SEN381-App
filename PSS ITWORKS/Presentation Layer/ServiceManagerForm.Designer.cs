@@ -54,26 +54,27 @@
             this.TechFilter_lbl = new System.Windows.Forms.Label();
             this.Technician_lcl = new System.Windows.Forms.Label();
             this.Jobs_tp = new System.Windows.Forms.TabPage();
+            this.ModifyJobs_pnl = new System.Windows.Forms.Panel();
+            this.ChangeTech_lbx = new System.Windows.Forms.ListBox();
+            this.Notes_rtb = new System.Windows.Forms.RichTextBox();
+            this.status_cbx = new System.Windows.Forms.ComboBox();
+            this.TimeEnd_dtp = new System.Windows.Forms.DateTimePicker();
+            this.TimeBegin_dtp = new System.Windows.Forms.DateTimePicker();
+            this.ChangeTech_lbl = new System.Windows.Forms.Label();
+            this.ChangeNotes_lbl = new System.Windows.Forms.Label();
+            this.ChangeStatus_lbl = new System.Windows.Forms.Label();
+            this.ChangeTimeEnd_lbl = new System.Windows.Forms.Label();
+            this.ChangeTimeBegin_lbl = new System.Windows.Forms.Label();
+            this.ChangeService_lbl = new System.Windows.Forms.Label();
+            this.Service_cbx = new System.Windows.Forms.ComboBox();
             this.ModifyJobs_btn = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.JobsFilter_btn = new System.Windows.Forms.Button();
             this.JobsFilter_txt = new System.Windows.Forms.TextBox();
             this.JobsFilter_lbl = new System.Windows.Forms.Label();
             this.Jobs_lbl = new System.Windows.Forms.Label();
-            this.ModifyJobs_pnl = new System.Windows.Forms.Panel();
-            this.Service_cbx = new System.Windows.Forms.ComboBox();
-            this.ChangeService_lbl = new System.Windows.Forms.Label();
-            this.ChangeTimeBegin_lbl = new System.Windows.Forms.Label();
-            this.ChangeTimeEnd_lbl = new System.Windows.Forms.Label();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.ChangeStatus_lbl = new System.Windows.Forms.Label();
-            this.ChangeNotes_lbl = new System.Windows.Forms.Label();
-            this.ChangeTech_lbl = new System.Windows.Forms.Label();
-            this.TimeBegin_dtp = new System.Windows.Forms.DateTimePicker();
-            this.TimeEnd_dtp = new System.Windows.Forms.DateTimePicker();
-            this.status_cbx = new System.Windows.Forms.ComboBox();
-            this.Notes_rtb = new System.Windows.Forms.RichTextBox();
-            this.ChangeTech_lbx = new System.Windows.Forms.ListBox();
+            this.SubmitChanges_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PSS_img)).BeginInit();
             this.ServiceManager_tc.SuspendLayout();
             this.Assignment_tp.SuspendLayout();
@@ -84,8 +85,8 @@
             this.Technicians_tp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Technician_dgv)).BeginInit();
             this.Jobs_tp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.ModifyJobs_pnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -167,7 +168,7 @@
             this.assign_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.assign_btn.ForeColor = System.Drawing.Color.White;
             this.assign_btn.Location = new System.Drawing.Point(597, 441);
-            this.assign_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.assign_btn.Margin = new System.Windows.Forms.Padding(4);
             this.assign_btn.Name = "assign_btn";
             this.assign_btn.Size = new System.Drawing.Size(156, 42);
             this.assign_btn.TabIndex = 5;
@@ -396,6 +397,145 @@
             this.Jobs_tp.UseVisualStyleBackColor = true;
             this.Jobs_tp.Click += new System.EventHandler(this.Jobs_tp_Click);
             // 
+            // ModifyJobs_pnl
+            // 
+            this.ModifyJobs_pnl.Controls.Add(this.SubmitChanges_btn);
+            this.ModifyJobs_pnl.Controls.Add(this.ChangeTech_lbx);
+            this.ModifyJobs_pnl.Controls.Add(this.Notes_rtb);
+            this.ModifyJobs_pnl.Controls.Add(this.status_cbx);
+            this.ModifyJobs_pnl.Controls.Add(this.TimeEnd_dtp);
+            this.ModifyJobs_pnl.Controls.Add(this.TimeBegin_dtp);
+            this.ModifyJobs_pnl.Controls.Add(this.ChangeTech_lbl);
+            this.ModifyJobs_pnl.Controls.Add(this.ChangeNotes_lbl);
+            this.ModifyJobs_pnl.Controls.Add(this.ChangeStatus_lbl);
+            this.ModifyJobs_pnl.Controls.Add(this.ChangeTimeEnd_lbl);
+            this.ModifyJobs_pnl.Controls.Add(this.ChangeTimeBegin_lbl);
+            this.ModifyJobs_pnl.Controls.Add(this.ChangeService_lbl);
+            this.ModifyJobs_pnl.Controls.Add(this.Service_cbx);
+            this.ModifyJobs_pnl.Location = new System.Drawing.Point(276, 32);
+            this.ModifyJobs_pnl.Name = "ModifyJobs_pnl";
+            this.ModifyJobs_pnl.Size = new System.Drawing.Size(855, 466);
+            this.ModifyJobs_pnl.TabIndex = 11;
+            // 
+            // ChangeTech_lbx
+            // 
+            this.ChangeTech_lbx.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChangeTech_lbx.FormattingEnabled = true;
+            this.ChangeTech_lbx.ItemHeight = 25;
+            this.ChangeTech_lbx.Location = new System.Drawing.Point(639, 55);
+            this.ChangeTech_lbx.Name = "ChangeTech_lbx";
+            this.ChangeTech_lbx.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.ChangeTech_lbx.Size = new System.Drawing.Size(196, 304);
+            this.ChangeTech_lbx.TabIndex = 18;
+            // 
+            // Notes_rtb
+            // 
+            this.Notes_rtb.Location = new System.Drawing.Point(338, 55);
+            this.Notes_rtb.Name = "Notes_rtb";
+            this.Notes_rtb.Size = new System.Drawing.Size(236, 328);
+            this.Notes_rtb.TabIndex = 17;
+            this.Notes_rtb.Text = "";
+            // 
+            // status_cbx
+            // 
+            this.status_cbx.FormattingEnabled = true;
+            this.status_cbx.Location = new System.Drawing.Point(56, 321);
+            this.status_cbx.Name = "status_cbx";
+            this.status_cbx.Size = new System.Drawing.Size(212, 44);
+            this.status_cbx.TabIndex = 16;
+            // 
+            // TimeEnd_dtp
+            // 
+            this.TimeEnd_dtp.CalendarFont = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TimeEnd_dtp.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TimeEnd_dtp.Location = new System.Drawing.Point(56, 235);
+            this.TimeEnd_dtp.Name = "TimeEnd_dtp";
+            this.TimeEnd_dtp.Size = new System.Drawing.Size(212, 31);
+            this.TimeEnd_dtp.TabIndex = 15;
+            // 
+            // TimeBegin_dtp
+            // 
+            this.TimeBegin_dtp.CalendarFont = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TimeBegin_dtp.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TimeBegin_dtp.Location = new System.Drawing.Point(56, 148);
+            this.TimeBegin_dtp.Name = "TimeBegin_dtp";
+            this.TimeBegin_dtp.Size = new System.Drawing.Size(212, 31);
+            this.TimeBegin_dtp.TabIndex = 14;
+            // 
+            // ChangeTech_lbl
+            // 
+            this.ChangeTech_lbl.AutoSize = true;
+            this.ChangeTech_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChangeTech_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
+            this.ChangeTech_lbl.Location = new System.Drawing.Point(643, 24);
+            this.ChangeTech_lbl.Name = "ChangeTech_lbl";
+            this.ChangeTech_lbl.Size = new System.Drawing.Size(109, 28);
+            this.ChangeTech_lbl.TabIndex = 13;
+            this.ChangeTech_lbl.Text = "Technicians";
+            // 
+            // ChangeNotes_lbl
+            // 
+            this.ChangeNotes_lbl.AutoSize = true;
+            this.ChangeNotes_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChangeNotes_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
+            this.ChangeNotes_lbl.Location = new System.Drawing.Point(333, 24);
+            this.ChangeNotes_lbl.Name = "ChangeNotes_lbl";
+            this.ChangeNotes_lbl.Size = new System.Drawing.Size(64, 28);
+            this.ChangeNotes_lbl.TabIndex = 12;
+            this.ChangeNotes_lbl.Text = "Notes";
+            // 
+            // ChangeStatus_lbl
+            // 
+            this.ChangeStatus_lbl.AutoSize = true;
+            this.ChangeStatus_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChangeStatus_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
+            this.ChangeStatus_lbl.Location = new System.Drawing.Point(51, 290);
+            this.ChangeStatus_lbl.Name = "ChangeStatus_lbl";
+            this.ChangeStatus_lbl.Size = new System.Drawing.Size(65, 28);
+            this.ChangeStatus_lbl.TabIndex = 9;
+            this.ChangeStatus_lbl.Text = "Status";
+            // 
+            // ChangeTimeEnd_lbl
+            // 
+            this.ChangeTimeEnd_lbl.AutoSize = true;
+            this.ChangeTimeEnd_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChangeTimeEnd_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
+            this.ChangeTimeEnd_lbl.Location = new System.Drawing.Point(51, 204);
+            this.ChangeTimeEnd_lbl.Name = "ChangeTimeEnd_lbl";
+            this.ChangeTimeEnd_lbl.Size = new System.Drawing.Size(92, 28);
+            this.ChangeTimeEnd_lbl.TabIndex = 11;
+            this.ChangeTimeEnd_lbl.Text = "Time End";
+            // 
+            // ChangeTimeBegin_lbl
+            // 
+            this.ChangeTimeBegin_lbl.AutoSize = true;
+            this.ChangeTimeBegin_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChangeTimeBegin_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
+            this.ChangeTimeBegin_lbl.Location = new System.Drawing.Point(51, 117);
+            this.ChangeTimeBegin_lbl.Name = "ChangeTimeBegin_lbl";
+            this.ChangeTimeBegin_lbl.Size = new System.Drawing.Size(108, 28);
+            this.ChangeTimeBegin_lbl.TabIndex = 10;
+            this.ChangeTimeBegin_lbl.Text = "Time Begin";
+            // 
+            // ChangeService_lbl
+            // 
+            this.ChangeService_lbl.AutoSize = true;
+            this.ChangeService_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChangeService_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
+            this.ChangeService_lbl.Location = new System.Drawing.Point(51, 24);
+            this.ChangeService_lbl.Name = "ChangeService_lbl";
+            this.ChangeService_lbl.Size = new System.Drawing.Size(74, 28);
+            this.ChangeService_lbl.TabIndex = 8;
+            this.ChangeService_lbl.Text = "Service";
+            // 
+            // Service_cbx
+            // 
+            this.Service_cbx.FormattingEnabled = true;
+            this.Service_cbx.Location = new System.Drawing.Point(56, 55);
+            this.Service_cbx.Name = "Service_cbx";
+            this.Service_cbx.Size = new System.Drawing.Size(212, 44);
+            this.Service_cbx.TabIndex = 0;
+            // 
             // ModifyJobs_btn
             // 
             this.ModifyJobs_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(228)))), ((int)(((byte)(91)))));
@@ -474,142 +614,23 @@
             this.Jobs_lbl.TabIndex = 5;
             this.Jobs_lbl.Text = "Jobs";
             // 
-            // ModifyJobs_pnl
+            // SubmitChanges_btn
             // 
-            this.ModifyJobs_pnl.Controls.Add(this.ChangeTech_lbx);
-            this.ModifyJobs_pnl.Controls.Add(this.Notes_rtb);
-            this.ModifyJobs_pnl.Controls.Add(this.status_cbx);
-            this.ModifyJobs_pnl.Controls.Add(this.TimeEnd_dtp);
-            this.ModifyJobs_pnl.Controls.Add(this.TimeBegin_dtp);
-            this.ModifyJobs_pnl.Controls.Add(this.ChangeTech_lbl);
-            this.ModifyJobs_pnl.Controls.Add(this.ChangeNotes_lbl);
-            this.ModifyJobs_pnl.Controls.Add(this.ChangeStatus_lbl);
-            this.ModifyJobs_pnl.Controls.Add(this.ChangeTimeEnd_lbl);
-            this.ModifyJobs_pnl.Controls.Add(this.ChangeTimeBegin_lbl);
-            this.ModifyJobs_pnl.Controls.Add(this.ChangeService_lbl);
-            this.ModifyJobs_pnl.Controls.Add(this.Service_cbx);
-            this.ModifyJobs_pnl.Location = new System.Drawing.Point(276, 32);
-            this.ModifyJobs_pnl.Name = "ModifyJobs_pnl";
-            this.ModifyJobs_pnl.Size = new System.Drawing.Size(855, 466);
-            this.ModifyJobs_pnl.TabIndex = 11;
-            // 
-            // Service_cbx
-            // 
-            this.Service_cbx.FormattingEnabled = true;
-            this.Service_cbx.Location = new System.Drawing.Point(56, 55);
-            this.Service_cbx.Name = "Service_cbx";
-            this.Service_cbx.Size = new System.Drawing.Size(212, 44);
-            this.Service_cbx.TabIndex = 0;
-            // 
-            // ChangeService_lbl
-            // 
-            this.ChangeService_lbl.AutoSize = true;
-            this.ChangeService_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChangeService_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
-            this.ChangeService_lbl.Location = new System.Drawing.Point(51, 24);
-            this.ChangeService_lbl.Name = "ChangeService_lbl";
-            this.ChangeService_lbl.Size = new System.Drawing.Size(74, 28);
-            this.ChangeService_lbl.TabIndex = 8;
-            this.ChangeService_lbl.Text = "Service";
-            // 
-            // ChangeTimeBegin_lbl
-            // 
-            this.ChangeTimeBegin_lbl.AutoSize = true;
-            this.ChangeTimeBegin_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChangeTimeBegin_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
-            this.ChangeTimeBegin_lbl.Location = new System.Drawing.Point(51, 117);
-            this.ChangeTimeBegin_lbl.Name = "ChangeTimeBegin_lbl";
-            this.ChangeTimeBegin_lbl.Size = new System.Drawing.Size(108, 28);
-            this.ChangeTimeBegin_lbl.TabIndex = 10;
-            this.ChangeTimeBegin_lbl.Text = "Time Begin";
-            // 
-            // ChangeTimeEnd_lbl
-            // 
-            this.ChangeTimeEnd_lbl.AutoSize = true;
-            this.ChangeTimeEnd_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChangeTimeEnd_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
-            this.ChangeTimeEnd_lbl.Location = new System.Drawing.Point(51, 204);
-            this.ChangeTimeEnd_lbl.Name = "ChangeTimeEnd_lbl";
-            this.ChangeTimeEnd_lbl.Size = new System.Drawing.Size(92, 28);
-            this.ChangeTimeEnd_lbl.TabIndex = 11;
-            this.ChangeTimeEnd_lbl.Text = "Time End";
-            // 
-            // ChangeStatus_lbl
-            // 
-            this.ChangeStatus_lbl.AutoSize = true;
-            this.ChangeStatus_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChangeStatus_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
-            this.ChangeStatus_lbl.Location = new System.Drawing.Point(51, 290);
-            this.ChangeStatus_lbl.Name = "ChangeStatus_lbl";
-            this.ChangeStatus_lbl.Size = new System.Drawing.Size(65, 28);
-            this.ChangeStatus_lbl.TabIndex = 9;
-            this.ChangeStatus_lbl.Text = "Status";
-            // 
-            // ChangeNotes_lbl
-            // 
-            this.ChangeNotes_lbl.AutoSize = true;
-            this.ChangeNotes_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChangeNotes_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
-            this.ChangeNotes_lbl.Location = new System.Drawing.Point(333, 24);
-            this.ChangeNotes_lbl.Name = "ChangeNotes_lbl";
-            this.ChangeNotes_lbl.Size = new System.Drawing.Size(64, 28);
-            this.ChangeNotes_lbl.TabIndex = 12;
-            this.ChangeNotes_lbl.Text = "Notes";
-            // 
-            // ChangeTech_lbl
-            // 
-            this.ChangeTech_lbl.AutoSize = true;
-            this.ChangeTech_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChangeTech_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
-            this.ChangeTech_lbl.Location = new System.Drawing.Point(643, 24);
-            this.ChangeTech_lbl.Name = "ChangeTech_lbl";
-            this.ChangeTech_lbl.Size = new System.Drawing.Size(109, 28);
-            this.ChangeTech_lbl.TabIndex = 13;
-            this.ChangeTech_lbl.Text = "Technicians";
-            // 
-            // TimeBegin_dtp
-            // 
-            this.TimeBegin_dtp.CalendarFont = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TimeBegin_dtp.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TimeBegin_dtp.Location = new System.Drawing.Point(56, 148);
-            this.TimeBegin_dtp.Name = "TimeBegin_dtp";
-            this.TimeBegin_dtp.Size = new System.Drawing.Size(212, 31);
-            this.TimeBegin_dtp.TabIndex = 14;
-            // 
-            // TimeEnd_dtp
-            // 
-            this.TimeEnd_dtp.CalendarFont = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TimeEnd_dtp.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TimeEnd_dtp.Location = new System.Drawing.Point(56, 235);
-            this.TimeEnd_dtp.Name = "TimeEnd_dtp";
-            this.TimeEnd_dtp.Size = new System.Drawing.Size(212, 31);
-            this.TimeEnd_dtp.TabIndex = 15;
-            // 
-            // status_cbx
-            // 
-            this.status_cbx.FormattingEnabled = true;
-            this.status_cbx.Location = new System.Drawing.Point(56, 321);
-            this.status_cbx.Name = "status_cbx";
-            this.status_cbx.Size = new System.Drawing.Size(212, 44);
-            this.status_cbx.TabIndex = 16;
-            // 
-            // Notes_rtb
-            // 
-            this.Notes_rtb.Location = new System.Drawing.Point(338, 55);
-            this.Notes_rtb.Name = "Notes_rtb";
-            this.Notes_rtb.Size = new System.Drawing.Size(236, 328);
-            this.Notes_rtb.TabIndex = 17;
-            this.Notes_rtb.Text = "";
-            // 
-            // ChangeTech_lbx
-            // 
-            this.ChangeTech_lbx.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChangeTech_lbx.FormattingEnabled = true;
-            this.ChangeTech_lbx.ItemHeight = 25;
-            this.ChangeTech_lbx.Location = new System.Drawing.Point(639, 55);
-            this.ChangeTech_lbx.Name = "ChangeTech_lbx";
-            this.ChangeTech_lbx.Size = new System.Drawing.Size(196, 304);
-            this.ChangeTech_lbx.TabIndex = 18;
+            this.SubmitChanges_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(183)))), ((int)(((byte)(132)))));
+            this.SubmitChanges_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.SubmitChanges_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SubmitChanges_btn.FlatAppearance.BorderSize = 0;
+            this.SubmitChanges_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SubmitChanges_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SubmitChanges_btn.ForeColor = System.Drawing.Color.White;
+            this.SubmitChanges_btn.Location = new System.Drawing.Point(56, 405);
+            this.SubmitChanges_btn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SubmitChanges_btn.Name = "SubmitChanges_btn";
+            this.SubmitChanges_btn.Size = new System.Drawing.Size(211, 43);
+            this.SubmitChanges_btn.TabIndex = 12;
+            this.SubmitChanges_btn.Text = "Submit Changes";
+            this.SubmitChanges_btn.UseVisualStyleBackColor = false;
+            this.SubmitChanges_btn.Click += new System.EventHandler(this.SubmitChanges_btn_Click);
             // 
             // ServiceManagerForm
             // 
@@ -622,7 +643,7 @@
             this.Controls.Add(this.PSS_lbl);
             this.Controls.Add(this.PSS_img);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ServiceManagerForm";
             this.Text = "Service Manager";
             this.Load += new System.EventHandler(this.ManagerForm_Load);
@@ -640,9 +661,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.Technician_dgv)).EndInit();
             this.Jobs_tp.ResumeLayout(false);
             this.Jobs_tp.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ModifyJobs_pnl.ResumeLayout(false);
             this.ModifyJobs_pnl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -695,5 +716,6 @@
         private System.Windows.Forms.Label ChangeService_lbl;
         private System.Windows.Forms.ComboBox Service_cbx;
         private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.Button SubmitChanges_btn;
     }
 }

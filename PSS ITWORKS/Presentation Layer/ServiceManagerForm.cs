@@ -15,6 +15,9 @@ namespace PSS_ITWORKS.Presentation_Layer
     {
         StrategyContextManager context;
         string conn = @"Data Source=DESKTOP-TBBSO02\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True";
+        public int jobID;
+        public int clientID;
+        List<EntityCall> CallList = new List<EntityCall>();
 
         public int GetTechID(string Name)
         {
@@ -58,6 +61,124 @@ namespace PSS_ITWORKS.Presentation_Layer
             }
             Technician_dgv.DataSource = jobs;
         }
+        public List<IEntity> GetServices()
+        {
+            context = new StrategyContextManager(new StrategyServiceManager());
+            context.Connect(conn);
+
+            List<IEntity> services = context.Get();
+
+            return services;
+
+        }
+
+        public int GetServiceID(string serviceTitle)
+        {
+            List<IEntity> services = GetServices();
+            int serviceID = 0;
+            foreach (IEntity service in services)
+            {
+                EntityService serviceService = service as EntityService;
+                if (serviceService.GetTitle() == serviceTitle)
+                {
+                    serviceID = serviceService.GetId();
+                }
+            }
+            return serviceID;
+        }
+
+        public string GetServiceTitle(int ServiceID)
+        {
+            string title = "";
+            List<IEntity> services = GetServices();
+            foreach (IEntity service in services)
+            {
+                EntityService s = service as EntityService;
+                if (s.GetId() == ServiceID)
+                {
+                    title = s.GetTitle();
+                }
+            }
+            return title;
+
+        }
+        void LoadServices()
+        {
+            List<IEntity> services = GetServices();
+            foreach (IEntity entity in services)
+            {
+                EntityService service = entity as EntityService;
+                Service_cbx.Items.Add(service.GetTitle());
+            }
+        }
+        void LoadTechListBox( int JobId)
+        {
+            context = new StrategyContextManager(new StratagyEmployeeManagement());
+            context.Connect(conn);
+            List<IEntity> emp = context.Get();
+            List<EntityEmployee> e = new List<EntityEmployee>();
+            foreach (IEntity entity in emp)
+            {
+                EntityEmployee employee = entity as EntityEmployee;
+                if (employee.GetRole() == "Technician")
+                {
+                    e.Add(employee);
+                }
+            }
+
+            SelectTechsInList(JobId);
+
+        }
+
+        void SelectTechsInList(int JobId)
+        {
+            context = new StrategyContextManager(new StrategyJobManager());
+            context.Connect(conn);
+
+            List<IEntity> jobs = context.Get();
+            List<EntityEmployee> techs = new List<EntityEmployee>();
+            string[] names = new string[];
+            foreach (IEntity entity in jobs)
+            {
+                EntityJob j = entity as EntityJob;
+                if (j.GetId() == JobId)
+                {
+                    techs = j.GetEmployees();
+                }
+            }
+            for (int i = 0; i < ChangeTech_lbx.Items.Count; i++)
+            {
+                foreach (IEntity entity in techs)
+                    {
+                        EntityEmployee emp = entity as EntityEmployee;
+                        if (ChangeTech_lbx.Items[5].ToString() == emp.GetName())
+                        {
+                            ChangeTech_lbx.SetSelected(i,true);
+                        }
+                    }
+
+            }
+
+        }
+
+        public IEntity GetEmployee(int ID)
+        {
+            context = new StrategyContextManager(new StratagyEmployeeManagement());
+            context.Connect(conn);
+            List<IEntity> emp = context.Get();
+            IEntity techs = null;
+
+            foreach (IEntity entity in emp)
+            {
+                EntityEmployee employee = entity as EntityEmployee;
+                if (employee.GetID() == ID)
+                {
+                    techs = employee;
+                }
+            }
+            return techs;
+        }
+
         private Dashboard dashboard;
         StrategyContextManager cm;
         AssignmentForm af = new AssignmentForm();
@@ -70,6 +191,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void ManagerForm_Load(object sender, EventArgs e)
         {
             ModifyJobs_pnl.Visible = false;
+            ChangeTech_lbx.SelectionMode = SelectionMode.MultiSimple;
 
             cm = new StrategyContextManager(new StrategyJobManager());
             cm.Connect(@"Data Source=DESKTOP-TBBSO02\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
@@ -136,8 +258,67 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void ModifyJobs_btn_Click(object sender, EventArgs e)
         {
+            ModifyJobs_pnl.Visible = true;
             context = new StrategyContextManager(new StrategyJobManager());
-            EntityJob job = Technician_dgv.SelectedRows[0];
+            IEntity job = context.Get(int.Parse(Technician_dgv.SelectedRows[0].Cells[0].Value.ToString()));
+            EntityJob j = job as EntityJob;
+            CallList = j.GetCalls();
+            jobID = j.GetId();
+            clientID = j.GetClientId();
+            TimeBegin_dtp.Value = j.GetTimeBegin();
+            TimeEnd_dtp.Value = j.GetTimeEnd();
+            status_cbx.SelectedItem = j.GetStatus();
+            int ServiceID = j.GetServiceId();
+            string title = GetServiceTitle(ServiceID);
+            for (int x = 0; x < Service_cbx.Items.Count; x++)
+            {
+                if (Service_cbx.Items[x].ToString() == title)
+                {
+                    Service_cbx.SelectedIndex = x;
+                }
+            }
+            Notes_rtb.Text = j.GetNotes();
+            LoadTechListBox(jobID);
+
+        }
+
+        private void SubmitChanges_btn_Click(object sender, EventArgs e)
+        {
+            List<IEntity> list = new List<IEntity>();
+            List<EntityEmployee> employees = new List<EntityEmployee>();
+            string ServiceTitle = Service_cbx.SelectedItem.ToString();
+            int serviceID = GetServiceID(ServiceTitle);
+            DateTime begin = TimeBegin_dtp.Value;
+            DateTime end = TimeEnd_dtp.Value;
+            string status = status_cbx.SelectedItem.ToString();
+            string notes = Notes_rtb.Text;
+            string[] tech = new string[1000];
+            foreach (int i in ChangeTech_lbx.SelectedIndices)
+            {
+                tech[i] = ChangeTech_lbx.Items[i].ToString();
+            }
+            int[] techID = new int[1000];
+            for (int i = 0; i < tech.Length; i++)
+            {
+                techID[i] = GetTechID(tech[i]);
+            }
+
+            for (int k = 0; k< techID.Length; k++)
+            {
+                list.Add(GetEmployee(techID[k]));
+            }
+
+            foreach (IEntity i in list)
+            {
+                EntityEmployee emp = i as EntityEmployee;
+                employees.Add(emp);
+
+            }
+            context = new StrategyContextManager(new StrategyJobManager());
+            context.Connect(conn);
+            EntityJob UpdateJob = new EntityJob(jobID, clientID, serviceID, begin, end, status, notes);
+            context.Update(UpdateJob);
+            /// waar edit ek die technicians???????????
 
         }
     }
