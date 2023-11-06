@@ -12,6 +12,9 @@ public class LoginController
     private string connectionString = @"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True";
     UserInfo userInfo;
 
+    // Define the event
+    public event EventHandler<string> AuthenticationFailed;
+
 
     public class UserInfo
     {
@@ -44,15 +47,22 @@ public class LoginController
             }
             else
             {
- 
+                OnAuthenticationFailed("Invalid username or password. Please try again.");
+                MessageBox.Show("Invalid username or password. Please try again.");
+
                 MessageBox.Show("Invalid username or password. Please try again.");
             }
         }
         else
         {
- 
+            OnAuthenticationFailed("Username and password are required.");
             MessageBox.Show("Username and password are required.");
         }
+    }
+
+    protected virtual void OnAuthenticationFailed(string errorMessage)
+    {
+        AuthenticationFailed?.Invoke(this, errorMessage);
     }
 
     public bool AuthenticateUser(string username, string password)
