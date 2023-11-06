@@ -30,8 +30,6 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             context = new StrategyContextManager(new StrategyTechnician());
             context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
-            BindingSource bs = context.GetSpecific2(jobId);
-            LoadDetails(bs);
             jobID_txt.Text = "0";
             status_cbx.Items.Clear();
             status_cbx.Items.Add("Finished");
@@ -124,6 +122,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         }
         private void submitUpdate_btn_Click(object sender, EventArgs e)
         {
+            foreach(EntityJob job in technician.GetJobs())
             context.Update(new EntityJob(int.Parse(jobID_txt.Text), jobNotes_rtb.Text, status_cbx.Text));
         }
 
@@ -170,6 +169,11 @@ namespace PSS_ITWORKS.Presentation_Layer
         }
 
         private void filterDetails_btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void searchJob_btn_Click(object sender, EventArgs e)
         {
 
         }

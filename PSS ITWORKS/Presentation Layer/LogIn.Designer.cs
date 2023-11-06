@@ -104,7 +104,6 @@
             this.UserName_txt.Size = new System.Drawing.Size(232, 29);
             this.UserName_txt.TabIndex = 5;
             this.UserName_txt.Tag = "";
-            this.UserName_txt.TextChanged += new System.EventHandler(this.UserName_txt_TextChanged);
             // 
             // Password_txt
             // 
@@ -114,7 +113,6 @@
             this.Password_txt.PasswordChar = '*';
             this.Password_txt.Size = new System.Drawing.Size(232, 29);
             this.Password_txt.TabIndex = 6;
-            this.Password_txt.TextChanged += new System.EventHandler(this.Password_txt_TextChanged);
             // 
             // WelcomeLabel_txt
             // 
@@ -125,7 +123,6 @@
             this.WelcomeLabel_txt.Size = new System.Drawing.Size(365, 30);
             this.WelcomeLabel_txt.TabIndex = 7;
             this.WelcomeLabel_txt.Text = "Excellence in Equipment Maintenance";
-            this.WelcomeLabel_txt.Click += new System.EventHandler(this.WelcomeLabel_txt_Click);
             // 
             // PPS_lbl
             // 
@@ -137,7 +134,6 @@
             this.PPS_lbl.Size = new System.Drawing.Size(385, 40);
             this.PPS_lbl.TabIndex = 8;
             this.PPS_lbl.Text = "Premiere Service Solutions";
-            this.PPS_lbl.Click += new System.EventHandler(this.label3_Click);
             // 
             // Logo_img
             // 
@@ -178,7 +174,6 @@
             this.Name = "LogIn";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.LogIn_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Login_img)).EndInit();
             this.ResumeLayout(false);

@@ -69,8 +69,8 @@ namespace PSS_ITWORKS
                 conn.Open();
                 using (SqlCommand command = new SqlCommand("loginProcedures.GetUserInformation", conn))
                 {
-
                     command.CommandType = CommandType.StoredProcedure;
+
 
                     command.Parameters.AddWithValue("@username", username);
 
