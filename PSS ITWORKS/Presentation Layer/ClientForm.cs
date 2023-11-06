@@ -577,27 +577,23 @@ namespace PSS_ITWORKS.Presentation_Layer
         // Use methods to find the client contracts
         private void FindClientContract(int clientID)
         {
-            // with strategy find the client contract in. Display in clientContract_dgv datagridview
-            clientContract_dgv.DataSource = null;
-            clientContract_dgv.Rows.Clear();
-            clientContract_dgv.Refresh();
-
-
+            
             //change strategy to strategycontractmanager
             StrategyContextManager contractManager = new StrategyContextManager(new StrategyContractManager());
             contractManager.Connect(@"Data Source=JOEKNOWS\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
 
-            // find the client contract in the list of entities by their clientId and the display that client's contract in data grid view
+            // find the client contract in the list of entities by their clientId and then display 
             List<IEntity> contracts = contractManager.Get();
             foreach (EntityContract contract in contracts)
             {
                 // Display data in input fields
+
+                // figure display out
+
                 contractType_txt.Text = contract.GetType();
                 services_txt.Text = contract.GetServices();
-                experationDate_txt.Text = contract.GetExperationDate();
+                experationDate_txt.Text = CalculateEndDate(contract.GetStartTime(), contract.GetDuration());
 
-
-                
 
             }
 
