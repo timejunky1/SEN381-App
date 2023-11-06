@@ -20,8 +20,6 @@ public class LoginController
         public string Role { get; set; }
         public int ID { get; set; }
 
-        public int ID { get; set; }
-
     }
     public void Connect()
     {

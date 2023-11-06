@@ -24,7 +24,7 @@ namespace PSS_ITWORKS
 
         public void Delete(int ID)
         {
-            api.DeleteCall(ID);
+            throw new NotImplementedException();
         }
 
         public List<IEntity> Get()
@@ -42,7 +42,7 @@ namespace PSS_ITWORKS
         public IEntity Get(int ID)
         {
             EntityCall call = null;
-            call = api.GetCalls(ID);
+            call = api.GetCall(ID);
             return call;
         }
 

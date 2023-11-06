@@ -382,7 +382,7 @@ namespace PSS_ITWORKS
             }
         }
 
-        public EntityCall GetCalls(int callId)
+        public EntityCall GetCall(int callId)
         {
             EntityCall call = null;
             try

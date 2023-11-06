@@ -19,6 +19,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         StrategyContextManager context;
         string conn = @"Data Source = DESKTOP - 8GCK8IN\SQLEXPRESS; Initial Catalog = PSS; Integrated Security = True";
         int employeeID;
+        Dashboard dashbord;
         void PopulateContracts(int id)
         {
             context = new StrategyContextManager(new StrategyContractManager());
@@ -125,10 +126,10 @@ namespace PSS_ITWORKS.Presentation_Layer
             }
             PastServiceRequest_dgv.DataSource=listJobs;   
         }
-        public CallForm()
+        public CallForm(Dashboard dashboard)
         {
-            
             InitializeComponent();
+            this.dashbord = dashboard;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -141,7 +142,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             LoginController loginController = new LoginController();
             loginController.Connect();
-            employeeID = loginController.GetUserInfo().ID;
+            //employeeID = loginController.GetUserInfo().ID;
             PopulateDgvWithCalls();
             
         }
@@ -223,7 +224,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             if (clientID > 0)
             {
                 this.Hide();
-                ServiceRequestForm form = new ServiceRequestForm(employeeID, clientID);
+                ServiceRequestForm form = new ServiceRequestForm(employeeID, clientID, this);
                 form.Show();
 
             }
@@ -238,6 +239,12 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void Title_txt_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Logout_btn_Click(object sender, EventArgs e)
+        {
+            dashbord.Show();
+            this.Close();
         }
     }
 }
