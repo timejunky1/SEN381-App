@@ -7,26 +7,40 @@ namespace PSS_ITWORKS.LogicLayer
 {
     class EntityContract : IEntity
     {
-        private int Id;
+        private int id;
+        private string title;
         private string SLA;
         private int duration;
-        private float cost;
+        private decimal cost;
         private int priority;
         private string availability;
         List<EntityService> services;
+        List<EntityClient> clients;
 
-        public EntityContract(int id, string sLA, int duration, float cost, int priority, string availability, List<EntityService> services)
+        public EntityContract(int id, string title, string sLA, int duration, decimal cost, int priority, string availability)
         {
-            Id = id;
+            this.id = id;
             SLA = sLA;
             this.duration = duration;
             this.cost = cost;
             this.priority = priority;
             this.availability = availability;
-            this.services = services;
-            this.services = services;
+            this.title = title;
         }
 
+        public void SetClients(List<EntityClient> clients)
+        {
+            this.clients = clients;
+        }
+
+        public List<EntityClient> GetClients()
+        {
+            return this.clients;
+        }
+        public List<EntityService> GetServices()
+        {
+            return services;
+        }
         public void SetServices(List<EntityService> services)
         {
             this.services = services;
@@ -34,7 +48,7 @@ namespace PSS_ITWORKS.LogicLayer
         
         public int GetId()
         {
-            return Id;
+            return id;
         }
 
         public string GetSLA()
@@ -47,7 +61,7 @@ namespace PSS_ITWORKS.LogicLayer
             return duration;
         }
 
-        public float GetCost()
+        public decimal GetCost()
         {
             return cost;
         }
@@ -62,9 +76,9 @@ namespace PSS_ITWORKS.LogicLayer
             return availability;
         }
 
-        public List<EntityService> GetServices()
+        public string GetTitle()
         {
-            return services;
+            return title;
         }
     }
 }

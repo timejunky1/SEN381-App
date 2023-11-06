@@ -71,7 +71,7 @@
             this.PSS_img.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PSS_img.BackgroundImage")));
             this.PSS_img.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PSS_img.Location = new System.Drawing.Point(12, 9);
-            this.PSS_img.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PSS_img.Margin = new System.Windows.Forms.Padding(2);
             this.PSS_img.Name = "PSS_img";
             this.PSS_img.Size = new System.Drawing.Size(76, 61);
             this.PSS_img.TabIndex = 0;
@@ -87,9 +87,9 @@
             this.PersonalInfo_gbx.Controls.Add(this.CustomerName_lbl);
             this.PersonalInfo_gbx.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PersonalInfo_gbx.Location = new System.Drawing.Point(25, 96);
-            this.PersonalInfo_gbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PersonalInfo_gbx.Margin = new System.Windows.Forms.Padding(2);
             this.PersonalInfo_gbx.Name = "PersonalInfo_gbx";
-            this.PersonalInfo_gbx.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PersonalInfo_gbx.Padding = new System.Windows.Forms.Padding(2);
             this.PersonalInfo_gbx.Size = new System.Drawing.Size(257, 248);
             this.PersonalInfo_gbx.TabIndex = 2;
             this.PersonalInfo_gbx.TabStop = false;
@@ -99,7 +99,7 @@
             // 
             this.EmailAddress_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EmailAddress_txt.Location = new System.Drawing.Point(20, 168);
-            this.EmailAddress_txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EmailAddress_txt.Margin = new System.Windows.Forms.Padding(2);
             this.EmailAddress_txt.Name = "EmailAddress_txt";
             this.EmailAddress_txt.Size = new System.Drawing.Size(214, 29);
             this.EmailAddress_txt.TabIndex = 5;
@@ -120,7 +120,7 @@
             // 
             this.ContactNumber_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ContactNumber_txt.Location = new System.Drawing.Point(20, 107);
-            this.ContactNumber_txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ContactNumber_txt.Margin = new System.Windows.Forms.Padding(2);
             this.ContactNumber_txt.Name = "ContactNumber_txt";
             this.ContactNumber_txt.Size = new System.Drawing.Size(214, 29);
             this.ContactNumber_txt.TabIndex = 3;
@@ -141,7 +141,7 @@
             // 
             this.CustomerName_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CustomerName_txt.Location = new System.Drawing.Point(21, 46);
-            this.CustomerName_txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CustomerName_txt.Margin = new System.Windows.Forms.Padding(2);
             this.CustomerName_txt.Name = "CustomerName_txt";
             this.CustomerName_txt.Size = new System.Drawing.Size(213, 29);
             this.CustomerName_txt.TabIndex = 1;
@@ -170,9 +170,9 @@
             this.QueryInfo_gbx.Controls.Add(this.EquipmentSerialNumber_lbl);
             this.QueryInfo_gbx.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.QueryInfo_gbx.Location = new System.Drawing.Point(301, 96);
-            this.QueryInfo_gbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.QueryInfo_gbx.Margin = new System.Windows.Forms.Padding(2);
             this.QueryInfo_gbx.Name = "QueryInfo_gbx";
-            this.QueryInfo_gbx.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.QueryInfo_gbx.Padding = new System.Windows.Forms.Padding(2);
             this.QueryInfo_gbx.Size = new System.Drawing.Size(526, 248);
             this.QueryInfo_gbx.TabIndex = 3;
             this.QueryInfo_gbx.TabStop = false;
@@ -182,7 +182,7 @@
             // 
             this.Description_rbx.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Description_rbx.Location = new System.Drawing.Point(241, 50);
-            this.Description_rbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Description_rbx.Margin = new System.Windows.Forms.Padding(2);
             this.Description_rbx.Name = "Description_rbx";
             this.Description_rbx.Size = new System.Drawing.Size(281, 159);
             this.Description_rbx.TabIndex = 15;
@@ -199,14 +199,13 @@
             this.Description_lbl.Size = new System.Drawing.Size(146, 21);
             this.Description_lbl.TabIndex = 14;
             this.Description_lbl.Text = "Description of Issue";
-            this.Description_lbl.Click += new System.EventHandler(this.Description_lbl_Click);
             // 
             // ServiceType_cbx
             // 
             this.ServiceType_cbx.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ServiceType_cbx.FormattingEnabled = true;
             this.ServiceType_cbx.Location = new System.Drawing.Point(14, 168);
-            this.ServiceType_cbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ServiceType_cbx.Margin = new System.Windows.Forms.Padding(2);
             this.ServiceType_cbx.Name = "ServiceType_cbx";
             this.ServiceType_cbx.Size = new System.Drawing.Size(190, 29);
             this.ServiceType_cbx.TabIndex = 13;
@@ -216,7 +215,7 @@
             this.PriorityLevel__cbx.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PriorityLevel__cbx.FormattingEnabled = true;
             this.PriorityLevel__cbx.Location = new System.Drawing.Point(14, 107);
-            this.PriorityLevel__cbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PriorityLevel__cbx.Margin = new System.Windows.Forms.Padding(2);
             this.PriorityLevel__cbx.Name = "PriorityLevel__cbx";
             this.PriorityLevel__cbx.Size = new System.Drawing.Size(190, 29);
             this.PriorityLevel__cbx.TabIndex = 12;
@@ -249,7 +248,7 @@
             // 
             this.EquipmentSerialNumber_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EquipmentSerialNumber_txt.Location = new System.Drawing.Point(15, 46);
-            this.EquipmentSerialNumber_txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EquipmentSerialNumber_txt.Margin = new System.Windows.Forms.Padding(2);
             this.EquipmentSerialNumber_txt.Name = "EquipmentSerialNumber_txt";
             this.EquipmentSerialNumber_txt.Size = new System.Drawing.Size(189, 29);
             this.EquipmentSerialNumber_txt.TabIndex = 7;
@@ -276,12 +275,13 @@
             this.Submit_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Submit_btn.ForeColor = System.Drawing.Color.White;
             this.Submit_btn.Location = new System.Drawing.Point(25, 359);
-            this.Submit_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Submit_btn.Margin = new System.Windows.Forms.Padding(2);
             this.Submit_btn.Name = "Submit_btn";
             this.Submit_btn.Size = new System.Drawing.Size(158, 35);
             this.Submit_btn.TabIndex = 4;
             this.Submit_btn.Text = "Submit";
             this.Submit_btn.UseVisualStyleBackColor = false;
+            this.Submit_btn.Click += new System.EventHandler(this.Submit_btn_Click_1);
             // 
             // Close_btn
             // 
@@ -293,7 +293,7 @@
             this.Close_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Close_btn.ForeColor = System.Drawing.Color.White;
             this.Close_btn.Location = new System.Drawing.Point(201, 359);
-            this.Close_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Close_btn.Margin = new System.Windows.Forms.Padding(2);
             this.Close_btn.Name = "Close_btn";
             this.Close_btn.Size = new System.Drawing.Size(158, 35);
             this.Close_btn.TabIndex = 5;
@@ -313,7 +313,7 @@
             this.Controls.Add(this.QueryInfo_gbx);
             this.Controls.Add(this.PersonalInfo_gbx);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ServiceRequestForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Service Request";

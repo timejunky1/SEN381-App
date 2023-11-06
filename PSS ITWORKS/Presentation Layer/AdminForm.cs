@@ -43,6 +43,10 @@ namespace PSS_ITWORKS.Presentation_Layer
             {
                 EntityClient client = cm.Get(id) as EntityClient;
             }
+            catch
+            {
+
+            }
 
             cm = new StrategyContextManager(new StratagyEmployeeManagement());
         }
@@ -52,9 +56,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             EntityEmployee user = null;
             try
             {
-                user = new EntityUser(UserId, company_txt.Text, Name_txt.Text, Surname_txt.Text, 1,
-                            int.Parse(address_txt.Text), street_txt.Text, city_txt.Text, province_txt.Text, zipCode_txt.Text,
-                            Number_txt.Text, Username_txt.Text, DateTime.Now, role_cmb.Text);
+             
             }
             catch
             {
@@ -75,9 +77,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             EntityEmployee user = null;
             try
             {
-                user = new EntityUser(UserId, company_txt.Text, Name_txt.Text, Surname_txt.Text, 1,
-                       int.Parse(address_txt.Text), street_txt.Text, city_txt.Text, province_txt.Text, zipCode_txt.Text,
-                       Number_txt.Text, Username_txt.Text, DateTime.Now, role_cmb.Text);
+               
             }
             catch
             {

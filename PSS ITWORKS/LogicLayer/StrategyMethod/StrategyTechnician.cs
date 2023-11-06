@@ -13,7 +13,7 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 
         public void Connect(string myString)
         {
-            throw new NotImplementedException();
+            api.SetConnection(myString);
         }
 
         public void Create(IEntity entity)
@@ -28,7 +28,7 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 
         public List<IEntity> Get()
         {
-            throw new NotSupportedException();
+            throw new NotImplementedException();
         }
 
         public IEntity Get(int ID)
@@ -46,7 +46,8 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 
         public void Update(IEntity entity)
         {
-            throw new NotImplementedException();
+            EntityJob job = entity as EntityJob;
+            api.UpdateJob(job);
         }
     }
 }

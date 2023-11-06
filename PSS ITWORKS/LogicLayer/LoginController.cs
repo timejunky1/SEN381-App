@@ -9,7 +9,7 @@ using PSS_ITWORKS.Presentation_Layer;
 public class LoginController
 {
     private DatabaseAPI api = new DatabaseAPI();
-    private string connectionString = @"Data Source=LAPTOP-RFTR69D9\SQLEXPRESS; Initial Catalog=PSS1; Integrated Security=True";
+    private string connectionString = @"Data Source=DESKTOP-TBBSO02\SQLEXPRESS; Initial Catalog=PSS1; Integrated Security=True";
     UserInfo userInfo;
 
 
@@ -18,6 +18,7 @@ public class LoginController
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Role { get; set; }
+        public int ID { get; set; }
 
     }
     public void Connect()
@@ -43,8 +44,8 @@ public class LoginController
             }
             else
             {
- 
-                MessageBox.Show("Invalid username or password. Please try again.");
+                welcomeLabel.Text = "Invalid UserName or Password";
+                welcomeLabel.Visible = true;
             }
         }
         else
@@ -67,14 +68,10 @@ public class LoginController
         return userInfo;
     }
 
-    public string GetUserRole(string username)
+    public int getID(UserInfo userInfo)
     {
-        return api.GetUserRole(username);
-    }
-
-    public string FetchNameAndSurname(string username)
-    {
-        return api.FetchNameAndSurname(username);
+        int ID = userInfo.ID;
+        return ID;
     }
 
 
@@ -91,7 +88,7 @@ public class LoginController
 
     public void SetPassword(string username, string password, string newPassword)
     {
-        api.SetPassword(username, password, newPassword);
+        api.ResetPassword(username, password, newPassword);
     }
 }
 

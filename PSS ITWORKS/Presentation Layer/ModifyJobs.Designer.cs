@@ -43,6 +43,8 @@
             this.Technician2_cbx = new System.Windows.Forms.ComboBox();
             this.Technician1_cbx = new System.Windows.Forms.ComboBox();
             this.JobInfo_gbx = new System.Windows.Forms.GroupBox();
+            this.endDate_lbl = new System.Windows.Forms.Label();
+            this.startDate_lbl = new System.Windows.Forms.Label();
             this.Description_rtb = new System.Windows.Forms.RichTextBox();
             this.ScheduleDateTo_txt = new System.Windows.Forms.TextBox();
             this.ScheduleDateFrom_txt = new System.Windows.Forms.TextBox();
@@ -58,8 +60,6 @@
             this.Submit_btn = new System.Windows.Forms.Button();
             this.Delete_btn = new System.Windows.Forms.Button();
             this.Close_btn = new System.Windows.Forms.Button();
-            this.startDate_lbl = new System.Windows.Forms.Label();
-            this.endDate_lbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PSS_img)).BeginInit();
             this.Search_gbx.SuspendLayout();
             this.Technician_gbx.SuspendLayout();
@@ -71,7 +71,7 @@
             this.PSS_img.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PSS_img.BackgroundImage")));
             this.PSS_img.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PSS_img.Location = new System.Drawing.Point(12, 9);
-            this.PSS_img.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PSS_img.Margin = new System.Windows.Forms.Padding(2);
             this.PSS_img.Name = "PSS_img";
             this.PSS_img.Size = new System.Drawing.Size(76, 61);
             this.PSS_img.TabIndex = 0;
@@ -95,9 +95,9 @@
             this.Search_gbx.Controls.Add(this.Search_lbl);
             this.Search_gbx.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Search_gbx.Location = new System.Drawing.Point(12, 99);
-            this.Search_gbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Search_gbx.Margin = new System.Windows.Forms.Padding(2);
             this.Search_gbx.Name = "Search_gbx";
-            this.Search_gbx.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Search_gbx.Padding = new System.Windows.Forms.Padding(2);
             this.Search_gbx.Size = new System.Drawing.Size(902, 80);
             this.Search_gbx.TabIndex = 2;
             this.Search_gbx.TabStop = false;
@@ -112,7 +112,7 @@
             this.Search_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Search_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Search_btn.Location = new System.Drawing.Point(721, 32);
-            this.Search_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Search_btn.Margin = new System.Windows.Forms.Padding(2);
             this.Search_btn.Name = "Search_btn";
             this.Search_btn.Size = new System.Drawing.Size(158, 35);
             this.Search_btn.TabIndex = 2;
@@ -123,7 +123,7 @@
             // 
             this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(89, 36);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(160, 29);
             this.textBox1.TabIndex = 1;
@@ -149,9 +149,9 @@
             this.Technician_gbx.Controls.Add(this.Technician1_cbx);
             this.Technician_gbx.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Technician_gbx.Location = new System.Drawing.Point(12, 183);
-            this.Technician_gbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Technician_gbx.Margin = new System.Windows.Forms.Padding(2);
             this.Technician_gbx.Name = "Technician_gbx";
-            this.Technician_gbx.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Technician_gbx.Padding = new System.Windows.Forms.Padding(2);
             this.Technician_gbx.Size = new System.Drawing.Size(186, 277);
             this.Technician_gbx.TabIndex = 3;
             this.Technician_gbx.TabStop = false;
@@ -162,7 +162,7 @@
             this.Technician5_cbx.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Technician5_cbx.FormattingEnabled = true;
             this.Technician5_cbx.Location = new System.Drawing.Point(13, 219);
-            this.Technician5_cbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Technician5_cbx.Margin = new System.Windows.Forms.Padding(2);
             this.Technician5_cbx.Name = "Technician5_cbx";
             this.Technician5_cbx.Size = new System.Drawing.Size(160, 29);
             this.Technician5_cbx.TabIndex = 4;
@@ -172,7 +172,7 @@
             this.Technician4_cbx.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Technician4_cbx.FormattingEnabled = true;
             this.Technician4_cbx.Location = new System.Drawing.Point(13, 175);
-            this.Technician4_cbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Technician4_cbx.Margin = new System.Windows.Forms.Padding(2);
             this.Technician4_cbx.Name = "Technician4_cbx";
             this.Technician4_cbx.Size = new System.Drawing.Size(160, 29);
             this.Technician4_cbx.TabIndex = 3;
@@ -182,7 +182,7 @@
             this.Technician3_cbx.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Technician3_cbx.FormattingEnabled = true;
             this.Technician3_cbx.Location = new System.Drawing.Point(13, 128);
-            this.Technician3_cbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Technician3_cbx.Margin = new System.Windows.Forms.Padding(2);
             this.Technician3_cbx.Name = "Technician3_cbx";
             this.Technician3_cbx.Size = new System.Drawing.Size(160, 29);
             this.Technician3_cbx.TabIndex = 2;
@@ -192,7 +192,7 @@
             this.Technician2_cbx.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Technician2_cbx.FormattingEnabled = true;
             this.Technician2_cbx.Location = new System.Drawing.Point(13, 83);
-            this.Technician2_cbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Technician2_cbx.Margin = new System.Windows.Forms.Padding(2);
             this.Technician2_cbx.Name = "Technician2_cbx";
             this.Technician2_cbx.Size = new System.Drawing.Size(160, 29);
             this.Technician2_cbx.TabIndex = 1;
@@ -202,7 +202,7 @@
             this.Technician1_cbx.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Technician1_cbx.FormattingEnabled = true;
             this.Technician1_cbx.Location = new System.Drawing.Point(13, 41);
-            this.Technician1_cbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Technician1_cbx.Margin = new System.Windows.Forms.Padding(2);
             this.Technician1_cbx.Name = "Technician1_cbx";
             this.Technician1_cbx.Size = new System.Drawing.Size(160, 29);
             this.Technician1_cbx.TabIndex = 0;
@@ -224,18 +224,42 @@
             this.JobInfo_gbx.Controls.Add(this.EquipmentSerialNr_lbl);
             this.JobInfo_gbx.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JobInfo_gbx.Location = new System.Drawing.Point(227, 183);
-            this.JobInfo_gbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.JobInfo_gbx.Margin = new System.Windows.Forms.Padding(2);
             this.JobInfo_gbx.Name = "JobInfo_gbx";
-            this.JobInfo_gbx.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.JobInfo_gbx.Padding = new System.Windows.Forms.Padding(2);
             this.JobInfo_gbx.Size = new System.Drawing.Size(685, 314);
             this.JobInfo_gbx.TabIndex = 4;
             this.JobInfo_gbx.TabStop = false;
             this.JobInfo_gbx.Text = "Job Information";
             // 
+            // endDate_lbl
+            // 
+            this.endDate_lbl.AutoSize = true;
+            this.endDate_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endDate_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
+            this.endDate_lbl.Location = new System.Drawing.Point(208, 241);
+            this.endDate_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.endDate_lbl.Name = "endDate_lbl";
+            this.endDate_lbl.Size = new System.Drawing.Size(72, 21);
+            this.endDate_lbl.TabIndex = 13;
+            this.endDate_lbl.Text = "End Date";
+            // 
+            // startDate_lbl
+            // 
+            this.startDate_lbl.AutoSize = true;
+            this.startDate_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startDate_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
+            this.startDate_lbl.Location = new System.Drawing.Point(8, 241);
+            this.startDate_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.startDate_lbl.Name = "startDate_lbl";
+            this.startDate_lbl.Size = new System.Drawing.Size(78, 21);
+            this.startDate_lbl.TabIndex = 12;
+            this.startDate_lbl.Text = "Start Date";
+            // 
             // Description_rtb
             // 
             this.Description_rtb.Location = new System.Drawing.Point(252, 52);
-            this.Description_rtb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Description_rtb.Margin = new System.Windows.Forms.Padding(2);
             this.Description_rtb.Name = "Description_rtb";
             this.Description_rtb.Size = new System.Drawing.Size(412, 163);
             this.Description_rtb.TabIndex = 11;
@@ -245,7 +269,7 @@
             // 
             this.ScheduleDateTo_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ScheduleDateTo_txt.Location = new System.Drawing.Point(210, 270);
-            this.ScheduleDateTo_txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ScheduleDateTo_txt.Margin = new System.Windows.Forms.Padding(2);
             this.ScheduleDateTo_txt.Name = "ScheduleDateTo_txt";
             this.ScheduleDateTo_txt.Size = new System.Drawing.Size(160, 29);
             this.ScheduleDateTo_txt.TabIndex = 10;
@@ -254,7 +278,7 @@
             // 
             this.ScheduleDateFrom_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ScheduleDateFrom_txt.Location = new System.Drawing.Point(12, 270);
-            this.ScheduleDateFrom_txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ScheduleDateFrom_txt.Margin = new System.Windows.Forms.Padding(2);
             this.ScheduleDateFrom_txt.Name = "ScheduleDateFrom_txt";
             this.ScheduleDateFrom_txt.Size = new System.Drawing.Size(160, 29);
             this.ScheduleDateFrom_txt.TabIndex = 9;
@@ -264,7 +288,7 @@
             this.ServiceType_cbx.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ServiceType_cbx.FormattingEnabled = true;
             this.ServiceType_cbx.Location = new System.Drawing.Point(12, 176);
-            this.ServiceType_cbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ServiceType_cbx.Margin = new System.Windows.Forms.Padding(2);
             this.ServiceType_cbx.Name = "ServiceType_cbx";
             this.ServiceType_cbx.Size = new System.Drawing.Size(160, 29);
             this.ServiceType_cbx.TabIndex = 8;
@@ -274,7 +298,7 @@
             this.Priority_cbx.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Priority_cbx.FormattingEnabled = true;
             this.Priority_cbx.Location = new System.Drawing.Point(12, 115);
-            this.Priority_cbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Priority_cbx.Margin = new System.Windows.Forms.Padding(2);
             this.Priority_cbx.Name = "Priority_cbx";
             this.Priority_cbx.Size = new System.Drawing.Size(160, 29);
             this.Priority_cbx.TabIndex = 7;
@@ -331,7 +355,7 @@
             // 
             this.EquepmentSerialNr_txt.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EquepmentSerialNr_txt.Location = new System.Drawing.Point(12, 52);
-            this.EquepmentSerialNr_txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EquepmentSerialNr_txt.Margin = new System.Windows.Forms.Padding(2);
             this.EquepmentSerialNr_txt.Name = "EquepmentSerialNr_txt";
             this.EquepmentSerialNr_txt.Size = new System.Drawing.Size(160, 29);
             this.EquepmentSerialNr_txt.TabIndex = 2;
@@ -364,7 +388,7 @@
             this.Submit_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Submit_btn.ForeColor = System.Drawing.Color.White;
             this.Submit_btn.Location = new System.Drawing.Point(12, 514);
-            this.Submit_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Submit_btn.Margin = new System.Windows.Forms.Padding(2);
             this.Submit_btn.Name = "Submit_btn";
             this.Submit_btn.Size = new System.Drawing.Size(158, 35);
             this.Submit_btn.TabIndex = 6;
@@ -381,12 +405,13 @@
             this.Delete_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Delete_btn.ForeColor = System.Drawing.Color.Transparent;
             this.Delete_btn.Location = new System.Drawing.Point(581, 514);
-            this.Delete_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Delete_btn.Margin = new System.Windows.Forms.Padding(2);
             this.Delete_btn.Name = "Delete_btn";
             this.Delete_btn.Size = new System.Drawing.Size(158, 35);
             this.Delete_btn.TabIndex = 7;
             this.Delete_btn.Text = "Delete";
             this.Delete_btn.UseVisualStyleBackColor = false;
+            this.Delete_btn.Click += new System.EventHandler(this.Delete_btn_Click);
             // 
             // Close_btn
             // 
@@ -398,36 +423,12 @@
             this.Close_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Close_btn.ForeColor = System.Drawing.Color.White;
             this.Close_btn.Location = new System.Drawing.Point(756, 514);
-            this.Close_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Close_btn.Margin = new System.Windows.Forms.Padding(2);
             this.Close_btn.Name = "Close_btn";
             this.Close_btn.Size = new System.Drawing.Size(158, 35);
             this.Close_btn.TabIndex = 8;
             this.Close_btn.Text = "Close";
             this.Close_btn.UseVisualStyleBackColor = false;
-            // 
-            // startDate_lbl
-            // 
-            this.startDate_lbl.AutoSize = true;
-            this.startDate_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startDate_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
-            this.startDate_lbl.Location = new System.Drawing.Point(8, 241);
-            this.startDate_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.startDate_lbl.Name = "startDate_lbl";
-            this.startDate_lbl.Size = new System.Drawing.Size(78, 21);
-            this.startDate_lbl.TabIndex = 12;
-            this.startDate_lbl.Text = "Start Date";
-            // 
-            // endDate_lbl
-            // 
-            this.endDate_lbl.AutoSize = true;
-            this.endDate_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.endDate_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
-            this.endDate_lbl.Location = new System.Drawing.Point(208, 241);
-            this.endDate_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.endDate_lbl.Name = "endDate_lbl";
-            this.endDate_lbl.Size = new System.Drawing.Size(72, 21);
-            this.endDate_lbl.TabIndex = 13;
-            this.endDate_lbl.Text = "End Date";
             // 
             // ModifyJobs
             // 
@@ -444,7 +445,7 @@
             this.Controls.Add(this.PSS_lbl);
             this.Controls.Add(this.PSS_img);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ModifyJobs";
             this.Text = "Modify Jobs";
             ((System.ComponentModel.ISupportInitialize)(this.PSS_img)).EndInit();

@@ -33,17 +33,17 @@ namespace PSS_ITWORKS
 
         public List<IEntity> Get()
         {
-            throw new System.NotImplementedException();
+            return _strategy.Get();
         }
 
         public IEntity Get(int ID)
         {
-            throw new System.NotImplementedException();
+            return _strategy.Get(ID);
         }
 
         public void Update(IEntity entity)
         {
-            throw new System.NotImplementedException();
+            _strategy.Update(entity);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿// EntityJob.cs
+﻿
+
+// EntityJob.cs
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -16,6 +18,7 @@ namespace PSS_ITWORKS.LogicLayer
         private string notes;
         List<EntityEmployee> employees;
         List<EntityCall> calls;
+        private int priority;
 
         public EntityJob(int id, int clientId, int serviceId, DateTime timeBegin, DateTime timeEnd, string status, string notes)
         {
@@ -28,7 +31,17 @@ namespace PSS_ITWORKS.LogicLayer
             this.notes = notes;
         }
 
-        public void SetEmployee(List<EntityEmployee> employees)
+        public void SetPriotity(int priority)
+        {
+            this.priority = priority;
+        }
+
+        public int GetPriotity()
+        {
+            return this.priority;
+        }
+
+        public void SetEmployees(List<EntityEmployee> employees)
         {
             this.employees = employees;
         }

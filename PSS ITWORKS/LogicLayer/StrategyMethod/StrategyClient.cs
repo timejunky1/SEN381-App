@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Twilio.TwiML.Voice;
 
 namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 {
@@ -13,26 +14,29 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 
         public void Connect(string myString)
         {
-            throw new NotImplementedException();
+            api.SetConnection(myString);
         }
 
         public void Create(IEntity entity)
         {
-            throw new NotImplementedException();
+            EntityClient client = entity as EntityClient;
+            api.InsertClient(client);
         }
 
         public void Delete(int ID)
         {
-            EntityClient client = null;
-            if (ID == client.GetID())
-            {
-               
-            }
+            api.DeleteClient(ID);
         }
 
         public List<IEntity> Get()
         {
-            throw new NotImplementedException();
+            List<IEntity> entities = new List<IEntity>();
+            List<EntityClient> clients = api.GetClients();
+            foreach (EntityClient client in clients)
+            {
+                entities.Add(client);
+            }
+            return entities;
         }
 
         public IEntity Get(int ID)
@@ -63,7 +67,8 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 
         public void Update(IEntity entity)
         {
-            throw new NotImplementedException();
+            EntityClient client = entity as EntityClient;
+            api.UpdateClient(client);
         }
     }
 }

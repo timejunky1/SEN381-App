@@ -17,6 +17,8 @@ namespace PSS_ITWORKS.Presentation_Layer
     {
         StrategyContextManager context;
         Dashboard dashboard;
+        EntityEmployee technician;
+        private EntityJob job;
         int technicianId = 2;
         int jobId = 0;
         public Technician(Dashboard dashboard)
@@ -28,9 +30,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void Technician_Load(object sender, EventArgs e)
         {
             context = new StrategyContextManager(new StrategyTechnician());
-            context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
-            BindingSource bs = context.GetSpecific2(jobId);
-            LoadDetails(bs);
+            context.Connect(@"Data Source=DESKTOP-TBBSO02\SQLEXPRESS; Initial Catalog=PSS1; Integrated Security=True");
             jobID_txt.Text = "0";
             status_cbx.Items.Clear();
             status_cbx.Items.Add("Finished");
@@ -70,12 +70,21 @@ namespace PSS_ITWORKS.Presentation_Layer
             taskList_dgv.Columns[13].HeaderText = "14:30";
             taskList_dgv.Columns[14].HeaderText = "15:00";
             taskList_dgv.Columns[15].HeaderText = "15:30";
+            technician = context.Get(technicianId) as EntityEmployee;
+            LoadSchedule(21,14, technician.GetJobs(), taskList_dgv);
+            LoadSchedule(7,0, technician.GetJobs(), Schedule_dgv);
 
-            LoadSchedule(21,14, context.Get(technicianId), taskList_dgv);
-            LoadSchedule(7,0, context.GetSpecific1(technicianId), Schedule_dgv);
+            foreach (EntityJob job in technician.GetJobs())
+            {
+                if (job.GetStatus() == "In Process")
+                {
+                    JobId_cmb.Items.Add(job.GetId());
+                }
+                
+            }
         }
        
-        void LoadSchedule(int maxDay, int Offset, BindingSource bs, DataGridView dgv)
+        void LoadSchedule(int maxDay, int Offset, List<EntityJob> jobs, DataGridView dgv)
         {
             dgv.RowCount = maxDay;
             int nr = 0;
@@ -83,19 +92,19 @@ namespace PSS_ITWORKS.Presentation_Layer
             int e = 1600;
             int n = 0;
             int r = 0;
-            foreach (IDataRecord dr in bs.List)
+            foreach (EntityJob job in jobs)
             {
                 try
                 {
                     n = 0;
-                    TimeSpan ts = DateTime.Parse(dr[5].ToString()) - (DateTime.Now.Add(new TimeSpan(-(DateTime.Now.Hour - 8), 0, 0)));
+                    TimeSpan ts = job.GetTimeBegin() - (DateTime.Now.Add(new TimeSpan(-(DateTime.Now.Hour - 8), 0, 0)));
                     r = ts.Days + Offset;
                     if (r > maxDay || r<0)
                     {
                         continue;
                     }
-                    int timeStart = DateTime.Parse(dr[5].ToString()).Hour * 100 + (int)(DateTime.Parse(dr[5].ToString()).Minute / 60 * 100);
-                    int timeEnd = DateTime.Parse(dr[6].ToString()).Hour * 100 + (int)(DateTime.Parse(dr[6].ToString()).Minute / 60 * 100);
+                    int timeStart = job.GetTimeBegin().Hour * 100 + job.GetTimeBegin().Minute / 60 * 100;
+                    int timeEnd = job.GetTimeEnd().Hour * 100 + job.GetTimeEnd().Minute / 60 * 100;
                     MessageBox.Show(r.ToString());
                     for (int i = s; i < e; i += 50)
                     {
@@ -105,10 +114,10 @@ namespace PSS_ITWORKS.Presentation_Layer
                         }
                         if (timeStart < i + 50)
                         {
-                            dgv.Rows[r].Cells[0].Value = DateTime.Parse(dr[5].ToString()).DayOfWeek;
+                            dgv.Rows[r].Cells[0].Value = job.GetTimeBegin().DayOfWeek;
                             dgv.Rows[r].Cells[0].Style.BackColor = Color.Blue;
                             dgv.Rows[r].Cells[0].Style.ForeColor = Color.White;
-                            dgv.Rows[r].Cells[n].Value = dr[0].ToString();
+                            dgv.Rows[r].Cells[n].Value = job.GetId().ToString();
                             dgv.Rows[r].Cells[n].Style.ForeColor = Color.White;
                             dgv.Rows[r].Cells[n].Style.BackColor = Color.Green;
                         }
@@ -123,7 +132,10 @@ namespace PSS_ITWORKS.Presentation_Layer
         }
         private void submitUpdate_btn_Click(object sender, EventArgs e)
         {
-            context.Update(new EntityJob(int.Parse(jobID_txt.Text), jobNotes_rtb.Text, status_cbx.Text));
+            if (status_cbx.Text != null && jobNotes_rtb.Text.Length <= 255)
+            {
+                context.Update(new EntityJob(int.Parse(jobID_txt.Text), job.GetClientId() ,job.GetServiceId() ,job.GetTimeBegin() ,job.GetTimeEnd(), status_cbx.Text ,jobNotes_rtb.Text));
+            }
         }
 
         private void Schedule_dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -135,8 +147,13 @@ namespace PSS_ITWORKS.Presentation_Layer
             try
             {
                 jobId = int.Parse(Schedule_dgv[e.ColumnIndex, e.RowIndex].Value.ToString());
-                BindingSource bs = context.GetSpecific2(jobId);
-                LoadDetails(bs);
+                foreach(EntityJob job in technician.GetJobs())
+                {
+                    if(job.GetId() == jobId)
+                    {
+                        LoadDetails(job);
+                    }
+                }
             }
             catch
             {
@@ -144,24 +161,42 @@ namespace PSS_ITWORKS.Presentation_Layer
             }
         }
 
-        void LoadDetails(BindingSource bs)
+        void LoadDetails(EntityJob job)
         {
+            this.job = job;
             jobID_txt.Text = jobId.ToString();
-            foreach (IDataRecord dr in bs.List)
-            {
-                MessageBox.Show(dr[0].ToString() + ", " + dr[1].ToString() + ", " + dr[2].ToString());
-                clientDetails_dgv.DataSource = context.GetSpecific(int.Parse(dr[1].ToString()));
-                serviceOverview_dgv.DataSource = context.GetSpecific1(dr[2].ToString());
-                status_cbx.Text = dr[5].ToString();
-                jobNotes_rtb.Text = dr[6].ToString();
-            }
+            //Change stratagy to clientManagement
+            context = new StrategyContextManager(new StrategyClientManager());
+            context.Connect(@"Data Source=DESKTOP-TBBSO02\SQLEXPRESS; Initial Catalog=PSS1; Integrated Security=True");
+            clientDetails_dgv.DataSource = context.Get(job.GetClientId());
+            //Change stratagy to ServiceManagement
+            
+            context = new StrategyContextManager(new StrategyServiceManager());
+            context.Connect(@"Data Source=DESKTOP-TBBSO02\SQLEXPRESS; Initial Catalog=PSS1; Integrated Security=True");
+            serviceOverview_dgv.DataSource = context.Get(job.GetServiceId());
+            status_cbx.Text = job.GetStatus();
+            jobNotes_rtb.Text = job.GetNotes();
             Technical_tc.SelectedIndex = 2;
+            
+            
         }
 
         private void Logout_btn_Click(object sender, EventArgs e)
         {
             this.Close();
             dashboard.Show();
+        }
+
+        private void filterDetails_btn_Click(object sender, EventArgs e)
+        {
+            
+            foreach (EntityJob job in technician.GetJobs())
+            {
+                if (job.GetId() == int.Parse(JobId_cmb.Text))
+                {
+                    LoadDetails(job);
+                }
+            }
         }
     }
 }
