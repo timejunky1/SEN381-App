@@ -15,22 +15,34 @@ namespace PSS_ITWORKS.Testing
     {
         // BlackBox: Positive Scenario (Valid user login should return true)
         [Fact]
-        public void VerifyUserLogin_ValidCredentials_ShouldOpenDashboard()
+        public void VerifyUserLogin_ValidCredentials_ShouldShowDashboardForm()
         {
+            var userInfo = new LoginController.UserInfo
+            {
+                Name = "Brad",
+                Surname = "Davies",
+                Role = "Admin",
+                ID = 40 
+            };
+
+
             // Arrange
             var mockDatabaseAPI = new Mock<DatabaseAPI>();
-            mockDatabaseAPI.Setup(api => api.AuthenticateUser("validUsername", "validPassword")).Returns(true);
+            mockDatabaseAPI.Setup(api => api.AuthenticateUser("brad.davies@example.com", "Seivad#4")).Returns(true);
 
             var loginForm = new LogIn();
+            var loginController = new LoginController();
+            var dashboardForm = new Dashboard(loginController, userInfo, loginForm);
+            dashboardForm.Visible = false; // Initially set to invisible
             var welcomeLabel = new Label();
 
             // Act
-            var loginController = new LoginController();
-            loginController.HandleLoginButtonClick("validUsername", "validPassword", loginForm, welcomeLabel);
+            loginController.HandleLoginButtonClick("brad.davies@example.com", "Seivad#4", loginForm, dashboardForm, welcomeLabel);
 
             // Assert
             Assert.False(loginForm.Visible);
-            Assert.True(welcomeLabel.Visible);
+            Assert.True(dashboardForm.Visible);
+            Assert.False(welcomeLabel.Visible);
         }
 
         // BlackBox: Negative Scenario (Invalid user login should return false)
@@ -46,10 +58,10 @@ namespace PSS_ITWORKS.Testing
 
             string errorMessage = null;
             LoginController loginController = new LoginController();
-            loginController.AuthenticationFailed += (sender, e) => errorMessage = e;
+            loginController.AuthenticateUser += (sender, e) => errorMessage = e;
 
             // Act
-            loginController.HandleLoginButtonClick("invalidUsername", "invalidPassword", loginForm.Object, welcomeLabel.Object);
+            loginController.HandleLoginButtonClick("57829", "oip", loginForm.Object, welcomeLabel.Object);
 
             // Assert
             Assert.Equal("Invalid username or password. Please try again.", errorMessage);
@@ -87,26 +99,26 @@ namespace PSS_ITWORKS.Testing
             var loginController = new LoginController();
 
             // Act & Assert: Test AuthenticateUser function
-            mockDatabaseAPI.Setup(api => api.AuthenticateUser("validUsername", "validPassword")).Returns(true);
+            mockDatabaseAPI.Setup(api => api.AuthenticateUser("brad.davies@example.com", "Seivad#4")).Returns(true);
             mockDatabaseAPI.Setup(api => api.AuthenticateUser("invalidUsername", "invalidPassword")).Returns(false);
 
             // Valid authentication
-            Assert.True(loginController.AuthenticateUser("validUsername", "validPassword"));
+            Assert.True(loginController.AuthenticateUser("brad.davies@example.com", "Seivad#4"));
 
             // Invalid authentication
-            Assert.False(loginController.AuthenticateUser("invalidUsername", "invalidPassword"));
+            Assert.False(loginController.AuthenticateUser("57829", "oip"));
 
             // Act & Assert: Test GetUserInfo function
             var userInfo = new LoginController.UserInfo
             {
-                Name = "John",
-                Surname = "Doe",
+                Name = "Brad",
+                Surname = "Davies",
                 Role = "Admin",
-                ID = 1
+                ID = 40
             };
 
-            mockDatabaseAPI.Setup(api => api.GetUserInformation("validUsername")).Returns(userInfo);
-            mockDatabaseAPI.Setup(api => api.GetUserInformation("invalidUsername")).Returns((LoginController.UserInfo)null);
+            mockDatabaseAPI.Setup(api => api.GetUserInformation("brad.davies@example.com")).Returns(userInfo);
+            mockDatabaseAPI.Setup(api => api.GetUserInformation("57829")).Returns((LoginController.UserInfo)null);
 
             // Valid user info
             Assert.NotNull(loginController.GetUserInfo());
@@ -115,14 +127,14 @@ namespace PSS_ITWORKS.Testing
             Assert.Null(loginController.GetUserInfo());
 
             // Act & Assert: Test GetUserRole function
-            mockDatabaseAPI.Setup(api => api.GetUserRole("validUsername")).Returns("Admin");
-            mockDatabaseAPI.Setup(api => api.GetUserRole("invalidUsername")).Returns((string)null);
+            mockDatabaseAPI.Setup(api => loginController.GetUserRole("brad.davies@example.com")).Returns("Admin");
+            mockDatabaseAPI.Setup(api => loginController.GetUserRole("57829")).Returns((string)null);
 
             // Valid user role
-            Assert.NotNull(loginController.GetUserRole("validUsername"));
+            Assert.NotNull(loginController.GetUserRole("brad.davies@example.com"));
 
             // Invalid user role
-            Assert.Null(loginController.GetUserRole("invalidUsername"));
+            Assert.Null(loginController.GetUserRole("57829"));
         }
     }
 }
