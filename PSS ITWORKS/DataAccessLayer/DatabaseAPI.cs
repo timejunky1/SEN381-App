@@ -1378,5 +1378,39 @@ namespace PSS_ITWORKS
                 ErrorHandler.DisplayError(ex);
             }
         }
+
+        public string GetUserRole(string username)
+        {
+            string userRole = null;
+            try
+            {
+                using (conn)
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("userProcedures.GetUserRole"))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@username", username);
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                userRole = reader.GetString(0);
+                            }
+                            if (!reader.HasRows)
+                            {
+                                ErrorHandler.DisplayError("User not found");
+                            }
+                            reader.Close();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.DisplayError(ex);
+            }
+            return userRole;
+        }
     }
 }
