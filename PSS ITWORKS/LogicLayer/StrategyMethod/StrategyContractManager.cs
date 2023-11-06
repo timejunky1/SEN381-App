@@ -1,6 +1,9 @@
 ﻿// StrategyContractManager.cs
+using Microsoft.SqlServer.Server;
 using PSS_ITWORKS.LogicLayer;
 using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics.Contracts;
 using System.Windows.Forms;
 
@@ -9,66 +12,68 @@ namespace PSS_ITWORKS
     class StrategyContractManager : IStrategyAManagement
     {
         DatabaseAPI api = new DatabaseAPI();
-        public BindingSource Get()
+
+        public void Connect(string myString)
         {
-            ErrorHandler.DisplayError(new NotImplementedException());
-            return null;
+            api.SetConnection(myString);
         }
 
         public void Create(IEntity entity)
         {
-            try
+            EntityContract contract = entity as EntityContract;
+            api.InsertContract(contract);
+            foreach(EntityService service in contract.GetServices())
             {
-                EntityContract contract = entity as EntityContract;
-                api.CreateContract(contract);
-                foreach (EntityService service in contract.GetServices())
-                {
-                    api.AddContractRef(service.GetId());
-                }
-            }catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
+                api.InsertContractRef(contract.GetId(), service.GetId());
             }
-            
+
         }
 
         public void Delete(int ID)
         {
             api.DeleteContract(ID);
-            api.DeleteContractRef(ID,0);
+        }
+
+        public List<IEntity> Get()
+        {
+            List<EntityContract> conracts = api.GetContracts();
+            List<IEntity> entities = new List<IEntity>();
+            foreach(EntityContract contract in conracts)
+            {
+                entities.Add(contract);
+            }
+            return entities;
+        }
+
+        public IEntity Get(int ID)
+        {
+            EntityContract contract = api.GetContract(ID);
+            List<int> serviceids = api.GetContractRef(contract.GetId());
+            List<EntityService> services = new List<EntityService>();
+            foreach(int i in serviceids)
+            {
+                services.Add(api.GetService(i));
+            }
+            List<EntityClient> clients = api.GetClients();
+            List<EntityClient> contractClients = new List<EntityClient>();
+            foreach(EntityClient client in clients)
+            {
+                contractClients.Add(client);
+            }
+            contract.SetServices(services);
+            contract.SetClients(contractClients);
+            return contract;
         }
 
         public void Update(IEntity entity)
         {
-            try
+            EntityContract contract = entity as EntityContract;
+            api.DeleteContractRef(contractId: contract.GetId());
+            foreach(EntityService service in contract.GetServices())
             {
-                EntityContract contract = entity as EntityContract;
-                api.UpdateContract(contract);
-                api.DeleteContractRef(contract.GetId(),0);
-                foreach (EntityService service in contract.GetServices())
-                {
-                    api.AddContractRef(contract.GetId(), service.GetId());
-                }
+                api.InsertContractRef(contract.GetId(), service.GetId());
             }
-            catch(Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-            }
-        }
-
-        public void Connect(string connString)
-        {
-            api.SetConnection(connString);
-        }
-
-        public BindingSource Get(int ID)
-        {
-            return api.GetClientAndContractInfo(ID);
-        }
-
-        public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
-        {
-            return api.GetContractStats(id1, id2);
+            api.UpdateContract(contract);
         }
 
         public BindingSource GetSpecific1(string s1)

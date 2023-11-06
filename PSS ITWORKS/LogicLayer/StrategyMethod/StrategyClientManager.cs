@@ -1,5 +1,6 @@
 ﻿// StrategyClientManager.cs
 using PSS_ITWORKS.LogicLayer;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace PSS_ITWORKS
@@ -7,72 +8,64 @@ namespace PSS_ITWORKS
     class StrategyClientManager : IStrategyAManagement
     {
         DatabaseAPI api = new DatabaseAPI();
-        public BindingSource Get()
-        {
-            MessageBox.Show("Get something");
-            return null;
-        }
-
-        public void Create(IEntity entity)
-        {
-            MessageBox.Show("Create something");
-        }
-
-        public void Delete(int ID)
-        {
-            MessageBox.Show("Delete something");
-        }
-
-        public void Update(IEntity entity)
-        {
-            MessageBox.Show("Update something");
-        }
 
         public void Connect(string myString)
         {
             api.SetConnection(myString);
         }
 
-
-        // Get client and contract info
-        public BindingSource Get(int ID)
+        public void Create(IEntity entity)
         {
-            return api.GetClientAndContractInfo(ID);
+            EntityClient client = entity as EntityClient;
+            api.InsertClient(client);
         }
 
-        // Get client info
-        public BindingSource GetSpecific(int id1 )
+        public void Delete(int ID)
         {
-          
-            return api.GetClientInfo(id1);
+            api.DeleteClient(ID);
         }
 
-        
-        public BindingSource GetSpecific1(string s1)
+        public List<IEntity> Get()
         {
-            throw new System.NotImplementedException();
+            List<IEntity> entities = new List<IEntity>();
+            List<EntityClient> clients = api.GetClients();
+            foreach (EntityClient client in clients)
+            {
+                entities.Add(client);
+            }
+            return entities;
         }
 
-        
-        public BindingSource GetSpecific2(string s2)
+        public IEntity Get(int ID)
         {
-            throw new System.NotImplementedException();
+            EntityClient client = null;
+            client = api.GetClient(ID);
+            List<EntityJob> jobs= api.GetJobs();
+            foreach(EntityJob job in jobs)
+            {
+                if(job.GetClientId() == client.GetID())
+                {
+                    jobs.Add(job);
+                }
+            }
+            client.SetJobs(jobs);
+            List<EntityCall> calls = api.GetCalls();
+            foreach (EntityCall call in calls)
+            {
+                if (call.GetClientId() == client.GetID())
+                {
+                    calls.Add(call);
+                }
+            }
+            client.SetCalls(calls);
+            return client;
+
         }
 
-        // Get client jobs
-        public BindingSource GetSpecific1(int id1)
+        public void Update(IEntity entity)
         {
-            return api.GetClientJobs(id1);
-        }
-
-        public BindingSource GetSpecific2(int n1)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
-        {
-            throw new System.NotImplementedException();
+            EntityClient client = entity as EntityClient;
+            api.UpdateClient(client);
         }
     }
 }

@@ -33,40 +33,42 @@
             this.Welcome_lbl = new System.Windows.Forms.Label();
             this.Technical_tc = new System.Windows.Forms.TabControl();
             this.taskList_tp = new System.Windows.Forms.TabPage();
-            this.taskUpdates_tp = new System.Windows.Forms.TabPage();
-            this.clientDetails_tp = new System.Windows.Forms.TabPage();
-            this.Schedule_tp = new System.Windows.Forms.TabPage();
-            this.Logout_btn = new System.Windows.Forms.Button();
-            this.TLM_lbl = new System.Windows.Forms.Label();
-            this.TLMInfo_lbl = new System.Windows.Forms.Label();
             this.taskList_dgv = new System.Windows.Forms.DataGridView();
-            this.taskUpdateInfo_lbl = new System.Windows.Forms.Label();
-            this.taskUpdate_lbl = new System.Windows.Forms.Label();
+            this.TLMInfo_lbl = new System.Windows.Forms.Label();
+            this.TLM_lbl = new System.Windows.Forms.Label();
+            this.taskUpdates_tp = new System.Windows.Forms.TabPage();
+            this.status_cbx = new System.Windows.Forms.ComboBox();
+            this.jobStatus_lbl = new System.Windows.Forms.Label();
+            this.jobNotes_lbl = new System.Windows.Forms.Label();
+            this.jobNotes_rtb = new System.Windows.Forms.RichTextBox();
+            this.submitUpdate_btn = new System.Windows.Forms.Button();
+            this.searchJob_btn = new System.Windows.Forms.Button();
             this.jobID_txt = new System.Windows.Forms.TextBox();
             this.JobID_lbl = new System.Windows.Forms.Label();
-            this.searchJob_btn = new System.Windows.Forms.Button();
-            this.submitUpdate_btn = new System.Windows.Forms.Button();
-            this.jobNotes_rtb = new System.Windows.Forms.RichTextBox();
-            this.jobNotes_lbl = new System.Windows.Forms.Label();
-            this.jobStatus_lbl = new System.Windows.Forms.Label();
-            this.jobStatus_dud = new System.Windows.Forms.DomainUpDown();
-            this.clientDetails_lbl = new System.Windows.Forms.Label();
-            this.clientDetails_dgv = new System.Windows.Forms.DataGridView();
-            this.serviceOverview_lbl = new System.Windows.Forms.Label();
-            this.serviceOverview_dgv = new System.Windows.Forms.DataGridView();
+            this.taskUpdateInfo_lbl = new System.Windows.Forms.Label();
+            this.taskUpdate_lbl = new System.Windows.Forms.Label();
+            this.clientDetails_tp = new System.Windows.Forms.TabPage();
             this.filterDetails_btn = new System.Windows.Forms.Button();
-            this.Schedule_lbl = new System.Windows.Forms.Label();
+            this.serviceOverview_dgv = new System.Windows.Forms.DataGridView();
+            this.serviceOverview_lbl = new System.Windows.Forms.Label();
+            this.clientDetails_dgv = new System.Windows.Forms.DataGridView();
+            this.clientDetails_lbl = new System.Windows.Forms.Label();
+            this.Schedule_tp = new System.Windows.Forms.TabPage();
             this.Schedule_dgv = new System.Windows.Forms.DataGridView();
+            this.Schedule_lbl = new System.Windows.Forms.Label();
+            this.Logout_btn = new System.Windows.Forms.Button();
+            this.pssDataSet1 = new PSS_ITWORKS.PSSDataSet();
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).BeginInit();
             this.Technical_tc.SuspendLayout();
             this.taskList_tp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.taskList_dgv)).BeginInit();
             this.taskUpdates_tp.SuspendLayout();
             this.clientDetails_tp.SuspendLayout();
-            this.Schedule_tp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.taskList_dgv)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientDetails_dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceOverview_dgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientDetails_dgv)).BeginInit();
+            this.Schedule_tp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Schedule_dgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pssDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // Logo_img
@@ -117,11 +119,40 @@
             this.taskList_tp.TabIndex = 0;
             this.taskList_tp.Text = "Task List";
             this.taskList_tp.UseVisualStyleBackColor = true;
-            this.taskList_tp.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // taskList_dgv
+            // 
+            this.taskList_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.taskList_dgv.Location = new System.Drawing.Point(8, 82);
+            this.taskList_dgv.Name = "taskList_dgv";
+            this.taskList_dgv.Size = new System.Drawing.Size(843, 270);
+            this.taskList_dgv.TabIndex = 16;
+            // 
+            // TLMInfo_lbl
+            // 
+            this.TLMInfo_lbl.AutoSize = true;
+            this.TLMInfo_lbl.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TLMInfo_lbl.ForeColor = System.Drawing.Color.Black;
+            this.TLMInfo_lbl.Location = new System.Drawing.Point(3, 44);
+            this.TLMInfo_lbl.Name = "TLMInfo_lbl";
+            this.TLMInfo_lbl.Size = new System.Drawing.Size(361, 25);
+            this.TLMInfo_lbl.TabIndex = 15;
+            this.TLMInfo_lbl.Text = "Efficiently Monitor Assigned Service Tasks";
+            // 
+            // TLM_lbl
+            // 
+            this.TLM_lbl.AutoSize = true;
+            this.TLM_lbl.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TLM_lbl.ForeColor = System.Drawing.Color.Black;
+            this.TLM_lbl.Location = new System.Drawing.Point(3, 14);
+            this.TLM_lbl.Name = "TLM_lbl";
+            this.TLM_lbl.Size = new System.Drawing.Size(219, 30);
+            this.TLM_lbl.TabIndex = 14;
+            this.TLM_lbl.Text = "Task List Management";
             // 
             // taskUpdates_tp
             // 
-            this.taskUpdates_tp.Controls.Add(this.jobStatus_dud);
+            this.taskUpdates_tp.Controls.Add(this.status_cbx);
             this.taskUpdates_tp.Controls.Add(this.jobStatus_lbl);
             this.taskUpdates_tp.Controls.Add(this.jobNotes_lbl);
             this.taskUpdates_tp.Controls.Add(this.jobNotes_rtb);
@@ -140,101 +171,75 @@
             this.taskUpdates_tp.Text = "Task Updates";
             this.taskUpdates_tp.UseVisualStyleBackColor = true;
             // 
-            // clientDetails_tp
+            // status_cbx
             // 
-            this.clientDetails_tp.Controls.Add(this.filterDetails_btn);
-            this.clientDetails_tp.Controls.Add(this.serviceOverview_dgv);
-            this.clientDetails_tp.Controls.Add(this.serviceOverview_lbl);
-            this.clientDetails_tp.Controls.Add(this.clientDetails_dgv);
-            this.clientDetails_tp.Controls.Add(this.clientDetails_lbl);
-            this.clientDetails_tp.Font = new System.Drawing.Font("Segoe UI", 18F);
-            this.clientDetails_tp.Location = new System.Drawing.Point(4, 39);
-            this.clientDetails_tp.Name = "clientDetails_tp";
-            this.clientDetails_tp.Size = new System.Drawing.Size(865, 413);
-            this.clientDetails_tp.TabIndex = 2;
-            this.clientDetails_tp.Text = "Client Details";
-            this.clientDetails_tp.UseVisualStyleBackColor = true;
+            this.status_cbx.FormattingEnabled = true;
+            this.status_cbx.Location = new System.Drawing.Point(299, 267);
+            this.status_cbx.Name = "status_cbx";
+            this.status_cbx.Size = new System.Drawing.Size(156, 40);
+            this.status_cbx.TabIndex = 25;
             // 
-            // Schedule_tp
+            // jobStatus_lbl
             // 
-            this.Schedule_tp.Controls.Add(this.Schedule_dgv);
-            this.Schedule_tp.Controls.Add(this.Schedule_lbl);
-            this.Schedule_tp.Font = new System.Drawing.Font("Segoe UI", 18F);
-            this.Schedule_tp.Location = new System.Drawing.Point(4, 39);
-            this.Schedule_tp.Name = "Schedule_tp";
-            this.Schedule_tp.Size = new System.Drawing.Size(865, 413);
-            this.Schedule_tp.TabIndex = 3;
-            this.Schedule_tp.Text = "Schedule";
-            this.Schedule_tp.UseVisualStyleBackColor = true;
+            this.jobStatus_lbl.AutoSize = true;
+            this.jobStatus_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jobStatus_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
+            this.jobStatus_lbl.Location = new System.Drawing.Point(295, 243);
+            this.jobStatus_lbl.Name = "jobStatus_lbl";
+            this.jobStatus_lbl.Size = new System.Drawing.Size(80, 21);
+            this.jobStatus_lbl.TabIndex = 24;
+            this.jobStatus_lbl.Text = "Job Status";
             // 
-            // Logout_btn
+            // jobNotes_lbl
             // 
-            this.Logout_btn.BackColor = System.Drawing.Color.Firebrick;
-            this.Logout_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.Logout_btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Logout_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Logout_btn.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Logout_btn.ForeColor = System.Drawing.Color.White;
-            this.Logout_btn.Location = new System.Drawing.Point(749, 26);
-            this.Logout_btn.Name = "Logout_btn";
-            this.Logout_btn.Size = new System.Drawing.Size(118, 36);
-            this.Logout_btn.TabIndex = 13;
-            this.Logout_btn.Text = "Logout";
-            this.Logout_btn.UseVisualStyleBackColor = false;
+            this.jobNotes_lbl.AutoSize = true;
+            this.jobNotes_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jobNotes_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
+            this.jobNotes_lbl.Location = new System.Drawing.Point(295, 84);
+            this.jobNotes_lbl.Name = "jobNotes_lbl";
+            this.jobNotes_lbl.Size = new System.Drawing.Size(79, 21);
+            this.jobNotes_lbl.TabIndex = 23;
+            this.jobNotes_lbl.Text = "Job Notes";
             // 
-            // TLM_lbl
+            // jobNotes_rtb
             // 
-            this.TLM_lbl.AutoSize = true;
-            this.TLM_lbl.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TLM_lbl.ForeColor = System.Drawing.Color.Black;
-            this.TLM_lbl.Location = new System.Drawing.Point(3, 14);
-            this.TLM_lbl.Name = "TLM_lbl";
-            this.TLM_lbl.Size = new System.Drawing.Size(219, 30);
-            this.TLM_lbl.TabIndex = 14;
-            this.TLM_lbl.Text = "Task List Management";
-            this.TLM_lbl.Click += new System.EventHandler(this.label1_Click);
+            this.jobNotes_rtb.Location = new System.Drawing.Point(297, 108);
+            this.jobNotes_rtb.Name = "jobNotes_rtb";
+            this.jobNotes_rtb.Size = new System.Drawing.Size(531, 119);
+            this.jobNotes_rtb.TabIndex = 22;
+            this.jobNotes_rtb.Text = "";
             // 
-            // TLMInfo_lbl
+            // submitUpdate_btn
             // 
-            this.TLMInfo_lbl.AutoSize = true;
-            this.TLMInfo_lbl.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TLMInfo_lbl.ForeColor = System.Drawing.Color.Black;
-            this.TLMInfo_lbl.Location = new System.Drawing.Point(3, 44);
-            this.TLMInfo_lbl.Name = "TLMInfo_lbl";
-            this.TLMInfo_lbl.Size = new System.Drawing.Size(361, 25);
-            this.TLMInfo_lbl.TabIndex = 15;
-            this.TLMInfo_lbl.Text = "Efficiently Monitor Assigned Service Tasks";
+            this.submitUpdate_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(183)))), ((int)(((byte)(132)))));
+            this.submitUpdate_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.submitUpdate_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.submitUpdate_btn.FlatAppearance.BorderSize = 0;
+            this.submitUpdate_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.submitUpdate_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.submitUpdate_btn.ForeColor = System.Drawing.Color.White;
+            this.submitUpdate_btn.Location = new System.Drawing.Point(297, 329);
+            this.submitUpdate_btn.Name = "submitUpdate_btn";
+            this.submitUpdate_btn.Size = new System.Drawing.Size(158, 35);
+            this.submitUpdate_btn.TabIndex = 21;
+            this.submitUpdate_btn.Text = "Submit";
+            this.submitUpdate_btn.UseVisualStyleBackColor = false;
+            this.submitUpdate_btn.Click += new System.EventHandler(this.submitUpdate_btn_Click);
             // 
-            // taskList_dgv
+            // searchJob_btn
             // 
-            this.taskList_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.taskList_dgv.Location = new System.Drawing.Point(8, 82);
-            this.taskList_dgv.Name = "taskList_dgv";
-            this.taskList_dgv.Size = new System.Drawing.Size(843, 270);
-            this.taskList_dgv.TabIndex = 16;
-            // 
-            // taskUpdateInfo_lbl
-            // 
-            this.taskUpdateInfo_lbl.AutoSize = true;
-            this.taskUpdateInfo_lbl.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.taskUpdateInfo_lbl.ForeColor = System.Drawing.Color.Black;
-            this.taskUpdateInfo_lbl.Location = new System.Drawing.Point(6, 44);
-            this.taskUpdateInfo_lbl.Name = "taskUpdateInfo_lbl";
-            this.taskUpdateInfo_lbl.Size = new System.Drawing.Size(558, 25);
-            this.taskUpdateInfo_lbl.TabIndex = 17;
-            this.taskUpdateInfo_lbl.Text = "Real-time Status Monitoring and Collaborative Task Management";
-            // 
-            // taskUpdate_lbl
-            // 
-            this.taskUpdate_lbl.AutoSize = true;
-            this.taskUpdate_lbl.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.taskUpdate_lbl.ForeColor = System.Drawing.Color.Black;
-            this.taskUpdate_lbl.Location = new System.Drawing.Point(6, 14);
-            this.taskUpdate_lbl.Name = "taskUpdate_lbl";
-            this.taskUpdate_lbl.Size = new System.Drawing.Size(342, 30);
-            this.taskUpdate_lbl.TabIndex = 16;
-            this.taskUpdate_lbl.Text = "Task Updates and Progress Tracking";
-            this.taskUpdate_lbl.Click += new System.EventHandler(this.label4_Click);
+            this.searchJob_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(228)))), ((int)(((byte)(91)))));
+            this.searchJob_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.searchJob_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.searchJob_btn.FlatAppearance.BorderSize = 0;
+            this.searchJob_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchJob_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchJob_btn.Location = new System.Drawing.Point(11, 156);
+            this.searchJob_btn.Name = "searchJob_btn";
+            this.searchJob_btn.Size = new System.Drawing.Size(158, 35);
+            this.searchJob_btn.TabIndex = 20;
+            this.searchJob_btn.Text = "Search";
+            this.searchJob_btn.UseVisualStyleBackColor = false;
             // 
             // jobID_txt
             // 
@@ -257,114 +262,42 @@
             this.JobID_lbl.TabIndex = 18;
             this.JobID_lbl.Text = "Job ID";
             // 
-            // searchJob_btn
+            // taskUpdateInfo_lbl
             // 
-            this.searchJob_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(228)))), ((int)(((byte)(91)))));
-            this.searchJob_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.searchJob_btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.searchJob_btn.FlatAppearance.BorderSize = 0;
-            this.searchJob_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.searchJob_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchJob_btn.Location = new System.Drawing.Point(11, 156);
-            this.searchJob_btn.Name = "searchJob_btn";
-            this.searchJob_btn.Size = new System.Drawing.Size(158, 35);
-            this.searchJob_btn.TabIndex = 20;
-            this.searchJob_btn.Text = "Search";
-            this.searchJob_btn.UseVisualStyleBackColor = false;
+            this.taskUpdateInfo_lbl.AutoSize = true;
+            this.taskUpdateInfo_lbl.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.taskUpdateInfo_lbl.ForeColor = System.Drawing.Color.Black;
+            this.taskUpdateInfo_lbl.Location = new System.Drawing.Point(6, 44);
+            this.taskUpdateInfo_lbl.Name = "taskUpdateInfo_lbl";
+            this.taskUpdateInfo_lbl.Size = new System.Drawing.Size(558, 25);
+            this.taskUpdateInfo_lbl.TabIndex = 17;
+            this.taskUpdateInfo_lbl.Text = "Real-time Status Monitoring and Collaborative Task Management";
             // 
-            // submitUpdate_btn
+            // taskUpdate_lbl
             // 
-            this.submitUpdate_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(183)))), ((int)(((byte)(132)))));
-            this.submitUpdate_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.submitUpdate_btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.submitUpdate_btn.FlatAppearance.BorderSize = 0;
-            this.submitUpdate_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.submitUpdate_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.submitUpdate_btn.ForeColor = System.Drawing.Color.White;
-            this.submitUpdate_btn.Location = new System.Drawing.Point(297, 329);
-            this.submitUpdate_btn.Name = "submitUpdate_btn";
-            this.submitUpdate_btn.Size = new System.Drawing.Size(158, 35);
-            this.submitUpdate_btn.TabIndex = 21;
-            this.submitUpdate_btn.Text = "Submit";
-            this.submitUpdate_btn.UseVisualStyleBackColor = false;
+            this.taskUpdate_lbl.AutoSize = true;
+            this.taskUpdate_lbl.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.taskUpdate_lbl.ForeColor = System.Drawing.Color.Black;
+            this.taskUpdate_lbl.Location = new System.Drawing.Point(6, 14);
+            this.taskUpdate_lbl.Name = "taskUpdate_lbl";
+            this.taskUpdate_lbl.Size = new System.Drawing.Size(342, 30);
+            this.taskUpdate_lbl.TabIndex = 16;
+            this.taskUpdate_lbl.Text = "Task Updates and Progress Tracking";
             // 
-            // jobNotes_rtb
+            // clientDetails_tp
             // 
-            this.jobNotes_rtb.Location = new System.Drawing.Point(297, 108);
-            this.jobNotes_rtb.Name = "jobNotes_rtb";
-            this.jobNotes_rtb.Size = new System.Drawing.Size(531, 119);
-            this.jobNotes_rtb.TabIndex = 22;
-            this.jobNotes_rtb.Text = "";
-            // 
-            // jobNotes_lbl
-            // 
-            this.jobNotes_lbl.AutoSize = true;
-            this.jobNotes_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jobNotes_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
-            this.jobNotes_lbl.Location = new System.Drawing.Point(295, 84);
-            this.jobNotes_lbl.Name = "jobNotes_lbl";
-            this.jobNotes_lbl.Size = new System.Drawing.Size(79, 21);
-            this.jobNotes_lbl.TabIndex = 23;
-            this.jobNotes_lbl.Text = "Job Notes";
-            // 
-            // jobStatus_lbl
-            // 
-            this.jobStatus_lbl.AutoSize = true;
-            this.jobStatus_lbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jobStatus_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(77)))), ((int)(((byte)(137)))));
-            this.jobStatus_lbl.Location = new System.Drawing.Point(295, 243);
-            this.jobStatus_lbl.Name = "jobStatus_lbl";
-            this.jobStatus_lbl.Size = new System.Drawing.Size(80, 21);
-            this.jobStatus_lbl.TabIndex = 24;
-            this.jobStatus_lbl.Text = "Job Status";
-            // 
-            // jobStatus_dud
-            // 
-            this.jobStatus_dud.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jobStatus_dud.Location = new System.Drawing.Point(299, 267);
-            this.jobStatus_dud.Name = "jobStatus_dud";
-            this.jobStatus_dud.Size = new System.Drawing.Size(159, 29);
-            this.jobStatus_dud.TabIndex = 25;
-            this.jobStatus_dud.Text = "domainUpDown1";
-            // 
-            // clientDetails_lbl
-            // 
-            this.clientDetails_lbl.AutoSize = true;
-            this.clientDetails_lbl.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clientDetails_lbl.ForeColor = System.Drawing.Color.Black;
-            this.clientDetails_lbl.Location = new System.Drawing.Point(3, 34);
-            this.clientDetails_lbl.Name = "clientDetails_lbl";
-            this.clientDetails_lbl.Size = new System.Drawing.Size(135, 30);
-            this.clientDetails_lbl.TabIndex = 18;
-            this.clientDetails_lbl.Text = "Client Details";
-            this.clientDetails_lbl.Click += new System.EventHandler(this.label8_Click);
-            // 
-            // clientDetails_dgv
-            // 
-            this.clientDetails_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.clientDetails_dgv.Location = new System.Drawing.Point(8, 71);
-            this.clientDetails_dgv.Name = "clientDetails_dgv";
-            this.clientDetails_dgv.Size = new System.Drawing.Size(838, 134);
-            this.clientDetails_dgv.TabIndex = 20;
-            // 
-            // serviceOverview_lbl
-            // 
-            this.serviceOverview_lbl.AutoSize = true;
-            this.serviceOverview_lbl.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.serviceOverview_lbl.ForeColor = System.Drawing.Color.Black;
-            this.serviceOverview_lbl.Location = new System.Drawing.Point(3, 231);
-            this.serviceOverview_lbl.Name = "serviceOverview_lbl";
-            this.serviceOverview_lbl.Size = new System.Drawing.Size(169, 30);
-            this.serviceOverview_lbl.TabIndex = 21;
-            this.serviceOverview_lbl.Text = "Service Overview";
-            // 
-            // serviceOverview_dgv
-            // 
-            this.serviceOverview_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.serviceOverview_dgv.Location = new System.Drawing.Point(8, 264);
-            this.serviceOverview_dgv.Name = "serviceOverview_dgv";
-            this.serviceOverview_dgv.Size = new System.Drawing.Size(843, 134);
-            this.serviceOverview_dgv.TabIndex = 22;
+            this.clientDetails_tp.Controls.Add(this.filterDetails_btn);
+            this.clientDetails_tp.Controls.Add(this.serviceOverview_dgv);
+            this.clientDetails_tp.Controls.Add(this.serviceOverview_lbl);
+            this.clientDetails_tp.Controls.Add(this.clientDetails_dgv);
+            this.clientDetails_tp.Controls.Add(this.clientDetails_lbl);
+            this.clientDetails_tp.Font = new System.Drawing.Font("Segoe UI", 18F);
+            this.clientDetails_tp.Location = new System.Drawing.Point(4, 39);
+            this.clientDetails_tp.Name = "clientDetails_tp";
+            this.clientDetails_tp.Size = new System.Drawing.Size(865, 413);
+            this.clientDetails_tp.TabIndex = 2;
+            this.clientDetails_tp.Text = "Client Details";
+            this.clientDetails_tp.UseVisualStyleBackColor = true;
             // 
             // filterDetails_btn
             // 
@@ -380,6 +313,66 @@
             this.filterDetails_btn.TabIndex = 23;
             this.filterDetails_btn.Text = "Filter";
             this.filterDetails_btn.UseVisualStyleBackColor = false;
+            this.filterDetails_btn.Click += new System.EventHandler(this.filterDetails_btn_Click);
+            // 
+            // serviceOverview_dgv
+            // 
+            this.serviceOverview_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.serviceOverview_dgv.Location = new System.Drawing.Point(8, 264);
+            this.serviceOverview_dgv.Name = "serviceOverview_dgv";
+            this.serviceOverview_dgv.Size = new System.Drawing.Size(843, 134);
+            this.serviceOverview_dgv.TabIndex = 22;
+            // 
+            // serviceOverview_lbl
+            // 
+            this.serviceOverview_lbl.AutoSize = true;
+            this.serviceOverview_lbl.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.serviceOverview_lbl.ForeColor = System.Drawing.Color.Black;
+            this.serviceOverview_lbl.Location = new System.Drawing.Point(3, 231);
+            this.serviceOverview_lbl.Name = "serviceOverview_lbl";
+            this.serviceOverview_lbl.Size = new System.Drawing.Size(169, 30);
+            this.serviceOverview_lbl.TabIndex = 21;
+            this.serviceOverview_lbl.Text = "Service Overview";
+            // 
+            // clientDetails_dgv
+            // 
+            this.clientDetails_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.clientDetails_dgv.Location = new System.Drawing.Point(8, 71);
+            this.clientDetails_dgv.Name = "clientDetails_dgv";
+            this.clientDetails_dgv.Size = new System.Drawing.Size(838, 134);
+            this.clientDetails_dgv.TabIndex = 20;
+            // 
+            // clientDetails_lbl
+            // 
+            this.clientDetails_lbl.AutoSize = true;
+            this.clientDetails_lbl.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clientDetails_lbl.ForeColor = System.Drawing.Color.Black;
+            this.clientDetails_lbl.Location = new System.Drawing.Point(3, 34);
+            this.clientDetails_lbl.Name = "clientDetails_lbl";
+            this.clientDetails_lbl.Size = new System.Drawing.Size(135, 30);
+            this.clientDetails_lbl.TabIndex = 18;
+            this.clientDetails_lbl.Text = "Client Details";
+            // 
+            // Schedule_tp
+            // 
+            this.Schedule_tp.Controls.Add(this.Schedule_dgv);
+            this.Schedule_tp.Controls.Add(this.Schedule_lbl);
+            this.Schedule_tp.Font = new System.Drawing.Font("Segoe UI", 18F);
+            this.Schedule_tp.Location = new System.Drawing.Point(4, 39);
+            this.Schedule_tp.Name = "Schedule_tp";
+            this.Schedule_tp.Size = new System.Drawing.Size(865, 413);
+            this.Schedule_tp.TabIndex = 3;
+            this.Schedule_tp.Text = "Schedule";
+            this.Schedule_tp.UseVisualStyleBackColor = true;
+            // 
+            // Schedule_dgv
+            // 
+            this.Schedule_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Schedule_dgv.Location = new System.Drawing.Point(8, 61);
+            this.Schedule_dgv.Name = "Schedule_dgv";
+            this.Schedule_dgv.Size = new System.Drawing.Size(843, 307);
+            this.Schedule_dgv.TabIndex = 21;
+            this.Schedule_dgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Schedule_dgv_CellDoubleClick);
             // 
             // Schedule_lbl
             // 
@@ -392,13 +385,26 @@
             this.Schedule_lbl.TabIndex = 20;
             this.Schedule_lbl.Text = "Schedule";
             // 
-            // Schedule_dgv
+            // Logout_btn
             // 
-            this.Schedule_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Schedule_dgv.Location = new System.Drawing.Point(8, 61);
-            this.Schedule_dgv.Name = "Schedule_dgv";
-            this.Schedule_dgv.Size = new System.Drawing.Size(843, 307);
-            this.Schedule_dgv.TabIndex = 21;
+            this.Logout_btn.BackColor = System.Drawing.Color.FloralWhite;
+            this.Logout_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.Logout_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Logout_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Logout_btn.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Logout_btn.ForeColor = System.Drawing.Color.White;
+            this.Logout_btn.Location = new System.Drawing.Point(749, 26);
+            this.Logout_btn.Name = "Logout_btn";
+            this.Logout_btn.Size = new System.Drawing.Size(118, 36);
+            this.Logout_btn.TabIndex = 13;
+            this.Logout_btn.Text = "Logout";
+            this.Logout_btn.UseVisualStyleBackColor = false;
+            this.Logout_btn.Click += new System.EventHandler(this.Logout_btn_Click);
+            // 
+            // pssDataSet1
+            // 
+            this.pssDataSet1.DataSetName = "PSSDataSet";
+            this.pssDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // Technician
             // 
@@ -410,23 +416,26 @@
             this.Controls.Add(this.Technical_tc);
             this.Controls.Add(this.Welcome_lbl);
             this.Controls.Add(this.Logo_img);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Technician";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TechnicianForm";
+            this.Text = "Technician";
+            this.Load += new System.EventHandler(this.Technician_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).EndInit();
             this.Technical_tc.ResumeLayout(false);
             this.taskList_tp.ResumeLayout(false);
             this.taskList_tp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.taskList_dgv)).EndInit();
             this.taskUpdates_tp.ResumeLayout(false);
             this.taskUpdates_tp.PerformLayout();
             this.clientDetails_tp.ResumeLayout(false);
             this.clientDetails_tp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.serviceOverview_dgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientDetails_dgv)).EndInit();
             this.Schedule_tp.ResumeLayout(false);
             this.Schedule_tp.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.taskList_dgv)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientDetails_dgv)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.serviceOverview_dgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Schedule_dgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pssDataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -449,7 +458,6 @@
         private System.Windows.Forms.Label taskUpdate_lbl;
         private System.Windows.Forms.TextBox jobID_txt;
         private System.Windows.Forms.Label JobID_lbl;
-        private System.Windows.Forms.DomainUpDown jobStatus_dud;
         private System.Windows.Forms.Label jobStatus_lbl;
         private System.Windows.Forms.Label jobNotes_lbl;
         private System.Windows.Forms.RichTextBox jobNotes_rtb;
@@ -462,5 +470,7 @@
         private System.Windows.Forms.Button filterDetails_btn;
         private System.Windows.Forms.DataGridView Schedule_dgv;
         private System.Windows.Forms.Label Schedule_lbl;
+        private System.Windows.Forms.ComboBox status_cbx;
+        private PSSDataSet pssDataSet1;
     }
 }

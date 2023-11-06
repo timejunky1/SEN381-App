@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Twilio.TwiML.Voice;
 
 namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 {
     internal class StrategyClient : IStrategyAManagement
     {
         DatabaseAPI api = new DatabaseAPI();
+
         public void Connect(string myString)
         {
             api.SetConnection(myString);
@@ -17,68 +19,56 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 
         public void Create(IEntity entity)
         {
-            try
-            {
-                EntityJob job = entity as EntityJob;
-                api.CreateServiceRequest(job);
-            }
-            catch(Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-            }
+            EntityClient client = entity as EntityClient;
+            api.InsertClient(client);
         }
 
         public void Delete(int ID)
         {
-            throw new NotImplementedException();
+            api.DeleteClient(ID);
         }
 
-        public BindingSource Get()
+        public List<IEntity> Get()
         {
-            throw new NotImplementedException();
+            List<IEntity> entities = new List<IEntity>();
+            List<EntityClient> clients = api.GetClients();
+            foreach (EntityClient client in clients)
+            {
+                entities.Add(client);
+            }
+            return entities;
         }
 
-        public BindingSource Get(int ID)
+        public IEntity Get(int ID)
         {
-            BindingSource bs = api.GetClientWithDetails(ID);
-            return bs;
-        }
+            EntityClient client = null;
+            client = api.GetClient(ID);
+            List<EntityJob> jobs= api.GetJobs();
+            foreach(EntityJob job in jobs)
+            {
+                if(job.GetClientId() == client.GetID())
+                {
+                    jobs.Add(job);
+                }
+            }
+            client.SetJobs(jobs);
+            List<EntityCall> calls = api.GetCalls();
+            foreach (EntityCall call in calls)
+            {
+                if (call.GetClientId() == client.GetID())
+                {
+                    calls.Add(call);
+                }
+            }
+            client.SetCalls(calls);
+            return client;
 
-        public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
-        {
-            throw new NotImplementedException();
-        }
-
-        public BindingSource GetSpecific1(string s1)
-        {
-            throw new NotImplementedException();
-        }
-
-        // Get client overview
-        public BindingSource GetSpecific1(int n1)
-        {
-            return api.GetClientOverview(n1);
-        }
-
-
-        // Get contract details wit contract id
-        public BindingSource GetSpecific2(string s2)
-        {
-            int id = Convert.ToInt32(s2);
-            //return api.GetContracts(id);
-            
-        }
-
-        // Get client Service requests
-        public BindingSource GetSpecific2(int n1)
-        {
-            // return api.get
-            throw new NotImplementedException();
         }
 
         public void Update(IEntity entity)
         {
-            throw new NotImplementedException();
+            EntityClient client = entity as EntityClient;
+            api.UpdateClient(client);
         }
     }
 }

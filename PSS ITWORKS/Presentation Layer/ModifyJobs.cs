@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace PSS_ITWORKS.Presentation_Layer
 {
-    public partial class ServiceRequestForm : Form
+    public partial class ModifyJobs : Form
     {
-        public ServiceRequestForm()
+        public ModifyJobs()
         {
             InitializeComponent();
-        }
-
-        private void Description_lbl_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

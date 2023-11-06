@@ -1,95 +1,78 @@
 ﻿// StrategyJobManager.cs
 using PSS_ITWORKS.LogicLayer;
+using PSS_ITWORKS.ServiceLayer;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PSS_ITWORKS
 {
     class StrategyJobManager : IStrategyAManagement
     {
         DatabaseAPI api = new DatabaseAPI();
-        public BindingSource Get()
-        {
-            return api.GetJobSchedule();
-        }
-
-        public void Create(IEntity entity)
-        {
-            try
-            {
-                EntityJob job = entity as EntityJob;
-                foreach(EntityUser user in job.GetEmployees())
-                {
-                    api.AssignJob(user.GetID(), job.GetId());
-                }
-            }catch(Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-            }
-            
-        }
-
-        public void Delete(int ID)
-        {
-            MessageBox.Show("Delete something");
-        }
-
-        public void Update(IEntity entity)
-        {
-            try
-            {
-                EntityJob job = entity as EntityJob;
-                api.DeleteEmployeeJobRef(job.GetId());
-                foreach (EntityUser employee in job.GetEmployees())
-                {
-                    api.AddEmployeeJobRef(job.GetId(), employee.GetID());
-                }
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler.DisplayError(ex);
-            }
-        }
+        SMSAPI sms = new SMSAPI();
 
         public void Connect(string myString)
         {
             api.SetConnection(myString);
         }
 
-        public BindingSource Get(int ID)
+        public void Create(IEntity entity)
         {
-            throw new System.NotImplementedException();
+            EntityJob job = entity as EntityJob;
+            api.InsertJob(job);
         }
 
-        public BindingSource GetSpecific(int id1 = 0, int id2 = 0, string s1 = "", string s2 = "")
+        public void Delete(int ID)
         {
-            BindingSource bs = new BindingSource();
-            bs = api.GetUnasignedJobs();
-            return bs;
-            if (!string.IsNullOrEmpty(s1))
+            api.DeleteJob(ID);
+        }
+
+        public List<IEntity> Get()
+        {
+            List<EntityJob> jobs = api.GetJobs();
+            List<IEntity> entities = new List<IEntity>();
+            foreach (EntityJob job in jobs)
             {
-                try
-                {
-                    bs = api.GetJobsAssignedToEmployeeName(s1);
-                }
-                catch (Exception ex)
-                {
-                    ErrorHandler.DisplayError(ex);
-                }
+                entities.Add(job);
             }
-            else if (!string.IsNullOrEmpty(s2))
+            return entities;
+        }
+
+        public IEntity Get(int ID)
+        {
+            EntityJob job = api.GetJob(ID);
+            List<int> employeeIds = api.GetJobEmployeeRef(jobId: ID);
+            List<EntityEmployee> jobEmployees = new List<EntityEmployee>();
+            foreach (int employeeId in employeeIds)
             {
-                try
-                {
-                    DateTime date = DateTime.Parse(s2);
-                    bs = api.GetJobsOnDate(date);
-                }
-                catch (Exception ex)
-                {
-                    ErrorHandler.DisplayError(ex);
-                }
+                jobEmployees.Add(api.GetEmployee(employeeId));
             }
-            return bs;
+            job.SetEmployees(jobEmployees);
+            List<int> callIds = api.GetJobCallRef(jobId: ID);
+            List<EntityCall> calls = new List<EntityCall>();
+            foreach (int callId in callIds)
+            {
+                calls.Add(api.GetCall(callId));
+            }
+            job.SetCalls(calls);
+            return job;
+        }
+
+        public void Update(IEntity entity)
+        {
+            EntityJob job = entity as EntityJob;
+            EntityClient jobClient = api.GetClient(job.GetClientId());
+            EntityService service = api.GetService(job.GetServiceId());
+            api.DeleteJobEmployeeRef(jobId: job.GetClientId());
+            foreach(EntityEmployee employee in job.GetEmployees())
+            {
+                api.InsertJobEmployeeRef(job.GetId(), employee.GetID());
+                string SMS = $"Service: {service.GetTitle()}\nClient: {jobClient.GetName()} {jobClient.GetSurname()}\nAddress: {jobClient.GetStreetNumber()} {jobClient.GetStreetName()}";
+                sms.SendSMS(SMS, employee.GetPhone());
+            }
+            api.UpdateJob(job);
         }
 
         public BindingSource GetSpecific1(string s1)

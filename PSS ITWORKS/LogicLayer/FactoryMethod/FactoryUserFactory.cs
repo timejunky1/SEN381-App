@@ -38,7 +38,7 @@ namespace PSS_ITWORKS
                     user = new FactoryCContractManagerDetails(loginController);
                     break;
                 case "Client":
-                    MessageBox.Show("Client");
+                    user = new FactoryCClientDetails(loginController);
                     break;
                 default:
                     throw new Exception("Invalid user role.");

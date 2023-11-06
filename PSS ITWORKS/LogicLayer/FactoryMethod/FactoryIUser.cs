@@ -1,7 +1,9 @@
-﻿namespace PSS_ITWORKS
+﻿using PSS_ITWORKS.Presentation_Layer;
+
+namespace PSS_ITWORKS
 {
     public interface FactoryIUser
     {
-        void ShowUserInterface(LogIn loginForm);
+        void ShowUserInterface(Dashboard dashboard);
     }
 }

@@ -15,13 +15,13 @@ namespace PSS_ITWORKS.LogicLayer.FactoryMethod
         {
             this.loginController = loginController;
         }
-        public void ShowUserInterface(LogIn loginForm)
+        public void ShowUserInterface(Dashboard dashboard)
         {
             string name = loginController.GetUserInfo().Name;
             string surname = loginController.GetUserInfo().Surname;
-            ClientManagerForm clientManagerForm = new ClientManagerForm();
+            ClientManagerForm clientManagerForm = new ClientManagerForm(dashboard);
             clientManagerForm.Show();
-            loginForm.Close();
+            dashboard.Hide();
         }
     }
 }

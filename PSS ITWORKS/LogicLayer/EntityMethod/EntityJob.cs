@@ -14,8 +14,9 @@ namespace PSS_ITWORKS.LogicLayer
         private DateTime timeEnd;
         private string status;
         private string notes;
-        List<EntityUser> employees;
+        List<EntityEmployee> employees;
         List<EntityCall> calls;
+        private int priority;
 
         public EntityJob(int id, int clientId, int serviceId, DateTime timeBegin, DateTime timeEnd, string status, string notes)
         {
@@ -28,32 +29,25 @@ namespace PSS_ITWORKS.LogicLayer
             this.notes = notes;
         }
 
-        public EntityJob(int id, int clientId, int serviceId, DateTime timeBegin, DateTime timeEnd, string status, string notes, List<EntityUser> employees)
+        public void SetPriotity(int priority)
         {
-            Id = id;
-            this.clientId = clientId;
-            this.serviceId = serviceId;
-            this.timeBegin = timeBegin;
-            this.timeEnd = timeEnd;
-            this.status = status;
-            this.notes = notes;
+            this.priority = priority;
+        }
+
+        public int GetPriotity()
+        {
+            return this.priority;
+        }
+
+        public void SetEmployees(List<EntityEmployee> employees)
+        {
             this.employees = employees;
         }
 
-        public EntityJob(int clientId, int serviceId, string notes)
+        public void SetCalls(List<EntityCall> calls)
         {
-            this.clientId = clientId;
-            this.serviceId = serviceId;
-            this.notes = notes;
+            this.calls = calls;
         }
-
-        public EntityJob(int jobId, string notes, string status)
-        {
-            this.Id = jobId;
-            this.status = status;
-            this.notes = notes;
-        }
-
         public int GetId()
         {
             return Id;
@@ -89,7 +83,7 @@ namespace PSS_ITWORKS.LogicLayer
             return notes;
         }
 
-        public List<EntityUser> GetEmployees()
+        public List<EntityEmployee> GetEmployees()
         {
             return employees;
         }

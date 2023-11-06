@@ -1,5 +1,6 @@
 ﻿// EntityService.cs
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace PSS_ITWORKS.LogicLayer
@@ -12,6 +13,7 @@ namespace PSS_ITWORKS.LogicLayer
         private int priority;
         private decimal cost;
         private string availability;
+        List<EntityContract> contracts;
 
         public EntityService(int id, string title, int duration, int priority, decimal cost, string availability)
         {
@@ -21,6 +23,16 @@ namespace PSS_ITWORKS.LogicLayer
             this.priority = priority;
             this.cost = cost;
             this.availability = availability;
+        }
+
+        public void SetContracts(List<EntityContract> contracts)
+        {
+            this.contracts = contracts;
+        }
+
+        public List<EntityContract> GetContracts()
+        {
+            return this.contracts;
         }
 
         public int GetId()

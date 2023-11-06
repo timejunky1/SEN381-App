@@ -1,10 +1,11 @@
 ﻿// EntityClient.cs
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace PSS_ITWORKS.LogicLayer
 {
-    class EntityUser : IEntity
+    class EntityClient : IEntity
     {
         private int id;
         private string companyName;
@@ -20,8 +21,10 @@ namespace PSS_ITWORKS.LogicLayer
         private string email;
         private DateTime contractInitiationDate;
         private string role;
+        List<EntityJob> jobs;
+        List<EntityCall> calls;
 
-        public EntityUser(int id, string companyName, string name, string surname, int contractId, int streetNumber, string streetName, string city, string province, string zipCode, string phone, string email, DateTime contractInitiationDate, string role)
+        public EntityClient(int id, string companyName, string name, string surname, string role, int contractId, string phone, string email, DateTime contractInitiationDate, int streetNumber, string streetName, string city, string province, string zipCode)
         {
             this.id = id;
             this.companyName = companyName;
@@ -38,13 +41,15 @@ namespace PSS_ITWORKS.LogicLayer
             this.contractInitiationDate = contractInitiationDate;
             this.role = role;
         }
-        public EntityUser(int id, string name, string surname,  string email, string role)
+
+        public void SetJobs(List<EntityJob> jobs)
         {
-            this.id = id;
-            this.name = name;
-            this.surname = surname;
-            this.email = email;
-            this.role = role;
+            this.jobs = jobs;
+        }
+
+        public void SetCalls(List<EntityCall> calls)
+        {
+            this.calls = calls;
         }
 
         public int GetID()
@@ -115,6 +120,16 @@ namespace PSS_ITWORKS.LogicLayer
         public string GetRole()
         {
             return role;
+        }
+
+        public List<EntityJob> GetJobs()
+        {
+            return jobs;
+        }
+
+        public List<EntityCall> GetCalls()
+        {
+            return calls;
         }
     }
 }
