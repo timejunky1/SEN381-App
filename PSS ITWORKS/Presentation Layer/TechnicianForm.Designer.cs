@@ -58,6 +58,7 @@
             this.Schedule_lbl = new System.Windows.Forms.Label();
             this.Logout_btn = new System.Windows.Forms.Button();
             this.pssDataSet1 = new PSS_ITWORKS.PSSDataSet();
+            this.JobId_cmb = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).BeginInit();
             this.Technical_tc.SuspendLayout();
             this.taskList_tp.SuspendLayout();
@@ -88,7 +89,7 @@
             this.Welcome_lbl.ForeColor = System.Drawing.Color.Black;
             this.Welcome_lbl.Location = new System.Drawing.Point(94, 26);
             this.Welcome_lbl.Name = "Welcome_lbl";
-            this.Welcome_lbl.Size = new System.Drawing.Size(546, 32);
+            this.Welcome_lbl.Size = new System.Drawing.Size(547, 32);
             this.Welcome_lbl.TabIndex = 11;
             this.Welcome_lbl.Text = "Welcome back <Name> <Surname> (Technician )";
             // 
@@ -286,6 +287,7 @@
             // 
             // clientDetails_tp
             // 
+            this.clientDetails_tp.Controls.Add(this.JobId_cmb);
             this.clientDetails_tp.Controls.Add(this.filterDetails_btn);
             this.clientDetails_tp.Controls.Add(this.serviceOverview_dgv);
             this.clientDetails_tp.Controls.Add(this.serviceOverview_lbl);
@@ -406,6 +408,14 @@
             this.pssDataSet1.DataSetName = "PSSDataSet";
             this.pssDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // JobId_cmb
+            // 
+            this.JobId_cmb.FormattingEnabled = true;
+            this.JobId_cmb.Location = new System.Drawing.Point(534, 15);
+            this.JobId_cmb.Name = "JobId_cmb";
+            this.JobId_cmb.Size = new System.Drawing.Size(121, 40);
+            this.JobId_cmb.TabIndex = 24;
+            // 
             // Technician
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -472,5 +482,6 @@
         private System.Windows.Forms.Label Schedule_lbl;
         private System.Windows.Forms.ComboBox status_cbx;
         private PSSDataSet pssDataSet1;
+        private System.Windows.Forms.ComboBox JobId_cmb;
     }
 }

@@ -18,6 +18,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         StrategyContextManager context;
         Dashboard dashboard;
         EntityEmployee technician;
+        private EntityJob job;
         int technicianId = 2;
         int jobId = 0;
         public Technician(Dashboard dashboard)
@@ -29,9 +30,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void Technician_Load(object sender, EventArgs e)
         {
             context = new StrategyContextManager(new StrategyTechnician());
-            context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
-            BindingSource bs = context.GetSpecific2(jobId);
-            LoadDetails(bs);
+            context.Connect(@"Data Source=DESKTOP-TBBSO02\SQLEXPRESS; Initial Catalog=PSS1; Integrated Security=True");
             jobID_txt.Text = "0";
             status_cbx.Items.Clear();
             status_cbx.Items.Add("Finished");
@@ -74,6 +73,15 @@ namespace PSS_ITWORKS.Presentation_Layer
             technician = context.Get(technicianId) as EntityEmployee;
             LoadSchedule(21,14, technician.GetJobs(), taskList_dgv);
             LoadSchedule(7,0, technician.GetJobs(), Schedule_dgv);
+
+            foreach (EntityJob job in technician.GetJobs())
+            {
+                if (job.GetStatus() == "In Process")
+                {
+                    JobId_cmb.Items.Add(job.GetId());
+                }
+                
+            }
         }
        
         void LoadSchedule(int maxDay, int Offset, List<EntityJob> jobs, DataGridView dgv)
@@ -124,7 +132,10 @@ namespace PSS_ITWORKS.Presentation_Layer
         }
         private void submitUpdate_btn_Click(object sender, EventArgs e)
         {
-            context.Update(new EntityJob(int.Parse(jobID_txt.Text), jobNotes_rtb.Text, status_cbx.Text));
+            if (status_cbx.Text != null && jobNotes_rtb.Text.Length <= 255)
+            {
+                context.Update(new EntityJob(int.Parse(jobID_txt.Text), job.GetClientId() ,job.GetServiceId() ,job.GetTimeBegin() ,job.GetTimeEnd(), status_cbx.Text ,jobNotes_rtb.Text));
+            }
         }
 
         private void Schedule_dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -152,15 +163,22 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         void LoadDetails(EntityJob job)
         {
+            this.job = job;
             jobID_txt.Text = jobId.ToString();
-            MessageBox.Show(dr[0].ToString() + ", " + dr[1].ToString() + ", " + dr[2].ToString());
-            //Change stratagy to clientManagement 
-            clientDetails_dgv.DataSource = context.GetSpecific(int.Parse(dr[1].ToString()));
+            //Change stratagy to clientManagement
+            context = new StrategyContextManager(new StrategyClientManager());
+            context.Connect(@"Data Source=DESKTOP-TBBSO02\SQLEXPRESS; Initial Catalog=PSS1; Integrated Security=True");
+            clientDetails_dgv.DataSource = context.Get(job.GetClientId());
             //Change stratagy to ServiceManagement
+            
+            context = new StrategyContextManager(new StrategyServiceManager());
+            context.Connect(@"Data Source=DESKTOP-TBBSO02\SQLEXPRESS; Initial Catalog=PSS1; Integrated Security=True");
             serviceOverview_dgv.DataSource = context.Get(job.GetServiceId());
-            status_cbx.Text = dr[5].ToString();
-            jobNotes_rtb.Text = dr[6].ToString();
+            status_cbx.Text = job.GetStatus();
+            jobNotes_rtb.Text = job.GetNotes();
             Technical_tc.SelectedIndex = 2;
+            
+            
         }
 
         private void Logout_btn_Click(object sender, EventArgs e)
@@ -171,7 +189,14 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void filterDetails_btn_Click(object sender, EventArgs e)
         {
-
+            
+            foreach (EntityJob job in technician.GetJobs())
+            {
+                if (job.GetId() == int.Parse(JobId_cmb.Text))
+                {
+                    LoadDetails(job);
+                }
+            }
         }
     }
 }

@@ -26,7 +26,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             cm = new StrategyContextManager(new StrategyJobManager());
             cm.Connect(@"Data Source=DESKTOP-TBBSO02\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
-            Request_dgv.DataSource = cm.GetSpecific();
+            
             AssignmentSchedule_dgv.DataSource = cm.Get();
             //List<IEntity> list = cm.Get();
             List<IEntity> list = new List<IEntity>();
