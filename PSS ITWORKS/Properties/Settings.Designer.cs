@@ -33,5 +33,16 @@ namespace PSS_ITWORKS.Properties {
                 return ((string)(this["PSSConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-8GCK8IN\\SQLEXPRESS;Initial Catalog=PSS1;Integrated Security=T" +
+            "rue")]
+        public string PSS1ConnectionString {
+            get {
+                return ((string)(this["PSS1ConnectionString"]));
+            }
+        }
     }
 }
