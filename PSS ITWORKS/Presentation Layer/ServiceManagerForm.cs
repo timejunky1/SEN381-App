@@ -26,24 +26,9 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             cm = new StrategyContextManager(new StrategyJobManager());
             cm.Connect(@"Data Source=DESKTOP-TBBSO02\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
-            Request_dgv.DataSource = cm.GetSpecific();
-            AssignmentSchedule_dgv.DataSource = cm.Get();
-            //List<IEntity> list = cm.Get();
-            List<IEntity> list = new List<IEntity>();
-            AssignmentSchedule_dgv.DataSource = list;
-            IEntity entity = cm.Get(3);
-            EntityJob job = entity as EntityJob;
-            BindingSource bs = new BindingSource();
-            List<EntityJob> jobs = new List<EntityJob>();
+            
 
-            foreach (IEntity ent in list)
-            {
-                EntityJob j = ent as EntityJob;
-                if (j.GetStatus() == "In Process")
-                {
-                    jobs.Add(j);
-                }
-            }
+            
         }
 
         private void Filter_txt_TextChanged(object sender, EventArgs e)
