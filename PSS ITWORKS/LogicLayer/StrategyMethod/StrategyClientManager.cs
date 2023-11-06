@@ -33,27 +33,33 @@ namespace PSS_ITWORKS
             api.SetConnection(myString);
         }
 
+
+        // Get client and contract info
         public BindingSource Get(int ID)
         {
             return api.GetClientAndContractInfo(ID);
         }
 
+        // Get client info
         public BindingSource GetSpecific(int id1 )
         {
           
             return api.GetClientInfo(id1);
         }
 
+        
         public BindingSource GetSpecific1(string s1)
         {
             throw new System.NotImplementedException();
         }
 
+        
         public BindingSource GetSpecific2(string s2)
         {
             throw new System.NotImplementedException();
         }
 
+        // Get client jobs
         public BindingSource GetSpecific1(int id1)
         {
             return api.GetClientJobs(id1);
