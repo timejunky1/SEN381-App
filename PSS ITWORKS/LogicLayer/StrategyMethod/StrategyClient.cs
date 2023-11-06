@@ -23,7 +23,11 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 
         public void Delete(int ID)
         {
-            throw new NotImplementedException();
+            EntityClient client = null;
+            if (ID == client.GetID())
+            {
+               
+            }
         }
 
         public List<IEntity> Get()

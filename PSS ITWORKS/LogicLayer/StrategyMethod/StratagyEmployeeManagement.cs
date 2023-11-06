@@ -8,7 +8,7 @@ namespace PSS_ITWORKS
 {
     class StratagyEmployeeManagement : IStrategyAManagement
     {
-        DatabaseAPI api = new DatabaseAPI();
+        DatabaseAPI api = new DatabaseAPI();  
 
         public void Connect(string myString)
         {
