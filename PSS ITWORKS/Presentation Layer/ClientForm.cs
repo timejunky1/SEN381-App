@@ -1,4 +1,5 @@
-﻿using PSS_ITWORKS.LogicLayer.StrategyMethod;
+﻿using PSS_ITWORKS.LogicLayer;
+using PSS_ITWORKS.LogicLayer.StrategyMethod;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -482,8 +483,9 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             int id = 1;// temp id
 
+            FindClientContract(id);
 
-            
+
 
 
 
@@ -569,6 +571,86 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void liveChat_lbl_Click(object sender, EventArgs e)
         {
 
+        }
+
+
+        // Use methods to find the client contracts
+        private void FindClientContract(int clientID)
+        {
+            // with strategy find the client contract in. Display in clientContract_dgv datagridview
+            clientContract_dgv.DataSource = null;
+            clientContract_dgv.Rows.Clear();
+            clientContract_dgv.Refresh();
+
+
+            //change strategy to strategycontractmanager
+            StrategyContextManager contractManager = new StrategyContextManager(new StrategyContractManager());
+            contractManager.Connect(@"Data Source=JOEKNOWS\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+
+            // find the client contract in the list of entities by their clientId and the display that client's contract in data grid view
+            List<IEntity> contracts = contractManager.Get();
+            foreach (EntityContract contract in contracts)
+            {
+                // Display data in input fields
+                contractType_txt.Text = contract.GetType();
+                services_txt.Text = contract.GetServices();
+                experationDate_txt.Text = contract.GetExperationDate();
+
+
+                
+
+            }
+
+
+            // Change strategy back to strategyclientmanager
+            theClient = new StrategyContextManager(new StrategyClient());
+            theClient.Connect(@"Data Source=JOEKNOWS\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+
+        }
+
+        // Use methods to find the client jobs 
+        private void FindClientJobs(int clientID)
+        {
+            // with strategy find the client jobs in db. Display in clientJobs_dgv datagridview
+            clientMaintenanceOverview_dgv.DataSource = null;
+            clientMaintenanceOverview_dgv.Rows.Clear();
+            clientMaintenanceOverview_dgv.Refresh();
+
+
+            // Get the client jobs and then display that client's jobs in data grid view
+            List<IEntity> jobs = theClient.Get();
+            foreach (EntityClient job in jobs)
+            {
+                if (job.GetID() == clientID)
+                {
+                    // brake the client jobs in the entity into pieces and display them in the data grid view
+                    clientMaintenanceOverview_dgv.ColumnCount = 8;
+                    clientMaintenanceOverview_dgv.Columns[0].HeaderText = "Job ID";
+                    clientMaintenanceOverview_dgv.Columns[1].HeaderText = "Client ID";
+                    clientMaintenanceOverview_dgv.Columns[2].HeaderText = "Job Type";
+                    clientMaintenanceOverview_dgv.Columns[3].HeaderText = "Job Description";
+                    clientMaintenanceOverview_dgv.Columns[4].HeaderText = "Job Status";
+                    clientMaintenanceOverview_dgv.Columns[5].HeaderText = "Job Initiation Date";
+                    clientMaintenanceOverview_dgv.Columns[6].HeaderText = "Job Completion Date";
+                    clientMaintenanceOverview_dgv.Columns[7].HeaderText = "Job Technician ID";
+
+                    // add the client jobs to the data grid view
+                    clientMaintenanceOverview_dgv.DataSource = job.GetJobs();
+
+                }
+                else
+                {
+                    MessageBox.Show("Client jobs not found");
+                }
+            }
+
+        }
+
+        // method used to calculate the end date of contract 
+        private DateTime CalculateEndDate(DateTime startDate, int duration)
+        {
+            DateTime endDate = startDate.AddMonths(duration);
+            return endDate;
         }
     }
 }
