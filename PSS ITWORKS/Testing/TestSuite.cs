@@ -37,7 +37,7 @@ namespace PSS_ITWORKS.Testing
             var welcomeLabel = new Label();
 
             // Act
-            //loginController.HandleLoginButtonClick("brad.davies@example.com", "Seivad#4", loginForm, dashboardForm, welcomeLabel);
+            loginController.HandleLoginButtonClick("brad.davies@example.com", "Seivad#4", loginForm, welcomeLabel);
 
             // Assert
             Assert.False(loginForm.Visible);
@@ -81,9 +81,6 @@ namespace PSS_ITWORKS.Testing
             loginController.AuthenticateUser("username", "password");
             var userInfo = loginController.GetUserInfo();
             loginController.getID(userInfo);
-            //loginController.GetUserRole("username");
-            //loginController.FetchNameAndSurname("username");
-            // loginController.HashPassword("password");
             loginController.SetPassword("username", "oldPassword", "newPassword");
 
             // Assert
@@ -125,16 +122,6 @@ namespace PSS_ITWORKS.Testing
 
             // Invalid user info
             Assert.Null(loginController.GetUserInfo());
-
-            // Act & Assert: Test GetUserRole function
-            ////mockDatabaseAPI.Setup(api => loginController.GetUserRole("brad.davies@example.com")).Returns("Admin");
-            ////mockDatabaseAPI.Setup(api => loginController.GetUserRole("57829")).Returns((string)null);
-
-            // Valid user role
-            //Assert.NotNull(loginController.GetUserRole("brad.davies@example.com"));
-
-            // Invalid user role
-            //Assert.Null(loginController.GetUserRole("57829"));
         }
     }
 }

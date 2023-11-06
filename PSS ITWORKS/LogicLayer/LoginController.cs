@@ -44,8 +44,8 @@ public class LoginController
             }
             else
             {
- 
-                MessageBox.Show("Invalid username or password. Please try again.");
+                welcomeLabel.Text = "Invalid UserName or Password";
+                welcomeLabel.Visible = true;
             }
         }
         else
