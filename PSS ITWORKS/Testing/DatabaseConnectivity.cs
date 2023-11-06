@@ -9,7 +9,7 @@ using Xunit;
 
 namespace PSS_ITWORKS.Testing
 {
-    public class TestSuite2
+    public class DatabaseConnectivity
     {
         //Black Box: Boundry testing to ensure for return of data from database IDs of technicians are between 1 and 20
         [Theory]

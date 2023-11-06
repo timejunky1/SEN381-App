@@ -8,10 +8,10 @@ using static LoginController;
 
 namespace PSS_ITWORKS.Testing
 {
-    public class TestSuite3
+    public class UIDisplay
     {
 
-        //White box decision coverage for each type of user
+        //White Box: Decision Coverage for each type of user
         [Fact]
         public void Test_Show_Technician()
         {

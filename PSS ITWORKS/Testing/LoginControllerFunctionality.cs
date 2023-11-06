@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace PSS_ITWORKS.Testing
 {
-    public class TestSuite
+    public class LoginControllerFunctionality
     {
         // BlackBox: Positive Scenario (Valid user login should return true)
         [Fact]

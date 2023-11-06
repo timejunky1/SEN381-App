@@ -216,9 +216,9 @@
       <DependentUpon>PSSDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="ServiceLayer\SMSAPI.cs" />
-    <Compile Include="Testing\TestSuite3.cs" />
-    <Compile Include="Testing\TestSuite.cs" />
-    <Compile Include="Testing\TestSuite2.cs" />
+    <Compile Include="Testing\UIDisplay.cs" />
+    <Compile Include="Testing\LoginControllerFunctionality.cs" />
+    <Compile Include="Testing\DatabaseConnectivity.cs" />
     <EmbeddedResource Include="Presentation Layer\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
