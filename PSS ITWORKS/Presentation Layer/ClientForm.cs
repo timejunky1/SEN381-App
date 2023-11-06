@@ -437,15 +437,25 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void ClientForm_Load(object sender, EventArgs e)
         {
-            //On Form load clear all outputs
+            // temp id
+            int id = 1;
+
+            // On Form load clear all outputs
             ClearDataGridViews();
 
             // populate the datagridviews with details of current client
-            MaintenanceOverview();
-            ServiceRequest();
-            ClientHistory();
-            ContractDetails();
-            CallHistory();
+
+            // MaintenanceOverview
+            FindClientContract(id);
+
+            // Call history
+            FindClientCalls(id);
+
+
+            ServiceRequest(id);
+
+            // Client history
+            ClientHistory(id);
 
 
         }
@@ -453,86 +463,62 @@ namespace PSS_ITWORKS.Presentation_Layer
         
 
 
-        // Method for populating the Maintenacce overview
-        private void MaintenanceOverview()
-        {
-            int id = 1;// temp id
-
-            clientMaintenanceOverview_dgv.DataSource = null;
-            clientMaintenanceOverview_dgv.Rows.Clear();
-            clientMaintenanceOverview_dgv.Refresh();
-            clientMaintenanceOverview_dgv.DataSource = theClient.GetSpecific1(id);
-
-;        }
 
 
         // Method for populating the Service Request
-        private void ServiceRequest()
+        private void ServiceRequest(int clientID)
         {
             int id = 1;// temp id
 
-            serviceStatusFeedback_dgv.DataSource = null;
-            serviceStatusFeedback_dgv.Rows.Clear();
-            serviceStatusFeedback_dgv.Refresh();
-            serviceStatusFeedback_dgv.DataSource = theClient.GetSpecific2(id);
-        }
-
-
-        // Method to get client Contract details
-        private void ContractDetails()
-        {
-            int id = 1;// temp id
-
-            FindClientContract(id);
-
-
-
-
-
-
-        }
-
-
-        // Method to get client call history
-        private void CallHistory()
-        {
-            int id = 1;// temp id
-
-            List<string> callHistory = theClient.Get(id);
-
-
-            // populate the datagridview
-            callHistory_dgv.DataSource = null;
-            callHistory_dgv.Rows.Clear();
-            callHistory_dgv.Refresh();
-            callHistory_dgv.DataSource = callHistory;
-            foreach (var call in callHistory)
-            {
-                // show call in new row
-                callHistory_dgv.Rows.Add(call);
-            }
+            serviceStatusFeedback_dgv
         }
 
 
         // Method get Client jobs history
-        private void ClientHistory()
+        private void ClientHistory(int clientID)
         {
-            int id = 1;// temp id
 
+
+            // with strategy find the client jobs in db. Display in clientJobs_dgv datagridview
             clientHistory_dgv.DataSource = null;
             clientHistory_dgv.Rows.Clear();
             clientHistory_dgv.Refresh();
-            
-            // Get clients jobs using s
+
+
+            // Get the client jobs and then display that client's jobs in data grid view
+            List<IEntity> jobs = theClient.Get();
+            foreach (EntityClient job in jobs)
+            {
+                if (job.GetID() == clientID)
+                {
+                    // brake the client jobs in the entity into pieces and display them in the data grid view
+                    clientHistory_dgv.ColumnCount = 8;
+                    clientHistory_dgv.Columns[0].HeaderText = "Job ID";
+                    clientHistory_dgv.Columns[1].HeaderText = "Client ID";
+                    clientHistory_dgv.Columns[2].HeaderText = "Job Type";
+                    clientHistory_dgv.Columns[3].HeaderText = "Job Description";
+                    clientHistory_dgv.Columns[4].HeaderText = "Job Status";
+                    clientHistory_dgv.Columns[5].HeaderText = "Job Initiation Date";
+                    clientHistory_dgv.Columns[6].HeaderText = "Job Completion Date";
+                    clientHistory_dgv.Columns[7].HeaderText = "Job Technician ID";
+
+
+                    // add the client jobs to the data grid view
+
+                    // Filter jobs 
+                    clientHistory_dgv.DataSource = job.GetJobs();
+
+
+
+                }
+                else
+                {
+                    MessageBox.Show("Client jobs not found");
+                }
+            }
         }
 
 
-
-        // method to clear inputs
-        private void ClearInputs()
-        {
-            // if any inputs needed clear all with this method
-        }
 
         // method to clear datagridviews
         private void ClearDataGridViews()
@@ -640,6 +626,34 @@ namespace PSS_ITWORKS.Presentation_Layer
                 }
             }
 
+        }
+
+        // method to get clients calls
+        private void FindClientCalls(int clientID)
+        {
+            // with strategy find the client calls in db. Display in clientCalls_dgv datagridview
+            callHistory_dgv.DataSource = null;
+            callHistory_dgv.Rows.Clear();
+            callHistory_dgv.Refresh();
+
+            // Get calls and then display that client's calls in data grid view
+            List<IEntity> calls = theClient.Get();
+            foreach (var call in calls)
+            {
+                if (call.GetID() == clientID)
+                {
+                    //  client calls in  the data grid view
+                    callHistory_dgv.DataSource = call.GetCalls();
+
+                   
+
+                }
+                else
+                {
+                    MessageBox.Show("Client calls not found");
+                }
+                
+            }  
         }
 
         // method used to calculate the end date of contract 
