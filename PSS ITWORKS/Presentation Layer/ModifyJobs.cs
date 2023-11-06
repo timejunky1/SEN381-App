@@ -16,5 +16,10 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             InitializeComponent();
         }
+
+        private void Delete_btn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

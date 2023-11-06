@@ -69,8 +69,8 @@ namespace PSS_ITWORKS
                 conn.Open();
                 using (SqlCommand command = new SqlCommand("loginProcedures.GetUserInformation", conn))
                 {
-
                     command.CommandType = CommandType.StoredProcedure;
+
 
                     command.Parameters.AddWithValue("@username", username);
 
@@ -382,7 +382,7 @@ namespace PSS_ITWORKS
             }
         }
 
-        public EntityCall GetCall(int callId)
+        public EntityCall GetCalls(int callId)
         {
             EntityCall call = null;
             try

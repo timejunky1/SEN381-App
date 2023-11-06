@@ -82,39 +82,9 @@ namespace PSS_ITWORKS
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void UserName_txt_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Password_txt_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void WelcomeLabel_txt_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LogIn_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
