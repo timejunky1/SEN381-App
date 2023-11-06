@@ -103,6 +103,7 @@
             this.Logout_btn.TabIndex = 12;
             this.Logout_btn.Text = "Logout";
             this.Logout_btn.UseVisualStyleBackColor = false;
+            this.Logout_btn.Click += new System.EventHandler(this.Logout_btn_Click);
             // 
             // Clients_tbc
             // 

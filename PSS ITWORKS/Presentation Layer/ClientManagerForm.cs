@@ -10,6 +10,7 @@ using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static LoginController;
 
 namespace PSS_ITWORKS.Presentation_Layer
 {
@@ -107,27 +108,22 @@ namespace PSS_ITWORKS.Presentation_Layer
             contractManager.Connect(@"Data Source=JOEKNOWS\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
 
             // find the client contract in the list of entities by their clientId and the display that client's contract in data grid view
-            List<IEntity> entities = contractManager.Get();
-            foreach (EntityContract contract in entities)
+            List<IEntity> contracts = contractManager.Get();
+            foreach (EntityContract contract in contracts)
             {
-                if (contract.Get() == clientID)
-                {
-                    // brake the client contract in the entity into pieces and display them in the data grid view
-                    clientContract_dgv.ColumnCount = 5;
-                    clientContract_dgv.Columns[0].HeaderText = "Contract ID";
-                    clientContract_dgv.Columns[1].HeaderText = "Client ID";
-                    clientContract_dgv.Columns[2].HeaderText = "Contract Initiation Date";
-                    clientContract_dgv.Columns[3].HeaderText = "Contract Expiration Date";
-                    clientContract_dgv.Columns[4].HeaderText = "Contract Type";
+              
+                // brake the client contract in the entity into pieces and display them in the data grid view
+                clientContract_dgv.ColumnCount = 5;
+                clientContract_dgv.Columns[0].HeaderText = "Contract ID";
+                clientContract_dgv.Columns[1].HeaderText = "Client ID";
+                clientContract_dgv.Columns[2].HeaderText = "Contract Initiation Date";
+                clientContract_dgv.Columns[3].HeaderText = "Contract Expiration Date";
+                clientContract_dgv.Columns[4].HeaderText = "Contract Type";
 
-                    // add the client contract to the data grid view
-                    clientContract_dgv.Rows.Add(contract.GetContractId(), contract.GetClientId(), contract.GetContractInitiationDate(),
-                                                contract.GetContractExpirationDate(), contract.GetContractType());
-                }
-                else
-                {
-                    MessageBox.Show("Client contract not found");
-                }
+                // add the contract to the data grid view
+                clientContract_dgv.Rows.Add(contract.GetId(), contract.GetClients(), contract.GetStartTime(), 
+                    CalculateEndDate(contract.GetStartTime(),contract.GetDuration()), contract.GetType());
+  
             }
 
 
@@ -138,20 +134,20 @@ namespace PSS_ITWORKS.Presentation_Layer
         }
 
 
-        // Use methods to find the client jobs in 
+        // Use methods to find the client jobs 
         private void FindClientJobs(int clientID)
         {
             // with strategy find the client jobs in db. Display in clientJobs_dgv datagridview
             clientJobs_dgv.DataSource = null;
             clientJobs_dgv.Rows.Clear();
             clientJobs_dgv.Refresh();
-            //clientJobs_dgv.DataSource = clientManager.GetSpecific1(clientID) ;
+
 
             // Get the client jobs and then display that client's jobs in data grid view
-            List<IEntity> entities = clientManager.Get();
-            foreach (EntityClient client in entities)
+            List<IEntity> jobs = clientManager.Get();
+            foreach (EntityClient job in jobs)
             {
-                if (client.GetID() == clientID)
+                if (job.GetID() == clientID)
                 {
                     // brake the client jobs in the entity into pieces and display them in the data grid view
                     clientJobs_dgv.ColumnCount = 8;
@@ -165,7 +161,8 @@ namespace PSS_ITWORKS.Presentation_Layer
                     clientJobs_dgv.Columns[7].HeaderText = "Job Technician ID";
 
                     // add the client jobs to the data grid view
-                    //clientJobs_dgv.Rows.Add();
+                    clientJobs_dgv.DataSource = job.GetJobs();
+
                 }
                 else
                 {
@@ -225,6 +222,22 @@ namespace PSS_ITWORKS.Presentation_Layer
             clientJobs_dgv.Refresh();
         }
 
+        private void Logout_btn_Click(object sender, EventArgs e)
+        {
+           
 
+            this.Close();
+
+            LogIn loginForm = new LogIn();
+            loginForm.Show();
+        }
+
+        // method used to calculate the end date of contract 
+        private DateTime CalculateEndDate(DateTime startDate, int duration)
+        {
+            DateTime endDate = startDate.AddMonths(duration);
+            return endDate;
+        }
+       
     }
 }

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static LoginController;
 
 namespace PSS_ITWORKS.Presentation_Layer
 {
@@ -28,32 +29,23 @@ namespace PSS_ITWORKS.Presentation_Layer
         private DataGridView serviceStatusFeedback_dgv;
         private Label statusFeedback_lbl;
         private Button newRequest_btn;
-        private DataGridView liveChat_dgv;
-        private Label liveChat_lbl;
+        private DataGridView callHistory_dgv;
+        private Label callHistory_lbl;
         private DataGridView clientHistory_dgv;
         private Label history_lbl;
         private Label contractOverview_lbl;
         private TextBox experationDate_txt;
         private Label experationDate_lbl;
-        private TextBox coverage_txt;
-        private Label coverage_lbl;
+        private TextBox services_txt;
+        private Label services_lbl;
         private TextBox contractType_txt;
         private Label contractType_lbl;
-        private Button downloadTnC_btn;
-        private Button renewOption_btn;
-        private Label label3;
-        private Button procedures_btn;
-        private Label cost;
-        private Button cost_btn;
-        private Label renewal_lbl;
-        private Button renewal_btn;
-        private Label termsCon_lbl;
         private Label WelcomeClient_lbl;
 
 
 
 
-        StrategyClientManager theClient;
+        StrategyContextManager theClient;
 
         public ClientForm()
         {
@@ -80,25 +72,16 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.newRequest_btn = new System.Windows.Forms.Button();
             this.serviceRequests_lbl = new System.Windows.Forms.Label();
             this.contractInformation_tbp = new System.Windows.Forms.TabPage();
-            this.label3 = new System.Windows.Forms.Label();
-            this.procedures_btn = new System.Windows.Forms.Button();
-            this.cost = new System.Windows.Forms.Label();
-            this.cost_btn = new System.Windows.Forms.Button();
-            this.renewal_lbl = new System.Windows.Forms.Label();
-            this.renewal_btn = new System.Windows.Forms.Button();
-            this.termsCon_lbl = new System.Windows.Forms.Label();
-            this.downloadTnC_btn = new System.Windows.Forms.Button();
-            this.renewOption_btn = new System.Windows.Forms.Button();
             this.experationDate_txt = new System.Windows.Forms.TextBox();
             this.experationDate_lbl = new System.Windows.Forms.Label();
-            this.coverage_txt = new System.Windows.Forms.TextBox();
-            this.coverage_lbl = new System.Windows.Forms.Label();
+            this.services_txt = new System.Windows.Forms.TextBox();
+            this.services_lbl = new System.Windows.Forms.Label();
             this.contractType_txt = new System.Windows.Forms.TextBox();
             this.contractType_lbl = new System.Windows.Forms.Label();
             this.contractOverview_lbl = new System.Windows.Forms.Label();
             this.communication_tbp = new System.Windows.Forms.TabPage();
-            this.liveChat_dgv = new System.Windows.Forms.DataGridView();
-            this.liveChat_lbl = new System.Windows.Forms.Label();
+            this.callHistory_dgv = new System.Windows.Forms.DataGridView();
+            this.callHistory_lbl = new System.Windows.Forms.Label();
             this.history_tbp = new System.Windows.Forms.TabPage();
             this.clientHistory_dgv = new System.Windows.Forms.DataGridView();
             this.history_lbl = new System.Windows.Forms.Label();
@@ -110,7 +93,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             ((System.ComponentModel.ISupportInitialize)(this.serviceStatusFeedback_dgv)).BeginInit();
             this.contractInformation_tbp.SuspendLayout();
             this.communication_tbp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.liveChat_dgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.callHistory_dgv)).BeginInit();
             this.history_tbp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientHistory_dgv)).BeginInit();
             this.SuspendLayout();
@@ -130,6 +113,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.Logout_btn.TabIndex = 15;
             this.Logout_btn.Text = "Logout";
             this.Logout_btn.UseVisualStyleBackColor = false;
+            this.Logout_btn.Click += new System.EventHandler(this.Logout_btn_Click);
             // 
             // Logo_img
             // 
@@ -274,19 +258,10 @@ namespace PSS_ITWORKS.Presentation_Layer
             // 
             // contractInformation_tbp
             // 
-            this.contractInformation_tbp.Controls.Add(this.label3);
-            this.contractInformation_tbp.Controls.Add(this.procedures_btn);
-            this.contractInformation_tbp.Controls.Add(this.cost);
-            this.contractInformation_tbp.Controls.Add(this.cost_btn);
-            this.contractInformation_tbp.Controls.Add(this.renewal_lbl);
-            this.contractInformation_tbp.Controls.Add(this.renewal_btn);
-            this.contractInformation_tbp.Controls.Add(this.termsCon_lbl);
-            this.contractInformation_tbp.Controls.Add(this.downloadTnC_btn);
-            this.contractInformation_tbp.Controls.Add(this.renewOption_btn);
             this.contractInformation_tbp.Controls.Add(this.experationDate_txt);
             this.contractInformation_tbp.Controls.Add(this.experationDate_lbl);
-            this.contractInformation_tbp.Controls.Add(this.coverage_txt);
-            this.contractInformation_tbp.Controls.Add(this.coverage_lbl);
+            this.contractInformation_tbp.Controls.Add(this.services_txt);
+            this.contractInformation_tbp.Controls.Add(this.services_lbl);
             this.contractInformation_tbp.Controls.Add(this.contractType_txt);
             this.contractInformation_tbp.Controls.Add(this.contractType_lbl);
             this.contractInformation_tbp.Controls.Add(this.contractOverview_lbl);
@@ -297,122 +272,6 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.contractInformation_tbp.TabIndex = 2;
             this.contractInformation_tbp.Text = "Contract Information";
             this.contractInformation_tbp.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(565, 193);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(204, 25);
-            this.label3.TabIndex = 29;
-            this.label3.Text = "Terms and Conditions";
-            // 
-            // procedures_btn
-            // 
-            this.procedures_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(228)))), ((int)(((byte)(91)))));
-            this.procedures_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.procedures_btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.procedures_btn.FlatAppearance.BorderSize = 0;
-            this.procedures_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.procedures_btn.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.procedures_btn.Location = new System.Drawing.Point(570, 222);
-            this.procedures_btn.Margin = new System.Windows.Forms.Padding(4);
-            this.procedures_btn.Name = "procedures_btn";
-            this.procedures_btn.Size = new System.Drawing.Size(208, 30);
-            this.procedures_btn.TabIndex = 28;
-            this.procedures_btn.Text = "Download";
-            this.procedures_btn.UseVisualStyleBackColor = false;
-            // 
-            // cost
-            // 
-            this.cost.AutoSize = true;
-            this.cost.Location = new System.Drawing.Point(565, 123);
-            this.cost.Name = "cost";
-            this.cost.Size = new System.Drawing.Size(53, 25);
-            this.cost.TabIndex = 27;
-            this.cost.Text = "Cost";
-            // 
-            // cost_btn
-            // 
-            this.cost_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(228)))), ((int)(((byte)(91)))));
-            this.cost_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.cost_btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cost_btn.FlatAppearance.BorderSize = 0;
-            this.cost_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cost_btn.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cost_btn.Location = new System.Drawing.Point(570, 152);
-            this.cost_btn.Margin = new System.Windows.Forms.Padding(4);
-            this.cost_btn.Name = "cost_btn";
-            this.cost_btn.Size = new System.Drawing.Size(208, 30);
-            this.cost_btn.TabIndex = 26;
-            this.cost_btn.Text = "Download";
-            this.cost_btn.UseVisualStyleBackColor = false;
-            // 
-            // renewal_lbl
-            // 
-            this.renewal_lbl.AutoSize = true;
-            this.renewal_lbl.Location = new System.Drawing.Point(565, 56);
-            this.renewal_lbl.Name = "renewal_lbl";
-            this.renewal_lbl.Size = new System.Drawing.Size(160, 25);
-            this.renewal_lbl.TabIndex = 25;
-            this.renewal_lbl.Text = "Renewal Options";
-            // 
-            // renewal_btn
-            // 
-            this.renewal_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(228)))), ((int)(((byte)(91)))));
-            this.renewal_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.renewal_btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.renewal_btn.FlatAppearance.BorderSize = 0;
-            this.renewal_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.renewal_btn.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.renewal_btn.Location = new System.Drawing.Point(570, 85);
-            this.renewal_btn.Margin = new System.Windows.Forms.Padding(4);
-            this.renewal_btn.Name = "renewal_btn";
-            this.renewal_btn.Size = new System.Drawing.Size(208, 30);
-            this.renewal_btn.TabIndex = 24;
-            this.renewal_btn.Text = "Download";
-            this.renewal_btn.UseVisualStyleBackColor = false;
-            // 
-            // termsCon_lbl
-            // 
-            this.termsCon_lbl.AutoSize = true;
-            this.termsCon_lbl.Location = new System.Drawing.Point(24, 263);
-            this.termsCon_lbl.Name = "termsCon_lbl";
-            this.termsCon_lbl.Size = new System.Drawing.Size(204, 25);
-            this.termsCon_lbl.TabIndex = 23;
-            this.termsCon_lbl.Text = "Terms and Conditions";
-            // 
-            // downloadTnC_btn
-            // 
-            this.downloadTnC_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(228)))), ((int)(((byte)(91)))));
-            this.downloadTnC_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.downloadTnC_btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.downloadTnC_btn.FlatAppearance.BorderSize = 0;
-            this.downloadTnC_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.downloadTnC_btn.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.downloadTnC_btn.Location = new System.Drawing.Point(29, 292);
-            this.downloadTnC_btn.Margin = new System.Windows.Forms.Padding(4);
-            this.downloadTnC_btn.Name = "downloadTnC_btn";
-            this.downloadTnC_btn.Size = new System.Drawing.Size(208, 30);
-            this.downloadTnC_btn.TabIndex = 22;
-            this.downloadTnC_btn.Text = "Download";
-            this.downloadTnC_btn.UseVisualStyleBackColor = false;
-            // 
-            // renewOption_btn
-            // 
-            this.renewOption_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(228)))), ((int)(((byte)(91)))));
-            this.renewOption_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.renewOption_btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.renewOption_btn.FlatAppearance.BorderSize = 0;
-            this.renewOption_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.renewOption_btn.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.renewOption_btn.Location = new System.Drawing.Point(29, 337);
-            this.renewOption_btn.Margin = new System.Windows.Forms.Padding(4);
-            this.renewOption_btn.Name = "renewOption_btn";
-            this.renewOption_btn.Size = new System.Drawing.Size(208, 30);
-            this.renewOption_btn.TabIndex = 21;
-            this.renewOption_btn.Text = "Renewal Options";
-            this.renewOption_btn.UseVisualStyleBackColor = false;
             // 
             // experationDate_txt
             // 
@@ -430,21 +289,21 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.experationDate_lbl.TabIndex = 7;
             this.experationDate_lbl.Text = "Experation Date";
             // 
-            // coverage_txt
+            // services_txt
             // 
-            this.coverage_txt.Location = new System.Drawing.Point(29, 151);
-            this.coverage_txt.Name = "coverage_txt";
-            this.coverage_txt.Size = new System.Drawing.Size(208, 30);
-            this.coverage_txt.TabIndex = 6;
+            this.services_txt.Location = new System.Drawing.Point(29, 151);
+            this.services_txt.Name = "services_txt";
+            this.services_txt.Size = new System.Drawing.Size(208, 30);
+            this.services_txt.TabIndex = 6;
             // 
-            // coverage_lbl
+            // services_lbl
             // 
-            this.coverage_lbl.AutoSize = true;
-            this.coverage_lbl.Location = new System.Drawing.Point(24, 123);
-            this.coverage_lbl.Name = "coverage_lbl";
-            this.coverage_lbl.Size = new System.Drawing.Size(98, 25);
-            this.coverage_lbl.TabIndex = 5;
-            this.coverage_lbl.Text = "Coverage";
+            this.services_lbl.AutoSize = true;
+            this.services_lbl.Location = new System.Drawing.Point(24, 123);
+            this.services_lbl.Name = "services_lbl";
+            this.services_lbl.Size = new System.Drawing.Size(88, 25);
+            this.services_lbl.TabIndex = 5;
+            this.services_lbl.Text = "Services";
             // 
             // contractType_txt
             // 
@@ -474,8 +333,8 @@ namespace PSS_ITWORKS.Presentation_Layer
             // 
             // communication_tbp
             // 
-            this.communication_tbp.Controls.Add(this.liveChat_dgv);
-            this.communication_tbp.Controls.Add(this.liveChat_lbl);
+            this.communication_tbp.Controls.Add(this.callHistory_dgv);
+            this.communication_tbp.Controls.Add(this.callHistory_lbl);
             this.communication_tbp.Location = new System.Drawing.Point(4, 34);
             this.communication_tbp.Name = "communication_tbp";
             this.communication_tbp.Padding = new System.Windows.Forms.Padding(3);
@@ -484,25 +343,26 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.communication_tbp.Text = "Communication";
             this.communication_tbp.UseVisualStyleBackColor = true;
             // 
-            // liveChat_dgv
+            // callHistory_dgv
             // 
-            this.liveChat_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.liveChat_dgv.Location = new System.Drawing.Point(8, 67);
-            this.liveChat_dgv.Name = "liveChat_dgv";
-            this.liveChat_dgv.RowHeadersWidth = 51;
-            this.liveChat_dgv.RowTemplate.Height = 24;
-            this.liveChat_dgv.Size = new System.Drawing.Size(1018, 298);
-            this.liveChat_dgv.TabIndex = 4;
+            this.callHistory_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.callHistory_dgv.Location = new System.Drawing.Point(8, 67);
+            this.callHistory_dgv.Name = "callHistory_dgv";
+            this.callHistory_dgv.RowHeadersWidth = 51;
+            this.callHistory_dgv.RowTemplate.Height = 24;
+            this.callHistory_dgv.Size = new System.Drawing.Size(1018, 298);
+            this.callHistory_dgv.TabIndex = 4;
             // 
-            // liveChat_lbl
+            // callHistory_lbl
             // 
-            this.liveChat_lbl.AutoSize = true;
-            this.liveChat_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.liveChat_lbl.Location = new System.Drawing.Point(4, 13);
-            this.liveChat_lbl.Name = "liveChat_lbl";
-            this.liveChat_lbl.Size = new System.Drawing.Size(134, 32);
-            this.liveChat_lbl.TabIndex = 3;
-            this.liveChat_lbl.Text = "Live Chat";
+            this.callHistory_lbl.AutoSize = true;
+            this.callHistory_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.callHistory_lbl.Location = new System.Drawing.Point(4, 13);
+            this.callHistory_lbl.Name = "callHistory_lbl";
+            this.callHistory_lbl.Size = new System.Drawing.Size(159, 32);
+            this.callHistory_lbl.TabIndex = 3;
+            this.callHistory_lbl.Text = "Call History";
+            this.callHistory_lbl.Click += new System.EventHandler(this.liveChat_lbl_Click);
             // 
             // history_tbp
             // 
@@ -558,7 +418,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.contractInformation_tbp.PerformLayout();
             this.communication_tbp.ResumeLayout(false);
             this.communication_tbp.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.liveChat_dgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.callHistory_dgv)).EndInit();
             this.history_tbp.ResumeLayout(false);
             this.history_tbp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientHistory_dgv)).EndInit();
@@ -570,6 +430,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void newRequest_btn_Click(object sender, EventArgs e)
         {
             // Make sure where this button should go/do
+            
 
         }
 
@@ -583,7 +444,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             ServiceRequest();
             ClientHistory();
             ContractDetails();
-            LiveChat();
+            CallHistory();
 
 
         }
@@ -601,9 +462,8 @@ namespace PSS_ITWORKS.Presentation_Layer
             clientMaintenanceOverview_dgv.Refresh();
             clientMaintenanceOverview_dgv.DataSource = theClient.GetSpecific1(id);
 
-
-
 ;        }
+
 
         // Method for populating the Service Request
         private void ServiceRequest()
@@ -616,36 +476,41 @@ namespace PSS_ITWORKS.Presentation_Layer
             serviceStatusFeedback_dgv.DataSource = theClient.GetSpecific2(id);
         }
 
+
         // Method to get client Contract details
         private void ContractDetails()
         {
             int id = 1;// temp id
 
 
-            BindingSource bsContract = theClient.Get(id);
             
-            string contractID = bsContract[9].ToString();
-
-            BindingSource bsDetailsContract = theClient.GetSpecific2(contractID);
 
 
-
-            //int contract = int.Parse(contractValue);
-
-
-            // populate the text boxes
-            //contractType_txt.Text = bsContract[0].ToString();
-            //coverage_txt.Text = bsContract[1].ToString();
-            //experationDate_txt.Text = bsContract[2].ToString();
 
 
         }
 
-        // Method to get client Communication 'Live chat'
-        private void LiveChat()
+
+        // Method to get client call history
+        private void CallHistory()
         {
-            // Not sure what we want to do here
+            int id = 1;// temp id
+
+            List<string> callHistory = theClient.Get(id);
+
+
+            // populate the datagridview
+            callHistory_dgv.DataSource = null;
+            callHistory_dgv.Rows.Clear();
+            callHistory_dgv.Refresh();
+            callHistory_dgv.DataSource = callHistory;
+            foreach (var call in callHistory)
+            {
+                // show call in new row
+                callHistory_dgv.Rows.Add(call);
+            }
         }
+
 
         // Method get Client jobs history
         private void ClientHistory()
@@ -655,7 +520,8 @@ namespace PSS_ITWORKS.Presentation_Layer
             clientHistory_dgv.DataSource = null;
             clientHistory_dgv.Rows.Clear();
             clientHistory_dgv.Refresh();
-            clientHistory_dgv.DataSource = theClient.GetSpecific3(id);// replace with correct method for getting history
+            
+            // Get clients jobs using s
         }
 
 
@@ -677,9 +543,9 @@ namespace PSS_ITWORKS.Presentation_Layer
             serviceStatusFeedback_dgv.Rows.Clear();
             serviceStatusFeedback_dgv.Refresh();
 
-            liveChat_dgv.DataSource = null;
-            liveChat_dgv.Rows.Clear();
-            liveChat_dgv.Refresh();
+            callHistory_dgv.DataSource = null;
+            callHistory_dgv.Rows.Clear();
+            callHistory_dgv.Refresh();
 
             clientHistory_dgv.DataSource = null;
             clientHistory_dgv.Rows.Clear();
@@ -687,6 +553,20 @@ namespace PSS_ITWORKS.Presentation_Layer
         }
 
         private void Dashboard_tbp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Logout_btn_Click(object sender, EventArgs e)
+        {
+
+            this.Close();
+
+            LogIn loginForm = new LogIn();
+            loginForm.Show();
+        }
+
+        private void liveChat_lbl_Click(object sender, EventArgs e)
         {
 
         }
