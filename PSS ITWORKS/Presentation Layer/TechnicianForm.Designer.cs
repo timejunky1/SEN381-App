@@ -241,7 +241,6 @@
             this.searchJob_btn.TabIndex = 20;
             this.searchJob_btn.Text = "Search";
             this.searchJob_btn.UseVisualStyleBackColor = false;
-            this.searchJob_btn.Click += new System.EventHandler(this.searchJob_btn_Click);
             // 
             // jobID_txt
             // 

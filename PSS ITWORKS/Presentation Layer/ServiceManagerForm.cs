@@ -164,7 +164,6 @@ namespace PSS_ITWORKS.Presentation_Layer
 
             List<IEntity> jobs = context.Get();
             List<EntityEmployee> techs = new List<EntityEmployee>();
-            string[] names = new string[];
             foreach (IEntity entity in jobs)
             {
                 EntityJob j = entity as EntityJob;
@@ -378,7 +377,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             context = new StrategyContextManager(new StrategyJobManager());
             context.Connect(conn);
             EntityJob UpdateJob = new EntityJob(jobID, clientID, serviceID, begin, end, status, notes);
-            UpdateJob.SetEmployee(employees);
+            UpdateJob.SetEmployees(employees);
             context.Update(UpdateJob);
             /// 
 
