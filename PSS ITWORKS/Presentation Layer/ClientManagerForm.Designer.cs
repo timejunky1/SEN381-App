@@ -556,7 +556,6 @@
             this.Name = "ClientManagerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Client Manager";
-            this.Load += new System.EventHandler(this.ClientManagerForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).EndInit();
             this.Clients_tbc.ResumeLayout(false);
             this.Clients_tbp.ResumeLayout(false);

@@ -52,6 +52,7 @@ namespace PSS_ITWORKS
                     res = authenticationResult == 1;
                 }
                 conn.Close();
+                ErrorHandler.DisplayError(res.ToString());
             }catch (Exception ex)
             {
                 ErrorHandler.DisplayError(ex);
@@ -193,7 +194,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("employeeProcedures.InsertEmployee"))
+                    using (SqlCommand command = new SqlCommand("employeeProcedures.InsertEmployee", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@name", employee.GetName());//VARCHAR(15)
@@ -224,7 +225,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("employeeProcedures.UpdateEmployee"))
+                    using (SqlCommand command = new SqlCommand("employeeProcedures.UpdateEmployee", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@employeeId", employee.GetID());//INT
@@ -256,7 +257,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("employeeProcedures.DeleteEmployee"))
+                    using (SqlCommand command = new SqlCommand("employeeProcedures.DeleteEmployee", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@employeeId", employeeid);//INT
@@ -279,7 +280,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("employeeProcedures.GetEmployee"))
+                    using (SqlCommand command = new SqlCommand("employeeProcedures.GetEmployee",conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@employeeId", employeeId);
@@ -288,13 +289,13 @@ namespace PSS_ITWORKS
                             while (reader.Read())
                             {
                                 employee = new EntityEmployee(
-                                    reader.GetInt16(0),
+                                    reader.GetInt32(0),
                                     reader.GetString(1),
                                     reader.GetString(2),
                                     reader.GetString(3),
                                     reader.GetString(4),
                                     reader.GetString(5),
-                                    reader.GetInt16(6),
+                                    reader.GetInt32(6),
                                     reader.GetString(7),
                                     reader.GetString(8),
                                     reader.GetString(8),
@@ -319,24 +320,24 @@ namespace PSS_ITWORKS
 
         public List<EntityEmployee> GetEmployees()
         {
-            List<EntityEmployee> employees = null;
+            List<EntityEmployee> employees = new List<EntityEmployee>();
             using (conn)
             {
-                conn.Open();
-                using (SqlCommand command = new SqlCommand("employeeProcedures.GetEmployee"))
+                using (SqlCommand command = new SqlCommand("employeeProcedures.GetEmployees",conn))
                 {
+                    conn.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             EntityEmployee employee = new EntityEmployee(
-                                reader.GetInt16(0),
+                                reader.GetInt32(0),
                                 reader.GetString(1),
                                 reader.GetString(2),
                                 reader.GetString(3),
                                 reader.GetString(4),
                                 reader.GetString(5),
-                                reader.GetInt16(6),
+                                reader.GetInt32(6),
                                 reader.GetString(7),
                                 reader.GetString(8),
                                 reader.GetString(8),
@@ -364,7 +365,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("callProcedures.InsertCallLog"))
+                    using (SqlCommand command = new SqlCommand("callProcedures.InsertCallLog", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@employeeId", call.GetEmployeeId());//INT
@@ -390,7 +391,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("callProcedures.GetCall"))
+                    using (SqlCommand command = new SqlCommand("callProcedures.GetCall", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@id", callId);
@@ -399,9 +400,9 @@ namespace PSS_ITWORKS
                             while (reader.Read())
                             {
                                 call = new EntityCall(
-                                    reader.GetInt16(0),
-                                    reader.GetInt16(1),
-                                    reader.GetInt16(2),
+                                    reader.GetInt32(0),
+                                    reader.GetInt32(1),
+                                    reader.GetInt32(2),
                                     reader.GetDateTime(3),
                                     reader.GetString(4)
                                     );
@@ -430,16 +431,16 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("callProcedures.GetCalls"))
+                    using (SqlCommand command = new SqlCommand("callProcedures.GetCalls", conn))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
                             {
                                 EntityCall call = new EntityCall(
-                                    reader.GetInt16(0),
-                                    reader.GetInt16(1),
-                                    reader.GetInt16(2),
+                                    reader.GetInt32(0),
+                                    reader.GetInt32(1),
+                                    reader.GetInt32(2),
                                     reader.GetDateTime(3),
                                     reader.GetString(4)
                                     );
@@ -471,7 +472,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("clientProcedures.InsertClient"))
+                    using (SqlCommand command = new SqlCommand("clientProcedures.InsertClient", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@companyName", client.GetCompanyName());//VARCHAR(50)
@@ -505,7 +506,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("clientProcedures.UpdateClient"))
+                    using (SqlCommand command = new SqlCommand("clientProcedures.UpdateClient", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@clientId", client.GetID());//VARCHAR(50)
@@ -540,7 +541,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("clientProcedures.DeleteClient"))
+                    using (SqlCommand command = new SqlCommand("clientProcedures.DeleteClient", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@clientId", clientId);//INT
@@ -563,7 +564,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("clientProcedures.GetClient"))
+                    using (SqlCommand command = new SqlCommand("clientProcedures.GetClient", conn))
                     {
                         command.CommandType= CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@clientId", clientId);
@@ -572,16 +573,16 @@ namespace PSS_ITWORKS
                             while (reader.Read())
                             {
                                 client = new EntityClient(
-                                    reader.GetInt16(0),
+                                    reader.GetInt32(0),
                                     reader.GetString(1),
                                     reader.GetString(2),
                                     reader.GetString(3),
                                     reader.GetString(4),
-                                    reader.GetInt16(5),
+                                    reader.GetInt32(5),
                                     reader.GetString(6),
                                     reader.GetString(7),
                                     reader.GetDateTime(8),
-                                    reader.GetInt16(9),
+                                    reader.GetInt32(9),
                                     reader.GetString(10),
                                     reader.GetString(11),
                                     reader.GetString(12),
@@ -606,29 +607,29 @@ namespace PSS_ITWORKS
 
         public List<EntityClient> GetClients()
         {
-            List<EntityClient> clients = null;
+            List<EntityClient> clients = new List<EntityClient>();
             try
             {
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("clientProcedures.GetClients"))
+                    using (SqlCommand command = new SqlCommand("clientProcedures.GetClients", conn))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
                             {
                                 EntityClient client = new EntityClient(
-                                    reader.GetInt16(0),
+                                    reader.GetInt32(0),
                                     reader.GetString(1),
                                     reader.GetString(2),
                                     reader.GetString(3),
                                     reader.GetString(4),
-                                    reader.GetInt16(5),
+                                    reader.GetInt32(5),
                                     reader.GetString(6),
                                     reader.GetString(7),
                                     reader.GetDateTime(8),
-                                    reader.GetInt16(9),
+                                    reader.GetInt32(9),
                                     reader.GetString(10),
                                     reader.GetString(11),
                                     reader.GetString(12),
@@ -661,7 +662,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("contractProcedures.InsertContract"))
+                    using (SqlCommand command = new SqlCommand("contractProcedures.InsertContract", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@title", contract.GetTitle());//VARCHAR(30)
@@ -689,7 +690,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("contractProcedures.UpdateContract"))
+                    using (SqlCommand command = new SqlCommand("contractProcedures.UpdateContract", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@contractId", contract.GetId());//VARCHAR(30)
@@ -718,7 +719,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("contractProcedure.DeleteContract"))
+                    using (SqlCommand command = new SqlCommand("contractProcedure.DeleteContract", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@contractId", contractId);//INT
@@ -741,7 +742,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("contractProcedures.GetContract"))
+                    using (SqlCommand command = new SqlCommand("contractProcedures.GetContract", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@contractId", contractid);
@@ -750,12 +751,12 @@ namespace PSS_ITWORKS
                             while (reader.Read())
                             {
                                 contract = new EntityContract(
-                                    reader.GetInt16(0),
+                                    reader.GetInt32(0),
                                     reader.GetString(1),
                                     reader.GetString(2),
-                                    reader.GetInt16(3),
+                                    reader.GetInt32(3),
                                     reader.GetDecimal(4),
-                                    reader.GetInt16(5),
+                                    reader.GetInt32(5),
                                     reader.GetString(6)
                                     );
                             }
@@ -777,25 +778,25 @@ namespace PSS_ITWORKS
 
         public List<EntityContract> GetContracts()
         {
-            List<EntityContract> contracts = null;
+            List<EntityContract> contracts = new List<EntityContract>();
             try
             {
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("contractProcedures.GetContract"))
+                    using (SqlCommand command = new SqlCommand("contractProcedures.GetContract", conn))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
                             {
                                 EntityContract contract = new EntityContract(
-                                    reader.GetInt16(0),
+                                    reader.GetInt32(0),
                                     reader.GetString(1),
                                     reader.GetString(2),
-                                    reader.GetInt16(3),
+                                    reader.GetInt32(3),
                                     reader.GetDecimal(4),
-                                    reader.GetInt16(5),
+                                    reader.GetInt32(5),
                                     reader.GetString(6)
                                     );
                             }
@@ -824,7 +825,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("jobProcedures.InsertJob"))
+                    using (SqlCommand command = new SqlCommand("jobProcedures.InsertJob", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@clientId", job.GetClientId());//INT
@@ -849,7 +850,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("jobProcedures.UpdateJob"))
+                    using (SqlCommand command = new SqlCommand("jobProcedures.UpdateJob", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@jobId", job.GetId());//INT
@@ -875,7 +876,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("jobProcedures.UpdateJob"))
+                    using (SqlCommand command = new SqlCommand("jobProcedures.UpdateJob", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@jobId", jobId);//INT
@@ -898,7 +899,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("jobProcedures.GetJob"))
+                    using (SqlCommand command = new SqlCommand("jobProcedures.GetJob", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@jobId", jobId);
@@ -907,9 +908,9 @@ namespace PSS_ITWORKS
                             while (reader.Read())
                             {
                                 job = new EntityJob(
-                                    reader.GetInt16(0),
-                                    reader.GetInt16(1),
-                                    reader.GetInt16(2),
+                                    reader.GetInt32(0),
+                                    reader.GetInt32(1),
+                                    reader.GetInt32(2),
                                     reader.GetDateTime(3),
                                     reader.GetDateTime(4),
                                     reader.GetString(5),
@@ -934,22 +935,22 @@ namespace PSS_ITWORKS
 
         public List<EntityJob> GetJobs()
         {
-            List<EntityJob> jobs = null;
+            List<EntityJob> jobs = new List<EntityJob>();
             try
             {
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("jobProcedures.GetJobs"))
+                    using (SqlCommand command = new SqlCommand("jobProcedures.GetJobs", conn))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
                             {
                                 EntityJob job = new EntityJob(
-                                    reader.GetInt16(0),
-                                    reader.GetInt16(1),
-                                    reader.GetInt16(2),
+                                    reader.GetInt32(0),
+                                    reader.GetInt32(1),
+                                    reader.GetInt32(2),
                                     reader.GetDateTime(3),
                                     reader.GetDateTime(4),
                                     reader.GetString(5),
@@ -982,7 +983,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("serviceProcedures.InsertService"))
+                    using (SqlCommand command = new SqlCommand("serviceProcedures.InsertService", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@title", service.GetTitle());//VARCHAR(30)
@@ -1008,7 +1009,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("serviceProcedures.UpdateService"))
+                    using (SqlCommand command = new SqlCommand("serviceProcedures.UpdateService", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@serviceId", service.GetId());//INT
@@ -1035,7 +1036,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("serviceProcedures.DeleteCService"))
+                    using (SqlCommand command = new SqlCommand("serviceProcedures.DeleteCService", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@serviceId", serviceId);//INT
@@ -1058,7 +1059,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("serviceProcedures.GetService"))
+                    using (SqlCommand command = new SqlCommand("serviceProcedures.GetService", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@serviceId", serviceid);
@@ -1067,10 +1068,10 @@ namespace PSS_ITWORKS
                             while (reader.Read())
                             {
                                 service = new EntityService(
-                                    reader.GetInt16(0),
+                                    reader.GetInt32(0),
                                     reader.GetString(1),
-                                    reader.GetInt16(2),
-                                    reader.GetInt16(3),
+                                    reader.GetInt32(2),
+                                    reader.GetInt32(3),
                                     reader.GetDecimal(4),
                                     reader.GetString(5)
                                     );
@@ -1093,23 +1094,23 @@ namespace PSS_ITWORKS
 
         public List<EntityService> GetServices()
         {
-            List<EntityService> services = null;
+            List<EntityService> services = new List<EntityService>();
             try
             {
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("serviceProcedures.GetService"))
+                    using (SqlCommand command = new SqlCommand("serviceProcedures.GetService", conn))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
                             {
                                 EntityService service = new EntityService(
-                                    reader.GetInt16(0),
+                                    reader.GetInt32(0),
                                     reader.GetString(1),
-                                    reader.GetInt16(2),
-                                    reader.GetInt16(3),
+                                    reader.GetInt32(2),
+                                    reader.GetInt32(3),
                                     reader.GetDecimal(4),
                                     reader.GetString(5)
                                     );
@@ -1135,13 +1136,13 @@ namespace PSS_ITWORKS
 
         public List<int> GetJobEmployeeRef(int jobId = 0, int employeeId = 0)
         {
-            List<int> ids = null;
+            List<int> ids = new List<int>();
             try
             {
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("referenceProcedures.GetJobEmployeeRef"))
+                    using (SqlCommand command = new SqlCommand("referenceProcedures.GetJobEmployeeRef", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@jobId", jobId);//INT
@@ -1171,13 +1172,13 @@ namespace PSS_ITWORKS
 
         public List<int> GetJobCallRef(int jobId = 0, int callId = 0)
         {
-            List<int> ids = null;
+            List<int> ids = new List<int>();
             try
             {
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("referenceProcedures.GetJobCallRef"))
+                    using (SqlCommand command = new SqlCommand("referenceProcedures.GetJobCallRef", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@jobId", jobId);//INT
@@ -1207,13 +1208,13 @@ namespace PSS_ITWORKS
 
         public List<int> GetContractRef(int contractId = 0, int serviceId = 0)
         {
-            List<int> ids = null;
+            List<int> ids = new List<int>();
             try
             {
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("referenceProcedures.GetContractRef"))
+                    using (SqlCommand command = new SqlCommand("referenceProcedures.GetContractRef", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@contractId", contractId);//INT
@@ -1248,7 +1249,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("referenceProcedures.DeleteJobEmployeeRef"))
+                    using (SqlCommand command = new SqlCommand("referenceProcedures.DeleteJobEmployeeRef", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@jobId", jobId);//INT
@@ -1271,7 +1272,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("referenceProcedures.DeleteJobEmployeeRef"))
+                    using (SqlCommand command = new SqlCommand("referenceProcedures.DeleteJobEmployeeRef", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@jobId", jobId);//INT
@@ -1294,7 +1295,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("referenceProcedures.DeleteJobEmployeeRef"))
+                    using (SqlCommand command = new SqlCommand("referenceProcedures.DeleteJobEmployeeRef", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@contractId", contractId);//INT
@@ -1317,7 +1318,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("referenceProcedures.InsertJobEmployeeRef"))
+                    using (SqlCommand command = new SqlCommand("referenceProcedures.InsertJobEmployeeRef", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@jobId", jobId);//INT
@@ -1340,7 +1341,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("referenceProcedures.InsertJobEmployeeRef"))
+                    using (SqlCommand command = new SqlCommand("referenceProcedures.InsertJobEmployeeRef", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@jobId", jobId);//INT
@@ -1363,7 +1364,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("referenceProcedures.InsertJobEmployeeRef"))
+                    using (SqlCommand command = new SqlCommand("referenceProcedures.InsertJobEmployeeRef", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@contractId", contractId);//INT

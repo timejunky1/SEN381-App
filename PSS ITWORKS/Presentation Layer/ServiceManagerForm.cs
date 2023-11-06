@@ -222,12 +222,12 @@ namespace PSS_ITWORKS.Presentation_Layer
 
             context = new StrategyContextManager(new StrategyJobManager());
             context.Connect(conn);
-            List<IEntity> jobs = context.Get();
+            List<IEntity> entities = context.Get();
             List<EntityJob> jobList = new List<EntityJob>();
             List<EntityJob> pending = new List<EntityJob>();
-            foreach (EntityJob job in jobs)
+            foreach (IEntity ent in entities)
             {
-                EntityJob jobEntity = job as EntityJob;
+                EntityJob jobEntity = ent as EntityJob;
                 if(jobEntity.GetTimeBegin() == date)
                 {
                     jobList.Add(jobEntity);
@@ -239,29 +239,23 @@ namespace PSS_ITWORKS.Presentation_Layer
             }
             AssignmentSchedule_dgv.DataSource = jobList;
             Request_dgv.DataSource = pending;
-            //Request_dgv.DataSource = context.Get();
-            //AssignmentSchedule_dgv.DataSource = context.Get();
-            ////List<IEntity> list = cm.Get();
-            //List<IEntity> list = new List<IEntity>();
-            //AssignmentSchedule_dgv.DataSource = list;
-            //IEntity entity = cm.Get(3);
-            //EntityJob job = entity as EntityJob;
-            //BindingSource bs = new BindingSource();
-            //List<EntityJob> jobs = new List<EntityJob>();
+            Request_dgv.DataSource = context.Get();
+            AssignmentSchedule_dgv.DataSource = context.Get();
+            List<IEntity> list = cm.Get();
+            AssignmentSchedule_dgv.DataSource = list;
+            IEntity entity = cm.Get(3);
+            EntityJob job = entity as EntityJob;
+            BindingSource bs = new BindingSource();
+            List<EntityJob> jobs = new List<EntityJob>();
 
-            //foreach (IEntity ent in list)
-            //{
-            //    EntityJob j = ent as EntityJob;
-            //    if (j.GetStatus() == "In Process")
-            //    {
-            //        jobs.Add(j);
-            //    }
-            //}
-        }
-
-        private void Filter_txt_TextChanged(object sender, EventArgs e)
-        {
-
+            foreach (IEntity ent in list)
+            {
+                EntityJob j = ent as EntityJob;
+                if (j.GetStatus() == "In Process")
+                {
+                    jobs.Add(j);
+                }
+            }
         }
 
         private void assign_btn_Click(object sender, EventArgs e)
@@ -273,11 +267,6 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             this.Close();
             dashboard.Show();
-
-        }
-
-        private void Jobs_tp_Click(object sender, EventArgs e)
-        {
 
         }
 

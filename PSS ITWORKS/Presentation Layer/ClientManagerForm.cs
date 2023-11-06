@@ -19,11 +19,6 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.dashboard = dashboard;
         }
 
-        private void ClientManagerForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void Logout_btn_Click(object sender, EventArgs e)
         {
             this.Close();

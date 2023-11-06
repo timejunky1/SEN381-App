@@ -281,7 +281,6 @@
             this.Filter_txt.Size = new System.Drawing.Size(212, 34);
             this.Filter_txt.TabIndex = 2;
             this.Filter_txt.Text = "Filter by technician";
-            this.Filter_txt.TextChanged += new System.EventHandler(this.Filter_txt_TextChanged);
             // 
             // AssignmentFilter_lbl
             // 
@@ -395,7 +394,6 @@
             this.Jobs_tp.TabIndex = 3;
             this.Jobs_tp.Text = "Jobs";
             this.Jobs_tp.UseVisualStyleBackColor = true;
-            this.Jobs_tp.Click += new System.EventHandler(this.Jobs_tp_Click);
             // 
             // ModifyJobs_pnl
             // 

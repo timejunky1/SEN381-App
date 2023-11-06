@@ -178,11 +178,11 @@
     <Compile Include="Presentation Layer\NewServiceRequestForm.Designer.cs">
       <DependentUpon>NewServiceRequestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation Layer\Testing.cs">
+    <Compile Include="Presentation Layer\TestingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation Layer\Testing.Designer.cs">
-      <DependentUpon>Testing.cs</DependentUpon>
+    <Compile Include="Presentation Layer\TestingForm.Designer.cs">
+      <DependentUpon>TestingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation Layer\LogIn.cs">
       <SubType>Form</SubType>
@@ -216,7 +216,9 @@
       <DependentUpon>PSSDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="ServiceLayer\SMSAPI.cs" />
+    <Compile Include="Testing\TestSuite3.cs" />
     <Compile Include="Testing\TestSuite.cs" />
+    <Compile Include="Testing\TestSuite2.cs" />
     <EmbeddedResource Include="Presentation Layer\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -253,8 +255,8 @@
     <EmbeddedResource Include="Presentation Layer\TechnicianForm.resx">
       <DependentUpon>TechnicianForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation Layer\Testing.resx">
-      <DependentUpon>Testing.cs</DependentUpon>
+    <EmbeddedResource Include="Presentation Layer\TestingForm.resx">
+      <DependentUpon>TestingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
