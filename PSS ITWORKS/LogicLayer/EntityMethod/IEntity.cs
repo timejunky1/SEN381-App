@@ -5,5 +5,7 @@ namespace PSS_ITWORKS.LogicLayer
 {
     public interface IEntity
     {
+        object GetCalls();
+        int GetID();
     }
 }

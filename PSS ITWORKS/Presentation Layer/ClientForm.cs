@@ -29,7 +29,6 @@ namespace PSS_ITWORKS.Presentation_Layer
         private Label serviceRequests_lbl;
         private DataGridView serviceStatusFeedback_dgv;
         private Label statusFeedback_lbl;
-        private Button newRequest_btn;
         private DataGridView callHistory_dgv;
         private Label callHistory_lbl;
         private DataGridView clientHistory_dgv;
@@ -42,10 +41,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         private TextBox contractType_txt;
         private Label contractType_lbl;
         private Label WelcomeClient_lbl;
-
-
-
-
+        private Button newRequest_btn;
         StrategyContextManager theClient;
 
         public ClientForm()
@@ -70,7 +66,6 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.serviceRequest_tbp = new System.Windows.Forms.TabPage();
             this.serviceStatusFeedback_dgv = new System.Windows.Forms.DataGridView();
             this.statusFeedback_lbl = new System.Windows.Forms.Label();
-            this.newRequest_btn = new System.Windows.Forms.Button();
             this.serviceRequests_lbl = new System.Windows.Forms.Label();
             this.contractInformation_tbp = new System.Windows.Forms.TabPage();
             this.experationDate_txt = new System.Windows.Forms.TextBox();
@@ -86,6 +81,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.history_tbp = new System.Windows.Forms.TabPage();
             this.clientHistory_dgv = new System.Windows.Forms.DataGridView();
             this.history_lbl = new System.Windows.Forms.Label();
+            this.newRequest_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).BeginInit();
             this.ClientDashboard_tbc.SuspendLayout();
             this.Dashboard_tbp.SuspendLayout();
@@ -135,9 +131,9 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.WelcomeClient_lbl.Location = new System.Drawing.Point(122, 25);
             this.WelcomeClient_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.WelcomeClient_lbl.Name = "WelcomeClient_lbl";
-            this.WelcomeClient_lbl.Size = new System.Drawing.Size(404, 41);
+            this.WelcomeClient_lbl.Size = new System.Drawing.Size(228, 41);
             this.WelcomeClient_lbl.TabIndex = 13;
-            this.WelcomeClient_lbl.Text = "Welcome back  (Client name)";
+            this.WelcomeClient_lbl.Text = "Welcome back  ";
             // 
             // ClientDashboard_tbc
             // 
@@ -229,23 +225,6 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.statusFeedback_lbl.Size = new System.Drawing.Size(472, 32);
             this.statusFeedback_lbl.TabIndex = 22;
             this.statusFeedback_lbl.Text = "Service request status and feedback";
-            // 
-            // newRequest_btn
-            // 
-            this.newRequest_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(228)))), ((int)(((byte)(91)))));
-            this.newRequest_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.newRequest_btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.newRequest_btn.FlatAppearance.BorderSize = 0;
-            this.newRequest_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.newRequest_btn.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newRequest_btn.Location = new System.Drawing.Point(9, 46);
-            this.newRequest_btn.Margin = new System.Windows.Forms.Padding(4);
-            this.newRequest_btn.Name = "newRequest_btn";
-            this.newRequest_btn.Size = new System.Drawing.Size(235, 44);
-            this.newRequest_btn.TabIndex = 21;
-            this.newRequest_btn.Text = "New Request";
-            this.newRequest_btn.UseVisualStyleBackColor = false;
-            this.newRequest_btn.Click += new System.EventHandler(this.newRequest_btn_Click);
             // 
             // serviceRequests_lbl
             // 
@@ -397,6 +376,23 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.history_lbl.TabIndex = 3;
             this.history_lbl.Text = "Past service requests, maintenance activities, and invoices";
             // 
+            // newRequest_btn
+            // 
+            this.newRequest_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(228)))), ((int)(((byte)(91)))));
+            this.newRequest_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.newRequest_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.newRequest_btn.FlatAppearance.BorderSize = 0;
+            this.newRequest_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.newRequest_btn.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newRequest_btn.Location = new System.Drawing.Point(9, 46);
+            this.newRequest_btn.Margin = new System.Windows.Forms.Padding(4);
+            this.newRequest_btn.Name = "newRequest_btn";
+            this.newRequest_btn.Size = new System.Drawing.Size(235, 44);
+            this.newRequest_btn.TabIndex = 21;
+            this.newRequest_btn.Text = "New Request";
+            this.newRequest_btn.UseVisualStyleBackColor = false;
+            this.newRequest_btn.Click += new System.EventHandler(this.newRequest_btn_Click);
+            // 
             // ClientForm
             // 
             this.BackColor = System.Drawing.Color.White;
@@ -470,7 +466,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             int id = 1;// temp id
 
-            serviceStatusFeedback_dgv
+            //serviceStatusFeedback_dgv
         }
 
 
@@ -576,9 +572,9 @@ namespace PSS_ITWORKS.Presentation_Layer
 
                 // figure display out
 
-                contractType_txt.Text = contract.GetType();
-                services_txt.Text = contract.GetServices();
-                experationDate_txt.Text = CalculateEndDate(contract.GetStartTime(), contract.GetDuration());
+                //contractType_txt.Text = contract.GetType();
+                //services_txt.Text = contract.GetServices();
+                //experationDate_txt.Text = CalculateEndDate(contract.GetStartTime(), contract.GetDuration());
 
 
             }
@@ -643,9 +639,7 @@ namespace PSS_ITWORKS.Presentation_Layer
                 if (call.GetID() == clientID)
                 {
                     //  client calls in  the data grid view
-                    callHistory_dgv.DataSource = call.GetCalls();
-
-                   
+                    callHistory_dgv.DataSource = call.GetCalls(); 
 
                 }
                 else

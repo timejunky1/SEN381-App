@@ -80,5 +80,10 @@ namespace PSS_ITWORKS.LogicLayer
         {
             return title;
         }
+
+        internal DateTime GetStartTime()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
