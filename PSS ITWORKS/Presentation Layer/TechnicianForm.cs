@@ -191,7 +191,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             
             foreach (EntityJob job in technician.GetJobs())
             {
-                if (job.GetId() == int.Parse(JobId_cmb.Text))
+                if (job.GetId() == int.Parse(JobId_cmb.Text.ToString()))
                 {
                     LoadDetails(job);
                 }
@@ -200,7 +200,13 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void searchJob_btn_Click(object sender, EventArgs e)
         {
-
+            foreach (EntityJob job in technician.GetJobs())
+            {
+                if (job.GetId() == int.Parse(jobID_txt.Text.ToString()))
+                {
+                    LoadDetails(job);
+                }
+            }
         }
     }
 }

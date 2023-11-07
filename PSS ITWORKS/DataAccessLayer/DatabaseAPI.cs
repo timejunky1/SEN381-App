@@ -16,10 +16,11 @@ namespace PSS_ITWORKS
     internal class DatabaseAPI
     {
         SqlConnection conn;
+        string connString = "";
         
         public void SetConnection(string connString)
         {
-            conn = new SqlConnection(connString);
+            this.connString = connString;
         }
 
         //LoginProcedures
@@ -28,35 +29,36 @@ namespace PSS_ITWORKS
             bool res = false;
             try
             {
-                conn.Open();
-                using (SqlCommand command = new SqlCommand("logInProcedures.AuthenticateUser", conn))
+                using(SqlConnection conn = new SqlConnection(connString))
                 {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.AddWithValue("@username", username);
-                    command.Parameters.AddWithValue("@password", HashPassword(password));
-
-                    var result = new SqlParameter
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("logInProcedures.AuthenticateUser", conn))
                     {
-                        ParameterName = "@result",
-                        SqlDbType = SqlDbType.Int,
-                        Direction = ParameterDirection.Output
-                    };
+                        command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.Add(result);
+                        command.Parameters.AddWithValue("@username", username);
+                        command.Parameters.AddWithValue("@password", HashPassword(password));
 
-                    command.ExecuteNonQuery();
+                        var result = new SqlParameter
+                        {
+                            ParameterName = "@result",
+                            SqlDbType = SqlDbType.Int,
+                            Direction = ParameterDirection.Output
+                        };
 
-                    int authenticationResult = Convert.ToInt32(result.Value);
+                        command.Parameters.Add(result);
 
-                    res = authenticationResult == 1;
+                        command.ExecuteNonQuery();
+
+                        int authenticationResult = Convert.ToInt32(result.Value);
+
+                        res = authenticationResult == 1;
+                    }
                 }
-                conn.Close();
                 ErrorHandler.DisplayError(res.ToString());
             }catch (Exception ex)
             {
                 ErrorHandler.DisplayError(ex);
-                conn.Close();
             }
             return res;
         }
@@ -67,65 +69,67 @@ namespace PSS_ITWORKS
             LoginController.UserInfo userInfo = null;
             try
             {
-                conn.Open();
-                using (SqlCommand command = new SqlCommand("loginProcedures.GetUserInformation", conn))
+                using(SqlConnection conn = new SqlConnection(connString))
                 {
-                    command.CommandType = CommandType.StoredProcedure;
-
-
-                    command.Parameters.AddWithValue("@username", username);
-
-                    var nameParam = new SqlParameter
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("loginProcedures.GetUserInformation", conn))
                     {
-                        ParameterName = "@name",
-                        SqlDbType = SqlDbType.VarChar,
-                        Size = 50,
-                        Direction = ParameterDirection.Output
-                    };
+                        command.CommandType = CommandType.StoredProcedure;
 
-                    var surnameParam = new SqlParameter
-                    {
-                        ParameterName = "@surname",
-                        SqlDbType = SqlDbType.VarChar,
-                        Size = 50,
-                        Direction = ParameterDirection.Output
-                    };
 
-                    var roleParam = new SqlParameter
-                    {
-                        ParameterName = "@role",
-                        SqlDbType = SqlDbType.VarChar,
-                        Size = 30,
-                        Direction = ParameterDirection.Output
-                    };
-                    var idPeram = new SqlParameter
-                    {
-                        ParameterName = "@userId",
-                        SqlDbType = SqlDbType.VarChar,
-                        Size = 30,
-                        Direction = ParameterDirection.Output
-                    };
+                        command.Parameters.AddWithValue("@username", username);
 
-                    command.Parameters.Add(nameParam);
-                    command.Parameters.Add(surnameParam);
-                    command.Parameters.Add(roleParam);
-                    command.Parameters.Add(idPeram);
+                        var nameParam = new SqlParameter
+                        {
+                            ParameterName = "@name",
+                            SqlDbType = SqlDbType.VarChar,
+                            Size = 50,
+                            Direction = ParameterDirection.Output
+                        };
 
-                    command.ExecuteNonQuery();
+                        var surnameParam = new SqlParameter
+                        {
+                            ParameterName = "@surname",
+                            SqlDbType = SqlDbType.VarChar,
+                            Size = 50,
+                            Direction = ParameterDirection.Output
+                        };
 
-                    string name = nameParam.Value.ToString();
-                    string surname = surnameParam.Value.ToString();
-                    string role = roleParam.Value.ToString();
-                    int userId = int.Parse(idPeram.Value.ToString());
+                        var roleParam = new SqlParameter
+                        {
+                            ParameterName = "@role",
+                            SqlDbType = SqlDbType.VarChar,
+                            Size = 30,
+                            Direction = ParameterDirection.Output
+                        };
+                        var idPeram = new SqlParameter
+                        {
+                            ParameterName = "@userId",
+                            SqlDbType = SqlDbType.VarChar,
+                            Size = 30,
+                            Direction = ParameterDirection.Output
+                        };
 
-                    userInfo = new LoginController.UserInfo { Name = name, Surname = surname, Role = role, ID = userId};
+                        command.Parameters.Add(nameParam);
+                        command.Parameters.Add(surnameParam);
+                        command.Parameters.Add(roleParam);
+                        command.Parameters.Add(idPeram);
+
+                        command.ExecuteNonQuery();
+
+                        string name = nameParam.Value.ToString();
+                        string surname = surnameParam.Value.ToString();
+                        string role = roleParam.Value.ToString();
+                        int userId = int.Parse(idPeram.Value.ToString());
+
+                        userInfo = new LoginController.UserInfo { Name = name, Surname = surname, Role = role, ID = userId};
+                    }
+
                 }
-                conn.Close();
             }
             catch (Exception ex)
             {
                 ErrorHandler.DisplayError(ex);
-                conn.Close();
             }
             return userInfo;
         }
@@ -134,7 +138,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("loginProcedures.Logout"))
@@ -156,7 +160,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("loginProcedures.ResetPassword"))
@@ -191,7 +195,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("employeeProcedures.InsertEmployee", conn))
@@ -222,7 +226,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("employeeProcedures.UpdateEmployee", conn))
@@ -254,7 +258,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("employeeProcedures.DeleteEmployee", conn))
@@ -277,7 +281,7 @@ namespace PSS_ITWORKS
             EntityEmployee employee = null;
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("employeeProcedures.GetEmployee",conn))
@@ -306,9 +310,14 @@ namespace PSS_ITWORKS
                             {
                                 ErrorHandler.DisplayError("No Data");
                             }
+                            else
+                            {
+                                ErrorHandler.DisplayError("Employee Found");
+                            }
                             reader.Close();
                         }
                     }
+                    conn.Close();
                 }
             }
             catch (Exception ex)
@@ -321,7 +330,7 @@ namespace PSS_ITWORKS
         public List<EntityEmployee> GetEmployees()
         {
             List<EntityEmployee> employees = new List<EntityEmployee>();
-            using (conn)
+            using (SqlConnection conn = new SqlConnection(connString))
             {
                 using (SqlCommand command = new SqlCommand("employeeProcedures.GetEmployees",conn))
                 {
@@ -362,7 +371,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("callProcedures.InsertCallLog", conn))
@@ -388,7 +397,7 @@ namespace PSS_ITWORKS
             EntityCall call = null;
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("callProcedures.GetCall", conn))
@@ -428,7 +437,7 @@ namespace PSS_ITWORKS
             List<EntityCall> calls = new List<EntityCall>();
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("callProcedures.GetCalls", conn))
@@ -469,7 +478,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("clientProcedures.InsertClient", conn))
@@ -503,7 +512,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("clientProcedures.UpdateClient", conn))
@@ -538,7 +547,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("clientProcedures.DeleteClient", conn))
@@ -561,7 +570,7 @@ namespace PSS_ITWORKS
             EntityClient client = null;
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("clientProcedures.GetClient", conn))
@@ -610,7 +619,7 @@ namespace PSS_ITWORKS
             List<EntityClient> clients = new List<EntityClient>();
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("clientProcedures.GetClients", conn))
@@ -659,7 +668,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("contractProcedures.InsertContract", conn))
@@ -687,7 +696,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("contractProcedures.UpdateContract", conn))
@@ -716,7 +725,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("contractProcedure.DeleteContract", conn))
@@ -739,7 +748,7 @@ namespace PSS_ITWORKS
             EntityContract contract = null;
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("contractProcedures.GetContract", conn))
@@ -781,7 +790,7 @@ namespace PSS_ITWORKS
             List<EntityContract> contracts = new List<EntityContract>();
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("contractProcedures.GetContract", conn))
@@ -822,7 +831,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("jobProcedures.InsertJob", conn))
@@ -847,7 +856,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("jobProcedures.UpdateJob", conn))
@@ -873,7 +882,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("jobProcedures.UpdateJob", conn))
@@ -896,7 +905,7 @@ namespace PSS_ITWORKS
             EntityJob job = null;
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("jobProcedures.GetJob", conn))
@@ -938,7 +947,7 @@ namespace PSS_ITWORKS
             List<EntityJob> jobs = new List<EntityJob>();
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("jobProcedures.GetJobs", conn))
@@ -980,7 +989,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("serviceProcedures.InsertService", conn))
@@ -1006,7 +1015,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("serviceProcedures.UpdateService", conn))
@@ -1033,7 +1042,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("serviceProcedures.DeleteCService", conn))
@@ -1056,7 +1065,7 @@ namespace PSS_ITWORKS
             EntityService service = null;
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("serviceProcedures.GetService", conn))
@@ -1097,7 +1106,7 @@ namespace PSS_ITWORKS
             List<EntityService> services = new List<EntityService>();
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("serviceProcedures.GetService", conn))
@@ -1139,7 +1148,7 @@ namespace PSS_ITWORKS
             List<int> ids = new List<int>();
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("referenceProcedures.GetJobEmployeeRef", conn))
@@ -1158,6 +1167,10 @@ namespace PSS_ITWORKS
                             {
                                 ErrorHandler.DisplayError("No Data");
                             }
+                            else
+                            {
+                                ErrorHandler.DisplayError($"{ids.Count} references found");
+                            }
                             reader.Close();
                         }
                     }
@@ -1175,7 +1188,7 @@ namespace PSS_ITWORKS
             List<int> ids = new List<int>();
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("referenceProcedures.GetJobCallRef", conn))
@@ -1194,6 +1207,10 @@ namespace PSS_ITWORKS
                             {
                                 ErrorHandler.DisplayError("No Data");
                             }
+                            else
+                            {
+                                ErrorHandler.DisplayError($"{ids.Count} references found");
+                            }
                             reader.Close();
                         }
                     }
@@ -1211,7 +1228,7 @@ namespace PSS_ITWORKS
             List<int> ids = new List<int>();
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("referenceProcedures.GetContractRef", conn))
@@ -1230,6 +1247,10 @@ namespace PSS_ITWORKS
                             {
                                 ErrorHandler.DisplayError("No Data");
                             }
+                            else
+                            {
+                                ErrorHandler.DisplayError($"{ids.Count} references found");
+                            }
                             reader.Close();
                         }
                     }
@@ -1246,7 +1267,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("referenceProcedures.DeleteJobEmployeeRef", conn))
@@ -1269,7 +1290,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("referenceProcedures.DeleteJobEmployeeRef", conn))
@@ -1292,7 +1313,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("referenceProcedures.DeleteJobEmployeeRef", conn))
@@ -1315,7 +1336,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("referenceProcedures.InsertJobEmployeeRef", conn))
@@ -1338,7 +1359,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("referenceProcedures.InsertJobEmployeeRef", conn))
@@ -1361,7 +1382,7 @@ namespace PSS_ITWORKS
         {
             try
             {
-                using (conn)
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
                     using (SqlCommand command = new SqlCommand("referenceProcedures.InsertJobEmployeeRef", conn))
