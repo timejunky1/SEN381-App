@@ -15,10 +15,13 @@ namespace PSS_ITWORKS
 {
     internal class DatabaseAPI
     {
-        SqlConnection conn;
-        
+     
+       static string connString = @"Data Source=LAPTOP-RFTR69D9\SQLEXPRESS; Initial Catalog=PSS1; Integrated Security=True";
+        SqlConnection conn = new SqlConnection(connString);
+
         public void SetConnection(string connString)
         {
+            connString = @"Data Source=LAPTOP-RFTR69D9\SQLEXPRESS; Initial Catalog=PSS1; Integrated Security=True";
             conn = new SqlConnection(connString);
         }
 
@@ -471,7 +474,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("clientProcedures.InsertClient"))
+                    using (SqlCommand command = new SqlCommand("clientProcedures.InsertClient", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@companyName", client.GetCompanyName());//VARCHAR(50)
@@ -505,7 +508,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("clientProcedures.UpdateClient"))
+                    using (SqlCommand command = new SqlCommand("clientProcedures.UpdateClient",conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@clientId", client.GetID());//VARCHAR(50)
@@ -540,7 +543,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("clientProcedures.DeleteClient"))
+                    using (SqlCommand command = new SqlCommand("clientProcedures.DeleteClient",conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@clientId", clientId);//INT
@@ -563,7 +566,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("clientProcedures.GetClient"))
+                    using (SqlCommand command = new SqlCommand("clientProcedures.GetClient", conn))
                     {
                         command.CommandType= CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@clientId", clientId);
@@ -612,7 +615,7 @@ namespace PSS_ITWORKS
                 using (conn)
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("clientProcedures.GetClients"))
+                    using (SqlCommand command = new SqlCommand("clientProcedures.GetClients", conn))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {

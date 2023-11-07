@@ -87,6 +87,9 @@
             this.Clients_lbl = new System.Windows.Forms.Label();
             this.Welcome_lbl = new System.Windows.Forms.Label();
             this.Logo_img = new System.Windows.Forms.PictureBox();
+            this.client_Rbtn = new System.Windows.Forms.RadioButton();
+            this.employee_Rbtn = new System.Windows.Forms.RadioButton();
+            this.radioBtn_gb = new System.Windows.Forms.GroupBox();
             this.Admin_tc.SuspendLayout();
             this.CRUD_tp.SuspendLayout();
             this.clientDetails_gb.SuspendLayout();
@@ -94,6 +97,7 @@
             this.Users_tp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Users_dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).BeginInit();
+            this.radioBtn_gb.SuspendLayout();
             this.SuspendLayout();
             // 
             // Logout_btn
@@ -127,6 +131,7 @@
             // 
             // CRUD_tp
             // 
+            this.CRUD_tp.Controls.Add(this.radioBtn_gb);
             this.CRUD_tp.Controls.Add(this.clientDetails_gb);
             this.CRUD_tp.Controls.Add(this.role_cmb);
             this.CRUD_tp.Controls.Add(this.infoCRUD_lbl);
@@ -814,6 +819,43 @@
             this.Logo_img.TabIndex = 14;
             this.Logo_img.TabStop = false;
             // 
+            // client_Rbtn
+            // 
+            this.client_Rbtn.AutoSize = true;
+            this.client_Rbtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.client_Rbtn.Location = new System.Drawing.Point(6, 14);
+            this.client_Rbtn.Name = "client_Rbtn";
+            this.client_Rbtn.Size = new System.Drawing.Size(68, 25);
+            this.client_Rbtn.TabIndex = 61;
+            this.client_Rbtn.TabStop = true;
+            this.client_Rbtn.Text = "Client";
+            this.client_Rbtn.UseVisualStyleBackColor = true;
+            this.client_Rbtn.CheckedChanged += new System.EventHandler(this.client_Rbtn_CheckedChanged);
+            // 
+            // employee_Rbtn
+            // 
+            this.employee_Rbtn.AutoSize = true;
+            this.employee_Rbtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.employee_Rbtn.Location = new System.Drawing.Point(80, 14);
+            this.employee_Rbtn.Name = "employee_Rbtn";
+            this.employee_Rbtn.Size = new System.Drawing.Size(96, 25);
+            this.employee_Rbtn.TabIndex = 61;
+            this.employee_Rbtn.TabStop = true;
+            this.employee_Rbtn.Text = "Employee";
+            this.employee_Rbtn.UseVisualStyleBackColor = true;
+            this.employee_Rbtn.CheckedChanged += new System.EventHandler(this.employee_Rbtn_CheckedChanged);
+            // 
+            // radioBtn_gb
+            // 
+            this.radioBtn_gb.Controls.Add(this.client_Rbtn);
+            this.radioBtn_gb.Controls.Add(this.employee_Rbtn);
+            this.radioBtn_gb.Location = new System.Drawing.Point(193, 6);
+            this.radioBtn_gb.Name = "radioBtn_gb";
+            this.radioBtn_gb.Size = new System.Drawing.Size(251, 45);
+            this.radioBtn_gb.TabIndex = 62;
+            this.radioBtn_gb.TabStop = false;
+            this.radioBtn_gb.Enter += new System.EventHandler(this.radioBtn_gb_Enter);
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -839,6 +881,8 @@
             this.Users_tp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Users_dgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).EndInit();
+            this.radioBtn_gb.ResumeLayout(false);
+            this.radioBtn_gb.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -904,5 +948,8 @@
         private System.Windows.Forms.TextBox province_txt;
         private System.Windows.Forms.ComboBox role_cmb;
         private System.Windows.Forms.GroupBox clientDetails_gb;
+        private System.Windows.Forms.RadioButton employee_Rbtn;
+        private System.Windows.Forms.RadioButton client_Rbtn;
+        private System.Windows.Forms.GroupBox radioBtn_gb;
     }
 }

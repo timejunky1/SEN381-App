@@ -25,6 +25,8 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.loginForm = loginForm;
         }
 
+      
+
         private void LogOut_btn_Click(object sender, EventArgs e)
         {
             userInfo = null;

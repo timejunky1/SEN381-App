@@ -9,7 +9,7 @@ using PSS_ITWORKS.Presentation_Layer;
 public class LoginController
 {
     private DatabaseAPI api = new DatabaseAPI();
-    private string connectionString = @"Data Source=DESKTOP-TBBSO02\SQLEXPRESS; Initial Catalog=PSS1; Integrated Security=True";
+    private string connectionString = @"Data Source=LAPTOP-RFTR69D9\SQLEXPRESS; Initial Catalog=PSS1; Integrated Security=True";
     UserInfo userInfo;
 
 
