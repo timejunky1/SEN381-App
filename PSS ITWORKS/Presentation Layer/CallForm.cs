@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using PSS_ITWORKS.Presentation_Layer;
 using System.Data.SqlClient;
 using PSS_ITWORKS.LogicLayer;
+using PSS_ITWORKS.ConstantData;
 
 namespace PSS_ITWORKS.Presentation_Layer
 {
@@ -17,9 +18,10 @@ namespace PSS_ITWORKS.Presentation_Layer
     {
         
         StrategyContextManager context;
-        string conn = @"Data Source = DESKTOP - 8GCK8IN\SQLEXPRESS; Initial Catalog = PSS; Integrated Security = True";
+        string conn = SystemData.GetConString();
         int employeeID;
         Dashboard dashbord;
+        LoginController.UserInfo userInfo;
         void PopulateContracts(int id)
         {
             context = new StrategyContextManager(new StrategyContractManager());
@@ -126,10 +128,11 @@ namespace PSS_ITWORKS.Presentation_Layer
             }
             PastServiceRequest_dgv.DataSource=listJobs;   
         }
-        public CallForm(Dashboard dashboard)
+        public CallForm(Dashboard dashboard, LoginController.UserInfo userInfo)
         {
             InitializeComponent();
             this.dashbord = dashboard;
+            this.userInfo = userInfo;
         }
 
         private void label2_Click(object sender, EventArgs e)

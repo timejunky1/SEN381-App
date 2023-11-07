@@ -1,4 +1,5 @@
-﻿using PSS_ITWORKS.LogicLayer;
+﻿using PSS_ITWORKS.ConstantData;
+using PSS_ITWORKS.LogicLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +18,9 @@ namespace PSS_ITWORKS.Presentation_Layer
         protected StrategyContextManager cm;
         int UserId;
         private Dashboard dashboard;
-        public AdminForm(Dashboard dashboard)
+        string conString = "";
+        LoginController.UserInfo userInfo;
+        public AdminForm(Dashboard dashboard, LoginController.UserInfo userInfo)
         {
             InitializeComponent();
             role_cmb.Items.Clear();
@@ -32,10 +35,12 @@ namespace PSS_ITWORKS.Presentation_Layer
             clientDetails_gb.Visible = false;
             clientDetails_gb.Enabled = false;
             this.dashboard = dashboard;
+            this.userInfo = userInfo;
         }
 
         private void AdminForm_Load(object sender, EventArgs e)
         {
+            conString = SystemData.GetConString();
             cm = new StrategyContextManager(new StrategyClientManager());
             Users_dgv.DataSource = cm.Get();
             int id = 0;

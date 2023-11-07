@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PSS_ITWORKS.ConstantData;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,10 +14,13 @@ namespace PSS_ITWORKS.Presentation_Layer
     public partial class ClientManagerForm : Form
     {
         private Dashboard dashboard;
-        public ClientManagerForm(Dashboard dashboard)
+        LoginController.UserInfo userInfo;
+        string connString = SystemData.GetConString();
+        public ClientManagerForm(Dashboard dashboard, LoginController.UserInfo userInfo)
         {
             InitializeComponent();
             this.dashboard = dashboard;
+            this.userInfo = userInfo;
         }
 
         private void Logout_btn_Click(object sender, EventArgs e)

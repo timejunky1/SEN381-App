@@ -1,14 +1,9 @@
-﻿using PSS_ITWORKS.LogicLayer;
+﻿using PSS_ITWORKS.ConstantData;
+using PSS_ITWORKS.LogicLayer;
 using PSS_ITWORKS.LogicLayer.StrategyMethod;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlTypes;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PSS_ITWORKS.Presentation_Layer
@@ -19,18 +14,22 @@ namespace PSS_ITWORKS.Presentation_Layer
         Dashboard dashboard;
         EntityEmployee technician;
         private EntityJob job;
-        int technicianId = 2;
+        int technicianId;
         int jobId = 0;
-        public Technician(Dashboard dashboard)
+        LoginController.UserInfo userInfo;
+        string connString = SystemData.GetConString();
+        public Technician(Dashboard dashboard, LoginController.UserInfo userInfo)
         {
             InitializeComponent();
             this.dashboard = dashboard;
+            this.userInfo = userInfo;
+            technicianId = userInfo.ID;
         }
 
         private void Technician_Load(object sender, EventArgs e)
         {
             context = new StrategyContextManager(new StrategyTechnician());
-            context.Connect(@"Data Source=DESKTOP-TBBSO02\SQLEXPRESS; Initial Catalog=PSS1; Integrated Security=True");
+            context.Connect(connString);
             jobID_txt.Text = "0";
             status_cbx.Items.Clear();
             status_cbx.Items.Add("Finished");
@@ -167,12 +166,12 @@ namespace PSS_ITWORKS.Presentation_Layer
             jobID_txt.Text = jobId.ToString();
             //Change stratagy to clientManagement
             context = new StrategyContextManager(new StrategyClientManager());
-            context.Connect(@"Data Source=DESKTOP-TBBSO02\SQLEXPRESS; Initial Catalog=PSS1; Integrated Security=True");
+            context.Connect(connString);
             clientDetails_dgv.DataSource = context.Get(job.GetClientId());
             //Change stratagy to ServiceManagement
             
             context = new StrategyContextManager(new StrategyServiceManager());
-            context.Connect(@"Data Source=DESKTOP-TBBSO02\SQLEXPRESS; Initial Catalog=PSS1; Integrated Security=True");
+            context.Connect(connString);
             serviceOverview_dgv.DataSource = context.Get(job.GetServiceId());
             status_cbx.Text = job.GetStatus();
             jobNotes_rtb.Text = job.GetNotes();

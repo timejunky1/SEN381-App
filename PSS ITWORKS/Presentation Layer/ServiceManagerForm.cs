@@ -1,4 +1,5 @@
-﻿using PSS_ITWORKS.LogicLayer;
+﻿using PSS_ITWORKS.ConstantData;
+using PSS_ITWORKS.LogicLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,11 +15,21 @@ namespace PSS_ITWORKS.Presentation_Layer
     public partial class ServiceManagerForm : Form
     {
         StrategyContextManager context;
-        string conn = @"Data Source=DESKTOP-TBBSO02\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True";
+        string conn = SystemData.GetConString();
         public int jobID;
         public int clientID;
         List<EntityCall> CallList = new List<EntityCall>();
 
+        private Dashboard dashboard;
+        StrategyContextManager cm;
+        AssignmentForm af = new AssignmentForm();
+        LoginController.UserInfo userInfo;
+        public ServiceManagerForm(Dashboard dashboard, LoginController.UserInfo userInfo)
+        {
+            InitializeComponent();
+            this.dashboard = dashboard;
+            this.userInfo = userInfo;
+        }
         public int GetTechID(string Name)
         {
             int ID = 0;
@@ -203,15 +214,6 @@ namespace PSS_ITWORKS.Presentation_Layer
                 }
             }
             return techs;
-        }
-
-        private Dashboard dashboard;
-        StrategyContextManager cm;
-        AssignmentForm af = new AssignmentForm();
-        public ServiceManagerForm(Dashboard dashboard)
-        {
-            InitializeComponent();
-            this.dashboard = dashboard;
         }
 
         private void ManagerForm_Load(object sender, EventArgs e)

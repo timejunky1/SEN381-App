@@ -19,7 +19,7 @@ namespace PSS_ITWORKS.Testing
             FactoryUserFactory factory = new FactoryUserFactory(null);
             FactoryIUser userPortal = factory.CreateUser("Technician");
             //Act
-            userPortal.ShowUserInterface(null);
+            userPortal.ShowUserInterface(null, null);
             bool result = userPortal != null;
             //Assert
             Assert.True(result);
@@ -33,7 +33,7 @@ namespace PSS_ITWORKS.Testing
             FactoryUserFactory factory = new FactoryUserFactory(null);
             FactoryIUser userPortal = factory.CreateUser("Client");
             //Act
-            userPortal.ShowUserInterface(null);
+            userPortal.ShowUserInterface(null, null);
             bool result = userPortal != null;
             //Assert
             Assert.True(result);
@@ -47,7 +47,7 @@ namespace PSS_ITWORKS.Testing
             FactoryUserFactory factory = new FactoryUserFactory(null);
             FactoryIUser userPortal = factory.CreateUser("Admin");
             //Act
-            userPortal.ShowUserInterface(null);
+            userPortal.ShowUserInterface(null, null);
             bool result = userPortal != null;
             //Assert
             Assert.True(result);
@@ -61,7 +61,7 @@ namespace PSS_ITWORKS.Testing
             FactoryUserFactory factory = new FactoryUserFactory(null);
             FactoryIUser userPortal = factory.CreateUser("Service Manager");
             //Act
-            userPortal.ShowUserInterface(null);
+            userPortal.ShowUserInterface(null, null);
             bool result = userPortal != null;
             //Assert
             Assert.True(result);
@@ -75,7 +75,7 @@ namespace PSS_ITWORKS.Testing
             FactoryUserFactory factory = new FactoryUserFactory(null);
             FactoryIUser userPortal = factory.CreateUser("Contract Manager");
             //Act
-            userPortal.ShowUserInterface(null);
+            userPortal.ShowUserInterface(null, null);
             bool result = userPortal != null;
             //Assert
             Assert.True(result);
@@ -89,7 +89,7 @@ namespace PSS_ITWORKS.Testing
             FactoryUserFactory factory = new FactoryUserFactory(null);
             FactoryIUser userPortal = factory.CreateUser("Client Manager");
             //Act
-            userPortal.ShowUserInterface(null);
+            userPortal.ShowUserInterface(null, null);
             bool result = userPortal != null;
             //Assert
             Assert.True(result);
@@ -103,7 +103,7 @@ namespace PSS_ITWORKS.Testing
             FactoryUserFactory factory = new FactoryUserFactory(null);
             FactoryIUser userPortal = factory.CreateUser("Call Employee");
             //Act
-            userPortal.ShowUserInterface(null);
+            userPortal.ShowUserInterface(null, null);
             bool result = userPortal != null;
             //Assert
             Assert.True(result);
