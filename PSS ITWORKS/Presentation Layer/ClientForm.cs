@@ -34,14 +34,9 @@ namespace PSS_ITWORKS.Presentation_Layer
         private DataGridView clientHistory_dgv;
         private Label history_lbl;
         private Label contractOverview_lbl;
-        private TextBox experationDate_txt;
-        private Label experationDate_lbl;
-        private TextBox services_txt;
-        private Label services_lbl;
-        private TextBox contractType_txt;
-        private Label contractType_lbl;
         private Label WelcomeClient_lbl;
         private Button newRequest_btn;
+        private DataGridView contract_dgv;
         StrategyContextManager theClient;
 
         public ClientForm()
@@ -66,14 +61,9 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.serviceRequest_tbp = new System.Windows.Forms.TabPage();
             this.serviceStatusFeedback_dgv = new System.Windows.Forms.DataGridView();
             this.statusFeedback_lbl = new System.Windows.Forms.Label();
+            this.newRequest_btn = new System.Windows.Forms.Button();
             this.serviceRequests_lbl = new System.Windows.Forms.Label();
             this.contractInformation_tbp = new System.Windows.Forms.TabPage();
-            this.experationDate_txt = new System.Windows.Forms.TextBox();
-            this.experationDate_lbl = new System.Windows.Forms.Label();
-            this.services_txt = new System.Windows.Forms.TextBox();
-            this.services_lbl = new System.Windows.Forms.Label();
-            this.contractType_txt = new System.Windows.Forms.TextBox();
-            this.contractType_lbl = new System.Windows.Forms.Label();
             this.contractOverview_lbl = new System.Windows.Forms.Label();
             this.communication_tbp = new System.Windows.Forms.TabPage();
             this.callHistory_dgv = new System.Windows.Forms.DataGridView();
@@ -81,7 +71,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.history_tbp = new System.Windows.Forms.TabPage();
             this.clientHistory_dgv = new System.Windows.Forms.DataGridView();
             this.history_lbl = new System.Windows.Forms.Label();
-            this.newRequest_btn = new System.Windows.Forms.Button();
+            this.contract_dgv = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).BeginInit();
             this.ClientDashboard_tbc.SuspendLayout();
             this.Dashboard_tbp.SuspendLayout();
@@ -93,6 +83,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             ((System.ComponentModel.ISupportInitialize)(this.callHistory_dgv)).BeginInit();
             this.history_tbp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientHistory_dgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contract_dgv)).BeginInit();
             this.SuspendLayout();
             // 
             // Logout_btn
@@ -226,6 +217,23 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.statusFeedback_lbl.TabIndex = 22;
             this.statusFeedback_lbl.Text = "Service request status and feedback";
             // 
+            // newRequest_btn
+            // 
+            this.newRequest_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(228)))), ((int)(((byte)(91)))));
+            this.newRequest_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.newRequest_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.newRequest_btn.FlatAppearance.BorderSize = 0;
+            this.newRequest_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.newRequest_btn.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newRequest_btn.Location = new System.Drawing.Point(9, 46);
+            this.newRequest_btn.Margin = new System.Windows.Forms.Padding(4);
+            this.newRequest_btn.Name = "newRequest_btn";
+            this.newRequest_btn.Size = new System.Drawing.Size(235, 44);
+            this.newRequest_btn.TabIndex = 21;
+            this.newRequest_btn.Text = "New Request";
+            this.newRequest_btn.UseVisualStyleBackColor = false;
+            this.newRequest_btn.Click += new System.EventHandler(this.newRequest_btn_Click);
+            // 
             // serviceRequests_lbl
             // 
             this.serviceRequests_lbl.AutoSize = true;
@@ -238,12 +246,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             // 
             // contractInformation_tbp
             // 
-            this.contractInformation_tbp.Controls.Add(this.experationDate_txt);
-            this.contractInformation_tbp.Controls.Add(this.experationDate_lbl);
-            this.contractInformation_tbp.Controls.Add(this.services_txt);
-            this.contractInformation_tbp.Controls.Add(this.services_lbl);
-            this.contractInformation_tbp.Controls.Add(this.contractType_txt);
-            this.contractInformation_tbp.Controls.Add(this.contractType_lbl);
+            this.contractInformation_tbp.Controls.Add(this.contract_dgv);
             this.contractInformation_tbp.Controls.Add(this.contractOverview_lbl);
             this.contractInformation_tbp.Location = new System.Drawing.Point(4, 34);
             this.contractInformation_tbp.Name = "contractInformation_tbp";
@@ -252,54 +255,6 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.contractInformation_tbp.TabIndex = 2;
             this.contractInformation_tbp.Text = "Contract Information";
             this.contractInformation_tbp.UseVisualStyleBackColor = true;
-            // 
-            // experationDate_txt
-            // 
-            this.experationDate_txt.Location = new System.Drawing.Point(29, 221);
-            this.experationDate_txt.Name = "experationDate_txt";
-            this.experationDate_txt.Size = new System.Drawing.Size(208, 30);
-            this.experationDate_txt.TabIndex = 8;
-            // 
-            // experationDate_lbl
-            // 
-            this.experationDate_lbl.AutoSize = true;
-            this.experationDate_lbl.Location = new System.Drawing.Point(24, 193);
-            this.experationDate_lbl.Name = "experationDate_lbl";
-            this.experationDate_lbl.Size = new System.Drawing.Size(151, 25);
-            this.experationDate_lbl.TabIndex = 7;
-            this.experationDate_lbl.Text = "Experation Date";
-            // 
-            // services_txt
-            // 
-            this.services_txt.Location = new System.Drawing.Point(29, 151);
-            this.services_txt.Name = "services_txt";
-            this.services_txt.Size = new System.Drawing.Size(208, 30);
-            this.services_txt.TabIndex = 6;
-            // 
-            // services_lbl
-            // 
-            this.services_lbl.AutoSize = true;
-            this.services_lbl.Location = new System.Drawing.Point(24, 123);
-            this.services_lbl.Name = "services_lbl";
-            this.services_lbl.Size = new System.Drawing.Size(88, 25);
-            this.services_lbl.TabIndex = 5;
-            this.services_lbl.Text = "Services";
-            // 
-            // contractType_txt
-            // 
-            this.contractType_txt.Location = new System.Drawing.Point(29, 84);
-            this.contractType_txt.Name = "contractType_txt";
-            this.contractType_txt.Size = new System.Drawing.Size(208, 30);
-            this.contractType_txt.TabIndex = 4;
-            // 
-            // contractType_lbl
-            // 
-            this.contractType_lbl.AutoSize = true;
-            this.contractType_lbl.Location = new System.Drawing.Point(24, 56);
-            this.contractType_lbl.Name = "contractType_lbl";
-            this.contractType_lbl.Size = new System.Drawing.Size(136, 25);
-            this.contractType_lbl.TabIndex = 3;
-            this.contractType_lbl.Text = "Contract Type";
             // 
             // contractOverview_lbl
             // 
@@ -376,22 +331,15 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.history_lbl.TabIndex = 3;
             this.history_lbl.Text = "Past service requests, maintenance activities, and invoices";
             // 
-            // newRequest_btn
+            // contract_dgv
             // 
-            this.newRequest_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(228)))), ((int)(((byte)(91)))));
-            this.newRequest_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.newRequest_btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.newRequest_btn.FlatAppearance.BorderSize = 0;
-            this.newRequest_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.newRequest_btn.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newRequest_btn.Location = new System.Drawing.Point(9, 46);
-            this.newRequest_btn.Margin = new System.Windows.Forms.Padding(4);
-            this.newRequest_btn.Name = "newRequest_btn";
-            this.newRequest_btn.Size = new System.Drawing.Size(235, 44);
-            this.newRequest_btn.TabIndex = 21;
-            this.newRequest_btn.Text = "New Request";
-            this.newRequest_btn.UseVisualStyleBackColor = false;
-            this.newRequest_btn.Click += new System.EventHandler(this.newRequest_btn_Click);
+            this.contract_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.contract_dgv.Location = new System.Drawing.Point(7, 59);
+            this.contract_dgv.Name = "contract_dgv";
+            this.contract_dgv.RowHeadersWidth = 51;
+            this.contract_dgv.RowTemplate.Height = 24;
+            this.contract_dgv.Size = new System.Drawing.Size(1018, 310);
+            this.contract_dgv.TabIndex = 3;
             // 
             // ClientForm
             // 
@@ -419,6 +367,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.history_tbp.ResumeLayout(false);
             this.history_tbp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientHistory_dgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contract_dgv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -426,14 +375,18 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void newRequest_btn_Click(object sender, EventArgs e)
         {
-            // Make sure where this button should go/do
             
+
+            this.Hide();
+            //NewServiceRequest().Show();
+            
+
 
         }
 
         private void ClientForm_Load(object sender, EventArgs e)
         {
-            // temp id
+            // temp id replace with loged in client details
             int id = 1;
 
             // On Form load clear all outputs
@@ -442,13 +395,16 @@ namespace PSS_ITWORKS.Presentation_Layer
             // populate the datagridviews with details of current client
 
             // MaintenanceOverview
+            FindClientJobs(id);
+
+            //Service requests
+            ServiceRequest(id);
+
+            // Contract ddetails
             FindClientContract(id);
 
             // Call history
             FindClientCalls(id);
-
-
-            ServiceRequest(id);
 
             // Client history
             ClientHistory(id);
@@ -458,15 +414,40 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         
 
-
-
-
         // Method for populating the Service Request
         private void ServiceRequest(int clientID)
         {
-            int id = 1;// temp id
+            
+            serviceStatusFeedback_dgv.DataSource = null;
+            serviceStatusFeedback_dgv.ColumnCount = 7;
+            serviceStatusFeedback_dgv.Columns[0].HeaderText = "Job ID";
+            serviceStatusFeedback_dgv.Columns[1].HeaderText = "Client ID";
+            serviceStatusFeedback_dgv.Columns[2].HeaderText = "Job Type";
+            serviceStatusFeedback_dgv.Columns[3].HeaderText = "Job Description";
+            serviceStatusFeedback_dgv.Columns[4].HeaderText = "Job Status";
+            serviceStatusFeedback_dgv.Columns[5].HeaderText = "Job Initiation Date";
+            serviceStatusFeedback_dgv.Columns[6].HeaderText = "Job Technician ID";
 
-            //serviceStatusFeedback_dgv
+
+            // Get the client jobs and then display that client's jobs in data grid view
+            List<IEntity> jobs = theClient.Get();
+            foreach (EntityClient job in jobs)
+            {
+                if (job.GetID() == clientID && job.GetStatus() == 'Pending')
+                {
+                 
+                    // add the client jobs to the data grid view
+                    serviceStatusFeedback_dgv.Rows.Add(job.GetID(), job.GetClientID(), job.GetJobType(), job.GetJobDescription(),
+                                               job.GetStatus(), job.GetJobInitiationDate(), job.GetJobTechnicianID());
+
+                }
+                else
+                {
+                    MessageBox.Show("Client jobs not found");
+                }
+            }
+
+
         }
 
 
@@ -474,35 +455,27 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void ClientHistory(int clientID)
         {
 
-
-            // with strategy find the client jobs in db. Display in clientJobs_dgv datagridview
             clientHistory_dgv.DataSource = null;
-            clientHistory_dgv.Rows.Clear();
-            clientHistory_dgv.Refresh();
-
+            clientHistory_dgv.ColumnCount = 7;
+            clientHistory_dgv.Columns[0].HeaderText = "Job ID";
+            clientHistory_dgv.Columns[1].HeaderText = "Job Type";
+            clientHistory_dgv.Columns[2].HeaderText = "Job Description";
+            clientHistory_dgv.Columns[3].HeaderText = "Job Status";
+            clientHistory_dgv.Columns[4].HeaderText = "Job Initiation Date";
+            clientHistory_dgv.Columns[5].HeaderText = "Job Completion Date";
+            clientHistory_dgv.Columns[6].HeaderText = "Job Technician ID";
 
             // Get the client jobs and then display that client's jobs in data grid view
             List<IEntity> jobs = theClient.Get();
             foreach (EntityClient job in jobs)
             {
-                if (job.GetID() == clientID)
+                if (job.GetID() == clientID && job.GetStatus() == 'Finished')
                 {
-                    // brake the client jobs in the entity into pieces and display them in the data grid view
-                    clientHistory_dgv.ColumnCount = 8;
-                    clientHistory_dgv.Columns[0].HeaderText = "Job ID";
-                    clientHistory_dgv.Columns[1].HeaderText = "Client ID";
-                    clientHistory_dgv.Columns[2].HeaderText = "Job Type";
-                    clientHistory_dgv.Columns[3].HeaderText = "Job Description";
-                    clientHistory_dgv.Columns[4].HeaderText = "Job Status";
-                    clientHistory_dgv.Columns[5].HeaderText = "Job Initiation Date";
-                    clientHistory_dgv.Columns[6].HeaderText = "Job Completion Date";
-                    clientHistory_dgv.Columns[7].HeaderText = "Job Technician ID";
-
-
                     // add the client jobs to the data grid view
 
-                    // Filter jobs 
-                    clientHistory_dgv.DataSource = job.GetJobs();
+                    clientHistory_dgv.Rows.Add(job.GetID(), job.GetClientID(), job.GetJobType(), job.GetJobDescription(),
+                                               job.GetStatus(), job.GetJobInitiationDate(), job.GetJobTechnicianID());
+
 
 
 
@@ -515,7 +488,6 @@ namespace PSS_ITWORKS.Presentation_Layer
         }
 
 
-
         // method to clear datagridviews
         private void ClearDataGridViews()
         {
@@ -526,6 +498,10 @@ namespace PSS_ITWORKS.Presentation_Layer
             serviceStatusFeedback_dgv.DataSource = null;
             serviceStatusFeedback_dgv.Rows.Clear();
             serviceStatusFeedback_dgv.Refresh();
+
+            contract_dgv.DataSource = null;
+            contract_dgv.Rows.Clear();
+            contract_dgv.Refresh();
 
             callHistory_dgv.DataSource = null;
             callHistory_dgv.Rows.Clear();
@@ -564,17 +540,24 @@ namespace PSS_ITWORKS.Presentation_Layer
             StrategyContextManager contractManager = new StrategyContextManager(new StrategyContractManager());
             contractManager.Connect(@"Data Source=JOEKNOWS\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
 
+            // Clear dgv and add headings
+            contract_dgv.DataSource = null;
+            contract_dgv.ColumnCount = 5;
+            contract_dgv.Columns[0].HeaderText = "Contract ID";
+            contract_dgv.Columns[1].HeaderText = "Client ID";
+            contract_dgv.Columns[2].HeaderText = "Contract Initiation Date";
+            contract_dgv.Columns[3].HeaderText = "Contract Expiration Date";
+            contract_dgv.Columns[4].HeaderText = "Contract Type";
+
             // find the client contract in the list of entities by their clientId and then display 
             List<IEntity> contracts = contractManager.Get();
             foreach (EntityContract contract in contracts)
             {
-                // Display data in input fields
 
-                // figure display out
+                // add the contract to the data grid view
+                contract_dgv.Rows.Add(contract.GetId(), contract.GetClients(), contract.GetStartTime(),
+                        CalculateEndDate(contract.GetStartTime(), contract.GetDuration()), contract.GetType());
 
-                //contractType_txt.Text = contract.GetType();
-                //services_txt.Text = contract.GetServices();
-                //experationDate_txt.Text = CalculateEndDate(contract.GetStartTime(), contract.GetDuration());
 
 
             }
@@ -589,10 +572,17 @@ namespace PSS_ITWORKS.Presentation_Layer
         // Use methods to find the client jobs 
         private void FindClientJobs(int clientID)
         {
-            // with strategy find the client jobs in db. Display in clientJobs_dgv datagridview
+
             clientMaintenanceOverview_dgv.DataSource = null;
-            clientMaintenanceOverview_dgv.Rows.Clear();
-            clientMaintenanceOverview_dgv.Refresh();
+            clientMaintenanceOverview_dgv.ColumnCount = 8;
+            clientMaintenanceOverview_dgv.Columns[0].HeaderText = "Job ID";
+            clientMaintenanceOverview_dgv.Columns[1].HeaderText = "Client ID";
+            clientMaintenanceOverview_dgv.Columns[2].HeaderText = "Job Type";
+            clientMaintenanceOverview_dgv.Columns[3].HeaderText = "Job Description";
+            clientMaintenanceOverview_dgv.Columns[4].HeaderText = "Job Status";
+            clientMaintenanceOverview_dgv.Columns[5].HeaderText = "Job Initiation Date";
+            clientMaintenanceOverview_dgv.Columns[6].HeaderText = "Job Completion Date";
+            clientMaintenanceOverview_dgv.Columns[7].HeaderText = "Job Technician ID";
 
 
             // Get the client jobs and then display that client's jobs in data grid view
@@ -601,17 +591,6 @@ namespace PSS_ITWORKS.Presentation_Layer
             {
                 if (job.GetID() == clientID)
                 {
-                    // brake the client jobs in the entity into pieces and display them in the data grid view
-                    clientMaintenanceOverview_dgv.ColumnCount = 8;
-                    clientMaintenanceOverview_dgv.Columns[0].HeaderText = "Job ID";
-                    clientMaintenanceOverview_dgv.Columns[1].HeaderText = "Client ID";
-                    clientMaintenanceOverview_dgv.Columns[2].HeaderText = "Job Type";
-                    clientMaintenanceOverview_dgv.Columns[3].HeaderText = "Job Description";
-                    clientMaintenanceOverview_dgv.Columns[4].HeaderText = "Job Status";
-                    clientMaintenanceOverview_dgv.Columns[5].HeaderText = "Job Initiation Date";
-                    clientMaintenanceOverview_dgv.Columns[6].HeaderText = "Job Completion Date";
-                    clientMaintenanceOverview_dgv.Columns[7].HeaderText = "Job Technician ID";
-
                     // add the client jobs to the data grid view
                     clientMaintenanceOverview_dgv.DataSource = job.GetJobs();
 
@@ -627,7 +606,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         // method to get clients calls
         private void FindClientCalls(int clientID)
         {
-            // with strategy find the client calls in db. Display in clientCalls_dgv datagridview
+
             callHistory_dgv.DataSource = null;
             callHistory_dgv.Rows.Clear();
             callHistory_dgv.Refresh();

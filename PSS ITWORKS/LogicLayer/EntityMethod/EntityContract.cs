@@ -20,7 +20,7 @@ namespace PSS_ITWORKS.LogicLayer
         public EntityContract(int id, string title, string sLA, int duration, decimal cost, int priority, string availability)
         {
             this.id = id;
-            SLA = sLA;
+            this.SLA = sLA;
             this.duration = duration;
             this.cost = cost;
             this.priority = priority;

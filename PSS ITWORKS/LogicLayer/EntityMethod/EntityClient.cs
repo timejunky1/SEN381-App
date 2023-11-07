@@ -131,5 +131,10 @@ namespace PSS_ITWORKS.LogicLayer
         {
             return calls;
         }
+
+        internal bool GetStatus()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

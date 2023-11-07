@@ -44,15 +44,27 @@ namespace PSS_ITWORKS.Presentation_Layer
             FindClientJobs(clientID);
         }
 
-
-        // Use methods to find the client in db
+        // Use methods to find the client details
         private void FindClientDetails(int clientID)
         {
             // with strategy find the client in db. Display in clientDetail_dgv datagridview
             clientDetail_dgv.DataSource = null;
-            clientDetail_dgv.Rows.Clear();
-            clientDetail_dgv.Refresh();
-            
+            clientDetail_dgv.ColumnCount = 14;
+            clientDetail_dgv.Columns[0].HeaderText = "Client ID";
+            clientDetail_dgv.Columns[1].HeaderText = "Company Name";
+            clientDetail_dgv.Columns[2].HeaderText = "Name";
+            clientDetail_dgv.Columns[3].HeaderText = "Surname";
+            clientDetail_dgv.Columns[4].HeaderText = "Role";
+            clientDetail_dgv.Columns[5].HeaderText = "Contract ID";
+            clientDetail_dgv.Columns[6].HeaderText = "Phone";
+            clientDetail_dgv.Columns[7].HeaderText = "Email";
+            clientDetail_dgv.Columns[8].HeaderText = "Contract Initiation Date";
+            clientDetail_dgv.Columns[9].HeaderText = "Street Number";
+            clientDetail_dgv.Columns[10].HeaderText = "Street Name";
+            clientDetail_dgv.Columns[11].HeaderText = "City";
+            clientDetail_dgv.Columns[12].HeaderText = "Province";
+            clientDetail_dgv.Columns[13].HeaderText = "Zip Code";
+
 
 
             // find the client in the list of entities by their clientId and the display that client's details in data grid view
@@ -61,22 +73,6 @@ namespace PSS_ITWORKS.Presentation_Layer
             {
                 if (client.GetID() == clientID)
                 {
-                    // brake the client details in the entity into pieces and display them in the data grid view
-                    clientDetail_dgv.ColumnCount = 12;
-                    clientDetail_dgv.Columns[0].HeaderText = "Client ID";
-                    clientDetail_dgv.Columns[1].HeaderText = "Company Name";
-                    clientDetail_dgv.Columns[2].HeaderText = "Name";
-                    clientDetail_dgv.Columns[3].HeaderText = "Surname";
-                    clientDetail_dgv.Columns[4].HeaderText = "Role";
-                    clientDetail_dgv.Columns[5].HeaderText = "Contract ID";
-                    clientDetail_dgv.Columns[6].HeaderText = "Phone";
-                    clientDetail_dgv.Columns[7].HeaderText = "Email";
-                    clientDetail_dgv.Columns[8].HeaderText = "Contract Initiation Date";
-                    clientDetail_dgv.Columns[9].HeaderText = "Street Number";
-                    clientDetail_dgv.Columns[10].HeaderText = "Street Name";
-                    clientDetail_dgv.Columns[11].HeaderText = "City";
-                    clientDetail_dgv.Columns[12].HeaderText = "Province";
-                    clientDetail_dgv.Columns[13].HeaderText = "Zip Code";
 
                     // add the client details to the data grid view
                     clientDetail_dgv.Rows.Add(client.GetID(), client.GetCompanyName(), client.GetName(), 
@@ -99,9 +95,13 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             // with strategy find the client contract in. Display in clientContract_dgv datagridview
             clientContract_dgv.DataSource = null;
-            clientContract_dgv.Rows.Clear();
-            clientContract_dgv.Refresh();
-            
+            clientContract_dgv.ColumnCount = 5;
+            clientContract_dgv.Columns[0].HeaderText = "Contract ID";
+            clientContract_dgv.Columns[1].HeaderText = "Client ID";
+            clientContract_dgv.Columns[2].HeaderText = "Contract Initiation Date";
+            clientContract_dgv.Columns[3].HeaderText = "Contract Expiration Date";
+            clientContract_dgv.Columns[4].HeaderText = "Contract Type";
+
 
             //change strategy to strategycontractmanager
             StrategyContextManager contractManager = new StrategyContextManager(new StrategyContractManager());
@@ -111,15 +111,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             List<IEntity> contracts = contractManager.Get();
             foreach (EntityContract contract in contracts)
             {
-              
-                // brake the client contract in the entity into pieces and display them in the data grid view
-                clientContract_dgv.ColumnCount = 5;
-                clientContract_dgv.Columns[0].HeaderText = "Contract ID";
-                clientContract_dgv.Columns[1].HeaderText = "Client ID";
-                clientContract_dgv.Columns[2].HeaderText = "Contract Initiation Date";
-                clientContract_dgv.Columns[3].HeaderText = "Contract Expiration Date";
-                clientContract_dgv.Columns[4].HeaderText = "Contract Type";
-
+ 
                 // add the contract to the data grid view
                 clientContract_dgv.Rows.Add(contract.GetId(), contract.GetClients(), contract.GetStartTime(), 
                     CalculateEndDate(contract.GetStartTime(),contract.GetDuration()), contract.GetType());
@@ -139,8 +131,15 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             // with strategy find the client jobs in db. Display in clientJobs_dgv datagridview
             clientJobs_dgv.DataSource = null;
-            clientJobs_dgv.Rows.Clear();
-            clientJobs_dgv.Refresh();
+            clientJobs_dgv.ColumnCount = 8;
+            clientJobs_dgv.Columns[0].HeaderText = "Job ID";
+            clientJobs_dgv.Columns[1].HeaderText = "Client ID";
+            clientJobs_dgv.Columns[2].HeaderText = "Job Type";
+            clientJobs_dgv.Columns[3].HeaderText = "Job Description";
+            clientJobs_dgv.Columns[4].HeaderText = "Job Status";
+            clientJobs_dgv.Columns[5].HeaderText = "Job Initiation Date";
+            clientJobs_dgv.Columns[6].HeaderText = "Job Completion Date";
+            clientJobs_dgv.Columns[7].HeaderText = "Job Technician ID";
 
 
             // Get the client jobs and then display that client's jobs in data grid view
@@ -149,16 +148,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             {
                 if (job.GetID() == clientID)
                 {
-                    // brake the client jobs in the entity into pieces and display them in the data grid view
-                    clientJobs_dgv.ColumnCount = 8;
-                    clientJobs_dgv.Columns[0].HeaderText = "Job ID";
-                    clientJobs_dgv.Columns[1].HeaderText = "Client ID";
-                    clientJobs_dgv.Columns[2].HeaderText = "Job Type";
-                    clientJobs_dgv.Columns[3].HeaderText = "Job Description";
-                    clientJobs_dgv.Columns[4].HeaderText = "Job Status";
-                    clientJobs_dgv.Columns[5].HeaderText = "Job Initiation Date";
-                    clientJobs_dgv.Columns[6].HeaderText = "Job Completion Date";
-                    clientJobs_dgv.Columns[7].HeaderText = "Job Technician ID";
+                  
 
                     // add the client jobs to the data grid view
                     clientJobs_dgv.DataSource = job.GetJobs();
