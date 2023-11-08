@@ -622,7 +622,6 @@
             this.Services_dgv.RowTemplate.Height = 24;
             this.Services_dgv.Size = new System.Drawing.Size(432, 297);
             this.Services_dgv.TabIndex = 6;
-            this.Services_dgv.SelectionChanged += new System.EventHandler(this.Services_dgv_SelectionChanged);
             // 
             // Services_lbl
             // 

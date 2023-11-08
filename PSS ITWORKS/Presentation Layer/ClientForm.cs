@@ -1,4 +1,5 @@
-﻿using PSS_ITWORKS.LogicLayer;
+﻿using PSS_ITWORKS.ConstantData;
+using PSS_ITWORKS.LogicLayer;
 using PSS_ITWORKS.LogicLayer.StrategyMethod;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,9 @@ namespace PSS_ITWORKS.Presentation_Layer
 {
     public partial class ClientForm : Form
     {
-        private Button Logout_btn;
+        string connString = SystemData.GetConString();
+        Dashboard dashboard;
+        UserInfo userInfo;
         private PictureBox Logo_img;
         private TabControl ClientDashboard_tbc;
         private TabPage Dashboard_tbp;
@@ -37,21 +40,22 @@ namespace PSS_ITWORKS.Presentation_Layer
         private Label WelcomeClient_lbl;
         private Button newRequest_btn;
         private DataGridView contract_dgv;
+        private Button Logout_btn;
         StrategyContextManager theClient;
 
         public ClientForm(Dashboard dashboard, LoginController.UserInfo userInfo)
         {
+            this.dashboard = dashboard;
+            this.userInfo = userInfo;
             InitializeComponent();
             // Set the Client strategy
             theClient = new StrategyContextManager(new StrategyClient());
-            theClient.Connect(@"Data Source=JOEKNOWS\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+            theClient.Connect(connString);
         }
 
         // DONT REMOVE THIS
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientForm));
-            this.Logout_btn = new System.Windows.Forms.Button();
             this.Logo_img = new System.Windows.Forms.PictureBox();
             this.WelcomeClient_lbl = new System.Windows.Forms.Label();
             this.ClientDashboard_tbc = new System.Windows.Forms.TabControl();
@@ -65,6 +69,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.newRequest_btn = new System.Windows.Forms.Button();
             this.serviceRequests_lbl = new System.Windows.Forms.Label();
             this.contractInformation_tbp = new System.Windows.Forms.TabPage();
+            this.contract_dgv = new System.Windows.Forms.DataGridView();
             this.contractOverview_lbl = new System.Windows.Forms.Label();
             this.communication_tbp = new System.Windows.Forms.TabPage();
             this.callHistory_dgv = new System.Windows.Forms.DataGridView();
@@ -72,7 +77,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.history_tbp = new System.Windows.Forms.TabPage();
             this.clientHistory_dgv = new System.Windows.Forms.DataGridView();
             this.history_lbl = new System.Windows.Forms.Label();
-            this.contract_dgv = new System.Windows.Forms.DataGridView();
+            this.Logout_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).BeginInit();
             this.ClientDashboard_tbc.SuspendLayout();
             this.Dashboard_tbp.SuspendLayout();
@@ -80,33 +85,15 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.serviceRequest_tbp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.serviceStatusFeedback_dgv)).BeginInit();
             this.contractInformation_tbp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.contract_dgv)).BeginInit();
             this.communication_tbp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.callHistory_dgv)).BeginInit();
             this.history_tbp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientHistory_dgv)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contract_dgv)).BeginInit();
             this.SuspendLayout();
-            // 
-            // Logout_btn
-            // 
-            this.Logout_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(73)))), ((int)(((byte)(73)))));
-            this.Logout_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.Logout_btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Logout_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Logout_btn.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Logout_btn.ForeColor = System.Drawing.Color.White;
-            this.Logout_btn.Location = new System.Drawing.Point(874, 26);
-            this.Logout_btn.Margin = new System.Windows.Forms.Padding(4);
-            this.Logout_btn.Name = "Logout_btn";
-            this.Logout_btn.Size = new System.Drawing.Size(180, 44);
-            this.Logout_btn.TabIndex = 15;
-            this.Logout_btn.Text = "Logout";
-            this.Logout_btn.UseVisualStyleBackColor = false;
-            this.Logout_btn.Click += new System.EventHandler(this.Logout_btn_Click);
             // 
             // Logo_img
             // 
-            this.Logo_img.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Logo_img.BackgroundImage")));
             this.Logo_img.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Logo_img.Location = new System.Drawing.Point(13, 13);
             this.Logo_img.Margin = new System.Windows.Forms.Padding(4);
@@ -123,7 +110,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.WelcomeClient_lbl.Location = new System.Drawing.Point(122, 25);
             this.WelcomeClient_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.WelcomeClient_lbl.Name = "WelcomeClient_lbl";
-            this.WelcomeClient_lbl.Size = new System.Drawing.Size(228, 41);
+            this.WelcomeClient_lbl.Size = new System.Drawing.Size(183, 32);
             this.WelcomeClient_lbl.TabIndex = 13;
             this.WelcomeClient_lbl.Text = "Welcome back  ";
             // 
@@ -146,14 +133,13 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.Dashboard_tbp.Controls.Add(this.clientMaintenanceOverview_dgv);
             this.Dashboard_tbp.Controls.Add(this.maintenaceInfo_lbl);
             this.Dashboard_tbp.Controls.Add(this.maintenace_lbl);
-            this.Dashboard_tbp.Location = new System.Drawing.Point(4, 34);
+            this.Dashboard_tbp.Location = new System.Drawing.Point(4, 29);
             this.Dashboard_tbp.Name = "Dashboard_tbp";
             this.Dashboard_tbp.Padding = new System.Windows.Forms.Padding(3);
-            this.Dashboard_tbp.Size = new System.Drawing.Size(1033, 376);
+            this.Dashboard_tbp.Size = new System.Drawing.Size(1033, 381);
             this.Dashboard_tbp.TabIndex = 0;
             this.Dashboard_tbp.Text = "Dashboard";
             this.Dashboard_tbp.UseVisualStyleBackColor = true;
-            this.Dashboard_tbp.Click += new System.EventHandler(this.Dashboard_tbp_Click);
             // 
             // clientMaintenanceOverview_dgv
             // 
@@ -170,7 +156,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.maintenaceInfo_lbl.AutoSize = true;
             this.maintenaceInfo_lbl.Location = new System.Drawing.Point(8, 48);
             this.maintenaceInfo_lbl.Name = "maintenaceInfo_lbl";
-            this.maintenaceInfo_lbl.Size = new System.Drawing.Size(495, 25);
+            this.maintenaceInfo_lbl.Size = new System.Drawing.Size(401, 20);
             this.maintenaceInfo_lbl.TabIndex = 1;
             this.maintenaceInfo_lbl.Text = "Ongoing Tasks, Service Requests, and Contract Details";
             // 
@@ -180,7 +166,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.maintenace_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.maintenace_lbl.Location = new System.Drawing.Point(3, 10);
             this.maintenace_lbl.Name = "maintenace_lbl";
-            this.maintenace_lbl.Size = new System.Drawing.Size(303, 32);
+            this.maintenace_lbl.Size = new System.Drawing.Size(233, 26);
             this.maintenace_lbl.TabIndex = 0;
             this.maintenace_lbl.Text = "Maintenance Overview";
             // 
@@ -190,10 +176,10 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.serviceRequest_tbp.Controls.Add(this.statusFeedback_lbl);
             this.serviceRequest_tbp.Controls.Add(this.newRequest_btn);
             this.serviceRequest_tbp.Controls.Add(this.serviceRequests_lbl);
-            this.serviceRequest_tbp.Location = new System.Drawing.Point(4, 34);
+            this.serviceRequest_tbp.Location = new System.Drawing.Point(4, 29);
             this.serviceRequest_tbp.Name = "serviceRequest_tbp";
             this.serviceRequest_tbp.Padding = new System.Windows.Forms.Padding(3);
-            this.serviceRequest_tbp.Size = new System.Drawing.Size(1033, 376);
+            this.serviceRequest_tbp.Size = new System.Drawing.Size(1033, 381);
             this.serviceRequest_tbp.TabIndex = 1;
             this.serviceRequest_tbp.Text = "Service Request";
             this.serviceRequest_tbp.UseVisualStyleBackColor = true;
@@ -214,7 +200,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.statusFeedback_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statusFeedback_lbl.Location = new System.Drawing.Point(6, 107);
             this.statusFeedback_lbl.Name = "statusFeedback_lbl";
-            this.statusFeedback_lbl.Size = new System.Drawing.Size(472, 32);
+            this.statusFeedback_lbl.Size = new System.Drawing.Size(363, 26);
             this.statusFeedback_lbl.TabIndex = 22;
             this.statusFeedback_lbl.Text = "Service request status and feedback";
             // 
@@ -241,7 +227,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.serviceRequests_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.serviceRequests_lbl.Location = new System.Drawing.Point(3, 10);
             this.serviceRequests_lbl.Name = "serviceRequests_lbl";
-            this.serviceRequests_lbl.Size = new System.Drawing.Size(236, 32);
+            this.serviceRequests_lbl.Size = new System.Drawing.Size(183, 26);
             this.serviceRequests_lbl.TabIndex = 1;
             this.serviceRequests_lbl.Text = "Service Requests";
             // 
@@ -249,13 +235,23 @@ namespace PSS_ITWORKS.Presentation_Layer
             // 
             this.contractInformation_tbp.Controls.Add(this.contract_dgv);
             this.contractInformation_tbp.Controls.Add(this.contractOverview_lbl);
-            this.contractInformation_tbp.Location = new System.Drawing.Point(4, 34);
+            this.contractInformation_tbp.Location = new System.Drawing.Point(4, 29);
             this.contractInformation_tbp.Name = "contractInformation_tbp";
             this.contractInformation_tbp.Padding = new System.Windows.Forms.Padding(3);
-            this.contractInformation_tbp.Size = new System.Drawing.Size(1033, 376);
+            this.contractInformation_tbp.Size = new System.Drawing.Size(1033, 381);
             this.contractInformation_tbp.TabIndex = 2;
             this.contractInformation_tbp.Text = "Contract Information";
             this.contractInformation_tbp.UseVisualStyleBackColor = true;
+            // 
+            // contract_dgv
+            // 
+            this.contract_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.contract_dgv.Location = new System.Drawing.Point(7, 59);
+            this.contract_dgv.Name = "contract_dgv";
+            this.contract_dgv.RowHeadersWidth = 51;
+            this.contract_dgv.RowTemplate.Height = 24;
+            this.contract_dgv.Size = new System.Drawing.Size(1018, 310);
+            this.contract_dgv.TabIndex = 3;
             // 
             // contractOverview_lbl
             // 
@@ -263,7 +259,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.contractOverview_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contractOverview_lbl.Location = new System.Drawing.Point(3, 10);
             this.contractOverview_lbl.Name = "contractOverview_lbl";
-            this.contractOverview_lbl.Size = new System.Drawing.Size(341, 32);
+            this.contractOverview_lbl.Size = new System.Drawing.Size(264, 26);
             this.contractOverview_lbl.TabIndex = 2;
             this.contractOverview_lbl.Text = "Contract Details Overview";
             // 
@@ -271,10 +267,10 @@ namespace PSS_ITWORKS.Presentation_Layer
             // 
             this.communication_tbp.Controls.Add(this.callHistory_dgv);
             this.communication_tbp.Controls.Add(this.callHistory_lbl);
-            this.communication_tbp.Location = new System.Drawing.Point(4, 34);
+            this.communication_tbp.Location = new System.Drawing.Point(4, 29);
             this.communication_tbp.Name = "communication_tbp";
             this.communication_tbp.Padding = new System.Windows.Forms.Padding(3);
-            this.communication_tbp.Size = new System.Drawing.Size(1033, 376);
+            this.communication_tbp.Size = new System.Drawing.Size(1033, 381);
             this.communication_tbp.TabIndex = 3;
             this.communication_tbp.Text = "Communication";
             this.communication_tbp.UseVisualStyleBackColor = true;
@@ -295,19 +291,18 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.callHistory_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.callHistory_lbl.Location = new System.Drawing.Point(4, 13);
             this.callHistory_lbl.Name = "callHistory_lbl";
-            this.callHistory_lbl.Size = new System.Drawing.Size(159, 32);
+            this.callHistory_lbl.Size = new System.Drawing.Size(124, 26);
             this.callHistory_lbl.TabIndex = 3;
             this.callHistory_lbl.Text = "Call History";
-            this.callHistory_lbl.Click += new System.EventHandler(this.liveChat_lbl_Click);
             // 
             // history_tbp
             // 
             this.history_tbp.Controls.Add(this.clientHistory_dgv);
             this.history_tbp.Controls.Add(this.history_lbl);
-            this.history_tbp.Location = new System.Drawing.Point(4, 34);
+            this.history_tbp.Location = new System.Drawing.Point(4, 29);
             this.history_tbp.Name = "history_tbp";
             this.history_tbp.Padding = new System.Windows.Forms.Padding(3);
-            this.history_tbp.Size = new System.Drawing.Size(1033, 376);
+            this.history_tbp.Size = new System.Drawing.Size(1033, 381);
             this.history_tbp.TabIndex = 4;
             this.history_tbp.Text = "History";
             this.history_tbp.UseVisualStyleBackColor = true;
@@ -328,26 +323,32 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.history_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.history_lbl.Location = new System.Drawing.Point(4, 13);
             this.history_lbl.Name = "history_lbl";
-            this.history_lbl.Size = new System.Drawing.Size(755, 32);
+            this.history_lbl.Size = new System.Drawing.Size(580, 26);
             this.history_lbl.TabIndex = 3;
             this.history_lbl.Text = "Past service requests, maintenance activities, and invoices";
             // 
-            // contract_dgv
+            // Logout_btn
             // 
-            this.contract_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.contract_dgv.Location = new System.Drawing.Point(7, 59);
-            this.contract_dgv.Name = "contract_dgv";
-            this.contract_dgv.RowHeadersWidth = 51;
-            this.contract_dgv.RowTemplate.Height = 24;
-            this.contract_dgv.Size = new System.Drawing.Size(1018, 310);
-            this.contract_dgv.TabIndex = 3;
+            this.Logout_btn.BackColor = System.Drawing.Color.Firebrick;
+            this.Logout_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.Logout_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Logout_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Logout_btn.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Logout_btn.ForeColor = System.Drawing.Color.White;
+            this.Logout_btn.Location = new System.Drawing.Point(907, 25);
+            this.Logout_btn.Name = "Logout_btn";
+            this.Logout_btn.Size = new System.Drawing.Size(118, 36);
+            this.Logout_btn.TabIndex = 17;
+            this.Logout_btn.Text = "Dashboard";
+            this.Logout_btn.UseVisualStyleBackColor = false;
+            this.Logout_btn.Click += new System.EventHandler(this.Logout_btn_Click_1);
             // 
             // ClientForm
             // 
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1067, 554);
-            this.Controls.Add(this.ClientDashboard_tbc);
             this.Controls.Add(this.Logout_btn);
+            this.Controls.Add(this.ClientDashboard_tbc);
             this.Controls.Add(this.Logo_img);
             this.Controls.Add(this.WelcomeClient_lbl);
             this.Name = "ClientForm";
@@ -362,13 +363,13 @@ namespace PSS_ITWORKS.Presentation_Layer
             ((System.ComponentModel.ISupportInitialize)(this.serviceStatusFeedback_dgv)).EndInit();
             this.contractInformation_tbp.ResumeLayout(false);
             this.contractInformation_tbp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.contract_dgv)).EndInit();
             this.communication_tbp.ResumeLayout(false);
             this.communication_tbp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.callHistory_dgv)).EndInit();
             this.history_tbp.ResumeLayout(false);
             this.history_tbp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientHistory_dgv)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contract_dgv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -376,19 +377,14 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void newRequest_btn_Click(object sender, EventArgs e)
         {
-            
-
             this.Hide();
-            //NewServiceRequest().Show();
-            
-
-
         }
 
         private void ClientForm_Load(object sender, EventArgs e)
         {
             // temp id replace with loged in client details
-            int id = 1;
+            int id = userInfo.ID;
+            WelcomeClient_lbl.Text = $"Welcome {userInfo.Name} {userInfo.Surname} <Client>";
 
             // On Form load clear all outputs
             ClearDataGridViews();
@@ -418,8 +414,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         // Method for populating the Service Request
         private void ServiceRequest(int clientID)
         {
-            
-            serviceStatusFeedback_dgv.DataSource = null;
+            serviceStatusFeedback_dgv.Rows.Clear();
             serviceStatusFeedback_dgv.ColumnCount = 5;
             serviceStatusFeedback_dgv.Columns[0].HeaderText = "Job ID";
             serviceStatusFeedback_dgv.Columns[1].HeaderText = "Client ID";
@@ -430,17 +425,13 @@ namespace PSS_ITWORKS.Presentation_Layer
 
 
             // Get the client jobs and then display that client's jobs in data grid view
-            List<IEntity> entities = theClient.Get();
-            foreach (EntityJob  entity in entities)
+            EntityClient client = theClient.Get(clientID) as EntityClient;
+            foreach (EntityJob job in client.GetJobs())
             {
-                if (entity.GetClientId() == clientID && entity.GetStatus() == "Pending")
+                if (job.GetStatus() == "Pending")
                 {
-
-                    serviceStatusFeedback_dgv.Rows.Clear();
-                    serviceStatusFeedback_dgv.Rows.Add(entity.GetID(), entity.GetClientId(), entity.GetPriotity(), 
-                                                       entity.GetStatus(), entity.GetTimeBegin());
-                    
-
+                    serviceStatusFeedback_dgv.Rows.Add(job.GetID(), job.GetClientId(), job.GetPriotity(), 
+                                                       job.GetStatus(), job.GetTimeBegin());
                 }
                 else
                 {
@@ -456,7 +447,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void ClientHistory(int clientID)
         {
 
-            clientHistory_dgv.DataSource = null;
+            clientHistory_dgv.Rows.Clear();
             clientHistory_dgv.ColumnCount = 5;
             clientHistory_dgv.Columns[0].HeaderText = "Job ID";
             clientHistory_dgv.Columns[1].HeaderText = "Client ID";
@@ -465,17 +456,15 @@ namespace PSS_ITWORKS.Presentation_Layer
             clientHistory_dgv.Columns[4].HeaderText = "Job Initiation Date";
 
             // Get the client jobs and then display that client's jobs in data grid view
-            List<IEntity> entities = theClient.Get();
-            foreach (EntityJob entity in entities)
+            EntityClient client = theClient.Get(clientID) as EntityClient;
+            foreach (EntityJob job in client.GetJobs())
             {
-                if (entity.GetClientId() == clientID && entity.GetStatus() == "Finished")
+                if (job.GetStatus() == "Finished")
                 {
 
                     clientHistory_dgv.Rows.Clear();
-                    clientHistory_dgv.Rows.Add(entity.GetID(), entity.GetClientId(), entity.GetPriotity(),
-                                                       entity.GetStatus(), entity.GetTimeBegin());
-
-
+                    clientHistory_dgv.Rows.Add(job.GetID(), job.GetClientId(), job.GetPriotity(),
+                                                       job.GetStatus(), job.GetTimeBegin());
                 }
                 else
                 {
@@ -509,33 +498,13 @@ namespace PSS_ITWORKS.Presentation_Layer
             clientHistory_dgv.Refresh();
         }
 
-        private void Dashboard_tbp_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Logout_btn_Click(object sender, EventArgs e)
-        {
-
-            this.Close();
-
-            LogIn loginForm = new LogIn();
-            loginForm.Show();
-        }
-
-        private void liveChat_lbl_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
         // Use methods to find the client contracts
         private void FindClientContract(int clientID)
         {
-            
+            EntityClient client = theClient.Get(clientID) as EntityClient;
             //change strategy to strategycontractmanager
             StrategyContextManager contractManager = new StrategyContextManager(new StrategyContractManager());
-            contractManager.Connect(@"Data Source=JOEKNOWS\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+            contractManager.Connect(connString);
 
             // Clear dgv and add headings
             contract_dgv.DataSource = null;
@@ -547,86 +516,44 @@ namespace PSS_ITWORKS.Presentation_Layer
             contract_dgv.Columns[4].HeaderText = "Contract Type";
 
             // find the client contract in the list of entities by their clientId and then display 
-            List<IEntity> contracts = contractManager.Get();
-            foreach (EntityContract contract in contracts)
-            {
-
-                // add the contract to the data grid view
-                contract_dgv.Rows.Add(contract.GetId(), contract.GetClients(), contract.GetStartTime(),
-                        CalculateEndDate(contract.GetStartTime(), contract.GetDuration()), contract.GetType());
-
-
-
-            }
+            EntityContract contract = contractManager.Get(client.GetContractId()) as EntityContract;
+            contract_dgv.Rows.Add(contract.GetId(), contract.GetClients(), client.GetContractInitiationDate(),
+                        CalculateEndDate(client.GetContractInitiationDate(), contract.GetDuration()), contract.GetType());
 
 
             // Change strategy back to strategyclientmanager
             theClient = new StrategyContextManager(new StrategyClient());
-            theClient.Connect(@"Data Source=JOEKNOWS\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+            theClient.Connect(connString);
 
         }
 
         // Use methods to find the client jobs 
         private void FindClientJobs(int clientID)
         {
-
-            clientMaintenanceOverview_dgv.DataSource = null;
-            clientMaintenanceOverview_dgv.ColumnCount = 8;
-            clientMaintenanceOverview_dgv.Columns[0].HeaderText = "Job ID";
-            clientMaintenanceOverview_dgv.Columns[1].HeaderText = "Client ID";
-            clientMaintenanceOverview_dgv.Columns[2].HeaderText = "Job Type";
-            clientMaintenanceOverview_dgv.Columns[3].HeaderText = "Job Description";
-            clientMaintenanceOverview_dgv.Columns[4].HeaderText = "Job Status";
-            clientMaintenanceOverview_dgv.Columns[5].HeaderText = "Job Initiation Date";
-            clientMaintenanceOverview_dgv.Columns[6].HeaderText = "Job Completion Date";
-            clientMaintenanceOverview_dgv.Columns[7].HeaderText = "Job Technician ID";
-
-
             // Get the client jobs and then display that client's jobs in data grid view
-            List<IEntity> jobs = theClient.Get();
-            foreach (EntityClient job in jobs)
+            theClient = new StrategyContextManager(new StrategyClient());
+            theClient.Connect(connString);
+
+            clientMaintenanceOverview_dgv.ColumnCount = 8;
+            clientMaintenanceOverview_dgv.Rows.Clear();
+            EntityClient client = theClient.Get(clientID) as EntityClient;
+            foreach (EntityJob job in client.GetJobs())
             {
-                if (job.GetID() == clientID)
-                {
-                    // add the client jobs to the data grid view
-                    clientMaintenanceOverview_dgv.DataSource = job.GetJobs();
-
-                }
-                else
-                {
-                    MessageBox.Show("Client jobs not found");
-                }
+                clientMaintenanceOverview_dgv.Rows.Add(job.GetId(), job.GetClientId(), job.GetServiceId(), job.GetTimeBegin(), job.GetTimeEnd(), job.GetStatus() );
             }
-
         }
 
         // method to get clients calls
         private void FindClientCalls(int clientID)
         {
-
-            callHistory_dgv.DataSource = null;
             callHistory_dgv.Rows.Clear();
-            callHistory_dgv.Refresh();
+            callHistory_dgv.ColumnCount = 3;
 
             // Get the client and their associated calls using the StrategyClient
-            IEntity client = theClient.Get(clientID);
-
-            if (client != null)
+            EntityClient client = theClient.Get(clientID) as EntityClient;
+            foreach(EntityCall call in client.GetCalls())
             {
-                // Check if the retrieved entity is of type EntityClient
-                if (client is EntityClient entityClient)
-                {
-                    // Populate the DataGridView with the client's calls
-                    callHistory_dgv.DataSource = entityClient.GetCalls();
-                }
-                else
-                {
-                    MessageBox.Show("Client entity is not of the expected type (EntityClient).");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Client not found");
+                callHistory_dgv.Rows.Add(call.GetId(), call.GetEmployeeId(), call.GetDescription());
             }
         }
 
@@ -635,6 +562,12 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             DateTime endDate = startDate.AddMonths(duration);
             return endDate;
+        }
+
+        private void Logout_btn_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+            dashboard.Show();
         }
     }
 }

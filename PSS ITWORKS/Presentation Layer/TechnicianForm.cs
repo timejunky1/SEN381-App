@@ -14,7 +14,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         StrategyContextManager context;
         Dashboard dashboard;
         EntityEmployee technician;
-        private EntityJob job;
+        EntityJob job;
         int technicianId;
         int jobId = 0;
         LoginController.UserInfo userInfo;
@@ -91,6 +91,9 @@ namespace PSS_ITWORKS.Presentation_Layer
                     JobId_cmb.Items.Add(job.GetId());
                 }    
             }
+            context = new StrategyContextManager(new StrategyJobManager());
+            context.Connect(connString);
+            LoadDetails(context.Get(20) as EntityJob);
         }
        
         private void submitUpdate_btn_Click(object sender, EventArgs e)
@@ -124,32 +127,32 @@ namespace PSS_ITWORKS.Presentation_Layer
             }
         }
 
-        void LoadDetails(EntityJob job)
+        void LoadDetails(EntityJob j)
         {
-            this.job = job;
+            this.job = j;
             jobID_txt.Text = jobId.ToString();
             context = new StrategyContextManager(new StrategyClientManager());
             context.Connect(connString);
-            clientDetails_dgv.DataSource = context.Get(job.GetClientId());
+            EntityClient client = context.Get(job.GetClientId()) as EntityClient;
+            name_txt.Text = client.GetName();
+            surname_txt.Text = client.GetSurname();
+            number_txt.Text = client.GetStreetNumber().ToString();
+            street_txt.Text = client.GetStreetName();
+            city_txt.Text = client.GetCity();
+            phone_txt.Text = client.GetPhone();
             context = new StrategyContextManager(new StrategyServiceManager());
             context.Connect(connString);
-            serviceOverview_dgv.DataSource = context.Get(job.GetServiceId());
+            EntityService service = context.Get(job.GetServiceId()) as EntityService;
+            title_txt.Text = service.GetTitle();
+            cost_txt.Text = service.GetCost().ToString();
+            duration_txt.Text = service.GetDuration().ToString();
             status_cbx.Text = job.GetStatus();
             jobNotes_rtb.Text = job.GetNotes();
-            Technical_tc.SelectedIndex = 2;
-            
-            
-        }
-
-        private void Logout_btn_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            dashboard.Show();
+            Technical_tc.SelectedIndex = 2; 
         }
 
         private void filterDetails_btn_Click(object sender, EventArgs e)
         {
-            
             foreach (EntityJob job in technician.GetJobs())
             {
                 if (job.GetId() == int.Parse(JobId_cmb.Text.ToString()))

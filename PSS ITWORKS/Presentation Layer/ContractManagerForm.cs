@@ -62,9 +62,10 @@ namespace PSS_ITWORKS.Presentation_Layer
             }
             foreach (EntityJob job in jobs)
             {
-                if(job.GetStatus() == status)
+                int month = job.GetTimeBegin().Month;
+                if (job.GetStatus() == status && month > start && month < end)
                 {
-                    series.Points[job.GetTimeBegin().Month - start - 1].SetValueY(1);
+                    series.Points[month - start].YValues[0] += 1;
                 }
             }
             series.LegendText = status;
@@ -75,6 +76,18 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             context = new StrategyContextManager(new StrategyServiceManager());
             context.Connect(connString);
+            List<IEntity> entities = context.Get();
+            Services_dgv.Rows.Clear();
+            Services_dgv.ColumnCount = 4;
+            ServiceType_cbx.Items.Clear();
+            servicesC_cbx.Items.Clear();
+            foreach (IEntity entity in entities)
+            {
+                EntityService s = entity as EntityService;
+                ServiceType_cbx.Items.Add(s.GetTitle());
+                servicesC_cbx.Items.Add(s.GetTitle());
+                Services_dgv.Rows.Add(s.GetId(), s.GetTitle(), s.GetCost(), s.GetDuration());
+            }
             EntityService service = context.Get(serviceid) as EntityService;
             if(service == null)
             {
@@ -92,29 +105,35 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         void SetContract()
         {
+            context = new StrategyContextManager(new StrategyContractManager());
+            context.Connect(connString);
+            List<IEntity> entities = context.Get();
+            ContractType1_cbx.Items.Clear();
+            ContractType2_cbx.Items.Clear();
+            contractType_cbx.Items.Clear();
+            foreach (IEntity entity in entities)
+            {
+                EntityContract contract = entity as EntityContract;
+                contracts.Add(contract);
+                ContractType1_cbx.Items.Add(contract.GetTitle());
+                ContractType2_cbx.Items.Add(contract.GetTitle());
+                contractType_cbx.Items.Add(contract.GetTitle());
+            }
             if (contractId > 0)
             {
-                context = new StrategyContextManager(new StrategyContractManager());
-                context.Connect(connString);
                 EntityContract contract = context.Get(contractId) as EntityContract;
                 sla_txt.Text = contract.GetSLA();
                 durationC_num.Value = contract.GetDuration();
                 priorityC_num.Value = contract.GetPriority();
-                priceC_num.Value = (Decimal)contract.GetCost();
+                priceC_num.Value = contract.GetCost();
                 setAvailability(contract.GetAvailability());
                 clientCount_txt.Text = contract.GetClients().Count.ToString();
-                contract_services_dgv.DataSource = context.Get(contractId);
+                contract_services_dgv.Rows.Clear();
+                contract_services_dgv.ColumnCount = 4;
                 foreach (EntityService s in contract.GetServices())
                 {
-                    services.Add(s);
+                    contract_services_dgv.Rows.Add(s.GetId(), s.GetTitle(), s.GetDuration(), s.GetCost(), s.GetAvailability());
                 }
-                ContractType1_cbx.Text = contract.GetTitle();
-
-            }
-            else
-            {
-                contractId = 1;
-                SetContract();
             }
         }
 
@@ -152,14 +171,14 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
 
             context = new StrategyContextManager(new StrategyClientManager());
-            context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+            context.Connect(connString);
             List<IEntity> entities = context.Get();
             List<EntityJob> jobs1 = new List<EntityJob>();
             List<EntityJob> jobs2 = new List<EntityJob>();
             foreach (IEntity entity in entities)
             {
                 EntityClient client = entity as EntityClient;
-                if(client.GetContractId() == id1)
+                if (client.GetContractId() == id1)
                 {
                     foreach (EntityJob job in client.GetJobs())
                     {
@@ -168,7 +187,7 @@ namespace PSS_ITWORKS.Presentation_Layer
                 }
                 if (client.GetContractId() == id2)
                 {
-                    foreach(EntityJob job in client.GetJobs())
+                    foreach (EntityJob job in client.GetJobs())
                     {
                         jobs2.Add(job);
                     }
@@ -177,15 +196,15 @@ namespace PSS_ITWORKS.Presentation_Layer
             chart1.Legends.Clear();
             chart1.Series.Clear();
             chart1.Legends.Add(new Legend());
-            chart1.Series.Add(GetValues(12, jobs1, "Finished"));
+            chart1.Series.Add(GetValues((int)months1_num.Value, jobs1, "Finished"));
             chart1.Legends.Add(new Legend());
-            chart1.Series.Add(GetValues(12, jobs1, "Canceled"));
+            chart1.Series.Add(GetValues((int)months1_num.Value, jobs1, "Canceled"));
             chart2.Legends.Clear();
             chart2.Series.Clear();
             chart2.Legends.Add(new Legend());
-            chart2.Series.Add(GetValues(12, jobs2, "Finished"));
+            chart2.Series.Add(GetValues((int)Months2_num.Value, jobs2, "Finished"));
             chart2.Legends.Add(new Legend());
-            chart2.Series.Add(GetValues(12, jobs2, "Canceled"));
+            chart2.Series.Add(GetValues((int)Months2_num.Value, jobs2, "Canceled"));
         }
         private void ContractManagerForm_Load(object sender, EventArgs e)
         {
@@ -193,28 +212,12 @@ namespace PSS_ITWORKS.Presentation_Layer
             m2 = 12;
             id1 = 1;
             id2 = 2;
-            context = new StrategyContextManager(new StrategyServiceManager());
-            context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
-            List<IEntity> entities = context.Get();
-            foreach (IEntity entity in entities)
-            {
-                EntityService service = entity as EntityService;
-                ServiceType_cbx.Items.Add(service.GetTitle());
-            }
-            SetService();
-            context = new StrategyContextManager(new StrategyContractManager());
-            context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
-            entities = context.Get();
-            foreach (IEntity entity in entities)
-            {
-                EntityContract contract = entity as EntityContract;
-                contracts.Add(contract);
-                ContractType1_cbx.Items.Add(contract.GetTitle());
-                ContractType2_cbx.Items.Add(contract.GetTitle());
-                contractType_cbx.Items.Add(contract.GetTitle());
-            }
+            contractId = 1;
+            months1_num.Value = 12;
+            Months2_num.Value = 12;
             SetContractStats();
             SetContract();
+            SetService();
         }
 
         private void ServiceType_lbl_Click(object sender, EventArgs e)
@@ -241,13 +244,27 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void ContractType2_cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
-            id2 = ContractType2_cbx.SelectedIndex + 1;
+            foreach (EntityContract contract in contracts)
+            {
+                if (contract.GetTitle() == ContractType2_cbx.SelectedItem.ToString())
+                {
+                    id2 = contract.GetId();
+                    continue;
+                }
+            }
             SetContractStats();
         }
 
         private void ContractType1_cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
-            id1 = ContractType1_cbx.SelectedIndex + 1;
+            foreach(EntityContract contract in contracts)
+            {
+                if(contract.GetTitle() == ContractType1_cbx.SelectedItem.ToString())
+                {
+                    id1 = contract.GetId();
+                    continue;
+                }
+            }
             SetContractStats();
         }
 
@@ -278,12 +295,6 @@ namespace PSS_ITWORKS.Presentation_Layer
             setAvailability("Unavailable");
         }
 
-        private void Services_dgv_SelectionChanged(object sender, EventArgs e)
-        {
-            serviceId = int.Parse(Services_dgv.SelectedRows[0].Cells[0].Value.ToString());
-            SetService();
-        }
-
         private void CreateService_btn_Click(object sender, EventArgs e)
         {
             context.Create(new EntityService(serviceId, title_txt.Text, (int)duration_num.Value, (int)priority_num.Value, price_num.Value, availability));
@@ -301,13 +312,20 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void contractType_cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
-            contractId = int.Parse(contractType_cbx.SelectedItem.ToString());
+            foreach (EntityContract contract in contracts)
+            {
+                if (contract.GetTitle() == contractType_cbx.Text)
+                {
+                    MessageBox.Show($"{(contract.GetTitle() == contractType_cbx.Text)}, {contract.GetId()}");
+                    contractId = contract.GetId();
+                    continue;
+                }
+            }
             SetContract();
         }
 
         private void update_btn_Click(object sender, EventArgs e)
         {
-
             EntityContract contract = new EntityContract(contractId, contractType_cbx.Text, sla_txt.Text, (int)durationC_num.Value, priceC_num.Value, (int)priorityC_num.Value, availability);
             contract.SetServices(services);
         }

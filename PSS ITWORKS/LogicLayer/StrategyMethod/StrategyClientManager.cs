@@ -30,8 +30,18 @@ namespace PSS_ITWORKS
         {
             List<IEntity> entities = new List<IEntity>();
             List<EntityClient> clients = api.GetClients();
+            List<EntityJob> jobs = api.GetJobs();
             foreach (EntityClient client in clients)
             {
+                List<EntityJob> clientJobs = new List<EntityJob>();
+                foreach(EntityJob job in jobs)
+                {
+                    if(job.GetClientId() == client.GetID())
+                    {
+                        clientJobs.Add(job);
+                    }
+                }
+                client.SetJobs(clientJobs);
                 entities.Add(client);
             }
             return entities;

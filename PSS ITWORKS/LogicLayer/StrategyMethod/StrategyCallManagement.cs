@@ -40,8 +40,7 @@ namespace PSS_ITWORKS
 
         public IEntity Get(int ID)
         {
-            EntityCall call = null;
-            call = api.GetCall(ID);
+            EntityCall call = api.GetCall(ID);
             return call;
         }
 

@@ -29,8 +29,6 @@ namespace PSS_ITWORKS.LogicLayer
 
         public void GetSchedule(int maxDay, int Offset, DataGridView dgv)
         {
-
-            MessageBox.Show(jobs.Count.ToString() + "Jobs");
             dgv.RowCount = maxDay;
             int nr = 0;
             int s = 800;
@@ -50,7 +48,6 @@ namespace PSS_ITWORKS.LogicLayer
                     }
                     int timeStart = job.GetTimeBegin().Hour * 100 + job.GetTimeBegin().Minute / 60 * 100;
                     int timeEnd = job.GetTimeEnd().Hour * 100 + job.GetTimeEnd().Minute / 60 * 100;
-                    MessageBox.Show(r.ToString());
                     for (int i = s; i < e; i += 50)
                     {
                         if (timeEnd < i)

@@ -41,28 +41,29 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 
         public IEntity Get(int ID)
         {
-            EntityClient client = null;
-            client = api.GetClient(ID);
+            EntityClient client = api.GetClient(ID);
             if(client != null)
             {
-                List<EntityJob> jobs= api.GetJobs();
+                List<EntityJob> jobs = api.GetJobs();
+                List<EntityJob> clientJobs = new List<EntityJob>();
                 foreach(EntityJob job in jobs)
                 {
                     if(job.GetClientId() == client.GetID())
                     {
-                        jobs.Add(job);
+                        clientJobs.Add(job);
                     }
                 }
-                client.SetJobs(jobs);
+                client.SetJobs(clientJobs);
                 List<EntityCall> calls = api.GetCalls();
+                List<EntityCall> clientCalls = new List<EntityCall>();
                 foreach (EntityCall call in calls)
                 {
                     if (call.GetClientId() == client.GetID())
                     {
-                        calls.Add(call);
+                        clientCalls.Add(call);
                     }
                 }
-                client.SetCalls(calls);
+                client.SetCalls(clientCalls);
             }
             return client;
 

@@ -48,25 +48,39 @@
             this.taskUpdateInfo_lbl = new System.Windows.Forms.Label();
             this.taskUpdate_lbl = new System.Windows.Forms.Label();
             this.clientDetails_tp = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
             this.JobId_cmb = new System.Windows.Forms.ComboBox();
             this.filterDetails_btn = new System.Windows.Forms.Button();
-            this.serviceOverview_dgv = new System.Windows.Forms.DataGridView();
             this.serviceOverview_lbl = new System.Windows.Forms.Label();
-            this.clientDetails_dgv = new System.Windows.Forms.DataGridView();
             this.clientDetails_lbl = new System.Windows.Forms.Label();
             this.Schedule_tp = new System.Windows.Forms.TabPage();
             this.Schedule_dgv = new System.Windows.Forms.DataGridView();
             this.Schedule_lbl = new System.Windows.Forms.Label();
             this.Logout_btn = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.name_txt = new System.Windows.Forms.TextBox();
+            this.number_txt = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.surname_txt = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.street_txt = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.title_txt = new System.Windows.Forms.TextBox();
+            this.title_lbl = new System.Windows.Forms.Label();
+            this.duration_txt = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cost_txt = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.city_txt = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.phone_txt = new System.Windows.Forms.TextBox();
+            this.Phone = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).BeginInit();
             this.Technical_tc.SuspendLayout();
             this.taskList_tp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.taskList_dgv)).BeginInit();
             this.taskUpdates_tp.SuspendLayout();
             this.clientDetails_tp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.serviceOverview_dgv)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientDetails_dgv)).BeginInit();
             this.Schedule_tp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Schedule_dgv)).BeginInit();
             this.SuspendLayout();
@@ -287,11 +301,27 @@
             // 
             // clientDetails_tp
             // 
+            this.clientDetails_tp.Controls.Add(this.phone_txt);
+            this.clientDetails_tp.Controls.Add(this.Phone);
+            this.clientDetails_tp.Controls.Add(this.city_txt);
+            this.clientDetails_tp.Controls.Add(this.label8);
+            this.clientDetails_tp.Controls.Add(this.cost_txt);
+            this.clientDetails_tp.Controls.Add(this.label7);
+            this.clientDetails_tp.Controls.Add(this.duration_txt);
+            this.clientDetails_tp.Controls.Add(this.label6);
+            this.clientDetails_tp.Controls.Add(this.title_txt);
+            this.clientDetails_tp.Controls.Add(this.title_lbl);
+            this.clientDetails_tp.Controls.Add(this.street_txt);
+            this.clientDetails_tp.Controls.Add(this.label4);
+            this.clientDetails_tp.Controls.Add(this.surname_txt);
+            this.clientDetails_tp.Controls.Add(this.label3);
+            this.clientDetails_tp.Controls.Add(this.number_txt);
+            this.clientDetails_tp.Controls.Add(this.label2);
+            this.clientDetails_tp.Controls.Add(this.name_txt);
+            this.clientDetails_tp.Controls.Add(this.label1);
             this.clientDetails_tp.Controls.Add(this.JobId_cmb);
             this.clientDetails_tp.Controls.Add(this.filterDetails_btn);
-            this.clientDetails_tp.Controls.Add(this.serviceOverview_dgv);
             this.clientDetails_tp.Controls.Add(this.serviceOverview_lbl);
-            this.clientDetails_tp.Controls.Add(this.clientDetails_dgv);
             this.clientDetails_tp.Controls.Add(this.clientDetails_lbl);
             this.clientDetails_tp.Font = new System.Drawing.Font("Segoe UI", 18F);
             this.clientDetails_tp.Location = new System.Drawing.Point(4, 39);
@@ -300,6 +330,16 @@
             this.clientDetails_tp.TabIndex = 2;
             this.clientDetails_tp.Text = "Client Details";
             this.clientDetails_tp.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(9, 73);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 25);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "Name";
             // 
             // JobId_cmb
             // 
@@ -325,14 +365,6 @@
             this.filterDetails_btn.UseVisualStyleBackColor = false;
             this.filterDetails_btn.Click += new System.EventHandler(this.filterDetails_btn_Click);
             // 
-            // serviceOverview_dgv
-            // 
-            this.serviceOverview_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.serviceOverview_dgv.Location = new System.Drawing.Point(8, 264);
-            this.serviceOverview_dgv.Name = "serviceOverview_dgv";
-            this.serviceOverview_dgv.Size = new System.Drawing.Size(843, 134);
-            this.serviceOverview_dgv.TabIndex = 22;
-            // 
             // serviceOverview_lbl
             // 
             this.serviceOverview_lbl.AutoSize = true;
@@ -343,14 +375,6 @@
             this.serviceOverview_lbl.Size = new System.Drawing.Size(169, 30);
             this.serviceOverview_lbl.TabIndex = 21;
             this.serviceOverview_lbl.Text = "Service Overview";
-            // 
-            // clientDetails_dgv
-            // 
-            this.clientDetails_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.clientDetails_dgv.Location = new System.Drawing.Point(8, 71);
-            this.clientDetails_dgv.Name = "clientDetails_dgv";
-            this.clientDetails_dgv.Size = new System.Drawing.Size(838, 134);
-            this.clientDetails_dgv.TabIndex = 20;
             // 
             // clientDetails_lbl
             // 
@@ -409,7 +433,6 @@
             this.Logout_btn.TabIndex = 13;
             this.Logout_btn.Text = "Logout";
             this.Logout_btn.UseVisualStyleBackColor = false;
-            this.Logout_btn.Click += new System.EventHandler(this.Logout_btn_Click);
             // 
             // button1
             // 
@@ -426,6 +449,158 @@
             this.button1.Text = "Dashboard";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // name_txt
+            // 
+            this.name_txt.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.name_txt.Location = new System.Drawing.Point(14, 101);
+            this.name_txt.Name = "name_txt";
+            this.name_txt.Size = new System.Drawing.Size(158, 33);
+            this.name_txt.TabIndex = 26;
+            // 
+            // number_txt
+            // 
+            this.number_txt.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.number_txt.Location = new System.Drawing.Point(14, 174);
+            this.number_txt.Name = "number_txt";
+            this.number_txt.Size = new System.Drawing.Size(158, 33);
+            this.number_txt.TabIndex = 28;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(9, 146);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(134, 25);
+            this.label2.TabIndex = 27;
+            this.label2.Text = "Street Number";
+            // 
+            // surname_txt
+            // 
+            this.surname_txt.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.surname_txt.Location = new System.Drawing.Point(249, 101);
+            this.surname_txt.Name = "surname_txt";
+            this.surname_txt.Size = new System.Drawing.Size(162, 33);
+            this.surname_txt.TabIndex = 30;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(244, 73);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(87, 25);
+            this.label3.TabIndex = 29;
+            this.label3.Text = "Surname";
+            // 
+            // street_txt
+            // 
+            this.street_txt.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.street_txt.Location = new System.Drawing.Point(249, 174);
+            this.street_txt.Name = "street_txt";
+            this.street_txt.Size = new System.Drawing.Size(162, 33);
+            this.street_txt.TabIndex = 32;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(244, 146);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 25);
+            this.label4.TabIndex = 31;
+            this.label4.Text = "Street";
+            // 
+            // title_txt
+            // 
+            this.title_txt.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.title_txt.Location = new System.Drawing.Point(14, 305);
+            this.title_txt.Name = "title_txt";
+            this.title_txt.Size = new System.Drawing.Size(158, 33);
+            this.title_txt.TabIndex = 34;
+            // 
+            // title_lbl
+            // 
+            this.title_lbl.AutoSize = true;
+            this.title_lbl.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.title_lbl.Location = new System.Drawing.Point(9, 277);
+            this.title_lbl.Name = "title_lbl";
+            this.title_lbl.Size = new System.Drawing.Size(48, 25);
+            this.title_lbl.TabIndex = 33;
+            this.title_lbl.Text = "Title";
+            // 
+            // duration_txt
+            // 
+            this.duration_txt.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.duration_txt.Location = new System.Drawing.Point(249, 305);
+            this.duration_txt.Name = "duration_txt";
+            this.duration_txt.Size = new System.Drawing.Size(159, 33);
+            this.duration_txt.TabIndex = 36;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(244, 277);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(86, 25);
+            this.label6.TabIndex = 35;
+            this.label6.Text = "Duration";
+            // 
+            // cost_txt
+            // 
+            this.cost_txt.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cost_txt.Location = new System.Drawing.Point(476, 305);
+            this.cost_txt.Name = "cost_txt";
+            this.cost_txt.Size = new System.Drawing.Size(148, 33);
+            this.cost_txt.TabIndex = 38;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(471, 277);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(49, 25);
+            this.label7.TabIndex = 37;
+            this.label7.Text = "Cost";
+            // 
+            // city_txt
+            // 
+            this.city_txt.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.city_txt.Location = new System.Drawing.Point(476, 174);
+            this.city_txt.Name = "city_txt";
+            this.city_txt.Size = new System.Drawing.Size(162, 33);
+            this.city_txt.TabIndex = 40;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(471, 146);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(44, 25);
+            this.label8.TabIndex = 39;
+            this.label8.Text = "City";
+            // 
+            // phone_txt
+            // 
+            this.phone_txt.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.phone_txt.Location = new System.Drawing.Point(476, 101);
+            this.phone_txt.Name = "phone_txt";
+            this.phone_txt.Size = new System.Drawing.Size(162, 33);
+            this.phone_txt.TabIndex = 42;
+            // 
+            // Phone
+            // 
+            this.Phone.AutoSize = true;
+            this.Phone.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Phone.Location = new System.Drawing.Point(471, 73);
+            this.Phone.Name = "Phone";
+            this.Phone.Size = new System.Drawing.Size(66, 25);
+            this.Phone.TabIndex = 41;
+            this.Phone.Text = "Phone";
             // 
             // Technician
             // 
@@ -452,8 +627,6 @@
             this.taskUpdates_tp.PerformLayout();
             this.clientDetails_tp.ResumeLayout(false);
             this.clientDetails_tp.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.serviceOverview_dgv)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientDetails_dgv)).EndInit();
             this.Schedule_tp.ResumeLayout(false);
             this.Schedule_tp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Schedule_dgv)).EndInit();
@@ -485,14 +658,30 @@
         private System.Windows.Forms.Button submitUpdate_btn;
         private System.Windows.Forms.Button searchJob_btn;
         private System.Windows.Forms.Label clientDetails_lbl;
-        private System.Windows.Forms.DataGridView serviceOverview_dgv;
         private System.Windows.Forms.Label serviceOverview_lbl;
-        private System.Windows.Forms.DataGridView clientDetails_dgv;
         private System.Windows.Forms.Button filterDetails_btn;
         private System.Windows.Forms.DataGridView Schedule_dgv;
         private System.Windows.Forms.Label Schedule_lbl;
         private System.Windows.Forms.ComboBox status_cbx;
         private System.Windows.Forms.ComboBox JobId_cmb;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox city_txt;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox cost_txt;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox duration_txt;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox title_txt;
+        private System.Windows.Forms.Label title_lbl;
+        private System.Windows.Forms.TextBox street_txt;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox surname_txt;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox number_txt;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox name_txt;
+        private System.Windows.Forms.TextBox phone_txt;
+        private System.Windows.Forms.Label Phone;
     }
 }

@@ -20,7 +20,7 @@ namespace PSS_ITWORKS
             info.ID = 1;
             info.Name = "Test";
             info.Surname = "Test";
-            Technician testing = new Technician(null, info);
+            ContractManagerForm testing = new ContractManagerForm(null, info);
             testing.Show();
             Application.Run();
         }

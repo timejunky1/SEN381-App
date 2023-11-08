@@ -307,7 +307,7 @@ namespace PSS_ITWORKS
                             }
                             if (!reader.HasRows)
                             {
-                                ErrorHandler.DisplayError("No Data");
+                                ErrorHandler.DisplayError("No Employee");
                             }
                             reader.Close();
                         }
@@ -417,7 +417,7 @@ namespace PSS_ITWORKS
                             }
                             if (!reader.HasRows)
                             {
-                                ErrorHandler.DisplayError("No Data");
+                                ErrorHandler.DisplayError($"No Call Found with ID: {callId}");
                             }
                             reader.Close();
                         }
@@ -603,7 +603,7 @@ namespace PSS_ITWORKS
                             }
                             if(!reader.HasRows)
                             {
-                                ErrorHandler.DisplayError("No Data");
+                                ErrorHandler.DisplayError($"No Client Found with ID: {clientId}");
                             }
                             reader.Close();
                         }
@@ -778,7 +778,7 @@ namespace PSS_ITWORKS
                             }
                             if (!reader.HasRows)
                             {
-                                ErrorHandler.DisplayError("No Data");
+                                ErrorHandler.DisplayError($"No Contract Found with ID: {contractid}");
                             }
                             reader.Close();
                         }
@@ -815,15 +815,9 @@ namespace PSS_ITWORKS
                                     reader.GetInt32(5),
                                     reader.GetString(6)
                                     );
+                                contracts.Add(contract);
                             }
-                            if (!reader.HasRows)
-                            {
-                                ErrorHandler.DisplayError("No Data");
-                            }
-                            else
-                            {
-                                ErrorHandler.DisplayError($"{contracts.Count} contracts found");
-                            }
+                            ErrorHandler.DisplayError($"{contracts.Count} contracts found");
                             reader.Close();
                         }
                     }
@@ -939,7 +933,7 @@ namespace PSS_ITWORKS
                             }
                             if (!reader.HasRows)
                             {
-                                ErrorHandler.DisplayError("No Data");
+                                ErrorHandler.DisplayError($"No Job Found with ID: {jobId}");
                             }
                             reader.Close();
                         }
@@ -978,14 +972,7 @@ namespace PSS_ITWORKS
                                     );
                                 jobs.Add(job);
                             }
-                            if (!reader.HasRows)
-                            {
-                                ErrorHandler.DisplayError("No Data");
-                            }
-                            else
-                            {
-                                ErrorHandler.DisplayError($"{jobs.Count} jobs found");
-                            }
+                            ErrorHandler.DisplayError($"{jobs.Count} jobs found");
                             reader.Close();
                         }
                     }
@@ -1075,7 +1062,7 @@ namespace PSS_ITWORKS
             }
         }
 
-        public EntityService GetService(int serviceid)
+        public EntityService GetService(int serviceId)
         {
             EntityService service = null;
             try
@@ -1086,7 +1073,7 @@ namespace PSS_ITWORKS
                     using (SqlCommand command = new SqlCommand("serviceProcedures.GetService", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@serviceId", serviceid);
+                        command.Parameters.AddWithValue("@serviceId", serviceId);
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
@@ -1102,7 +1089,7 @@ namespace PSS_ITWORKS
                             }
                             if (!reader.HasRows)
                             {
-                                ErrorHandler.DisplayError("No Data");
+                                ErrorHandler.DisplayError($"No Service found with ID: {serviceId}");
                             }
                             reader.Close();
                         }
@@ -1140,14 +1127,7 @@ namespace PSS_ITWORKS
                                     );
                                 services.Add(service);
                             }
-                            if (!reader.HasRows)
-                            {
-                                ErrorHandler.DisplayError("No Data");
-                            }
-                            else
-                            {
-                                ErrorHandler.DisplayError($"{services.Count} services found");
-                            }
+                            ErrorHandler.DisplayError($"{services.Count} services found");
                             reader.Close();
                         }
                     }
