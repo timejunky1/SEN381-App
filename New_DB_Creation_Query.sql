@@ -65,7 +65,7 @@ CREATE TABLE client (
 );
 CREATE TABLE login (
     login_id INT IDENTITY(1,1) PRIMARY KEY,
-    email VARCHAR(40) NOT NULL,
+    email VARCHAR(50) NOT NULL,
     time_in DATETIME NOT NULL,
     time_out DATETIME NULL,
 );
