@@ -39,7 +39,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         private DataGridView contract_dgv;
         StrategyContextManager theClient;
 
-        public ClientForm()
+        public ClientForm(Dashboard dashboard, LoginController.UserInfo userInfo)
         {
             InitializeComponent();
             // Set the Client strategy
