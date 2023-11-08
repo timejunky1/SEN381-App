@@ -38,6 +38,8 @@
             this.PastJobRequest_lbl = new System.Windows.Forms.Label();
             this.MaintananceOverview_lbl = new System.Windows.Forms.Label();
             this.ServiceRequest_tp = new System.Windows.Forms.TabPage();
+            this.NewServiceClientName_lbl = new System.Windows.Forms.Label();
+            this.NewServiceClientName_txt = new System.Windows.Forms.TextBox();
             this.PastRequests_dgv = new System.Windows.Forms.DataGridView();
             this.PastRequests_lbl = new System.Windows.Forms.Label();
             this.NewServiceRequest_btn = new System.Windows.Forms.Button();
@@ -61,8 +63,6 @@
             this.SearchClientName_lbl = new System.Windows.Forms.Label();
             this.PastServiceRequest_dgv = new System.Windows.Forms.DataGridView();
             this.PastServiceRequest_lbl = new System.Windows.Forms.Label();
-            this.NewServiceClientName_txt = new System.Windows.Forms.TextBox();
-            this.NewServiceClientName_lbl = new System.Windows.Forms.Label();
             this.Header_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PSS_img)).BeginInit();
             this.CallEmployee_tc.SuspendLayout();
@@ -190,6 +190,24 @@
             this.ServiceRequest_tp.TabIndex = 1;
             this.ServiceRequest_tp.Text = "Service Request";
             this.ServiceRequest_tp.UseVisualStyleBackColor = true;
+            // 
+            // NewServiceClientName_lbl
+            // 
+            this.NewServiceClientName_lbl.AutoSize = true;
+            this.NewServiceClientName_lbl.ForeColor = System.Drawing.Color.Blue;
+            this.NewServiceClientName_lbl.Location = new System.Drawing.Point(43, 41);
+            this.NewServiceClientName_lbl.Name = "NewServiceClientName_lbl";
+            this.NewServiceClientName_lbl.Size = new System.Drawing.Size(112, 25);
+            this.NewServiceClientName_lbl.TabIndex = 5;
+            this.NewServiceClientName_lbl.Text = "Client Name";
+            // 
+            // NewServiceClientName_txt
+            // 
+            this.NewServiceClientName_txt.Location = new System.Drawing.Point(48, 78);
+            this.NewServiceClientName_txt.Name = "NewServiceClientName_txt";
+            this.NewServiceClientName_txt.Size = new System.Drawing.Size(187, 32);
+            this.NewServiceClientName_txt.TabIndex = 4;
+            this.NewServiceClientName_txt.TextChanged += new System.EventHandler(this.NewServiceClientName_txt_TextChanged);
             // 
             // PastRequests_dgv
             // 
@@ -420,23 +438,6 @@
             this.PastServiceRequest_lbl.Size = new System.Drawing.Size(468, 25);
             this.PastServiceRequest_lbl.TabIndex = 0;
             this.PastServiceRequest_lbl.Text = "Past Service Request, Maintanance activities and invoices";
-            // 
-            // NewServiceClientName_txt
-            // 
-            this.NewServiceClientName_txt.Location = new System.Drawing.Point(48, 78);
-            this.NewServiceClientName_txt.Name = "NewServiceClientName_txt";
-            this.NewServiceClientName_txt.Size = new System.Drawing.Size(187, 32);
-            this.NewServiceClientName_txt.TabIndex = 4;
-            // 
-            // NewServiceClientName_lbl
-            // 
-            this.NewServiceClientName_lbl.AutoSize = true;
-            this.NewServiceClientName_lbl.ForeColor = System.Drawing.Color.Blue;
-            this.NewServiceClientName_lbl.Location = new System.Drawing.Point(43, 41);
-            this.NewServiceClientName_lbl.Name = "NewServiceClientName_lbl";
-            this.NewServiceClientName_lbl.Size = new System.Drawing.Size(112, 25);
-            this.NewServiceClientName_lbl.TabIndex = 5;
-            this.NewServiceClientName_lbl.Text = "Client Name";
             // 
             // CallForm
             // 

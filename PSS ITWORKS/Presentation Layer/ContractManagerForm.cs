@@ -42,7 +42,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             chart1.ChartAreas[0].AxisX.Interval = 1;
             chart2.ChartAreas[0].AxisY.Interval = 1;
             chart2.ChartAreas[0].AxisX.Interval = 1;
-            welcome_lbl.Text = $"Welcome Back {userInfo.Name} {userInfo.Surname} <Contract Manager>";
+            PSS_lbl.Text = $"Welcome Back {userInfo.Name} {userInfo.Surname} <Contract Manager>";
         }
 
         Series GetValues(int m, List<EntityJob> jobs, string status)

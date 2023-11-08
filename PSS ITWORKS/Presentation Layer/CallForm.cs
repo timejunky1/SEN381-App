@@ -113,6 +113,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             foreach (IEntity entity in entities)
             {
                 EntityClient client = entity as EntityClient;
+                MessageBox.Show(client.GetName());
                 if (client.GetName() == name)
                 {
                     clientID = client.GetID();
@@ -266,6 +267,11 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             dashbord.Show();
             this.Close();
+        }
+
+        private void NewServiceClientName_txt_TextChanged(object sender, EventArgs e)
+        {
+            //repopulate dgv
         }
     }
 }
