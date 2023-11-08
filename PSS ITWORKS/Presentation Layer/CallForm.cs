@@ -135,9 +135,9 @@ namespace PSS_ITWORKS.Presentation_Layer
                 if (job.GetClientId() == clientID)
                 {
                     listJobs.Add(job);
+                    PastServiceRequest_dgv.Rows.Add(job.GetId(), job.GetServiceId(), job.GetPriotity(), job.GetPriotity(), job.GetNotes());
                 }
-            }
-            PastServiceRequest_dgv.DataSource=listJobs;   
+            }  
         }
         public CallForm(Dashboard dashboard, LoginController.UserInfo userInfo)
         {
