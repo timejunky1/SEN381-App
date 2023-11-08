@@ -26,7 +26,6 @@ namespace PSS_ITWORKS.Presentation_Layer
         private DataGridView clientMaintenanceOverview_dgv;
         private Label maintenaceInfo_lbl;
         private Label maintenace_lbl;
-        private Label serviceRequests_lbl;
         private DataGridView serviceStatusFeedback_dgv;
         private Label statusFeedback_lbl;
         private DataGridView callHistory_dgv;
@@ -35,7 +34,6 @@ namespace PSS_ITWORKS.Presentation_Layer
         private Label history_lbl;
         private Label contractOverview_lbl;
         private Label WelcomeClient_lbl;
-        private Button newRequest_btn;
         private DataGridView contract_dgv;
         StrategyContextManager theClient;
 
@@ -62,9 +60,8 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.serviceRequest_tbp = new System.Windows.Forms.TabPage();
             this.serviceStatusFeedback_dgv = new System.Windows.Forms.DataGridView();
             this.statusFeedback_lbl = new System.Windows.Forms.Label();
-            this.newRequest_btn = new System.Windows.Forms.Button();
-            this.serviceRequests_lbl = new System.Windows.Forms.Label();
             this.contractInformation_tbp = new System.Windows.Forms.TabPage();
+            this.contract_dgv = new System.Windows.Forms.DataGridView();
             this.contractOverview_lbl = new System.Windows.Forms.Label();
             this.communication_tbp = new System.Windows.Forms.TabPage();
             this.callHistory_dgv = new System.Windows.Forms.DataGridView();
@@ -72,7 +69,6 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.history_tbp = new System.Windows.Forms.TabPage();
             this.clientHistory_dgv = new System.Windows.Forms.DataGridView();
             this.history_lbl = new System.Windows.Forms.Label();
-            this.contract_dgv = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).BeginInit();
             this.ClientDashboard_tbc.SuspendLayout();
             this.Dashboard_tbp.SuspendLayout();
@@ -80,11 +76,11 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.serviceRequest_tbp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.serviceStatusFeedback_dgv)).BeginInit();
             this.contractInformation_tbp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.contract_dgv)).BeginInit();
             this.communication_tbp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.callHistory_dgv)).BeginInit();
             this.history_tbp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientHistory_dgv)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contract_dgv)).BeginInit();
             this.SuspendLayout();
             // 
             // Logout_btn
@@ -188,8 +184,6 @@ namespace PSS_ITWORKS.Presentation_Layer
             // 
             this.serviceRequest_tbp.Controls.Add(this.serviceStatusFeedback_dgv);
             this.serviceRequest_tbp.Controls.Add(this.statusFeedback_lbl);
-            this.serviceRequest_tbp.Controls.Add(this.newRequest_btn);
-            this.serviceRequest_tbp.Controls.Add(this.serviceRequests_lbl);
             this.serviceRequest_tbp.Location = new System.Drawing.Point(4, 34);
             this.serviceRequest_tbp.Name = "serviceRequest_tbp";
             this.serviceRequest_tbp.Padding = new System.Windows.Forms.Padding(3);
@@ -201,49 +195,22 @@ namespace PSS_ITWORKS.Presentation_Layer
             // serviceStatusFeedback_dgv
             // 
             this.serviceStatusFeedback_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.serviceStatusFeedback_dgv.Location = new System.Drawing.Point(9, 152);
+            this.serviceStatusFeedback_dgv.Location = new System.Drawing.Point(9, 62);
             this.serviceStatusFeedback_dgv.Name = "serviceStatusFeedback_dgv";
             this.serviceStatusFeedback_dgv.RowHeadersWidth = 51;
             this.serviceStatusFeedback_dgv.RowTemplate.Height = 24;
-            this.serviceStatusFeedback_dgv.Size = new System.Drawing.Size(1015, 218);
+            this.serviceStatusFeedback_dgv.Size = new System.Drawing.Size(1015, 308);
             this.serviceStatusFeedback_dgv.TabIndex = 23;
             // 
             // statusFeedback_lbl
             // 
             this.statusFeedback_lbl.AutoSize = true;
             this.statusFeedback_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statusFeedback_lbl.Location = new System.Drawing.Point(6, 107);
+            this.statusFeedback_lbl.Location = new System.Drawing.Point(6, 8);
             this.statusFeedback_lbl.Name = "statusFeedback_lbl";
             this.statusFeedback_lbl.Size = new System.Drawing.Size(472, 32);
             this.statusFeedback_lbl.TabIndex = 22;
             this.statusFeedback_lbl.Text = "Service request status and feedback";
-            // 
-            // newRequest_btn
-            // 
-            this.newRequest_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(228)))), ((int)(((byte)(91)))));
-            this.newRequest_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.newRequest_btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.newRequest_btn.FlatAppearance.BorderSize = 0;
-            this.newRequest_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.newRequest_btn.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newRequest_btn.Location = new System.Drawing.Point(9, 46);
-            this.newRequest_btn.Margin = new System.Windows.Forms.Padding(4);
-            this.newRequest_btn.Name = "newRequest_btn";
-            this.newRequest_btn.Size = new System.Drawing.Size(235, 44);
-            this.newRequest_btn.TabIndex = 21;
-            this.newRequest_btn.Text = "New Request";
-            this.newRequest_btn.UseVisualStyleBackColor = false;
-            this.newRequest_btn.Click += new System.EventHandler(this.newRequest_btn_Click);
-            // 
-            // serviceRequests_lbl
-            // 
-            this.serviceRequests_lbl.AutoSize = true;
-            this.serviceRequests_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.serviceRequests_lbl.Location = new System.Drawing.Point(3, 10);
-            this.serviceRequests_lbl.Name = "serviceRequests_lbl";
-            this.serviceRequests_lbl.Size = new System.Drawing.Size(236, 32);
-            this.serviceRequests_lbl.TabIndex = 1;
-            this.serviceRequests_lbl.Text = "Service Requests";
             // 
             // contractInformation_tbp
             // 
@@ -256,6 +223,16 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.contractInformation_tbp.TabIndex = 2;
             this.contractInformation_tbp.Text = "Contract Information";
             this.contractInformation_tbp.UseVisualStyleBackColor = true;
+            // 
+            // contract_dgv
+            // 
+            this.contract_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.contract_dgv.Location = new System.Drawing.Point(7, 59);
+            this.contract_dgv.Name = "contract_dgv";
+            this.contract_dgv.RowHeadersWidth = 51;
+            this.contract_dgv.RowTemplate.Height = 24;
+            this.contract_dgv.Size = new System.Drawing.Size(1018, 310);
+            this.contract_dgv.TabIndex = 3;
             // 
             // contractOverview_lbl
             // 
@@ -332,16 +309,6 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.history_lbl.TabIndex = 3;
             this.history_lbl.Text = "Past service requests, maintenance activities, and invoices";
             // 
-            // contract_dgv
-            // 
-            this.contract_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.contract_dgv.Location = new System.Drawing.Point(7, 59);
-            this.contract_dgv.Name = "contract_dgv";
-            this.contract_dgv.RowHeadersWidth = 51;
-            this.contract_dgv.RowTemplate.Height = 24;
-            this.contract_dgv.Size = new System.Drawing.Size(1018, 310);
-            this.contract_dgv.TabIndex = 3;
-            // 
             // ClientForm
             // 
             this.BackColor = System.Drawing.Color.White;
@@ -362,13 +329,13 @@ namespace PSS_ITWORKS.Presentation_Layer
             ((System.ComponentModel.ISupportInitialize)(this.serviceStatusFeedback_dgv)).EndInit();
             this.contractInformation_tbp.ResumeLayout(false);
             this.contractInformation_tbp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.contract_dgv)).EndInit();
             this.communication_tbp.ResumeLayout(false);
             this.communication_tbp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.callHistory_dgv)).EndInit();
             this.history_tbp.ResumeLayout(false);
             this.history_tbp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientHistory_dgv)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contract_dgv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
