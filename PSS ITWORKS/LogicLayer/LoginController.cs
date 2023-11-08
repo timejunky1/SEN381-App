@@ -5,11 +5,12 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using PSS_ITWORKS.Presentation_Layer;
+using PSS_ITWORKS.ConstantData;
 
 public class LoginController
 {
     private DatabaseAPI api = new DatabaseAPI();
-    private string connectionString = @"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True";
+    private string connectionString = SystemData.GetConString();
     UserInfo userInfo;
 
 

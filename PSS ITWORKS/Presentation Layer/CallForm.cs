@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using PSS_ITWORKS.Presentation_Layer;
 using System.Data.SqlClient;
 using PSS_ITWORKS.LogicLayer;
+using PSS_ITWORKS.ConstantData;
 
 namespace PSS_ITWORKS.Presentation_Layer
 {
@@ -17,7 +18,7 @@ namespace PSS_ITWORKS.Presentation_Layer
     {
         
         StrategyContextManager context;
-        string conn = @"Data Source = DESKTOP - 8GCK8IN\SQLEXPRESS; Initial Catalog = PSS; Integrated Security = True";
+        string conn = SystemData.GetConString();
         int employeeID;
         void PopulateContracts(int id)
         {
