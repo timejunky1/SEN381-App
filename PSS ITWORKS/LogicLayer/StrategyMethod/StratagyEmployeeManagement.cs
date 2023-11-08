@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace PSS_ITWORKS
 {
-    class StratagyEmployeeManagement : IStrategyAManagement
+    public class StratagyEmployeeManagement : IStrategyAManagement
     {
         DatabaseAPI api = new DatabaseAPI();
 

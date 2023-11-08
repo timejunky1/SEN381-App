@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
@@ -12,7 +13,7 @@ namespace PSS_ITWORKS.LogicLayer
     {
         internal static void DisplayError(Exception ex)
         {
-            MessageBox.Show(ex.Message + ex.TargetSite);
+            MessageBox.Show(ex.Message+ "\n"+ ex.TargetSite + "\n" + ex.StackTrace);
         }
 
         internal static void DisplayError(string message)

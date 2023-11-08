@@ -2,7 +2,7 @@
 
 namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 {
-    internal class StrategyClient : IStrategyAManagement
+    public  class StrategyClient : IStrategyAManagement
     {
         DatabaseAPI api = new DatabaseAPI();
 

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace PSS_ITWORKS
 {
-    class StrategyContractManager : IStrategyAManagement
+    public class StrategyContractManager : IStrategyAManagement
     {
         DatabaseAPI api = new DatabaseAPI();
 

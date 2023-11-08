@@ -48,6 +48,7 @@
             this.taskUpdateInfo_lbl = new System.Windows.Forms.Label();
             this.taskUpdate_lbl = new System.Windows.Forms.Label();
             this.clientDetails_tp = new System.Windows.Forms.TabPage();
+            this.JobId_cmb = new System.Windows.Forms.ComboBox();
             this.filterDetails_btn = new System.Windows.Forms.Button();
             this.serviceOverview_dgv = new System.Windows.Forms.DataGridView();
             this.serviceOverview_lbl = new System.Windows.Forms.Label();
@@ -240,6 +241,7 @@
             this.searchJob_btn.TabIndex = 20;
             this.searchJob_btn.Text = "Search";
             this.searchJob_btn.UseVisualStyleBackColor = false;
+            this.searchJob_btn.Click += new System.EventHandler(this.searchJob_btn_Click);
             // 
             // jobID_txt
             // 
@@ -286,6 +288,7 @@
             // 
             // clientDetails_tp
             // 
+            this.clientDetails_tp.Controls.Add(this.JobId_cmb);
             this.clientDetails_tp.Controls.Add(this.filterDetails_btn);
             this.clientDetails_tp.Controls.Add(this.serviceOverview_dgv);
             this.clientDetails_tp.Controls.Add(this.serviceOverview_lbl);
@@ -298,6 +301,14 @@
             this.clientDetails_tp.TabIndex = 2;
             this.clientDetails_tp.Text = "Client Details";
             this.clientDetails_tp.UseVisualStyleBackColor = true;
+            // 
+            // JobId_cmb
+            // 
+            this.JobId_cmb.FormattingEnabled = true;
+            this.JobId_cmb.Location = new System.Drawing.Point(534, 15);
+            this.JobId_cmb.Name = "JobId_cmb";
+            this.JobId_cmb.Size = new System.Drawing.Size(121, 40);
+            this.JobId_cmb.TabIndex = 24;
             // 
             // filterDetails_btn
             // 
@@ -472,5 +483,6 @@
         private System.Windows.Forms.Label Schedule_lbl;
         private System.Windows.Forms.ComboBox status_cbx;
         private PSSDataSet pssDataSet1;
+        private System.Windows.Forms.ComboBox JobId_cmb;
     }
 }

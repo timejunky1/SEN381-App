@@ -1,4 +1,5 @@
-﻿using PSS_ITWORKS.LogicLayer;
+﻿using PSS_ITWORKS.ConstantData;
+using PSS_ITWORKS.LogicLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         List<EntityContract> contracts = new List<EntityContract>();
         List<EntityService> services = new List<EntityService>();
         List<EntityService> allServices = new List<EntityService>();
+        LoginController.UserInfo userInfo;
         int serviceId;
         int contractId;
         string availability = "Available";
@@ -30,9 +32,10 @@ namespace PSS_ITWORKS.Presentation_Layer
         int m1;
         int m2;
         int serviceid;
-        string connString = @"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True";
-        public ContractManagerForm(Dashboard dashbord)
+        string connString = SystemData.GetConString();
+        public ContractManagerForm(Dashboard dashbord, LoginController.UserInfo userInfo)
         {
+            this.userInfo = userInfo;
             this.dashbord = dashbord;
             InitializeComponent();
             chart1.ChartAreas[0].AxisY.Interval = 1;

@@ -1,6 +1,6 @@
 ﻿namespace PSS_ITWORKS.Presentation_Layer
 {
-    partial class Testing
+    partial class TestingForm
     {
         /// <summary>
         /// Required designer variable.

@@ -1,14 +1,9 @@
-﻿using PSS_ITWORKS.LogicLayer;
+﻿using PSS_ITWORKS.ConstantData;
+using PSS_ITWORKS.LogicLayer;
 using PSS_ITWORKS.LogicLayer.StrategyMethod;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlTypes;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PSS_ITWORKS.Presentation_Layer
@@ -18,20 +13,23 @@ namespace PSS_ITWORKS.Presentation_Layer
         StrategyContextManager context;
         Dashboard dashboard;
         EntityEmployee technician;
-        int technicianId = 2;
+        private EntityJob job;
+        int technicianId;
         int jobId = 0;
-        public Technician(Dashboard dashboard)
+        LoginController.UserInfo userInfo;
+        string connString = SystemData.GetConString();
+        public Technician(Dashboard dashboard, LoginController.UserInfo userInfo)
         {
             InitializeComponent();
             this.dashboard = dashboard;
+            this.userInfo = userInfo;
+            technicianId = userInfo.ID;
         }
 
         private void Technician_Load(object sender, EventArgs e)
         {
             context = new StrategyContextManager(new StrategyTechnician());
-            context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
-            BindingSource bs = context.GetSpecific2(jobId);
-            LoadDetails(bs);
+            context.Connect(connString);
             jobID_txt.Text = "0";
             status_cbx.Items.Clear();
             status_cbx.Items.Add("Finished");
@@ -74,6 +72,15 @@ namespace PSS_ITWORKS.Presentation_Layer
             technician = context.Get(technicianId) as EntityEmployee;
             LoadSchedule(21,14, technician.GetJobs(), taskList_dgv);
             LoadSchedule(7,0, technician.GetJobs(), Schedule_dgv);
+
+            foreach (EntityJob job in technician.GetJobs())
+            {
+                if (job.GetStatus() == "In Process")
+                {
+                    JobId_cmb.Items.Add(job.GetId());
+                }
+                
+            }
         }
        
         void LoadSchedule(int maxDay, int Offset, List<EntityJob> jobs, DataGridView dgv)
@@ -124,7 +131,10 @@ namespace PSS_ITWORKS.Presentation_Layer
         }
         private void submitUpdate_btn_Click(object sender, EventArgs e)
         {
-            context.Update(new EntityJob(int.Parse(jobID_txt.Text), jobNotes_rtb.Text, status_cbx.Text));
+            if (status_cbx.Text != null && jobNotes_rtb.Text.Length <= 255)
+            {
+                context.Update(new EntityJob(int.Parse(jobID_txt.Text), job.GetClientId() ,job.GetServiceId() ,job.GetTimeBegin() ,job.GetTimeEnd(), status_cbx.Text ,jobNotes_rtb.Text));
+            }
         }
 
         private void Schedule_dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -152,15 +162,22 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         void LoadDetails(EntityJob job)
         {
+            this.job = job;
             jobID_txt.Text = jobId.ToString();
-            MessageBox.Show(dr[0].ToString() + ", " + dr[1].ToString() + ", " + dr[2].ToString());
-            //Change stratagy to clientManagement 
-            clientDetails_dgv.DataSource = context.GetSpecific(int.Parse(dr[1].ToString()));
+            //Change stratagy to clientManagement
+            context = new StrategyContextManager(new StrategyClientManager());
+            context.Connect(connString);
+            clientDetails_dgv.DataSource = context.Get(job.GetClientId());
             //Change stratagy to ServiceManagement
+            
+            context = new StrategyContextManager(new StrategyServiceManager());
+            context.Connect(connString);
             serviceOverview_dgv.DataSource = context.Get(job.GetServiceId());
-            status_cbx.Text = dr[5].ToString();
-            jobNotes_rtb.Text = dr[6].ToString();
+            status_cbx.Text = job.GetStatus();
+            jobNotes_rtb.Text = job.GetNotes();
             Technical_tc.SelectedIndex = 2;
+            
+            
         }
 
         private void Logout_btn_Click(object sender, EventArgs e)
@@ -171,7 +188,25 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void filterDetails_btn_Click(object sender, EventArgs e)
         {
+            
+            foreach (EntityJob job in technician.GetJobs())
+            {
+                if (job.GetId() == int.Parse(JobId_cmb.Text.ToString()))
+                {
+                    LoadDetails(job);
+                }
+            }
+        }
 
+        private void searchJob_btn_Click(object sender, EventArgs e)
+        {
+            foreach (EntityJob job in technician.GetJobs())
+            {
+                if (job.GetId() == int.Parse(jobID_txt.Text.ToString()))
+                {
+                    LoadDetails(job);
+                }
+            }
         }
     }
 }

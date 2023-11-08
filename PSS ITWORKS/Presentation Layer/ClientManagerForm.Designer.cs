@@ -332,8 +332,13 @@
             this.Controls.Add(this.Logo_img);
             this.Controls.Add(this.WelcomeClientManager_lbl);
             this.Name = "ClientManagerForm";
+<<<<<<< HEAD
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Client Manager";
+=======
             this.Text = "ClientManagerForm";
             this.Load += new System.EventHandler(this.ClientManagerForm_Load);
+>>>>>>> ClientsManager
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).EndInit();
             this.Clients_tbc.ResumeLayout(false);
             this.Clients_tbp.ResumeLayout(false);

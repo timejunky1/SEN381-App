@@ -29,18 +29,20 @@ namespace PSS_ITWORKS
         public List<IEntity> Get()
         {
             List<EntityCall> calls = api.GetCalls();
-            List<IEntity> entities = new List<IEntity>();
+            List<IEntity> list = new List<IEntity>();
             foreach (EntityCall call in calls)
             {
-                entities.Add(call);
+                list.Add(call);
             }
 
-            return entities;
+            return list;
         }
 
         public IEntity Get(int ID)
         {
-            return api.GetCall(ID);
+            EntityCall call = null;
+            call = api.GetCall(ID);
+            return call;
         }
 
         public void Update(IEntity entity)

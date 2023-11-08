@@ -1,5 +1,9 @@
+<<<<<<< HEAD
+﻿using PSS_ITWORKS.ConstantData;
+=======
 ﻿using PSS_ITWORKS.LogicLayer;
 using PSS_ITWORKS.LogicLayer.StrategyMethod;
+>>>>>>> ClientsManager
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +19,18 @@ namespace PSS_ITWORKS.Presentation_Layer
 {
     public partial class ClientForm : Form
     {
+<<<<<<< HEAD
+        private Dashboard dashboard;
+        LoginController.UserInfo userInfo;
+        string connString = SystemData.GetConString();
+
+        public ClientForm(Dashboard dashboard, LoginController.UserInfo userInfo)
+        {
+            InitializeComponent();
+            this.dashboard = dashboard;
+            this.userInfo = userInfo;
+
+=======
         private Button Logout_btn;
         private PictureBox Logo_img;
         private TabControl ClientDashboard_tbc;
@@ -45,6 +61,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             // Set the Client strategy
             theClient = new StrategyContextManager(new StrategyClient());
             theClient.Connect(@"Data Source=JOEKNOWS\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+>>>>>>> ClientsManager
         }
 
 
@@ -309,6 +326,24 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             DateTime endDate = startDate.AddMonths(duration);
             return endDate;
+        }
+
+        //private void InitializeComponent()
+        //{
+        //    this.SuspendLayout();
+        //    // 
+        //    // ClientForm
+        //    // 
+        //    this.ClientSize = new System.Drawing.Size(284, 261);
+        //    this.Name = "ClientForm";
+        //    this.Load += new System.EventHandler(this.ClientForm_Load);
+        //    this.ResumeLayout(false);
+
+        //}
+
+        private void ClientForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

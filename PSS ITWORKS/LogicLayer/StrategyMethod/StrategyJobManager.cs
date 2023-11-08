@@ -8,7 +8,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PSS_ITWORKS
 {
-    class StrategyJobManager : IStrategyAManagement
+    public class StrategyJobManager : IStrategyAManagement
     {
         DatabaseAPI api = new DatabaseAPI();
         SMSAPI sms = new SMSAPI();

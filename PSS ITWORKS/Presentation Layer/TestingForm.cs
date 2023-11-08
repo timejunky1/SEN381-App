@@ -13,8 +13,12 @@ using System.Windows.Forms;
 
 namespace PSS_ITWORKS.Presentation_Layer
 {
-    public partial class Testing : Form
+    public partial class TestingForm : Form
     {
+<<<<<<< HEAD:PSS ITWORKS/Presentation Layer/TestingForm.cs
+        DatabaseAPI api = new DatabaseAPI();
+        public TestingForm()
+=======
         StrategyContextManager context;
         IEntity entity;
         int id1 = 0;
@@ -25,6 +29,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         List<EntityService> services;
         List<EntityUser> employees;
         public Testing()
+>>>>>>> ClientsManager:PSS ITWORKS/Presentation Layer/Testing.cs
         {
             InitializeComponent();
             Method_cmb.Items.Add("Create");
@@ -127,6 +132,13 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void btnTest_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD:PSS ITWORKS/Presentation Layer/TestingForm.cs
+            api.SetConnection("Data Source=DESKTOP-8GCK8IN\\SQLEXPRESS;Initial Catalog=PSS1;Integrated Security=True");
+            EntityClient entity = api.GetClient(1);
+            MessageBox.Show(entity.GetEmail());
+            BindingSource bs = new BindingSource();
+            DataTable dt = new DataTable();
+=======
             int strategy = Strategy_cmb.SelectedIndex;
             int method = Method_cmb.SelectedIndex;
             id1 = (int)id1_num.Value;
@@ -148,6 +160,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             SetStrategy(strategy);
             ExecuteMethod(method);
             Test_dgv.DataSource = bindingSource;
+>>>>>>> ClientsManager:PSS ITWORKS/Presentation Layer/Testing.cs
         }
     }
 }
