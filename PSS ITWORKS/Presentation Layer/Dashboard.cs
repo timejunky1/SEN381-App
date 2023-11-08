@@ -40,7 +40,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             FactoryAMainFactory factory = new FactoryUserFactory(loginController);
             FactoryIUser userPortal = factory.CreateUser(userInfo.Role);
-            userPortal.ShowUserInterface(this);
+            userPortal.ShowUserInterface(this, userInfo);
 
         }
 

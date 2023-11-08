@@ -37,9 +37,14 @@ namespace PSS_ITWORKS.LogicLayer
             return clientId;
         }
 
-        public DateTime GetcallTime()
+        public DateTime GetCallTime()
         {
             return callTime;
+        }
+
+        public string GetDescription()
+        {
+            return description;
         }
     }
 }

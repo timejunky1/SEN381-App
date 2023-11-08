@@ -1,14 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using PSS_ITWORKS.Presentation_Layer;
-using System.Data.SqlClient;
 using PSS_ITWORKS.LogicLayer;
 using PSS_ITWORKS.ConstantData;
 
@@ -20,6 +12,9 @@ namespace PSS_ITWORKS.Presentation_Layer
         StrategyContextManager context;
         string conn = SystemData.GetConString();
         int employeeID;
+        EntityClient client;
+        Dashboard dashbord;
+        LoginController.UserInfo userInfo;
         void PopulateContracts(int id)
         {
             context = new StrategyContextManager(new StrategyContractManager());
@@ -34,7 +29,12 @@ namespace PSS_ITWORKS.Presentation_Layer
                     contracts.Add(c);
                 }
             }
-            ContractOverview_dgv.DataSource = contracts;
+            ContractOverview_dgv.ColumnCount = 5;
+            ContractOverview_dgv.Rows.Clear();
+            foreach (EntityContract contract in contracts)
+            {
+                ContractOverview_dgv.Rows.Add(contract.GetId(), contract.GetTitle(), contract.GetPriority(), contract.GetCost(), contract.GetDuration());
+            }
         }
         void getContractInfo(DateTime InitiationDate)
         {
@@ -81,11 +81,24 @@ namespace PSS_ITWORKS.Presentation_Layer
             ///display data in data grid view according to to active tabs
             if (CallEmployee_tc.SelectedTab == CallEmployee_tc.TabPages["Dashboard_tp"])
             {
-                Dashboard_dgv.DataSource = listCalls;
+                Dashboard_dgv.ColumnCount = 4;
+                Dashboard_dgv.Rows.Clear();
+                foreach(EntityCall call in listCalls)
+                {
+                    Dashboard_dgv.Rows.Add(call.GetClientId(), call.GetEmployeeId(), call.GetCallTime(), call.GetDescription());
+                }
+
+                //This will assign the datasource. All the columns you listed will show up, and every row
+                //of data in the list will populate into the DataGridView.
             }
             else if (CallEmployee_tc.SelectedTab == CallEmployee_tc.TabPages["ServiceRequest_tp"])
             {
-                PastRequests_dgv.DataSource = listCalls;
+                PastRequests_dgv.RowCount = 4;
+                PastRequests_dgv.Rows.Clear();
+                foreach (EntityCall call in listCalls)
+                {
+                    PastRequests_dgv.Rows.Add(call.GetClientId(), call.GetEmployeeId(), call.GetCallTime(), call.GetDescription());
+                }
             }
 
         }
@@ -93,18 +106,18 @@ namespace PSS_ITWORKS.Presentation_Layer
         public int GetClientID(string name)
         {
             int clientID = 0;
-                context = new StrategyContextManager(new StrategyClientManager());
-                context.Connect(conn);
+            context = new StrategyContextManager(new StrategyClientManager());
+            context.Connect(conn);
 
-                List<IEntity> entities = (List<IEntity>)context.Get();
-                foreach (IEntity entity in entities)
+            List<IEntity> entities = context.Get();
+            foreach (IEntity entity in entities)
+            {
+                EntityClient client = entity as EntityClient;
+                if (client.GetName() == name)
                 {
-                    EntityClient client = entity as EntityClient;
-                    if (client.GetName() == name)
-                    {
-                        clientID = client.GetID();
-                    }
+                    clientID = client.GetID();
                 }
+            }
 
             return clientID;
         }
@@ -126,10 +139,12 @@ namespace PSS_ITWORKS.Presentation_Layer
             }
             PastServiceRequest_dgv.DataSource=listJobs;   
         }
-        public CallForm()
+        public CallForm(Dashboard dashboard, LoginController.UserInfo userInfo)
         {
-            
             InitializeComponent();
+            this.dashbord = dashboard;
+            this.userInfo = userInfo;
+            PSS_lbl.Text = $"Welcome Back {userInfo.Name} {userInfo.Surname} <Call Employee>";
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -142,7 +157,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             LoginController loginController = new LoginController();
             loginController.Connect();
-            employeeID = loginController.GetUserInfo().ID;
+            employeeID = userInfo.ID;
             PopulateDgvWithCalls();
             
         }
@@ -166,7 +181,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             }
             else
             {
-                MessageBox.Show("Client was not found");
+                MessageBox.Show($"Client {clientName} was  not found");
                 SearchClientName_txt.Clear();   
                 SearchClientName_txt.Focus();
             }
@@ -176,6 +191,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void SearchClient_btn_Click(object sender, EventArgs e)
         {
             string clientName = SearchClientName_txt.Text;
+            MessageBox.Show($"Search client name: {clientName}");
             context = new StrategyContextManager(new StrategyClientManager());
             int contractId = 0;
             DateTime initiationDate = DateTime.Now;
@@ -191,10 +207,10 @@ namespace PSS_ITWORKS.Presentation_Layer
             //check if client exist
             if (clientID > 0)
             {
-                    context = new StrategyContextManager(new StrategyClientManager());
+                context = new StrategyContextManager(new StrategyClientManager());
                 context.Connect(conn);
 
-                List<IEntity> entities = (List<IEntity>)context.Get();
+                List<IEntity> entities = context.Get();
                 foreach (IEntity entity in entities)
                 {
                     EntityClient client = entity as EntityClient;
@@ -209,7 +225,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             }
             else
             {
-                MessageBox.Show("Client was not found");
+                MessageBox.Show($"Client {clientName} was not found");
                 ClientName_txt.Clear();
                 ClientName_txt.Focus();
             }
@@ -224,7 +240,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             if (clientID > 0)
             {
                 this.Hide();
-                ServiceRequestForm form = new ServiceRequestForm(employeeID, clientID);
+                ServiceRequestForm form = new ServiceRequestForm(employeeID, clientID, this);
                 form.Show();
 
             }
@@ -239,6 +255,17 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void Title_txt_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Logout_btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            dashbord.Show();
+            this.Close();
         }
     }
 }

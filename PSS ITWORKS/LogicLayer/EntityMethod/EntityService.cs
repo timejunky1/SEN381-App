@@ -15,7 +15,7 @@ namespace PSS_ITWORKS.LogicLayer
         private string availability;
         List<EntityContract> contracts;
 
-        public EntityService(int id, string title, int duration, int priority, decimal cost, string availability, List<EntityContract> contracts)
+        public EntityService(int id, string title, int duration, int priority, decimal cost, string availability)
         {
             Id = id;
             this.title = title;
@@ -23,7 +23,16 @@ namespace PSS_ITWORKS.LogicLayer
             this.priority = priority;
             this.cost = cost;
             this.availability = availability;
+        }
+
+        public void SetContracts(List<EntityContract> contracts)
+        {
             this.contracts = contracts;
+        }
+
+        public List<EntityContract> GetContracts()
+        {
+            return this.contracts;
         }
 
         public int GetId()
@@ -54,11 +63,6 @@ namespace PSS_ITWORKS.LogicLayer
         public string GetAvailability()
         {
             return availability;
-        }
-
-        public List<EntityContract> GetContracts()
-        {
-            return contracts;
         }
     }
 }

@@ -21,6 +21,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         public int clientId = 0;
         public int empId = 0;
         List<EntityService> services;
+        CallForm callForm;
 
 
         void LoadService()
@@ -94,10 +95,11 @@ namespace PSS_ITWORKS.Presentation_Layer
             
         }
         
-        public ServiceRequestForm(int employeeid, int customerId)
+        public ServiceRequestForm(int employeeid, int customerId, CallForm callForm)
         {
             empId = employeeid;
             clientId = customerId;
+            this.callForm = callForm;
             InitializeComponent();
         }
 
@@ -116,8 +118,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void Close_btn_Click(object sender, EventArgs e)
         {
             this.Close();
-            CallForm callForm = new CallForm();
-            callForm.ShowDialog();
+            callForm.Show();
         }
 
         private void Submit_btn_Click_1(object sender, EventArgs e)
@@ -164,6 +165,12 @@ namespace PSS_ITWORKS.Presentation_Layer
 
             MessageBox.Show("Service Request successfully created");
 
+        }
+
+        private void Close_btn_Click_1(object sender, EventArgs e)
+        {
+            callForm.Show();
+            this.Close();
         }
     }
 }

@@ -19,7 +19,6 @@ public class LoginController
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Role { get; set; }
-
         public int ID { get; set; }
 
     }
@@ -46,13 +45,12 @@ public class LoginController
             }
             else
             {
- 
-                MessageBox.Show("Invalid username or password. Please try again.");
+                welcomeLabel.Text = "Invalid UserName or Password";
+                welcomeLabel.Visible = true;
             }
         }
         else
         {
- 
             MessageBox.Show("Username and password are required.");
         }
     }
@@ -70,19 +68,10 @@ public class LoginController
         return userInfo;
     }
 
-    public int getID(UserInfo)
+    public int getID(UserInfo userInfo)
     {
+        int ID = userInfo.ID;
         return ID;
-    }
-
-    public string GetUserRole(string username)
-    {
-        return api.GetUserRole(username);
-    }
-
-    public string FetchNameAndSurname(string username)
-    {
-        return api.FetchNameAndSurname(username);
     }
 
 
@@ -99,7 +88,7 @@ public class LoginController
 
     public void SetPassword(string username, string password, string newPassword)
     {
-        api.SetPassword(username, password, newPassword);
+        api.ResetPassword(username, password, newPassword);
     }
 }
 

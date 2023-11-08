@@ -1,4 +1,5 @@
-﻿using PSS_ITWORKS.LogicLayer;
+﻿using PSS_ITWORKS.ConstantData;
+using PSS_ITWORKS.LogicLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,11 +15,22 @@ namespace PSS_ITWORKS.Presentation_Layer
     public partial class ServiceManagerForm : Form
     {
         StrategyContextManager context;
-        string conn = @"Data Source=DESKTOP-TBBSO02\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True";
+        string conn = SystemData.GetConString();
         public int jobID;
         public int clientID;
         List<EntityCall> CallList = new List<EntityCall>();
 
+        private Dashboard dashboard;
+        StrategyContextManager cm;
+        AssignmentForm af = new AssignmentForm();
+        LoginController.UserInfo userInfo;
+        public ServiceManagerForm(Dashboard dashboard, LoginController.UserInfo userInfo)
+        {
+            InitializeComponent();
+            this.dashboard = dashboard;
+            this.userInfo = userInfo;
+            welcome_lbl.Text = $"Welcome Back {userInfo.Name} {userInfo.Surname} <Service Manager>";
+        }
         public int GetTechID(string Name)
         {
             int ID = 0;
@@ -164,7 +176,6 @@ namespace PSS_ITWORKS.Presentation_Layer
 
             List<IEntity> jobs = context.Get();
             List<EntityEmployee> techs = new List<EntityEmployee>();
-            string[] names = new string[];
             foreach (IEntity entity in jobs)
             {
                 EntityJob j = entity as EntityJob;
@@ -206,15 +217,6 @@ namespace PSS_ITWORKS.Presentation_Layer
             return techs;
         }
 
-        private Dashboard dashboard;
-        StrategyContextManager cm;
-        AssignmentForm af = new AssignmentForm();
-        public ServiceManagerForm(Dashboard dashboard)
-        {
-            InitializeComponent();
-            this.dashboard = dashboard;
-        }
-
         private void ManagerForm_Load(object sender, EventArgs e)
         {
             ModifyJobs_pnl.Visible = false;
@@ -223,12 +225,12 @@ namespace PSS_ITWORKS.Presentation_Layer
 
             context = new StrategyContextManager(new StrategyJobManager());
             context.Connect(conn);
-            List<IEntity> jobs = context.Get();
+            List<IEntity> entities = context.Get();
             List<EntityJob> jobList = new List<EntityJob>();
             List<EntityJob> pending = new List<EntityJob>();
-            foreach (EntityJob job in jobs)
+            foreach (IEntity ent in entities)
             {
-                EntityJob jobEntity = job as EntityJob;
+                EntityJob jobEntity = ent as EntityJob;
                 if(jobEntity.GetTimeBegin() == date)
                 {
                     jobList.Add(jobEntity);
@@ -240,29 +242,23 @@ namespace PSS_ITWORKS.Presentation_Layer
             }
             AssignmentSchedule_dgv.DataSource = jobList;
             Request_dgv.DataSource = pending;
-            //Request_dgv.DataSource = context.Get();
-            //AssignmentSchedule_dgv.DataSource = context.Get();
-            ////List<IEntity> list = cm.Get();
-            //List<IEntity> list = new List<IEntity>();
-            //AssignmentSchedule_dgv.DataSource = list;
-            //IEntity entity = cm.Get(3);
-            //EntityJob job = entity as EntityJob;
-            //BindingSource bs = new BindingSource();
-            //List<EntityJob> jobs = new List<EntityJob>();
+            Request_dgv.DataSource = context.Get();
+            AssignmentSchedule_dgv.DataSource = context.Get();
+            List<IEntity> list = context.Get();
+            AssignmentSchedule_dgv.DataSource = list;
+            IEntity entity = context.Get(3);
+            EntityJob job = entity as EntityJob;
+            BindingSource bs = new BindingSource();
+            List<EntityJob> jobs = new List<EntityJob>();
 
-            //foreach (IEntity ent in list)
-            //{
-            //    EntityJob j = ent as EntityJob;
-            //    if (j.GetStatus() == "In Process")
-            //    {
-            //        jobs.Add(j);
-            //    }
-            //}
-        }
-
-        private void Filter_txt_TextChanged(object sender, EventArgs e)
-        {
-
+            foreach (IEntity ent in list)
+            {
+                EntityJob j = ent as EntityJob;
+                if (j.GetStatus() == "In Process")
+                {
+                    jobs.Add(j);
+                }
+            }
         }
 
         private void assign_btn_Click(object sender, EventArgs e)
@@ -274,11 +270,6 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             this.Close();
             dashboard.Show();
-
-        }
-
-        private void Jobs_tp_Click(object sender, EventArgs e)
-        {
 
         }
 
@@ -378,7 +369,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             context = new StrategyContextManager(new StrategyJobManager());
             context.Connect(conn);
             EntityJob UpdateJob = new EntityJob(jobID, clientID, serviceID, begin, end, status, notes);
-            UpdateJob.SetEmployee(employees);
+            UpdateJob.SetEmployees(employees);
             context.Update(UpdateJob);
             /// 
 

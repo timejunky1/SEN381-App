@@ -6,36 +6,75 @@ using System.Windows.Forms;
 
 namespace PSS_ITWORKS
 {
-    class StrategyServiceManager : IStrategyAManagement
+    public class StrategyServiceManager : IStrategyAManagement
     {
         DatabaseAPI api = new DatabaseAPI();
 
         public void Connect(string myString)
         {
-            throw new NotImplementedException();
+            api.SetConnection(myString);
         }
 
         public void Create(IEntity entity)
         {
-            throw new NotImplementedException();
+            EntityService service = entity as EntityService;
+            api.InsertService(service);
         }
 
         public void Delete(int ID)
         {
-            throw new NotImplementedException();
+            api.DeleteService(ID);
         }
 
         public List<IEntity> Get()
         {
-            throw new NotImplementedException();
+            List<EntityService> services = api.GetServices();
+            List<IEntity> entities = new List<IEntity>();
+            foreach (EntityService service in services)
+            {
+                entities.Add(service);
+            }
+            return entities;
         }
 
         public IEntity Get(int ID)
         {
-            throw new NotImplementedException();
+            EntityService sevice = api.GetService(ID);
+            if(sevice != null)
+            {
+                List<EntityContract> contracts = new List<EntityContract>();
+                List<int> contractIds = api.GetContractRef(serviceId: ID);
+                foreach (int contractId in contractIds)
+                {
+                    contracts.Add(api.GetContract(contractId));
+                }
+                sevice.SetContracts(contracts);
+            }
+            return sevice;
         }
 
         public void Update(IEntity entity)
+        {
+            EntityService service = entity as EntityService;
+            api.UpdateService(service);
+        }
+
+        public BindingSource GetSpecific1(string s1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific2(string s2)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific1(int n1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific2(int n1)
         {
             throw new NotImplementedException();
         }

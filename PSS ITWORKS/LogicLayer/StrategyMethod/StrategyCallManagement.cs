@@ -1,6 +1,5 @@
 ﻿// StrategyCCallManagement.cs
 using PSS_ITWORKS.LogicLayer;
-using PSS_ITWORKS.PSSDataSetTableAdapters;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -24,7 +23,7 @@ namespace PSS_ITWORKS
 
         public void Delete(int ID)
         {
-            api.DeleteCall(ID);
+            throw new NotImplementedException();
         }
 
         public List<IEntity> Get()
@@ -42,7 +41,7 @@ namespace PSS_ITWORKS
         public IEntity Get(int ID)
         {
             EntityCall call = null;
-            call = api.GetCalls(ID);
+            call = api.GetCall(ID);
             return call;
         }
 

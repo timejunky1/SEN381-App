@@ -11,11 +11,11 @@ namespace PSS_ITWORKS
         {
             this.loginController = loginController;
         }
-        public void ShowUserInterface(Dashboard dashboard)
+        public void ShowUserInterface(Dashboard dashboard, LoginController.UserInfo userinfo)
         {
             string name = loginController.GetUserInfo().Name;
             string surname = loginController.GetUserInfo().Surname;
-            CallForm callForm = new CallForm(dashboard);
+            CallForm callForm = new CallForm(dashboard, userinfo);
             callForm.Show();
             dashboard.Hide();
         }

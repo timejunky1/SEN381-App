@@ -5,49 +5,70 @@ using System.Windows.Forms;
 
 namespace PSS_ITWORKS
 {
-    class StrategyClientManager : IStrategyAManagement
+    public class StrategyClientManager : IStrategyAManagement
     {
         DatabaseAPI api = new DatabaseAPI();
 
         public void Connect(string myString)
         {
-            throw new System.NotImplementedException();
+            api.SetConnection(myString);
         }
 
         public void Create(IEntity entity)
         {
-            throw new System.NotImplementedException();
+            EntityClient client = entity as EntityClient;
+            api.InsertClient(client);
         }
 
         public void Delete(int ID)
         {
-            throw new System.NotImplementedException();
+            api.DeleteClient(ID);
         }
 
         public List<IEntity> Get()
         {
-            throw new System.NotImplementedException();
+            List<IEntity> entities = new List<IEntity>();
+            List<EntityClient> clients = api.GetClients();
+            foreach (EntityClient client in clients)
+            {
+                entities.Add(client);
+            }
+            return entities;
         }
 
         public IEntity Get(int ID)
         {
-            EntityClient client =  api.GetClient(ID);
-            List<EntityJob> jobs = client.GetJobs();
-            List<EntityJob> clientJobs = new List<EntityJob>();
-            foreach (EntityJob job in jobs)
+            EntityClient client = null;
+            if(client != null)
             {
-                if(job.GetClientId() == ID)
+                client = api.GetClient(ID);
+                List<EntityJob> jobs= api.GetJobs();
+                foreach(EntityJob job in jobs)
                 {
-                    clientJobs.Add(job);
+                    if(job.GetClientId() == client.GetID())
+                    {
+                        jobs.Add(job);
+                    }
                 }
+                client.SetJobs(jobs);
+                List<EntityCall> calls = api.GetCalls();
+                foreach (EntityCall call in calls)
+                {
+                    if (call.GetClientId() == client.GetID())
+                    {
+                        calls.Add(call);
+                    }
+                }
+                client.SetCalls(calls);
             }
-            client.SetJobs(clientJobs);
             return client;
+
         }
 
         public void Update(IEntity entity)
         {
-            throw new System.NotImplementedException();
+            EntityClient client = entity as EntityClient;
+            api.UpdateClient(client);
         }
     }
 }

@@ -299,6 +299,7 @@
             this.Close_btn.TabIndex = 5;
             this.Close_btn.Text = "Close";
             this.Close_btn.UseVisualStyleBackColor = false;
+            this.Close_btn.Click += new System.EventHandler(this.Close_btn_Click_1);
             // 
             // ServiceRequestForm
             // 
