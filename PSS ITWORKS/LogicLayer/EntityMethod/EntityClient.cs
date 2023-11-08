@@ -129,7 +129,58 @@ namespace PSS_ITWORKS.LogicLayer
 
         public List<EntityCall> GetCalls()
         {
-            return calls;
+            // Implement the logic to retrieve and return a list of EntityCall objects
+            // associated with this client.
+            // For example, you may fetch the calls from your data source.
+
+            List<EntityCall> clientCalls = new List<EntityCall>();
+
+            // Replace this with your actual data retrieval logic
+
+            return clientCalls;
+        }
+
+        public string GetStatus(List<EntityJob> jobs)
+        {
+            // Initialize counters for each status
+            int finishedCount = 0;
+            int cancelledCount = 0;
+            int pendingCount = 0;
+
+            // Loop through the jobs and count them by status
+            foreach (EntityJob job in jobs)
+            {
+                if (job.GetStatus().Equals("Finished", StringComparison.OrdinalIgnoreCase))
+                {
+                    finishedCount++;
+                }
+                else if (job.GetStatus().Equals("Cancelled", StringComparison.OrdinalIgnoreCase))
+                {
+                    cancelledCount++;
+                }
+                else if (job.GetStatus().Equals("Pending", StringComparison.OrdinalIgnoreCase))
+                {
+                    pendingCount++;
+                }
+            }
+
+            // Determine the overall status based on the counts
+            if (finishedCount > 0)
+            {
+                return "Finished";
+            }
+            else if (cancelledCount > 0)
+            {
+                return "Cancelled";
+            }
+            else if (pendingCount > 0)
+            {
+                return "Pending";
+            }
+            else
+            {
+                return "Unknown"; // You can use a different string or handle this case as needed
+            }
         }
     }
 }
