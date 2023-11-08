@@ -42,6 +42,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             chart1.ChartAreas[0].AxisX.Interval = 1;
             chart2.ChartAreas[0].AxisY.Interval = 1;
             chart2.ChartAreas[0].AxisX.Interval = 1;
+            PSS_lbl.Text = $"Welcome Back {userInfo.Name} {userInfo.Surname} <Contract Manager>";
         }
 
         Series GetValues(int m, List<EntityJob> jobs, string status)
@@ -61,7 +62,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             }
             foreach (EntityJob job in jobs)
             {
-                if(job.GetStatus() == status)
+                if (job.GetStatus() == status)
                 {
                     series.Points[job.GetTimeBegin().Month - start - 1].SetValueY(1);
                 }
@@ -75,6 +76,10 @@ namespace PSS_ITWORKS.Presentation_Layer
             context = new StrategyContextManager(new StrategyServiceManager());
             context.Connect(connString);
             EntityService service = context.Get(serviceid) as EntityService;
+            if (service == null)
+            {
+                return;
+            }
             ServiceType_cbx.Text = service.GetTitle();
             title_txt.Text = service.GetTitle();
             duration_num.Value = service.GetDuration();
@@ -154,7 +159,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             foreach (IEntity entity in entities)
             {
                 EntityClient client = entity as EntityClient;
-                if(client.GetContractId() == id1)
+                if (client.GetContractId() == id1)
                 {
                     foreach (EntityJob job in client.GetJobs())
                     {
@@ -163,7 +168,7 @@ namespace PSS_ITWORKS.Presentation_Layer
                 }
                 if (client.GetContractId() == id2)
                 {
-                    foreach(EntityJob job in client.GetJobs())
+                    foreach (EntityJob job in client.GetJobs())
                     {
                         jobs2.Add(job);
                     }
@@ -248,11 +253,11 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void ContractManagement_tc_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(ContractManagement_tc.SelectedIndex == 1)
+            if (ContractManagement_tc.SelectedIndex == 1)
             {
                 SetService();
             }
-            else if(ContractManagement_tc.SelectedIndex == 2)
+            else if (ContractManagement_tc.SelectedIndex == 2)
             {
                 SetContract();
             }
@@ -327,7 +332,7 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void add_btn_Click(object sender, EventArgs e)
         {
-            foreach(EntityService service in allServices)
+            foreach (EntityService service in allServices)
             {
                 if (service.GetTitle() == servicesC_cbx.Text)
                 {

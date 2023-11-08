@@ -14,10 +14,17 @@ namespace PSS_ITWORKS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            LogIn login = new LogIn();
-            login.Show();
+            //LogIn login = new LogIn();
+            //login.Show();
             //TestingForm testing = new TestingForm();
             //testing.Show();
+            LoginController.UserInfo userInfo = new LoginController.UserInfo();
+            userInfo.Name = "Test";
+            userInfo.Surname = "Test";
+            userInfo.ID = 1;
+            ContractManagerForm test = new ContractManagerForm(null, userInfo);
+            test.Show();
+
             Application.Run();
             
             
