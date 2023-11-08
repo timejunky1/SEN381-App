@@ -47,6 +47,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             theClient.Connect(@"Data Source=JOEKNOWS\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
         }
 
+        // DONT REMOVE THIS
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientForm));
