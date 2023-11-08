@@ -6,7 +6,5 @@ namespace PSS_ITWORKS.LogicLayer
 {
     public interface IEntity
     {
-       
-        int GetID();
     }
 }

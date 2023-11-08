@@ -37,18 +37,10 @@ namespace PSS_ITWORKS.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-<<<<<<< HEAD
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-8GCK8IN\\SQLEXPRESS;Initial Catalog=PSS1;Integrated Security=T" +
-            "rue")]
-        public string PSS1ConnectionString {
-            get {
-                return ((string)(this["PSS1ConnectionString"]));
-=======
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=JOEKNOWS\\SQLEXPRESS;Initial Catalog=PSS;Integrated Security=True")]
         public string PSSConnectionString1 {
             get {
                 return ((string)(this["PSSConnectionString1"]));
->>>>>>> ClientsManager
             }
         }
     }

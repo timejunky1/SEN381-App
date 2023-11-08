@@ -39,7 +39,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         private DataGridView contract_dgv;
         StrategyContextManager theClient;
 
-        public ClientForm()
+        public ClientForm(Dashboard dashboard, LoginController.UserInfo userInfo)
         {
             InitializeComponent();
             // Set the Client strategy
@@ -309,6 +309,16 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             DateTime endDate = startDate.AddMonths(duration);
             return endDate;
+        }
+
+        private void ClientForm_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ClientForm_Load_2(object sender, EventArgs e)
+        {
+
         }
     }
 }
