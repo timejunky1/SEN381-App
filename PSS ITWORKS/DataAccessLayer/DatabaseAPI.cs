@@ -312,7 +312,7 @@ namespace PSS_ITWORKS
                             }
                             else
                             {
-                                ErrorHandler.DisplayError("Employee Found");
+                                ErrorHandler.DisplayError($"Employee Found with ID {employeeId}");
                             }
                             reader.Close();
                         }
@@ -418,7 +418,7 @@ namespace PSS_ITWORKS
                             }
                             if (!reader.HasRows)
                             {
-                                ErrorHandler.DisplayError("No Data");
+                                ErrorHandler.DisplayError($"No Call with ID: {callId}");
                             }
                             reader.Close();
                         }
@@ -600,7 +600,7 @@ namespace PSS_ITWORKS
                             }
                             if(!reader.HasRows)
                             {
-                                ErrorHandler.DisplayError("No Data");
+                                ErrorHandler.DisplayError($"No Client Found with the ID: {clientId}");
                             }
                             reader.Close();
                         }
@@ -771,7 +771,7 @@ namespace PSS_ITWORKS
                             }
                             if (!reader.HasRows)
                             {
-                                ErrorHandler.DisplayError("No Data");
+                                ErrorHandler.DisplayError($"No Contract Found with the ID: {contractid}");
                             }
                             reader.Close();
                         }
@@ -1087,7 +1087,7 @@ namespace PSS_ITWORKS
                             }
                             if (!reader.HasRows)
                             {
-                                ErrorHandler.DisplayError("No Data");
+                                ErrorHandler.DisplayError($"No Service Found With The ID: {serviceid}");
                             }
                             reader.Close();
                         }
@@ -1109,7 +1109,7 @@ namespace PSS_ITWORKS
                 using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("serviceProcedures.GetService", conn))
+                    using (SqlCommand command = new SqlCommand("serviceProcedures.GetServices", conn))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {

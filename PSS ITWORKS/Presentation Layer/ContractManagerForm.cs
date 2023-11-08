@@ -75,6 +75,12 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
             context = new StrategyContextManager(new StrategyServiceManager());
             context.Connect(connString);
+            List<IEntity> entities = context.Get();
+            foreach (IEntity entity in entities)
+            {
+                EntityService s = entity as EntityService;
+                ServiceType_cbx.Items.Add(s.GetTitle());
+            }
             EntityService service = context.Get(serviceid) as EntityService;
             if (service == null)
             {
@@ -92,10 +98,19 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         void SetContract()
         {
+            context = new StrategyContextManager(new StrategyContractManager());
+            context.Connect(connString);
+            List<IEntity> entities = context.Get();
+            foreach (IEntity entity in entities)
+            {
+                EntityContract contract = entity as EntityContract;
+                contracts.Add(contract);
+                ContractType1_cbx.Items.Add(contract.GetTitle());
+                ContractType2_cbx.Items.Add(contract.GetTitle());
+                contractType_cbx.Items.Add(contract.GetTitle());
+            }
             if (contractId > 0)
             {
-                context = new StrategyContextManager(new StrategyContractManager());
-                context.Connect(connString);
                 EntityContract contract = context.Get(contractId) as EntityContract;
                 sla_txt.Text = contract.GetSLA();
                 durationC_num.Value = contract.GetDuration();
@@ -152,7 +167,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         {
 
             context = new StrategyContextManager(new StrategyClientManager());
-            context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
+            context.Connect(connString);
             List<IEntity> entities = context.Get();
             List<EntityJob> jobs1 = new List<EntityJob>();
             List<EntityJob> jobs2 = new List<EntityJob>();
@@ -193,26 +208,8 @@ namespace PSS_ITWORKS.Presentation_Layer
             m2 = 12;
             id1 = 1;
             id2 = 2;
-            context = new StrategyContextManager(new StrategyServiceManager());
-            context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
-            List<IEntity> entities = context.Get();
-            foreach (IEntity entity in entities)
-            {
-                EntityService service = entity as EntityService;
-                ServiceType_cbx.Items.Add(service.GetTitle());
-            }
+            
             SetService();
-            context = new StrategyContextManager(new StrategyContractManager());
-            context.Connect(@"Data Source=DESKTOP-8GCK8IN\SQLEXPRESS; Initial Catalog=PSS; Integrated Security=True");
-            entities = context.Get();
-            foreach (IEntity entity in entities)
-            {
-                EntityContract contract = entity as EntityContract;
-                contracts.Add(contract);
-                ContractType1_cbx.Items.Add(contract.GetTitle());
-                ContractType2_cbx.Items.Add(contract.GetTitle());
-                contractType_cbx.Items.Add(contract.GetTitle());
-            }
             SetContractStats();
             SetContract();
         }
