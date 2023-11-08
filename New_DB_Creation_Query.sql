@@ -18,7 +18,7 @@ CREATE TABLE employee (
     job_title VARCHAR(30) NOT NULL,
 	address_id INT NOT NULL,
     phone VARCHAR(10) NOT NULL,
-	email VARCHAR(40) UNIQUE,
+	email VARCHAR(50) UNIQUE,
 	password varchar(30),
     FOREIGN KEY (address_id) REFERENCES address(address_id)
 );
@@ -57,7 +57,7 @@ CREATE TABLE client (
     address_id INT NOT NULL,
     contract_id INT NOT NULL,
     phone VARCHAR(10) NOT NULL,
-	email VARCHAR(40) UNIQUE,
+	email VARCHAR(50) UNIQUE,
 	password varchar(30),
 	contract_initiation_date DATETIME NOT NULL DEFAULT GETDATE(),
     FOREIGN KEY (address_id) REFERENCES address(address_id),
@@ -65,7 +65,7 @@ CREATE TABLE client (
 );
 CREATE TABLE login (
     login_id INT IDENTITY(1,1) PRIMARY KEY,
-    email VARCHAR(40) UNIQUE,
+    email VARCHAR(50) NOT NULL,
     time_in DATETIME NOT NULL,
     time_out DATETIME NULL,
 );
@@ -611,7 +611,7 @@ EXECUTE('CREATE SCHEMA loginProcedures')
 GO
 
 CREATE PROCEDURE loginProcedures.InsertLogin
-    @email VARCHAR(30),
+    @email VARCHAR(50),
     @timeIn DATETIME
 AS
 BEGIN
@@ -620,11 +620,8 @@ BEGIN
 END;
 GO
 
-EXEC loginProcedures.InsertLogin @email = 'josephine.henderson@example.com', @timeIn = '2023-02-17 09:14:20'
-GO
-
 CREATE PROCEDURE loginProcedures.Logout
-    @email VARCHAR(30)
+    @email VARCHAR(50)
 AS
 BEGIN
 	DECLARE @id INT
@@ -644,7 +641,7 @@ END;
 GO
 
 CREATE PROCEDURE loginProcedures.ResetPassword
-	@email VARCHAR(30),
+	@email VARCHAR(50),
 	@oldPassword VARCHAR(30),
 	@newPassword VARCHAR(30)
 AS
@@ -693,7 +690,7 @@ END
 GO
 
 CREATE PROCEDURE loginProcedures.GetUserInformation 
-	@username VARCHAR(30),
+	@username VARCHAR(50),
 	@name VARCHAR(15) = '' OUTPUT,
 	@surname VARCHAR(15) = '' OUTPUT,
 	@role VARCHAR(30) = '' OUTPUT,
@@ -786,7 +783,7 @@ CREATE PROCEDURE employeeProcedures.InsertEmployee
     @surname VARCHAR(15),
     @role VARCHAR(30),
     @phone VARCHAR(10),
-	@email VARCHAR(30),
+	@email VARCHAR(50),
 	@streetNo INT,
     @street VARCHAR(50),
     @city VARCHAR(30),
@@ -925,7 +922,7 @@ CREATE PROCEDURE clientProcedures.InsertClient
 	@role VARCHAR(30),
     @contractId INT,
     @phone VARCHAR(10),
-	@email VARCHAR(30),
+	@email VARCHAR(50),
 	@contractInitiationDate DATETIME,
 	@streetNo INT,
     @street VARCHAR(50),
@@ -985,7 +982,7 @@ CREATE PROCEDURE clientProcedures.UpdateClient
     @role VARCHAR(30),
     @contractId INT,
     @phone VARCHAR(10),
-    @email VARCHAR(30),
+    @email VARCHAR(50),
     @contractInitiationDate DATETIME,
 	@streetNo INT,
 	@street VARCHAR(50),
