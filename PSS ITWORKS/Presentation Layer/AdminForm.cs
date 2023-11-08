@@ -39,6 +39,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             Welcome_lbl.Text = $"Welcome Back {userInfo.Name} {userInfo.Surname} <Admin>";
         }
 
+  
         private void AdminForm_Load(object sender, EventArgs e)
         {
             conString = SystemData.GetConString();
@@ -117,6 +118,21 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void Email_lbl_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void radioBtn_gb_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void client_Rbtn_CheckedChanged(object sender, EventArgs e)
+        {
+            if (client_Rbtn.Checked) { clientDetails_gb.Visible=true; }
+        }
+
+        private void employee_Rbtn_CheckedChanged(object sender, EventArgs e)
+        {
+            if (employee_Rbtn.Checked) { clientDetails_gb.Visible = false; }
         }
     }
 }

@@ -1,13 +1,14 @@
 ﻿// StrategyClientManager.cs
 using PSS_ITWORKS.LogicLayer;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace PSS_ITWORKS
 {
     public class StrategyClientManager : IStrategyAManagement
     {
-        DatabaseAPI api = new DatabaseAPI();
+        DatabaseAPI api = new DatabaseAPI();     
 
         public void Connect(string myString)
         {
