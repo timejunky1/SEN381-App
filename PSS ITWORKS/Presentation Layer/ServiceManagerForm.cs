@@ -228,35 +228,21 @@ namespace PSS_ITWORKS.Presentation_Layer
             List<IEntity> entities = context.Get();
             List<EntityJob> jobList = new List<EntityJob>();
             List<EntityJob> pending = new List<EntityJob>();
+            AssignmentSchedule_dgv.Rows.Clear();
+            Request_dgv.Rows.Clear();
+
             foreach (IEntity ent in entities)
             {
                 EntityJob jobEntity = ent as EntityJob;
                 if(jobEntity.GetTimeBegin() == date)
                 {
+                    AssignmentSchedule_dgv.Rows.Add(jobEntity.GetID(), jobEntity.GetClientId(), jobEntity.GetServiceId(), jobEntity.GetTimeBegin(), jobEntity.GetTimeEnd(), jobEntity.GetStatus(), jobEntity.GetNotes());
                     jobList.Add(jobEntity);
                 }
                 else if(jobEntity.GetStatus() == "Pending")
                 {
                     pending.Add(jobEntity);
-                }
-            }
-            AssignmentSchedule_dgv.DataSource = jobList;
-            Request_dgv.DataSource = pending;
-            Request_dgv.DataSource = context.Get();
-            AssignmentSchedule_dgv.DataSource = context.Get();
-            List<IEntity> list = context.Get();
-            AssignmentSchedule_dgv.DataSource = list;
-            IEntity entity = context.Get(3);
-            EntityJob job = entity as EntityJob;
-            BindingSource bs = new BindingSource();
-            List<EntityJob> jobs = new List<EntityJob>();
-
-            foreach (IEntity ent in list)
-            {
-                EntityJob j = ent as EntityJob;
-                if (j.GetStatus() == "In Process")
-                {
-                    jobs.Add(j);
+                    Request_dgv.Rows.Add(jobEntity.GetID(), jobEntity.GetClientId(), jobEntity.GetServiceId(), jobEntity.GetTimeBegin(), jobEntity.GetTimeEnd(), jobEntity.GetStatus(), jobEntity.GetNotes());
                 }
             }
         }
@@ -281,8 +267,12 @@ namespace PSS_ITWORKS.Presentation_Layer
                 MessageBox.Show("Please enter name");
                 Filter_txt.Focus();
             }
-            Schedule_dgv.DataSource = SearchJobByTechLoad(name);
-
+            List<IEntity> jobs = SearchJobByTechLoad(name);
+            foreach(IEntity ent in jobs)
+{
+                EntityJob j = ent as EntityJob;
+                AssignmentSchedule_dgv.Rows.Add(j.GetId(), j.GetStatus(), j.GetTimeBegin(), j.GetPriotity());
+            }
         }
 
         private void TechFilter_btn_Click(object sender, EventArgs e)
@@ -295,7 +285,14 @@ namespace PSS_ITWORKS.Presentation_Layer
                 TechFilter_txt.Clear();
                 TechFilter_txt.Focus();
             }
-            Technician_dgv.DataSource = GetJobsByID(ServiceId);
+            List<IEntity> getSpecific = GetJobsByID(ServiceId);
+
+            foreach (IEntity ent in getSpecific)
+            {
+                EntityJob j = ent as EntityJob;
+                Technician_dgv.Rows.Add(j.GetId(), j.GetServiceId(), j.GetClientId(), j.GetPriotity(), j.GetStatus(), j.GetTimeBegin(), j.GetTimeEnd());
+            }
+
         }
 
         private void JobsFilter_btn_Click(object sender, EventArgs e)
@@ -303,7 +300,12 @@ namespace PSS_ITWORKS.Presentation_Layer
             ModifyJobs_pnl.Visible = false;
             string techName = TechFilter_txt.Text;
 
-            JobsByTech_dgv.DataSource = SearchJobByTechLoad(techName);
+            List<IEntity> load = SearchJobByTechLoad(techName);
+            foreach (IEntity ent in load)
+            {
+                EntityJob j = ent as EntityJob;
+                JobsByTech_dgv.Rows.Add(j.GetId(), j.GetServiceId(), j.GetClientId(), j.GetPriotity(), j.GetStatus(), j.GetTimeBegin(), j.GetTimeEnd());
+            }
         }
 
         private void ModifyJobs_btn_Click(object sender, EventArgs e)
