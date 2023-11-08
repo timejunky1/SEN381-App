@@ -75,5 +75,25 @@ namespace PSS_ITWORKS
             }
             api.UpdateContract(contract);
         }
+
+        public BindingSource GetSpecific1(string s1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific2(string s2)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific1(int n1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific2(int n1)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

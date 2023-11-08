@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Twilio.TwiML.Voice;
+﻿using System.Collections.Generic;
 
 namespace PSS_ITWORKS.LogicLayer.StrategyMethod
 {
@@ -43,27 +37,41 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
         {
             EntityClient client = null;
             client = api.GetClient(ID);
-            List<EntityJob> jobs= api.GetJobs();
-            foreach(EntityJob job in jobs)
+
+            List<EntityJob> jobs = api.GetJobs();
+            List<EntityJob> clientJobs = new List<EntityJob>();
+
+            foreach (EntityJob job in jobs)
             {
-                if(job.GetClientId() == client.GetID())
+                if (job.GetClientId() == client.GetID())
                 {
-                    jobs.Add(job);
+                    clientJobs.Add(job);
                 }
             }
-            client.SetJobs(jobs);
+
+            client.SetJobs(clientJobs);
+
             List<EntityCall> calls = api.GetCalls();
+            List<EntityCall> clientCalls = new List<EntityCall>();
+
             foreach (EntityCall call in calls)
             {
                 if (call.GetClientId() == client.GetID())
                 {
-                    calls.Add(call);
+                    clientCalls.Add(call);
                 }
             }
-            client.SetCalls(calls);
-            return client;
 
+            client.SetCalls(clientCalls);
+
+            // Now, you can call the GetStatus method with the list of clientJobs
+            string status = client.GetStatus(clientJobs);
+
+            // You can use the 'status' variable as needed in your code
+
+            return client;
         }
+
 
         public void Update(IEntity entity)
         {
