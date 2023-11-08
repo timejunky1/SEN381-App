@@ -40,13 +40,16 @@ namespace PSS_ITWORKS
         public IEntity Get(int ID)
         {
             EntityService sevice = api.GetService(ID);
-            List<EntityContract> contracts = new List<EntityContract>();
-            List<int> contractIds = api.GetContractRef(serviceId: ID);
-            foreach (int contractId in contractIds)
+            if(sevice != null)
             {
-                contracts.Add(api.GetContract(contractId));
+                List<EntityContract> contracts = new List<EntityContract>();
+                List<int> contractIds = api.GetContractRef(serviceId: ID);
+                foreach (int contractId in contractIds)
+                {
+                    contracts.Add(api.GetContract(contractId));
+                }
+                sevice.SetContracts(contracts);
             }
-            sevice.SetContracts(contracts);
             return sevice;
         }
 

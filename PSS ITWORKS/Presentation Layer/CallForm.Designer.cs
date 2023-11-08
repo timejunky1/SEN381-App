@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.Header_pnl = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.Logout_btn = new System.Windows.Forms.Button();
             this.PSS_lbl = new System.Windows.Forms.Label();
             this.PSS_img = new System.Windows.Forms.PictureBox();
@@ -80,29 +81,39 @@
             // Header_pnl
             // 
             this.Header_pnl.AutoSize = true;
+            this.Header_pnl.Controls.Add(this.button1);
             this.Header_pnl.Controls.Add(this.Logout_btn);
             this.Header_pnl.Controls.Add(this.PSS_lbl);
             this.Header_pnl.Controls.Add(this.PSS_img);
             this.Header_pnl.Dock = System.Windows.Forms.DockStyle.Top;
             this.Header_pnl.Location = new System.Drawing.Point(0, 0);
-            this.Header_pnl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Header_pnl.Margin = new System.Windows.Forms.Padding(2);
             this.Header_pnl.Name = "Header_pnl";
             this.Header_pnl.Size = new System.Drawing.Size(923, 72);
             this.Header_pnl.TabIndex = 0;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Firebrick;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(750, 26);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(118, 36);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Dashboard";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Logout_btn
             // 
-            this.Logout_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(73)))), ((int)(((byte)(73)))));
-            this.Logout_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Logout_btn.ForeColor = System.Drawing.Color.White;
-            this.Logout_btn.Location = new System.Drawing.Point(749, 26);
-            this.Logout_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Logout_btn.Location = new System.Drawing.Point(0, 0);
             this.Logout_btn.Name = "Logout_btn";
-            this.Logout_btn.Size = new System.Drawing.Size(118, 36);
-            this.Logout_btn.TabIndex = 2;
-            this.Logout_btn.Text = "Logout";
-            this.Logout_btn.UseVisualStyleBackColor = false;
-            this.Logout_btn.Click += new System.EventHandler(this.Logout_btn_Click);
+            this.Logout_btn.Size = new System.Drawing.Size(75, 23);
+            this.Logout_btn.TabIndex = 0;
             // 
             // PSS_lbl
             // 
@@ -119,7 +130,7 @@
             // PSS_img
             // 
             this.PSS_img.Location = new System.Drawing.Point(12, 9);
-            this.PSS_img.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PSS_img.Margin = new System.Windows.Forms.Padding(2);
             this.PSS_img.Name = "PSS_img";
             this.PSS_img.Size = new System.Drawing.Size(76, 61);
             this.PSS_img.TabIndex = 0;
@@ -133,7 +144,7 @@
             this.CallEmployee_tc.Controls.Add(this.History_tbp);
             this.CallEmployee_tc.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CallEmployee_tc.Location = new System.Drawing.Point(12, 100);
-            this.CallEmployee_tc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CallEmployee_tc.Margin = new System.Windows.Forms.Padding(2);
             this.CallEmployee_tc.Name = "CallEmployee_tc";
             this.CallEmployee_tc.SelectedIndex = 0;
             this.CallEmployee_tc.Size = new System.Drawing.Size(873, 456);
@@ -145,9 +156,9 @@
             this.Dashboard_tp.Controls.Add(this.PastJobRequest_lbl);
             this.Dashboard_tp.Controls.Add(this.MaintananceOverview_lbl);
             this.Dashboard_tp.Location = new System.Drawing.Point(4, 28);
-            this.Dashboard_tp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Dashboard_tp.Margin = new System.Windows.Forms.Padding(2);
             this.Dashboard_tp.Name = "Dashboard_tp";
-            this.Dashboard_tp.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Dashboard_tp.Padding = new System.Windows.Forms.Padding(2);
             this.Dashboard_tp.Size = new System.Drawing.Size(865, 424);
             this.Dashboard_tp.TabIndex = 0;
             this.Dashboard_tp.Text = "Dashboard";
@@ -157,7 +168,7 @@
             // 
             this.Dashboard_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dashboard_dgv.Location = new System.Drawing.Point(22, 75);
-            this.Dashboard_dgv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Dashboard_dgv.Margin = new System.Windows.Forms.Padding(2);
             this.Dashboard_dgv.Name = "Dashboard_dgv";
             this.Dashboard_dgv.RowHeadersWidth = 51;
             this.Dashboard_dgv.RowTemplate.Height = 24;
@@ -194,9 +205,9 @@
             this.ServiceRequest_tp.Controls.Add(this.NewServiceRequest_btn);
             this.ServiceRequest_tp.Controls.Add(this.ServiceRequest_lbl);
             this.ServiceRequest_tp.Location = new System.Drawing.Point(4, 28);
-            this.ServiceRequest_tp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ServiceRequest_tp.Margin = new System.Windows.Forms.Padding(2);
             this.ServiceRequest_tp.Name = "ServiceRequest_tp";
-            this.ServiceRequest_tp.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ServiceRequest_tp.Padding = new System.Windows.Forms.Padding(2);
             this.ServiceRequest_tp.Size = new System.Drawing.Size(865, 424);
             this.ServiceRequest_tp.TabIndex = 1;
             this.ServiceRequest_tp.Text = "Service Request";
@@ -216,7 +227,7 @@
             // NewServiceClientName_txt
             // 
             this.NewServiceClientName_txt.Location = new System.Drawing.Point(36, 63);
-            this.NewServiceClientName_txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.NewServiceClientName_txt.Margin = new System.Windows.Forms.Padding(2);
             this.NewServiceClientName_txt.Name = "NewServiceClientName_txt";
             this.NewServiceClientName_txt.Size = new System.Drawing.Size(141, 27);
             this.NewServiceClientName_txt.TabIndex = 4;
@@ -225,7 +236,7 @@
             // 
             this.PastRequests_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.PastRequests_dgv.Location = new System.Drawing.Point(20, 123);
-            this.PastRequests_dgv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PastRequests_dgv.Margin = new System.Windows.Forms.Padding(2);
             this.PastRequests_dgv.Name = "PastRequests_dgv";
             this.PastRequests_dgv.RowHeadersWidth = 51;
             this.PastRequests_dgv.RowTemplate.Height = 24;
@@ -246,7 +257,7 @@
             // 
             this.NewServiceRequest_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.NewServiceRequest_btn.Location = new System.Drawing.Point(293, 54);
-            this.NewServiceRequest_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.NewServiceRequest_btn.Margin = new System.Windows.Forms.Padding(2);
             this.NewServiceRequest_btn.Name = "NewServiceRequest_btn";
             this.NewServiceRequest_btn.Size = new System.Drawing.Size(158, 35);
             this.NewServiceRequest_btn.TabIndex = 1;
@@ -272,7 +283,7 @@
             this.Client_tp.Controls.Add(this.ClientName_lbl);
             this.Client_tp.Controls.Add(this.SearchClient_lbl);
             this.Client_tp.Location = new System.Drawing.Point(4, 28);
-            this.Client_tp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Client_tp.Margin = new System.Windows.Forms.Padding(2);
             this.Client_tp.Name = "Client_tp";
             this.Client_tp.Size = new System.Drawing.Size(865, 424);
             this.Client_tp.TabIndex = 2;
@@ -289,9 +300,9 @@
             this.ContractDetailsOverview_gbx.Controls.Add(this.ContractDuration_lbl);
             this.ContractDetailsOverview_gbx.Controls.Add(this.Priority_lbl);
             this.ContractDetailsOverview_gbx.Location = new System.Drawing.Point(15, 117);
-            this.ContractDetailsOverview_gbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ContractDetailsOverview_gbx.Margin = new System.Windows.Forms.Padding(2);
             this.ContractDetailsOverview_gbx.Name = "ContractDetailsOverview_gbx";
-            this.ContractDetailsOverview_gbx.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ContractDetailsOverview_gbx.Padding = new System.Windows.Forms.Padding(2);
             this.ContractDetailsOverview_gbx.Size = new System.Drawing.Size(837, 306);
             this.ContractDetailsOverview_gbx.TabIndex = 6;
             this.ContractDetailsOverview_gbx.TabStop = false;
@@ -301,7 +312,7 @@
             // 
             this.ContractOverview_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ContractOverview_dgv.Location = new System.Drawing.Point(31, 26);
-            this.ContractOverview_dgv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ContractOverview_dgv.Margin = new System.Windows.Forms.Padding(2);
             this.ContractOverview_dgv.Name = "ContractOverview_dgv";
             this.ContractOverview_dgv.RowHeadersWidth = 51;
             this.ContractOverview_dgv.RowTemplate.Height = 24;
@@ -311,7 +322,7 @@
             // ExperationDate_txt
             // 
             this.ExperationDate_txt.Location = new System.Drawing.Point(620, 258);
-            this.ExperationDate_txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ExperationDate_txt.Margin = new System.Windows.Forms.Padding(2);
             this.ExperationDate_txt.Name = "ExperationDate_txt";
             this.ExperationDate_txt.Size = new System.Drawing.Size(158, 27);
             this.ExperationDate_txt.TabIndex = 5;
@@ -331,7 +342,7 @@
             // Priority_txt
             // 
             this.Priority_txt.Location = new System.Drawing.Point(43, 261);
-            this.Priority_txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Priority_txt.Margin = new System.Windows.Forms.Padding(2);
             this.Priority_txt.Name = "Priority_txt";
             this.Priority_txt.Size = new System.Drawing.Size(158, 27);
             this.Priority_txt.TabIndex = 3;
@@ -340,7 +351,7 @@
             // ContractDuration_txt
             // 
             this.ContractDuration_txt.Location = new System.Drawing.Point(310, 257);
-            this.ContractDuration_txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ContractDuration_txt.Margin = new System.Windows.Forms.Padding(2);
             this.ContractDuration_txt.Name = "ContractDuration_txt";
             this.ContractDuration_txt.Size = new System.Drawing.Size(158, 27);
             this.ContractDuration_txt.TabIndex = 1;
@@ -372,7 +383,7 @@
             this.SearchClient_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.SearchClient_btn.ForeColor = System.Drawing.Color.Black;
             this.SearchClient_btn.Location = new System.Drawing.Point(326, 68);
-            this.SearchClient_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SearchClient_btn.Margin = new System.Windows.Forms.Padding(2);
             this.SearchClient_btn.Name = "SearchClient_btn";
             this.SearchClient_btn.Size = new System.Drawing.Size(158, 35);
             this.SearchClient_btn.TabIndex = 5;
@@ -383,7 +394,7 @@
             // ClientName_txt
             // 
             this.ClientName_txt.Location = new System.Drawing.Point(32, 77);
-            this.ClientName_txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ClientName_txt.Margin = new System.Windows.Forms.Padding(2);
             this.ClientName_txt.Name = "ClientName_txt";
             this.ClientName_txt.Size = new System.Drawing.Size(158, 27);
             this.ClientName_txt.TabIndex = 2;
@@ -417,7 +428,7 @@
             this.History_tbp.Controls.Add(this.PastServiceRequest_dgv);
             this.History_tbp.Controls.Add(this.PastServiceRequest_lbl);
             this.History_tbp.Location = new System.Drawing.Point(4, 28);
-            this.History_tbp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.History_tbp.Margin = new System.Windows.Forms.Padding(2);
             this.History_tbp.Name = "History_tbp";
             this.History_tbp.Size = new System.Drawing.Size(865, 424);
             this.History_tbp.TabIndex = 3;
@@ -428,7 +439,7 @@
             // 
             this.Search_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.Search_btn.Location = new System.Drawing.Point(422, 21);
-            this.Search_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Search_btn.Margin = new System.Windows.Forms.Padding(2);
             this.Search_btn.Name = "Search_btn";
             this.Search_btn.Size = new System.Drawing.Size(158, 35);
             this.Search_btn.TabIndex = 4;
@@ -439,7 +450,7 @@
             // SearchClientName_txt
             // 
             this.SearchClientName_txt.Location = new System.Drawing.Point(196, 26);
-            this.SearchClientName_txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SearchClientName_txt.Margin = new System.Windows.Forms.Padding(2);
             this.SearchClientName_txt.Name = "SearchClientName_txt";
             this.SearchClientName_txt.Size = new System.Drawing.Size(158, 27);
             this.SearchClientName_txt.TabIndex = 3;
@@ -458,7 +469,7 @@
             // 
             this.PastServiceRequest_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.PastServiceRequest_dgv.Location = new System.Drawing.Point(13, 98);
-            this.PastServiceRequest_dgv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PastServiceRequest_dgv.Margin = new System.Windows.Forms.Padding(2);
             this.PastServiceRequest_dgv.Name = "PastServiceRequest_dgv";
             this.PastServiceRequest_dgv.RowHeadersWidth = 51;
             this.PastServiceRequest_dgv.RowTemplate.Height = 24;
@@ -482,7 +493,7 @@
             this.ClientSize = new System.Drawing.Size(923, 560);
             this.Controls.Add(this.CallEmployee_tc);
             this.Controls.Add(this.Header_pnl);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CallForm";
             this.Text = "CallForm";
             this.Load += new System.EventHandler(this.CallForm_Load);
@@ -546,5 +557,6 @@
         private System.Windows.Forms.DataGridView ContractOverview_dgv;
         private System.Windows.Forms.Label NewServiceClientName_lbl;
         private System.Windows.Forms.TextBox NewServiceClientName_txt;
+        private System.Windows.Forms.Button button1;
     }
 }

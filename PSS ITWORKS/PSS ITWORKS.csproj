@@ -211,16 +211,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PSS1DataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="PSS1DataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PSS1DataSet1.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="PSSDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PSSDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="ServiceLayer\SMSAPI.cs" />
     <Compile Include="Testing\UIDisplay.cs" />
     <Compile Include="Testing\LoginControllerFunctionality.cs" />
@@ -293,28 +283,6 @@
     </None>
     <None Include="PSS1DataSet.xss">
       <DependentUpon>PSS1DataSet.xsd</DependentUpon>
-    </None>
-    <None Include="PSS1DataSet1.xsc">
-      <DependentUpon>PSS1DataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="PSS1DataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>PSS1DataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="PSS1DataSet1.xss">
-      <DependentUpon>PSS1DataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="PSSDataSet.xsc">
-      <DependentUpon>PSSDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="PSSDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>PSSDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="PSSDataSet.xss">
-      <DependentUpon>PSSDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

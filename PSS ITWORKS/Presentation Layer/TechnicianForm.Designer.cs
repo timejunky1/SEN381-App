@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Technician));
             this.Logo_img = new System.Windows.Forms.PictureBox();
-            this.Welcome_lbl = new System.Windows.Forms.Label();
+            this.welcome_lbl = new System.Windows.Forms.Label();
             this.Technical_tc = new System.Windows.Forms.TabControl();
             this.taskList_tp = new System.Windows.Forms.TabPage();
             this.taskList_dgv = new System.Windows.Forms.DataGridView();
@@ -58,7 +58,7 @@
             this.Schedule_dgv = new System.Windows.Forms.DataGridView();
             this.Schedule_lbl = new System.Windows.Forms.Label();
             this.Logout_btn = new System.Windows.Forms.Button();
-            this.pssDataSet1 = new PSS_ITWORKS.PSSDataSet();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).BeginInit();
             this.Technical_tc.SuspendLayout();
             this.taskList_tp.SuspendLayout();
@@ -69,7 +69,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.clientDetails_dgv)).BeginInit();
             this.Schedule_tp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Schedule_dgv)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pssDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // Logo_img
@@ -82,16 +81,16 @@
             this.Logo_img.TabIndex = 10;
             this.Logo_img.TabStop = false;
             // 
-            // Welcome_lbl
+            // welcome_lbl
             // 
-            this.Welcome_lbl.AutoSize = true;
-            this.Welcome_lbl.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Welcome_lbl.ForeColor = System.Drawing.Color.Black;
-            this.Welcome_lbl.Location = new System.Drawing.Point(94, 26);
-            this.Welcome_lbl.Name = "Welcome_lbl";
-            this.Welcome_lbl.Size = new System.Drawing.Size(546, 32);
-            this.Welcome_lbl.TabIndex = 11;
-            this.Welcome_lbl.Text = "Welcome back <Name> <Surname> (Technician )";
+            this.welcome_lbl.AutoSize = true;
+            this.welcome_lbl.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.welcome_lbl.ForeColor = System.Drawing.Color.Black;
+            this.welcome_lbl.Location = new System.Drawing.Point(94, 26);
+            this.welcome_lbl.Name = "welcome_lbl";
+            this.welcome_lbl.Size = new System.Drawing.Size(546, 32);
+            this.welcome_lbl.TabIndex = 11;
+            this.welcome_lbl.Text = "Welcome back <Name> <Surname> (Technician )";
             // 
             // Technical_tc
             // 
@@ -412,10 +411,21 @@
             this.Logout_btn.UseVisualStyleBackColor = false;
             this.Logout_btn.Click += new System.EventHandler(this.Logout_btn_Click);
             // 
-            // pssDataSet1
+            // button1
             // 
-            this.pssDataSet1.DataSetName = "PSSDataSet";
-            this.pssDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.button1.BackColor = System.Drawing.Color.Firebrick;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(763, 34);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(118, 36);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Dashboard";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Technician
             // 
@@ -423,9 +433,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(923, 560);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.Logout_btn);
             this.Controls.Add(this.Technical_tc);
-            this.Controls.Add(this.Welcome_lbl);
+            this.Controls.Add(this.welcome_lbl);
             this.Controls.Add(this.Logo_img);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Technician";
@@ -446,7 +457,6 @@
             this.Schedule_tp.ResumeLayout(false);
             this.Schedule_tp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Schedule_dgv)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pssDataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -455,7 +465,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox Logo_img;
-        private System.Windows.Forms.Label Welcome_lbl;
+        private System.Windows.Forms.Label welcome_lbl;
         private System.Windows.Forms.TabControl Technical_tc;
         private System.Windows.Forms.TabPage taskList_tp;
         private System.Windows.Forms.TabPage taskUpdates_tp;
@@ -482,7 +492,7 @@
         private System.Windows.Forms.DataGridView Schedule_dgv;
         private System.Windows.Forms.Label Schedule_lbl;
         private System.Windows.Forms.ComboBox status_cbx;
-        private PSSDataSet pssDataSet1;
         private System.Windows.Forms.ComboBox JobId_cmb;
+        private System.Windows.Forms.Button button1;
     }
 }

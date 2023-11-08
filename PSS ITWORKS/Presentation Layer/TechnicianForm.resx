@@ -121,7 +121,7 @@
   <data name="Logo_img.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAMQAAACcCAYAAAAgewTxAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAADt0RVh0Q29tbWVudAB4cjpkOkRBRndMNDNtdk5FOjYsajoxMTAxNTM1OTEwNDYx
+        vwAADr8BOAVTJAAAADt0RVh0Q29tbWVudAB4cjpkOkRBRndMNDNtdk5FOjYsajoxMTAxNTM1OTEwNDYx
         MjAzNTIzLHQ6MjMxMDEyMTkt1qWMAAAWv0lEQVR4Xu2diVsVR76G7z8cY9TJnblzc7OJxi3quCajozHR
         ZDLRLMYA4gIuiEvcFdegcUNBAUVERPr2W6cbD8c65/RSWzf15fmePI9Ad3VVvbX8qrr6vwIvL69peSC8
         vKrkgfDyqpIHwsurSh4IL68qeSC8vKrkgfDyqpIHwsurSh4IL68qeSC8vKrkgSiBXk+9Dl69ngzGX70M
@@ -222,9 +222,6 @@
         l1eVPBBeXlXyQHh5VckD4eVVJQ+El9e0guD/AcWTc3X3nbJmAAAAAElFTkSuQmCC
 </value>
   </data>
-  <metadata name="pssDataSet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAHyAAAAEAIAAoEAAAFgAAACgAAAAfAAAAQAAAAAEAIAAAAAAAgA8AAMMOAADDDgAAAAAAAAAA

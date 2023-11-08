@@ -29,6 +29,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             InitializeComponent();
             this.dashboard = dashboard;
             this.userInfo = userInfo;
+            welcome_lbl.Text = $"Welcome Back {userInfo.Name} {userInfo.Surname} <Service Manager>";
         }
         public int GetTechID(string Name)
         {
@@ -243,9 +244,9 @@ namespace PSS_ITWORKS.Presentation_Layer
             Request_dgv.DataSource = pending;
             Request_dgv.DataSource = context.Get();
             AssignmentSchedule_dgv.DataSource = context.Get();
-            List<IEntity> list = cm.Get();
+            List<IEntity> list = context.Get();
             AssignmentSchedule_dgv.DataSource = list;
-            IEntity entity = cm.Get(3);
+            IEntity entity = context.Get(3);
             EntityJob job = entity as EntityJob;
             BindingSource bs = new BindingSource();
             List<EntityJob> jobs = new List<EntityJob>();

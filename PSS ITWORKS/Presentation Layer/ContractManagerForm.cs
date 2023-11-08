@@ -42,6 +42,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             chart1.ChartAreas[0].AxisX.Interval = 1;
             chart2.ChartAreas[0].AxisY.Interval = 1;
             chart2.ChartAreas[0].AxisX.Interval = 1;
+            welcome_lbl.Text = $"Welcome Back {userInfo.Name} {userInfo.Surname} <Contract Manager>";
         }
 
         Series GetValues(int m, List<EntityJob> jobs, string status)
@@ -75,6 +76,10 @@ namespace PSS_ITWORKS.Presentation_Layer
             context = new StrategyContextManager(new StrategyServiceManager());
             context.Connect(connString);
             EntityService service = context.Get(serviceid) as EntityService;
+            if(service == null)
+            {
+                return;
+            }
             ServiceType_cbx.Text = service.GetTitle();
             title_txt.Text = service.GetTitle();
             duration_num.Value = service.GetDuration();

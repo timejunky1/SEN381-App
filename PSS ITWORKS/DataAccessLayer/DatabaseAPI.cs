@@ -15,7 +15,6 @@ namespace PSS_ITWORKS
 {
     internal class DatabaseAPI
     {
-        SqlConnection conn;
         string connString = "";
         
         public void SetConnection(string connString)
@@ -310,10 +309,6 @@ namespace PSS_ITWORKS
                             {
                                 ErrorHandler.DisplayError("No Data");
                             }
-                            else
-                            {
-                                ErrorHandler.DisplayError("Employee Found");
-                            }
                             reader.Close();
                         }
                     }
@@ -358,6 +353,10 @@ namespace PSS_ITWORKS
                         if (!reader.HasRows)
                         {
                             ErrorHandler.DisplayError("No Data");
+                        }
+                        else
+                        {
+                            ErrorHandler.DisplayError($"{employees.Count} employees found");
                         }
                         reader.Close();
                     }
@@ -459,6 +458,10 @@ namespace PSS_ITWORKS
                             if (!reader.HasRows)
                             {
                                 ErrorHandler.DisplayError("No Data");
+                            }
+                            else
+                            {
+                                ErrorHandler.DisplayError($"{calls.Count} calls found");
                             }
                             reader.Close();
                         }
@@ -650,6 +653,10 @@ namespace PSS_ITWORKS
                             {
                                 ErrorHandler.DisplayError("No Data");
                             }
+                            else
+                            {
+                                ErrorHandler.DisplayError($"{clients.Count} clients found");
+                            }
                             reader.Close();
                         }
                     }
@@ -793,7 +800,7 @@ namespace PSS_ITWORKS
                 using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("contractProcedures.GetContract", conn))
+                    using (SqlCommand command = new SqlCommand("contractProcedures.GetContracts", conn))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -812,6 +819,10 @@ namespace PSS_ITWORKS
                             if (!reader.HasRows)
                             {
                                 ErrorHandler.DisplayError("No Data");
+                            }
+                            else
+                            {
+                                ErrorHandler.DisplayError($"{contracts.Count} contracts found");
                             }
                             reader.Close();
                         }
@@ -971,6 +982,10 @@ namespace PSS_ITWORKS
                             {
                                 ErrorHandler.DisplayError("No Data");
                             }
+                            else
+                            {
+                                ErrorHandler.DisplayError($"{jobs.Count} jobs found");
+                            }
                             reader.Close();
                         }
                     }
@@ -1109,7 +1124,7 @@ namespace PSS_ITWORKS
                 using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("serviceProcedures.GetService", conn))
+                    using (SqlCommand command = new SqlCommand("serviceProcedures.GetServices", conn))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -1128,6 +1143,10 @@ namespace PSS_ITWORKS
                             if (!reader.HasRows)
                             {
                                 ErrorHandler.DisplayError("No Data");
+                            }
+                            else
+                            {
+                                ErrorHandler.DisplayError($"{services.Count} services found");
                             }
                             reader.Close();
                         }

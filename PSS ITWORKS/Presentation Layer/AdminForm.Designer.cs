@@ -108,7 +108,7 @@
             this.Logout_btn.Name = "Logout_btn";
             this.Logout_btn.Size = new System.Drawing.Size(118, 36);
             this.Logout_btn.TabIndex = 17;
-            this.Logout_btn.Text = "Back To Dashboard";
+            this.Logout_btn.Text = "Dashboard";
             this.Logout_btn.UseVisualStyleBackColor = false;
             this.Logout_btn.Click += new System.EventHandler(this.Logout_btn_Click);
             // 

@@ -166,5 +166,11 @@ namespace PSS_ITWORKS.Presentation_Layer
             MessageBox.Show("Service Request successfully created");
 
         }
+
+        private void Close_btn_Click_1(object sender, EventArgs e)
+        {
+            callForm.Show();
+            this.Close();
+        }
     }
 }

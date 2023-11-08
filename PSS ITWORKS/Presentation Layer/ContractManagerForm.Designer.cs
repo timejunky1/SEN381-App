@@ -35,7 +35,7 @@
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Header_pnl = new System.Windows.Forms.Panel();
             this.Logout_btn = new System.Windows.Forms.Button();
-            this.PSS_lbl = new System.Windows.Forms.Label();
+            this.welcome_lbl = new System.Windows.Forms.Label();
             this.PSS_img = new System.Windows.Forms.PictureBox();
             this.ContractManagement_tc = new System.Windows.Forms.TabControl();
             this.ContractPerformance_tp = new System.Windows.Forms.TabPage();
@@ -146,21 +146,21 @@
             this.Logout_btn.Name = "Logout_btn";
             this.Logout_btn.Size = new System.Drawing.Size(118, 36);
             this.Logout_btn.TabIndex = 2;
-            this.Logout_btn.Text = "Logout";
+            this.Logout_btn.Text = "Dashboard";
             this.Logout_btn.UseVisualStyleBackColor = false;
             this.Logout_btn.Click += new System.EventHandler(this.Logout_btn_Click);
             // 
-            // PSS_lbl
+            // welcome_lbl
             // 
-            this.PSS_lbl.AutoSize = true;
-            this.PSS_lbl.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PSS_lbl.ForeColor = System.Drawing.Color.Black;
-            this.PSS_lbl.Location = new System.Drawing.Point(94, 26);
-            this.PSS_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.PSS_lbl.Name = "PSS_lbl";
-            this.PSS_lbl.Size = new System.Drawing.Size(619, 32);
-            this.PSS_lbl.TabIndex = 1;
-            this.PSS_lbl.Text = "Welcome back <Name> <Surname> (Contract Manager)";
+            this.welcome_lbl.AutoSize = true;
+            this.welcome_lbl.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.welcome_lbl.ForeColor = System.Drawing.Color.Black;
+            this.welcome_lbl.Location = new System.Drawing.Point(94, 26);
+            this.welcome_lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.welcome_lbl.Name = "welcome_lbl";
+            this.welcome_lbl.Size = new System.Drawing.Size(619, 32);
+            this.welcome_lbl.TabIndex = 1;
+            this.welcome_lbl.Text = "Welcome back <Name> <Surname> (Contract Manager)";
             // 
             // PSS_img
             // 
@@ -1063,7 +1063,7 @@
             this.ClientSize = new System.Drawing.Size(923, 560);
             this.Controls.Add(this.Logout_btn);
             this.Controls.Add(this.ContractManagement_tc);
-            this.Controls.Add(this.PSS_lbl);
+            this.Controls.Add(this.welcome_lbl);
             this.Controls.Add(this.Header_pnl);
             this.Controls.Add(this.PSS_img);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1107,7 +1107,7 @@
 
         private System.Windows.Forms.Panel Header_pnl;
         private System.Windows.Forms.Button Logout_btn;
-        private System.Windows.Forms.Label PSS_lbl;
+        private System.Windows.Forms.Label welcome_lbl;
         private System.Windows.Forms.PictureBox PSS_img;
         private System.Windows.Forms.TabControl ContractManagement_tc;
         private System.Windows.Forms.TabPage ContractPerformance_tp;

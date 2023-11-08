@@ -36,6 +36,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             clientDetails_gb.Enabled = false;
             this.dashboard = dashboard;
             this.userInfo = userInfo;
+            Welcome_lbl.Text = $"Welcome Back {userInfo.Name} {userInfo.Surname} <Admin>";
         }
 
         private void AdminForm_Load(object sender, EventArgs e)

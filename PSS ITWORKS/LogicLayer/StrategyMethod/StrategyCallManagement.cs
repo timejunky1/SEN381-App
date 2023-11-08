@@ -1,6 +1,5 @@
 ﻿// StrategyCCallManagement.cs
 using PSS_ITWORKS.LogicLayer;
-using PSS_ITWORKS.PSSDataSetTableAdapters;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
