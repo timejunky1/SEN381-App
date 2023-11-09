@@ -16,7 +16,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         EntityEmployee technician;
         private EntityJob job;
         int technicianId;
-        int jobId = 0;
+        int jobId;
         LoginController.UserInfo userInfo;
         string connString = SystemData.GetConString();
         public Technician(Dashboard dashboard, LoginController.UserInfo userInfo)
@@ -33,7 +33,6 @@ namespace PSS_ITWORKS.Presentation_Layer
             scheduler = new Scheduler();
             context = new StrategyContextManager(new StrategyTechnician());
             context.Connect(connString);
-            jobID_txt.Text = "0";
             status_cbx.Items.Clear();
             status_cbx.Items.Add("Finished");
             status_cbx.Items.Add("Canceled");
