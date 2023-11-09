@@ -48,20 +48,23 @@ namespace PSS_ITWORKS
         public IEntity Get(int ID)
         {
             EntityContract contract = api.GetContract(ID);
-            List<int> serviceids = api.GetContractRef(contract.GetId());
-            List<EntityService> services = new List<EntityService>();
-            foreach(int i in serviceids)
+            if(contract != null)
             {
-                services.Add(api.GetService(i));
+                List<int> serviceids = api.GetContractRef(contract.GetId());
+                List<EntityService> services = new List<EntityService>();
+                foreach(int i in serviceids)
+                {
+                    services.Add(api.GetService(i));
+                }
+                List<EntityClient> clients = api.GetClients();
+                List<EntityClient> contractClients = new List<EntityClient>();
+                foreach(EntityClient client in clients)
+                {
+                    contractClients.Add(client);
+                }
+                contract.SetServices(services);
+                contract.SetClients(contractClients);
             }
-            List<EntityClient> clients = api.GetClients();
-            List<EntityClient> contractClients = new List<EntityClient>();
-            foreach(EntityClient client in clients)
-            {
-                contractClients.Add(client);
-            }
-            contract.SetServices(services);
-            contract.SetClients(contractClients);
             return contract;
         }
 
@@ -74,6 +77,26 @@ namespace PSS_ITWORKS
                 api.InsertContractRef(contract.GetId(), service.GetId());
             }
             api.UpdateContract(contract);
+        }
+
+        public BindingSource GetSpecific1(string s1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific2(string s2)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific1(int n1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific2(int n1)
+        {
+            throw new NotImplementedException();
         }
     }
 }

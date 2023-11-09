@@ -34,13 +34,16 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
         public IEntity Get(int ID)
         {
             EntityEmployee technician = api.GetEmployee(ID);
-            List<EntityJob> jobs = new List<EntityJob>();
-            List<int> jobIds = api.GetJobEmployeeRef(employeeId: ID);
-            foreach(int id in jobIds)
+            if(technician != null)
             {
-                jobs.Add(api.GetJob(id));
+                List<EntityJob> jobs = new List<EntityJob>();
+                List<int> jobIds = api.GetJobEmployeeRef(employeeId: ID);
+                foreach(int id in jobIds)
+                {
+                    jobs.Add(api.GetJob(id));
+                }
+                technician.SetJobs(jobs);
             }
-            technician.SetJobs(jobs);
             return technician;
         }
 

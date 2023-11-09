@@ -41,23 +41,26 @@ namespace PSS_ITWORKS
         {
             ErrorHandler.DisplayError(ID.ToString());
             EntityEmployee employee = api.GetEmployee(ID);
-            List<int> jobIds = api.GetJobEmployeeRef(employeeId: ID);
-            List<EntityJob> jobs = new List<EntityJob>();
-            foreach(int i in jobIds)
+            if(employee != null)
             {
-                jobs.Add(api.GetJob(i));
-            }
-            List<EntityCall> calls = api.GetCalls();
-            List<EntityCall> employeeCalls = new List<EntityCall>();
-            foreach (EntityCall call in calls)
-            {
-                if(call.GetEmployeeId() == ID)
+                List<int> jobIds = api.GetJobEmployeeRef(employeeId: ID);
+                List<EntityJob> jobs = new List<EntityJob>();
+                foreach(int i in jobIds)
                 {
-                    employeeCalls.Add(call);
+                    jobs.Add(api.GetJob(i));
                 }
+                List<EntityCall> calls = api.GetCalls();
+                List<EntityCall> employeeCalls = new List<EntityCall>();
+                foreach (EntityCall call in calls)
+                {
+                    if(call.GetEmployeeId() == ID)
+                    {
+                        employeeCalls.Add(call);
+                    }
+                }
+                employee.SetJobs(jobs);
+                employee.SetCalls(employeeCalls);
             }
-            employee.SetJobs(jobs);
-            employee.SetCalls(employeeCalls);
             return employee;
         }
 

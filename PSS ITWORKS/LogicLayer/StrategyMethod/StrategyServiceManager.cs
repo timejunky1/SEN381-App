@@ -40,13 +40,16 @@ namespace PSS_ITWORKS
         public IEntity Get(int ID)
         {
             EntityService sevice = api.GetService(ID);
-            List<EntityContract> contracts = new List<EntityContract>();
-            List<int> contractIds = api.GetContractRef(serviceId: ID);
-            foreach (int contractId in contractIds)
+            if(sevice != null)
             {
-                contracts.Add(api.GetContract(contractId));
+                List<EntityContract> contracts = new List<EntityContract>();
+                List<int> contractIds = api.GetContractRef(serviceId: ID);
+                foreach (int contractId in contractIds)
+                {
+                    contracts.Add(api.GetContract(contractId));
+                }
+                sevice.SetContracts(contracts);
             }
-            sevice.SetContracts(contracts);
             return sevice;
         }
 
@@ -54,6 +57,26 @@ namespace PSS_ITWORKS
         {
             EntityService service = entity as EntityService;
             api.UpdateService(service);
+        }
+
+        public BindingSource GetSpecific1(string s1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific2(string s2)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific1(int n1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific2(int n1)
+        {
+            throw new NotImplementedException();
         }
     }
 }

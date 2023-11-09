@@ -22,7 +22,7 @@ namespace PSS_ITWORKS.LogicLayer
 
         public EntityJob(int id, int clientId, int serviceId, DateTime timeBegin, DateTime timeEnd, string status, string notes)
         {
-            Id = id;
+            this.Id = id;
             this.clientId = clientId;
             this.serviceId = serviceId;
             this.timeBegin = timeBegin;
@@ -93,6 +93,12 @@ namespace PSS_ITWORKS.LogicLayer
         public List<EntityCall> GetCalls()
         {
             return calls;
+        }
+
+        public int GetID()
+        {
+            return Id;
+
         }
     }
 }

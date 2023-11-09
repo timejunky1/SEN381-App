@@ -31,16 +31,6 @@ namespace PSS_ITWORKS
             List<EntityClient> clients = api.GetClients();
             foreach (EntityClient client in clients)
             {
-                List<EntityJob> jobs = new List<EntityJob>();
-                foreach(EntityJob job in api.GetJobs())
-                {
-                    if(job.GetClientId() == client.GetID())
-                    {
-                        jobs.Add(job);
-                    }
-                }
-
-                client.SetJobs(jobs);
                 entities.Add(client);
             }
             return entities;
@@ -49,27 +39,28 @@ namespace PSS_ITWORKS
         public IEntity Get(int ID)
         {
             EntityClient client = null;
-            client = api.GetClient(ID);
-            List<EntityJob> jobs= api.GetJobs();
-            List<EntityJob> clientJobs = new List<EntityJob>();
-            foreach(EntityJob job in jobs)
+            if(client != null)
             {
-                if(job.GetClientId() == client.GetID())
+                client = api.GetClient(ID);
+                List<EntityJob> jobs= api.GetJobs();
+                foreach(EntityJob job in jobs)
                 {
-                    clientJobs.Add(job);
+                    if(job.GetClientId() == client.GetID())
+                    {
+                        jobs.Add(job);
+                    }
                 }
-            }
-            client.SetJobs(clientJobs);
-            List<EntityCall> calls = api.GetCalls();
-            List<EntityCall> clientCalls = new List<EntityCall>();
-            foreach (EntityCall call in calls)
-            {
-                if (call.GetClientId() == client.GetID())
+                client.SetJobs(jobs);
+                List<EntityCall> calls = api.GetCalls();
+                foreach (EntityCall call in calls)
                 {
-                    clientCalls.Add(call);
+                    if (call.GetClientId() == client.GetID())
+                    {
+                        calls.Add(call);
+                    }
                 }
+                client.SetCalls(calls);
             }
-            client.SetCalls(clientCalls);
             return client;
 
         }

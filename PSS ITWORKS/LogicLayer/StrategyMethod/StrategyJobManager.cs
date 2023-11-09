@@ -50,20 +50,23 @@ namespace PSS_ITWORKS
         public IEntity Get(int ID)
         {
             EntityJob job = api.GetJob(ID);
-            List<int> employeeIds = api.GetJobEmployeeRef(jobId: ID);
-            List<EntityEmployee> jobEmployees = new List<EntityEmployee>();
-            foreach (int employeeId in employeeIds)
+            if (job != null)
             {
-                jobEmployees.Add(api.GetEmployee(employeeId));
+                List<int> employeeIds = api.GetJobEmployeeRef(jobId: ID);
+                List<EntityEmployee> jobEmployees = new List<EntityEmployee>();
+                foreach (int employeeId in employeeIds)
+                {
+                    jobEmployees.Add(api.GetEmployee(employeeId));
+                }
+                job.SetEmployees(jobEmployees);
+                List<int> callIds = api.GetJobCallRef(jobId: ID);
+                List<EntityCall> calls = new List<EntityCall>();
+                foreach (int callId in callIds)
+                {
+                    calls.Add(api.GetCall(callId));
+                }
+                job.SetCalls(calls);
             }
-            job.SetEmployees(jobEmployees);
-            List<int> callIds = api.GetJobCallRef(jobId: ID);
-            List<EntityCall> calls = new List<EntityCall>();
-            foreach (int callId in callIds)
-            {
-                calls.Add(api.GetCall(callId));
-            }
-            job.SetCalls(calls);
             return job;
         }
 
@@ -80,6 +83,26 @@ namespace PSS_ITWORKS
                 sms.SendSMS(SMS, employee.GetPhone());
             }
             api.UpdateJob(job);
+        }
+
+        public BindingSource GetSpecific1(string s1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific2(string s2)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific1(int n1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BindingSource GetSpecific2(int n1)
+        {
+            throw new NotImplementedException();
         }
     }
 }
