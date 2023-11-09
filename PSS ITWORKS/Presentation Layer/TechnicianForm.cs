@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using PSS_ITWORKS.ConstantData;
 
 namespace PSS_ITWORKS.Presentation_Layer
 {
@@ -16,7 +17,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         EntityEmployee technician;
         private EntityJob job;
         int technicianId;
-        int jobId = 0;
+        int jobId;
         LoginController.UserInfo userInfo;
         string connString = SystemData.GetConString();
         public Technician(Dashboard dashboard, LoginController.UserInfo userInfo)
@@ -27,11 +28,35 @@ namespace PSS_ITWORKS.Presentation_Layer
             technicianId = userInfo.ID;
         }
 
+        void LoadJobId()
+        {
+            context = new StrategyContextManager(new StrategyJobManager());
+            context.Connect(connString);
+            List<IEntity> list = context.Get();
+            List<int> ids = new List<int>();
+            foreach (IEntity entity in list)
+            {
+                EntityJob job = entity as EntityJob;
+                List<EntityEmployee> emp = job.GetEmployees();
+                foreach (EntityEmployee employee in emp)
+                {
+                    if(employee.GetID() == technicianId)
+                    {
+                        ids.Add(job.GetID());
+                    }
+                }
+            }
+            for (int i = 0; i < ids.Count; i++)
+            {
+                JobSearch_cbx.Items.Add(ids[i]);
+            }
+        }
+
         private void Technician_Load(object sender, EventArgs e)
         {
+            LoadJobId();
             context = new StrategyContextManager(new StrategyTechnician());
             context.Connect(connString);
-            jobID_txt.Text = "0";
             status_cbx.Items.Clear();
             status_cbx.Items.Add("Finished");
             status_cbx.Items.Add("Canceled");
@@ -91,9 +116,11 @@ namespace PSS_ITWORKS.Presentation_Layer
         
         private void submitUpdate_btn_Click(object sender, EventArgs e)
         {
+            context = new StrategyContextManager(new StrategyJobManager());
+            context.Connect(connString);
             if (status_cbx.Text != null && jobNotes_rtb.Text.Length <= 255)
             {
-                context.Update(new EntityJob(int.Parse(jobID_txt.Text), job.GetClientId() ,job.GetServiceId() ,job.GetTimeBegin() ,job.GetTimeEnd(), status_cbx.Text ,jobNotes_rtb.Text));
+                context.Update(new EntityJob(int.Parse(JobSearch_cbx.SelectedItem.ToString()), job.GetClientId() ,job.GetServiceId() ,job.GetTimeBegin() ,job.GetTimeEnd(), status_cbx.Text ,jobNotes_rtb.Text));
             }
         }
 
@@ -123,7 +150,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         void LoadDetails(EntityJob job)
         {
             this.job = job;
-            jobID_txt.Text = jobId.ToString();
+            //jobID_txt.Text = jobId.ToString();
             //Change stratagy to clientManagement
             context = new StrategyContextManager(new StrategyClientManager());
             context.Connect(connString);
@@ -160,13 +187,13 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void searchJob_btn_Click(object sender, EventArgs e)
         {
-            foreach (EntityJob job in technician.GetJobs())
-            {
-                if (job.GetId() == int.Parse(jobID_txt.Text.ToString()))
-                {
-                    LoadDetails(job);
-                }
-            }
+            int jID = int.Parse(JobSearch_cbx.SelectedItem.ToString());
+            context = new StrategyContextManager(new StrategyJobManager());
+            context.Connect(connString);
+            IEntity job = context.Get(jID);
+            EntityJob j = job as EntityJob;
+            string notes = j.GetNotes();
+            jobNotes_rtb.Text = notes;
         }
     }
 }
