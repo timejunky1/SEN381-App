@@ -171,9 +171,10 @@
             this.Controls.Add(this.Username_lbl);
             this.Controls.Add(this.Exit_btn);
             this.Controls.Add(this.Login_btn);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LogIn";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Login";
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Login_img)).EndInit();
             this.ResumeLayout(false);

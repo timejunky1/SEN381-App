@@ -93,7 +93,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.Logout_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.Logout_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Logout_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Logout_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Logout_btn.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Logout_btn.ForeColor = System.Drawing.Color.White;
             this.Logout_btn.Location = new System.Drawing.Point(749, 29);
             this.Logout_btn.Margin = new System.Windows.Forms.Padding(4);
@@ -352,7 +352,9 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.Controls.Add(this.Logout_btn);
             this.Controls.Add(this.Logo_img);
             this.Controls.Add(this.WelcomeClient_lbl);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ClientForm";
+            this.Text = "Client";
             this.Load += new System.EventHandler(this.ClientForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).EndInit();
             this.ClientDashboard_tbc.ResumeLayout(false);
