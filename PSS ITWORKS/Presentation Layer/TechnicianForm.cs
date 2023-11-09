@@ -49,6 +49,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             for (int i = 0; i < ids.Count; i++)
             {
                 JobSearch_cbx.Items.Add(ids[i]);
+                JobId_cmb.Items.Add(ids[i]);
             }
         }
 
@@ -116,11 +117,27 @@ namespace PSS_ITWORKS.Presentation_Layer
         
         private void submitUpdate_btn_Click(object sender, EventArgs e)
         {
+            jobId = int.Parse(JobSearch_cbx.SelectedItem.ToString());
             context = new StrategyContextManager(new StrategyJobManager());
             context.Connect(connString);
+            IEntity entity = context.Get(jobId);
+            EntityJob j = entity as EntityJob;
+            int clientId = j.GetClientId();
+            int serviceId = j.GetServiceId();
+            DateTime timeBegin = j.GetTimeBegin();
+            DateTime timeEnd = j.GetTimeEnd();
+
+        
+            string status = status_cbx.SelectedItem.ToString();
+            string notes = jobNotes_rtb.Text;
+            List<EntityEmployee> employees = j.GetEmployees();
+            List<EntityCall> calls = j.GetCalls();
+            int priority = j.GetPriotity();
+
             if (status_cbx.Text != null && jobNotes_rtb.Text.Length <= 255)
             {
-                context.Update(new EntityJob(int.Parse(JobSearch_cbx.SelectedItem.ToString()), job.GetClientId() ,job.GetServiceId() ,job.GetTimeBegin() ,job.GetTimeEnd(), status_cbx.Text ,jobNotes_rtb.Text));
+                context.Update(new EntityJob(jobId, clientId ,serviceId ,timeBegin ,timeEnd, status ,notes));
+                MessageBox.Show("Job successfully updated");
             }
         }
 
@@ -152,14 +169,19 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.job = job;
             //jobID_txt.Text = jobId.ToString();
             //Change stratagy to clientManagement
+            clientDetails_dgv.Rows.Clear();
+            clientDetails_dgv.ColumnCount = 6;
             context = new StrategyContextManager(new StrategyClientManager());
             context.Connect(connString);
-            clientDetails_dgv.DataSource = context.Get(job.GetClientId());
+            EntityClient client = context.Get(job.GetClientId()) as EntityClient;
+            clientDetails_dgv.Rows.Add(client.GetID(), client.GetName(), client.GetPhone(), client.GetStreetNumber(), client.GetStreetName(), client.GetCity());
             //Change stratagy to ServiceManagement
-            
+            serviceOverview_dgv.Rows.Clear();
+            serviceOverview_dgv.ColumnCount = 4;
             context = new StrategyContextManager(new StrategyServiceManager());
             context.Connect(connString);
-            serviceOverview_dgv.DataSource = context.Get(job.GetServiceId());
+            EntityService service = context.Get(job.GetServiceId()) as EntityService;
+            serviceOverview_dgv.Rows.Add(service.GetTitle(), service.GetPriority(), service.GetDuration(), service.GetCost());
             status_cbx.Text = job.GetStatus();
             jobNotes_rtb.Text = job.GetNotes();
             Technical_tc.SelectedIndex = 2;
