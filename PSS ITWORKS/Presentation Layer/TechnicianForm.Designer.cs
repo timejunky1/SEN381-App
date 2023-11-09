@@ -57,7 +57,6 @@
             this.Schedule_dgv = new System.Windows.Forms.DataGridView();
             this.Schedule_lbl = new System.Windows.Forms.Label();
             this.Logout_btn = new System.Windows.Forms.Button();
-            this.pssDataSet1 = new PSS_ITWORKS.PSSDataSet();
             this.JobId_cmb = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).BeginInit();
             this.Technical_tc.SuspendLayout();
@@ -69,7 +68,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.clientDetails_dgv)).BeginInit();
             this.Schedule_tp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Schedule_dgv)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pssDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // Logo_img
@@ -404,11 +402,6 @@
             this.Logout_btn.UseVisualStyleBackColor = false;
             this.Logout_btn.Click += new System.EventHandler(this.Logout_btn_Click);
             // 
-            // pssDataSet1
-            // 
-            this.pssDataSet1.DataSetName = "PSSDataSet";
-            this.pssDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // JobId_cmb
             // 
             this.JobId_cmb.FormattingEnabled = true;
@@ -446,7 +439,6 @@
             this.Schedule_tp.ResumeLayout(false);
             this.Schedule_tp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Schedule_dgv)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pssDataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -482,7 +474,6 @@
         private System.Windows.Forms.DataGridView Schedule_dgv;
         private System.Windows.Forms.Label Schedule_lbl;
         private System.Windows.Forms.ComboBox status_cbx;
-        private PSSDataSet pssDataSet1;
         private System.Windows.Forms.ComboBox JobId_cmb;
     }
 }
