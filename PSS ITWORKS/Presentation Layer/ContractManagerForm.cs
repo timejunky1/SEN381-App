@@ -64,6 +64,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             }
             foreach (EntityJob job in jobs)
             {
+                MessageBox.Show(job.GetTimeBegin().Month.ToString() + ", " + start);
                 if (job.GetStatus() == status && job.GetTimeBegin().Month < end && job.GetTimeBegin().Month > start)
                 {
                     series.Points[job.GetTimeBegin().Month - start - 1].YValues[0] += 1;
@@ -192,6 +193,7 @@ namespace PSS_ITWORKS.Presentation_Layer
                 EntityClient client = entity as EntityClient;
                 if (client.GetContractId() == id1)
                 {
+                    MessageBox.Show(client.GetJobs().Count.ToString());
                     foreach (EntityJob job in client.GetJobs())
                     {
                         jobs1.Add(job);
