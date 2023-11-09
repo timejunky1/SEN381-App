@@ -31,6 +31,16 @@ namespace PSS_ITWORKS
             List<EntityClient> clients = api.GetClients();
             foreach (EntityClient client in clients)
             {
+                List<EntityJob> jobs = new List<EntityJob>();
+                foreach(EntityJob job in api.GetJobs())
+                {
+                    if(job.GetClientId() == client.GetID())
+                    {
+                        jobs.Add(job);
+                    }
+                }
+
+                client.SetJobs(jobs);
                 entities.Add(client);
             }
             return entities;
@@ -41,23 +51,25 @@ namespace PSS_ITWORKS
             EntityClient client = null;
             client = api.GetClient(ID);
             List<EntityJob> jobs= api.GetJobs();
+            List<EntityJob> clientJobs = new List<EntityJob>();
             foreach(EntityJob job in jobs)
             {
                 if(job.GetClientId() == client.GetID())
                 {
-                    jobs.Add(job);
+                    clientJobs.Add(job);
                 }
             }
-            client.SetJobs(jobs);
+            client.SetJobs(clientJobs);
             List<EntityCall> calls = api.GetCalls();
+            List<EntityCall> clientCalls = new List<EntityCall>();
             foreach (EntityCall call in calls)
             {
                 if (call.GetClientId() == client.GetID())
                 {
-                    calls.Add(call);
+                    clientCalls.Add(call);
                 }
             }
-            client.SetCalls(calls);
+            client.SetCalls(clientCalls);
             return client;
 
         }

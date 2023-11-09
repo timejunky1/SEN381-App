@@ -39,6 +39,7 @@ namespace PSS_ITWORKS
 
         public IEntity Get(int ID)
         {
+            ErrorHandler.DisplayError(ID.ToString());
             EntityEmployee employee = api.GetEmployee(ID);
             List<int> jobIds = api.GetJobEmployeeRef(employeeId: ID);
             List<EntityJob> jobs = new List<EntityJob>();

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Contracts;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -31,7 +32,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         int id2;
         int m1;
         int m2;
-        int serviceid;
+        int serviceid = 1;
         string connString = SystemData.GetConString();
         public ContractManagerForm(Dashboard dashbord, LoginController.UserInfo userInfo)
         {
@@ -62,9 +63,9 @@ namespace PSS_ITWORKS.Presentation_Layer
             }
             foreach (EntityJob job in jobs)
             {
-                if (job.GetStatus() == status)
+                if (job.GetStatus() == status && job.GetTimeBegin().Month < end && job.GetTimeBegin().Month > start)
                 {
-                    series.Points[job.GetTimeBegin().Month - start - 1].SetValueY(1);
+                    series.Points[job.GetTimeBegin().Month - start - 1].YValues[0] += 1;
                 }
             }
             series.LegendText = status;
@@ -73,13 +74,20 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         void SetService()
         {
+            allServices.Clear();
+            ServiceType_cbx.Items.Clear();
+            servicesC_cbx.Items.Clear();
             context = new StrategyContextManager(new StrategyServiceManager());
             context.Connect(connString);
             List<IEntity> entities = context.Get();
+            Services_dgv.ColumnCount = 4;
             foreach (IEntity entity in entities)
             {
                 EntityService s = entity as EntityService;
                 ServiceType_cbx.Items.Add(s.GetTitle());
+                servicesC_cbx.Items.Add(s.GetTitle());
+                Services_dgv.Rows.Add(s.GetTitle(), s.GetDuration(), s.GetPriority(), s.GetCost());
+                allServices.Add(s);
             }
             EntityService service = context.Get(serviceid) as EntityService;
             if (service == null)
@@ -98,6 +106,11 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         void SetContract()
         {
+            services.Clear();
+            contracts.Clear();
+            ContractType1_cbx.Items.Clear();
+            ContractType2_cbx.Items.Clear();
+            contractType_cbx.Items.Clear();
             context = new StrategyContextManager(new StrategyContractManager());
             context.Connect(connString);
             List<IEntity> entities = context.Get();
@@ -115,12 +128,14 @@ namespace PSS_ITWORKS.Presentation_Layer
                 sla_txt.Text = contract.GetSLA();
                 durationC_num.Value = contract.GetDuration();
                 priorityC_num.Value = contract.GetPriority();
-                priceC_num.Value = (Decimal)contract.GetCost();
+                priceC_num.Value = contract.GetCost();
                 setAvailability(contract.GetAvailability());
                 clientCount_txt.Text = contract.GetClients().Count.ToString();
-                contract_services_dgv.DataSource = context.Get(contractId);
+                contract_services_dgv.Rows.Clear();
+                contract_services_dgv.ColumnCount = 4;
                 foreach (EntityService s in contract.GetServices())
                 {
+                    contract_services_dgv.Rows.Add(s.GetTitle(), s.GetDuration(), s.GetPriority(), s.GetCost());
                     services.Add(s);
                 }
                 ContractType1_cbx.Text = contract.GetTitle();
@@ -192,26 +207,27 @@ namespace PSS_ITWORKS.Presentation_Layer
             chart1.Legends.Clear();
             chart1.Series.Clear();
             chart1.Legends.Add(new Legend());
-            chart1.Series.Add(GetValues(12, jobs1, "Finished"));
+            chart1.Series.Add(GetValues((int)months1_num.Value, jobs1, "Finished"));
             chart1.Legends.Add(new Legend());
-            chart1.Series.Add(GetValues(12, jobs1, "Canceled"));
+            chart1.Series.Add(GetValues((int)months1_num.Value, jobs1, "Canceled"));
             chart2.Legends.Clear();
             chart2.Series.Clear();
             chart2.Legends.Add(new Legend());
-            chart2.Series.Add(GetValues(12, jobs2, "Finished"));
+            chart2.Series.Add(GetValues((int)Months2_num.Value, jobs2, "Finished"));
             chart2.Legends.Add(new Legend());
-            chart2.Series.Add(GetValues(12, jobs2, "Canceled"));
+            chart2.Series.Add(GetValues((int)Months2_num.Value, jobs2, "Canceled"));
         }
         private void ContractManagerForm_Load(object sender, EventArgs e)
         {
-            m1 = 12;
-            m2 = 12;
-            id1 = 1;
-            id2 = 2;
-            
+            Services_dgv.Rows.Clear();
+            Months2_num.Value = 12;
+            months1_num.Value = 12;
+            serviceId = 1;
             SetService();
             SetContractStats();
             SetContract();
+            ContractType1_cbx.SelectedIndex = 0;
+            ContractType2_cbx.SelectedIndex = 1;
         }
 
         private void ServiceType_lbl_Click(object sender, EventArgs e)
@@ -238,13 +254,29 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void ContractType2_cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
-            id2 = ContractType2_cbx.SelectedIndex + 1;
+            if (ContractType2_cbx.SelectedValue != null)
+            {
+                return;
+            }
+            foreach (EntityContract contract in contracts)
+            {
+                if (contract.GetTitle() == ContractType2_cbx.SelectedItem.ToString())
+                {
+                    id2 = contract.GetId();
+                }
+            }
             SetContractStats();
         }
 
         private void ContractType1_cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
-            id1 = ContractType1_cbx.SelectedIndex + 1;
+            foreach(EntityContract contract in contracts)
+            {
+                if(contract.GetTitle() == ContractType1_cbx.SelectedItem.ToString())
+                {
+                    id1 = contract.GetId();
+                }
+            }
             SetContractStats();
         }
 
@@ -277,7 +309,13 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void Services_dgv_SelectionChanged(object sender, EventArgs e)
         {
-            serviceId = int.Parse(Services_dgv.SelectedRows[0].Cells[0].Value.ToString());
+            foreach (EntityService service in allServices)
+            {
+                if (service.GetTitle() == ServiceType_cbx.SelectedItem.ToString())
+                {
+                    serviceId = service.GetId();
+                }
+            }
             SetService();
         }
 
@@ -298,7 +336,13 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void contractType_cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
-            contractId = int.Parse(contractType_cbx.SelectedItem.ToString());
+            foreach (EntityContract contract in contracts)
+            {
+                if (contract.GetTitle() == contractType_cbx.SelectedItem.ToString())
+                {
+                    contractId = contract.GetId();
+                }
+            }
             SetContract();
         }
 
@@ -336,6 +380,11 @@ namespace PSS_ITWORKS.Presentation_Layer
                     services.Add(service);
                 }
             }
+            contract_services_dgv.Rows.Clear();
+            foreach (EntityService service in services)
+            {
+                contract_services_dgv.Rows.Add(service.GetTitle(), service.GetDuration(), service.GetPriority(), service.GetCost());
+            }
         }
 
         private void remove_btn_Click(object sender, EventArgs e)
@@ -347,6 +396,29 @@ namespace PSS_ITWORKS.Presentation_Layer
                     services.Remove(service);
                 }
             }
+            contract_services_dgv.Rows.Clear();
+            foreach (EntityService service in services)
+            {
+                contract_services_dgv.Rows.Add(service.GetTitle(), service.GetDuration(), service.GetPriority(), service.GetCost());
+            }
+        }
+
+        private void ServiceType_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (EntityService service in services)
+            {
+                if (service.GetTitle() == ServiceType_cbx.SelectedItem.ToString())
+                {
+                    serviceId = service.GetId();
+                }
+            }
+        }
+
+        private void delete_btn_Click(object sender, EventArgs e)
+        {
+            context = new StrategyContextManager(new StrategyServiceManager());
+            context.Connect(connString);
+            context.Delete(serviceid);
         }
     }
 }

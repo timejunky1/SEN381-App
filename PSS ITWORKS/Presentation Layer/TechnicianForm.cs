@@ -10,6 +10,7 @@ namespace PSS_ITWORKS.Presentation_Layer
 {
     public partial class Technician : Form
     {
+        Scheduler scheduler = new Scheduler();
         StrategyContextManager context;
         Dashboard dashboard;
         EntityEmployee technician;
@@ -70,8 +71,12 @@ namespace PSS_ITWORKS.Presentation_Layer
             taskList_dgv.Columns[14].HeaderText = "15:00";
             taskList_dgv.Columns[15].HeaderText = "15:30";
             technician = context.Get(technicianId) as EntityEmployee;
-            LoadSchedule(21,14, technician.GetJobs(), taskList_dgv);
-            LoadSchedule(7,0, technician.GetJobs(), Schedule_dgv);
+            MessageBox.Show($"job count = {technician.GetJobs().Count}");
+            scheduler.SetJobs(technician.GetJobs());
+            DateTime date = DateTime.Now.AddDays(1);
+            scheduler.addJob(new EntityJob(1, 1, 1, date, date.AddHours(2), "In Process", "Notes"));
+            scheduler.GetSchedule(21,14, taskList_dgv);
+            scheduler.GetSchedule(7,0, Schedule_dgv);
 
             foreach (EntityJob job in technician.GetJobs())
             {
@@ -83,52 +88,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             }
         }
        
-        void LoadSchedule(int maxDay, int Offset, List<EntityJob> jobs, DataGridView dgv)
-        {
-            dgv.RowCount = maxDay;
-            int nr = 0;
-            int s = 800;
-            int e = 1600;
-            int n = 0;
-            int r = 0;
-            foreach (EntityJob job in jobs)
-            {
-                try
-                {
-                    n = 0;
-                    TimeSpan ts = job.GetTimeBegin() - (DateTime.Now.Add(new TimeSpan(-(DateTime.Now.Hour - 8), 0, 0)));
-                    r = ts.Days + Offset;
-                    if (r > maxDay || r<0)
-                    {
-                        continue;
-                    }
-                    int timeStart = job.GetTimeBegin().Hour * 100 + job.GetTimeBegin().Minute / 60 * 100;
-                    int timeEnd = job.GetTimeEnd().Hour * 100 + job.GetTimeEnd().Minute / 60 * 100;
-                    MessageBox.Show(r.ToString());
-                    for (int i = s; i < e; i += 50)
-                    {
-                        if (timeEnd < i)
-                        {
-                            break;
-                        }
-                        if (timeStart < i + 50)
-                        {
-                            dgv.Rows[r].Cells[0].Value = job.GetTimeBegin().DayOfWeek;
-                            dgv.Rows[r].Cells[0].Style.BackColor = Color.Blue;
-                            dgv.Rows[r].Cells[0].Style.ForeColor = Color.White;
-                            dgv.Rows[r].Cells[n].Value = job.GetId().ToString();
-                            dgv.Rows[r].Cells[n].Style.ForeColor = Color.White;
-                            dgv.Rows[r].Cells[n].Style.BackColor = Color.Green;
-                        }
-                        n++;
-                    }
-                }
-                catch(Exception ex)
-                {
-                    ErrorHandler.DisplayError(ex);
-                }
-            }
-        }
+        
         private void submitUpdate_btn_Click(object sender, EventArgs e)
         {
             if (status_cbx.Text != null && jobNotes_rtb.Text.Length <= 255)

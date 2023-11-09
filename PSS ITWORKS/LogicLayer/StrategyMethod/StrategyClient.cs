@@ -32,6 +32,7 @@ namespace PSS_ITWORKS.LogicLayer.StrategyMethod
         {
             List<IEntity> entities = new List<IEntity>();
             List<EntityClient> clients = api.GetClients();
+            ErrorHandler.DisplayError(clients.Count().ToString());
             foreach (EntityClient client in clients)
             {
                 entities.Add(client);

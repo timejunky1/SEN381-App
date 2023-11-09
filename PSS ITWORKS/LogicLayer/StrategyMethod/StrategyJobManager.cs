@@ -35,6 +35,13 @@ namespace PSS_ITWORKS
             List<IEntity> entities = new List<IEntity>();
             foreach (EntityJob job in jobs)
             {
+                List<int> employeeIds = api.GetJobEmployeeRef(jobId: job.GetId());
+                List<EntityEmployee> jobEmployees = new List<EntityEmployee>();
+                foreach (int employeeId in employeeIds)
+                {
+                    jobEmployees.Add(api.GetEmployee(employeeId));
+                }
+                job.SetEmployees(jobEmployees);
                 entities.Add(job);
             }
             return entities;

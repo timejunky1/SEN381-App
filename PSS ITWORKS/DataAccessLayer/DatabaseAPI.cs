@@ -597,6 +597,7 @@ namespace PSS_ITWORKS
                                     reader.GetString(12),
                                     reader.GetString(13)
                                     );
+
                             }
                             if(!reader.HasRows)
                             {
@@ -793,7 +794,7 @@ namespace PSS_ITWORKS
                 using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("contractProcedures.GetContract", conn))
+                    using (SqlCommand command = new SqlCommand("contractProcedures.GetContracts", conn))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -808,6 +809,7 @@ namespace PSS_ITWORKS
                                     reader.GetInt32(5),
                                     reader.GetString(6)
                                     );
+                                contracts.Add(contract);
                             }
                             if (!reader.HasRows)
                             {
@@ -997,9 +999,9 @@ namespace PSS_ITWORKS
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@title", service.GetTitle());//VARCHAR(30)
                         command.Parameters.AddWithValue("@duration", service.GetDuration());//INT
-                        command.Parameters.AddWithValue("@priority", service.GetTitle());//INT 0 - 5
+                        command.Parameters.AddWithValue("@priority", service.GetPriority());//INT 0 - 5
                         command.Parameters.AddWithValue("@cost", service.GetCost());//DECIMAL(10,2)
-                        command.Parameters.AddWithValue("availability", service.GetAvailability());//VARCHAR(20)
+                        command.Parameters.AddWithValue("@availability", service.GetAvailability());//VARCHAR(20)
                         command.ExecuteNonQuery();
                     }
                 }
@@ -1024,7 +1026,7 @@ namespace PSS_ITWORKS
                         command.Parameters.AddWithValue("@serviceId", service.GetId());//INT
                         command.Parameters.AddWithValue("@title", service.GetTitle());//VARCHAR(30)
                         command.Parameters.AddWithValue("@duration", service.GetDuration());//INT
-                        command.Parameters.AddWithValue("@priority", service.GetTitle());//INT 0 - 5
+                        command.Parameters.AddWithValue("@priority", service.GetPriority());//INT 0 - 5
                         command.Parameters.AddWithValue("@cost", service.GetCost());//DECIMAL(10,2)
                         command.Parameters.AddWithValue("availability", service.GetAvailability());//VARCHAR(20)
                         command.ExecuteNonQuery();
@@ -1045,7 +1047,7 @@ namespace PSS_ITWORKS
                 using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
-                    using (SqlCommand command = new SqlCommand("serviceProcedures.DeleteCService", conn))
+                    using (SqlCommand command = new SqlCommand("serviceProcedures.DeleteService", conn))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@serviceId", serviceId);//INT

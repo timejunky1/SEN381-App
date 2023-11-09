@@ -48,7 +48,6 @@
             this.taskUpdateInfo_lbl = new System.Windows.Forms.Label();
             this.taskUpdate_lbl = new System.Windows.Forms.Label();
             this.clientDetails_tp = new System.Windows.Forms.TabPage();
-            this.JobId_cmb = new System.Windows.Forms.ComboBox();
             this.filterDetails_btn = new System.Windows.Forms.Button();
             this.serviceOverview_dgv = new System.Windows.Forms.DataGridView();
             this.serviceOverview_lbl = new System.Windows.Forms.Label();
@@ -59,6 +58,7 @@
             this.Schedule_lbl = new System.Windows.Forms.Label();
             this.Logout_btn = new System.Windows.Forms.Button();
             this.pssDataSet1 = new PSS_ITWORKS.PSSDataSet();
+            this.JobId_cmb = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.Logo_img)).BeginInit();
             this.Technical_tc.SuspendLayout();
             this.taskList_tp.SuspendLayout();
@@ -302,14 +302,6 @@
             this.clientDetails_tp.Text = "Client Details";
             this.clientDetails_tp.UseVisualStyleBackColor = true;
             // 
-            // JobId_cmb
-            // 
-            this.JobId_cmb.FormattingEnabled = true;
-            this.JobId_cmb.Location = new System.Drawing.Point(534, 15);
-            this.JobId_cmb.Name = "JobId_cmb";
-            this.JobId_cmb.Size = new System.Drawing.Size(121, 40);
-            this.JobId_cmb.TabIndex = 24;
-            // 
             // filterDetails_btn
             // 
             this.filterDetails_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(228)))), ((int)(((byte)(91)))));
@@ -416,6 +408,14 @@
             // 
             this.pssDataSet1.DataSetName = "PSSDataSet";
             this.pssDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // JobId_cmb
+            // 
+            this.JobId_cmb.FormattingEnabled = true;
+            this.JobId_cmb.Location = new System.Drawing.Point(534, 15);
+            this.JobId_cmb.Name = "JobId_cmb";
+            this.JobId_cmb.Size = new System.Drawing.Size(121, 40);
+            this.JobId_cmb.TabIndex = 24;
             // 
             // Technician
             // 
