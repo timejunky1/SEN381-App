@@ -815,6 +815,7 @@ namespace PSS_ITWORKS
                                     reader.GetInt32(5),
                                     reader.GetString(6)
                                     );
+                                contracts.Add(contract);
                             }
                             if (!reader.HasRows)
                             {

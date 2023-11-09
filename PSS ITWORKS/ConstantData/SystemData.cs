@@ -10,7 +10,7 @@ namespace PSS_ITWORKS.ConstantData
     {
         public static string GetConString()
         {
-            return @"Data Source = LAPTOP - O82SF2KG\RONWYNNE; Initial Catalog = PSS1; Integrated Security = True";
+            return @"Data Source=LAPTOP-O82SF2KG\RONWYNNE;Initial Catalog=PSS1;Integrated Security=True";
         } 
     }
 }

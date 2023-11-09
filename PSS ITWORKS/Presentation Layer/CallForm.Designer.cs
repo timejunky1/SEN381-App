@@ -35,18 +35,31 @@
             this.CallEmployee_tc = new System.Windows.Forms.TabControl();
             this.Dashboard_tp = new System.Windows.Forms.TabPage();
             this.Dashboard_dgv = new System.Windows.Forms.DataGridView();
+            this.ClientID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CallTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PastJobRequest_lbl = new System.Windows.Forms.Label();
             this.MaintananceOverview_lbl = new System.Windows.Forms.Label();
             this.ServiceRequest_tp = new System.Windows.Forms.TabPage();
             this.NewServiceClientName_lbl = new System.Windows.Forms.Label();
             this.NewServiceClientName_txt = new System.Windows.Forms.TextBox();
             this.PastRequests_dgv = new System.Windows.Forms.DataGridView();
+            this.Client_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EmplID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Call_Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PastRequests_lbl = new System.Windows.Forms.Label();
             this.NewServiceRequest_btn = new System.Windows.Forms.Button();
             this.ServiceRequest_lbl = new System.Windows.Forms.Label();
             this.Client_tp = new System.Windows.Forms.TabPage();
             this.ContractDetailsOverview_gbx = new System.Windows.Forms.GroupBox();
             this.ContractOverview_dgv = new System.Windows.Forms.DataGridView();
+            this.ContractID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Priority = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Duration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExperationDate_txt = new System.Windows.Forms.TextBox();
             this.ExperationDate_lbl = new System.Windows.Forms.Label();
             this.Priority_txt = new System.Windows.Forms.TextBox();
@@ -62,6 +75,13 @@
             this.SearchClientName_txt = new System.Windows.Forms.TextBox();
             this.SearchClientName_lbl = new System.Windows.Forms.Label();
             this.PastServiceRequest_dgv = new System.Windows.Forms.DataGridView();
+            this.JobID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.JobClientID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.JobServiceID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.JobTimeBegin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.JobTimeEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PastServiceRequest_lbl = new System.Windows.Forms.Label();
             this.Header_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PSS_img)).BeginInit();
@@ -149,12 +169,45 @@
             // Dashboard_dgv
             // 
             this.Dashboard_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Dashboard_dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ClientID,
+            this.EmpID,
+            this.CallTime,
+            this.Description});
             this.Dashboard_dgv.Location = new System.Drawing.Point(29, 92);
             this.Dashboard_dgv.Name = "Dashboard_dgv";
             this.Dashboard_dgv.RowHeadersWidth = 51;
             this.Dashboard_dgv.RowTemplate.Height = 24;
             this.Dashboard_dgv.Size = new System.Drawing.Size(1107, 413);
             this.Dashboard_dgv.TabIndex = 2;
+            // 
+            // ClientID
+            // 
+            this.ClientID.HeaderText = "Client ID";
+            this.ClientID.MinimumWidth = 6;
+            this.ClientID.Name = "ClientID";
+            this.ClientID.Width = 125;
+            // 
+            // EmpID
+            // 
+            this.EmpID.HeaderText = "Employee Id";
+            this.EmpID.MinimumWidth = 6;
+            this.EmpID.Name = "EmpID";
+            this.EmpID.Width = 125;
+            // 
+            // CallTime
+            // 
+            this.CallTime.HeaderText = "Call Time";
+            this.CallTime.MinimumWidth = 6;
+            this.CallTime.Name = "CallTime";
+            this.CallTime.Width = 125;
+            // 
+            // Description
+            // 
+            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Description.HeaderText = "Description";
+            this.Description.MinimumWidth = 6;
+            this.Description.Name = "Description";
             // 
             // PastJobRequest_lbl
             // 
@@ -212,12 +265,45 @@
             // PastRequests_dgv
             // 
             this.PastRequests_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.PastRequests_dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Client_ID,
+            this.EmplID,
+            this.Call_Time,
+            this.Desc});
             this.PastRequests_dgv.Location = new System.Drawing.Point(27, 151);
             this.PastRequests_dgv.Name = "PastRequests_dgv";
             this.PastRequests_dgv.RowHeadersWidth = 51;
             this.PastRequests_dgv.RowTemplate.Height = 24;
             this.PastRequests_dgv.Size = new System.Drawing.Size(1109, 347);
             this.PastRequests_dgv.TabIndex = 3;
+            // 
+            // Client_ID
+            // 
+            this.Client_ID.HeaderText = "Client ID";
+            this.Client_ID.MinimumWidth = 6;
+            this.Client_ID.Name = "Client_ID";
+            this.Client_ID.Width = 125;
+            // 
+            // EmplID
+            // 
+            this.EmplID.HeaderText = "EmployeeID";
+            this.EmplID.MinimumWidth = 6;
+            this.EmplID.Name = "EmplID";
+            this.EmplID.Width = 125;
+            // 
+            // Call_Time
+            // 
+            this.Call_Time.HeaderText = "Call Time";
+            this.Call_Time.MinimumWidth = 6;
+            this.Call_Time.Name = "Call_Time";
+            this.Call_Time.Width = 125;
+            // 
+            // Desc
+            // 
+            this.Desc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Desc.HeaderText = "Description";
+            this.Desc.MinimumWidth = 6;
+            this.Desc.Name = "Desc";
             // 
             // PastRequests_lbl
             // 
@@ -281,12 +367,53 @@
             // ContractOverview_dgv
             // 
             this.ContractOverview_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ContractOverview_dgv.Location = new System.Drawing.Point(41, 32);
+            this.ContractOverview_dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ContractID,
+            this.Title,
+            this.Priority,
+            this.Cost,
+            this.Duration});
+            this.ContractOverview_dgv.Location = new System.Drawing.Point(57, 32);
             this.ContractOverview_dgv.Name = "ContractOverview_dgv";
             this.ContractOverview_dgv.RowHeadersWidth = 51;
             this.ContractOverview_dgv.RowTemplate.Height = 24;
             this.ContractOverview_dgv.Size = new System.Drawing.Size(1039, 241);
             this.ContractOverview_dgv.TabIndex = 6;
+            // 
+            // ContractID
+            // 
+            this.ContractID.HeaderText = "Contract ID";
+            this.ContractID.MinimumWidth = 6;
+            this.ContractID.Name = "ContractID";
+            this.ContractID.Width = 200;
+            // 
+            // Title
+            // 
+            this.Title.HeaderText = "Title";
+            this.Title.MinimumWidth = 6;
+            this.Title.Name = "Title";
+            this.Title.Width = 200;
+            // 
+            // Priority
+            // 
+            this.Priority.HeaderText = "Priority";
+            this.Priority.MinimumWidth = 6;
+            this.Priority.Name = "Priority";
+            this.Priority.Width = 200;
+            // 
+            // Cost
+            // 
+            this.Cost.HeaderText = "Cost";
+            this.Cost.MinimumWidth = 6;
+            this.Cost.Name = "Cost";
+            this.Cost.Width = 200;
+            // 
+            // Duration
+            // 
+            this.Duration.HeaderText = "Duration";
+            this.Duration.MinimumWidth = 6;
+            this.Duration.Name = "Duration";
+            this.Duration.Width = 200;
             // 
             // ExperationDate_txt
             // 
@@ -344,6 +471,7 @@
             // SearchClient_btn
             // 
             this.SearchClient_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.SearchClient_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.SearchClient_btn.ForeColor = System.Drawing.Color.Black;
             this.SearchClient_btn.Location = new System.Drawing.Point(434, 84);
             this.SearchClient_btn.Name = "SearchClient_btn";
@@ -423,12 +551,69 @@
             // PastServiceRequest_dgv
             // 
             this.PastServiceRequest_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.PastServiceRequest_dgv.Location = new System.Drawing.Point(17, 121);
+            this.PastServiceRequest_dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.JobID,
+            this.JobClientID,
+            this.JobServiceID,
+            this.JobTimeBegin,
+            this.JobTimeEnd,
+            this.Status,
+            this.Notes});
+            this.PastServiceRequest_dgv.Location = new System.Drawing.Point(29, 121);
             this.PastServiceRequest_dgv.Name = "PastServiceRequest_dgv";
             this.PastServiceRequest_dgv.RowHeadersWidth = 51;
             this.PastServiceRequest_dgv.RowTemplate.Height = 24;
-            this.PastServiceRequest_dgv.Size = new System.Drawing.Size(1119, 386);
+            this.PastServiceRequest_dgv.Size = new System.Drawing.Size(1107, 386);
             this.PastServiceRequest_dgv.TabIndex = 1;
+            // 
+            // JobID
+            // 
+            this.JobID.HeaderText = "Job ID";
+            this.JobID.MinimumWidth = 6;
+            this.JobID.Name = "JobID";
+            this.JobID.Width = 150;
+            // 
+            // JobClientID
+            // 
+            this.JobClientID.HeaderText = "Client Id";
+            this.JobClientID.MinimumWidth = 6;
+            this.JobClientID.Name = "JobClientID";
+            this.JobClientID.Width = 150;
+            // 
+            // JobServiceID
+            // 
+            this.JobServiceID.HeaderText = "ServiceeID";
+            this.JobServiceID.MinimumWidth = 6;
+            this.JobServiceID.Name = "JobServiceID";
+            this.JobServiceID.Width = 150;
+            // 
+            // JobTimeBegin
+            // 
+            this.JobTimeBegin.HeaderText = "Time Begin";
+            this.JobTimeBegin.MinimumWidth = 6;
+            this.JobTimeBegin.Name = "JobTimeBegin";
+            this.JobTimeBegin.Width = 150;
+            // 
+            // JobTimeEnd
+            // 
+            this.JobTimeEnd.HeaderText = "Time End";
+            this.JobTimeEnd.MinimumWidth = 6;
+            this.JobTimeEnd.Name = "JobTimeEnd";
+            this.JobTimeEnd.Width = 150;
+            // 
+            // Status
+            // 
+            this.Status.HeaderText = "Status";
+            this.Status.MinimumWidth = 6;
+            this.Status.Name = "Status";
+            this.Status.Width = 150;
+            // 
+            // Notes
+            // 
+            this.Notes.HeaderText = "Notes";
+            this.Notes.MinimumWidth = 6;
+            this.Notes.Name = "Notes";
+            this.Notes.Width = 150;
             // 
             // PastServiceRequest_lbl
             // 
@@ -509,5 +694,25 @@
         private System.Windows.Forms.DataGridView ContractOverview_dgv;
         private System.Windows.Forms.Label NewServiceClientName_lbl;
         private System.Windows.Forms.TextBox NewServiceClientName_txt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ClientID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EmpID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CallTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Client_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EmplID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Call_Time;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Desc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ContractID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Priority;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Duration;
+        private System.Windows.Forms.DataGridViewTextBoxColumn JobID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn JobClientID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn JobServiceID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn JobTimeBegin;
+        private System.Windows.Forms.DataGridViewTextBoxColumn JobTimeEnd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Notes;
     }
 }
