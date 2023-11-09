@@ -334,16 +334,6 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         }
 
-        private void Title_txt_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Logout_btn_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             dashbord.Show();
@@ -355,6 +345,11 @@ namespace PSS_ITWORKS.Presentation_Layer
             
             //repopulate dgv
         }
-        
+
+        private void Logout_btn_Click_1(object sender, EventArgs e)
+        {
+            dashbord.Show();
+            this.Close();
+        }
     }
 }

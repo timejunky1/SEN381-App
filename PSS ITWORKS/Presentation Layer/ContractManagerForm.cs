@@ -48,6 +48,7 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         Series GetValues(int m, List<EntityJob> jobs, string status)
         {
+            MessageBox.Show($"Num jobs = {jobs.Count()}");
             Series series = new Series();
             series.ChartType = SeriesChartType.Column;
             int end = DateTime.Now.Month;
@@ -198,6 +199,7 @@ namespace PSS_ITWORKS.Presentation_Layer
                 }
                 if (client.GetContractId() == id2)
                 {
+                    MessageBox.Show(client.GetJobs().Count.ToString());
                     foreach (EntityJob job in client.GetJobs())
                     {
                         jobs2.Add(job);
@@ -219,6 +221,8 @@ namespace PSS_ITWORKS.Presentation_Layer
         }
         private void ContractManagerForm_Load(object sender, EventArgs e)
         {
+            id1 = 1;
+            id2 = 2;
             PSS_lbl.Text = $"Welcome {userInfo.Name} {userInfo.Surname} (Contract Manager)";
             Services_dgv.Rows.Clear();
             Months2_num.Value = 12;
