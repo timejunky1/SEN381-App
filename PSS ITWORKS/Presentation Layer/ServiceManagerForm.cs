@@ -18,7 +18,10 @@ namespace PSS_ITWORKS.Presentation_Layer
         string conn = SystemData.GetConString();
         public int jobID;
         public int clientID;
+        public int techID;
         List<EntityCall> CallList = new List<EntityCall>();
+        
+
 
         private Dashboard dashboard;
         StrategyContextManager cm;
@@ -30,28 +33,33 @@ namespace PSS_ITWORKS.Presentation_Layer
             this.dashboard = dashboard;
             this.userInfo = userInfo;
             welcome_lbl.Text = $"Welcome Back {userInfo.Name} {userInfo.Surname} <Service Manager>";
+            Assignement_dtp.Value = DateTime.Now;
         }
         public int GetTechID(string Name)
         {
-            int ID = 0;
+            
             context = new StrategyContextManager(new StratagyEmployeeManagement());
             context.Connect(conn);
 
             List<IEntity> entities = context.Get();
             foreach (IEntity entity in entities)
             {
+               // MessageBox.Show(Name + " techname in GetTechID class");
                 EntityEmployee employee = entity as EntityEmployee;
                 if (employee.GetName() == Name)
                 {
-                    ID = employee.GetID();
+                    techID = employee.GetID();
+                    
                 }
             }
-            return ID;
+            MessageBox.Show(techID.ToString() + " techID in GetTechID class");
+            return techID;
         }
 
         public List<IEntity>SearchJobByTechLoad(string techName)
         {
-            int techId = GetTechID(techName); 
+            int techId = GetTechID(techName);
+            MessageBox.Show(techId.ToString() + " techID");
 
             context = new StrategyContextManager(new StrategyJobManager());
             context.Connect(conn);
@@ -62,7 +70,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             {
                 EntityJob job = entity as EntityJob;
                 List<EntityEmployee> emp = job.GetEmployees();
-
+                //MessageBox.Show("emp list count = " + emp.Count.ToString());
                 foreach (EntityEmployee employee in emp)
                 {
                     if (employee.GetID() == techId)
@@ -71,6 +79,7 @@ namespace PSS_ITWORKS.Presentation_Layer
                     }
                 }
             }
+            MessageBox.Show("SearchJobByTechLoad list count = " + jobs.Count.ToString());
             return jobs;
         }
         public List<IEntity> GetJobsByID(int serviceID)
@@ -132,7 +141,16 @@ namespace PSS_ITWORKS.Presentation_Layer
             return title;
 
         }
+        void LoadJobID(string techName)
+        {
+            List<IEntity> jobs = SearchJobByTechLoad(techName);
+            foreach (IEntity job in jobs)
+            {
+                EntityJob j = job as EntityJob;
+                UpdateJobID_cbx.Items.Add(j.GetID());
+            }
 
+        }
         void LoadServices()
         {
             List<IEntity> services = GetServices();
@@ -145,10 +163,10 @@ namespace PSS_ITWORKS.Presentation_Layer
         }
         void LoadStatus()
         {
-            Service_cbx.Items.Add("Pending");
-            Service_cbx.Items.Add("In Process");
-            Service_cbx.Items.Add("Finished");
-            Service_cbx.Items.Add("Cancelled");
+            status_cbx.Items.Add("Pending");
+            status_cbx.Items.Add("In Process");
+            status_cbx.Items.Add("Finished");
+            status_cbx.Items.Add("Cancelled");
         }
         void LoadTechListBox( int JobId)
         {
@@ -159,13 +177,14 @@ namespace PSS_ITWORKS.Presentation_Layer
             foreach (IEntity entity in emp)
             {
                 EntityEmployee employee = entity as EntityEmployee;
-                if (employee.GetRole() == "Technician")
-                {
-                    e.Add(employee);
-                }
+                
+                    if(employee.GetRole() == "Technician")
+                    {
+                        e.Add(employee);
+                        ChangeTech_lbx.Items.Add(employee.GetName());
+                    }
+                
             }
-
-            SelectTechsInList(JobId);
 
         }
 
@@ -219,50 +238,58 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void ManagerForm_Load(object sender, EventArgs e)
         {
+            
+
+
             ModifyJobs_pnl.Visible = false;
             ChangeTech_lbx.SelectionMode = SelectionMode.MultiSimple;
             DateTime date = Assignement_dtp.Value;
+            Request_dgv.ColumnCount = 6;
+            AssignmentSchedule_dgv.ColumnCount=6;
 
             context = new StrategyContextManager(new StrategyJobManager());
             context.Connect(conn);
             List<IEntity> entities = context.Get();
+
+            MessageBox.Show(entities.Count.ToString() + "Entities list count");
             List<EntityJob> jobList = new List<EntityJob>();
             List<EntityJob> pending = new List<EntityJob>();
             foreach (IEntity ent in entities)
             {
                 EntityJob jobEntity = ent as EntityJob;
-                if(jobEntity.GetTimeBegin() == date)
-                {
                     jobList.Add(jobEntity);
-                }
-                else if(jobEntity.GetStatus() == "Pending")
-                {
+                    AssignmentSchedule_dgv.Rows.Add(jobEntity.GetID(), jobEntity.GetClientId(), jobEntity.GetServiceId(), jobEntity.GetPriotity(), jobEntity.GetStatus(), jobEntity.GetNotes());
+                
                     pending.Add(jobEntity);
-                }
+                    Request_dgv.Rows.Add(jobEntity.GetID(), jobEntity.GetClientId(), jobEntity.GetServiceId(), jobEntity.GetPriotity(), jobEntity.GetStatus(), jobEntity.GetNotes());
+                
             }
-            AssignmentSchedule_dgv.DataSource = jobList;
-            Request_dgv.DataSource = pending;
-            Request_dgv.DataSource = context.Get();
-            AssignmentSchedule_dgv.DataSource = context.Get();
-            List<IEntity> list = context.Get();
-            AssignmentSchedule_dgv.DataSource = list;
-            IEntity entity = context.Get(3);
-            EntityJob job = entity as EntityJob;
-            BindingSource bs = new BindingSource();
-            List<EntityJob> jobs = new List<EntityJob>();
+            MessageBox.Show(jobList.Count.ToString() + " jobListCount");
+            MessageBox.Show(pending.Count.ToString() + " pendingListCount");
+            //AssignmentSchedule_dgv.DataSource = jobList;
+            //Request_dgv.DataSource = pending;
+            //Request_dgv.DataSource = context.Get();
+            //AssignmentSchedule_dgv.DataSource = context.Get();
+            //List<IEntity> list = context.Get();
+            //AssignmentSchedule_dgv.DataSource = list;
+            //IEntity entity = context.Get(3);
+            //EntityJob job = entity as EntityJob;
+            //BindingSource bs = new BindingSource();
+            //List<EntityJob> jobs = new List<EntityJob>();
 
-            foreach (IEntity ent in list)
-            {
-                EntityJob j = ent as EntityJob;
-                if (j.GetStatus() == "In Process")
-                {
-                    jobs.Add(j);
-                }
-            }
+            //foreach (IEntity ent in list)
+            //{
+            //    EntityJob j = ent as EntityJob;
+            //    if (j.GetStatus() == "In Process")
+            //    {
+            //        jobs.Add(j);
+            //    }
+            //}
         }
 
         private void assign_btn_Click(object sender, EventArgs e)
         {
+            
             af.Show();
         }
 
@@ -276,18 +303,25 @@ namespace PSS_ITWORKS.Presentation_Layer
         private void AssignmentFilter_btn_Click(object sender, EventArgs e)
         {
             string name = Filter_txt.Text;
+            Schedule_dgv.ColumnCount = 5;
             if (name == null)
             {
                 MessageBox.Show("Please enter name");
                 Filter_txt.Focus();
             }
-            Schedule_dgv.DataSource = SearchJobByTechLoad(name);
+            List<IEntity> list = SearchJobByTechLoad(name);
+            foreach (IEntity entity in list)
+            {
+                EntityJob job = entity as EntityJob;
+                Schedule_dgv.Rows.Add(job.GetID(), job.GetServiceId(),job.GetTimeBegin() ,job.GetStatus(), job.GetNotes());
+            }
 
         }
 
         private void TechFilter_btn_Click(object sender, EventArgs e)
         {
             string serviceTitle = TechFilter_txt.Text;
+            Technician_dgv.ColumnCount=5;
             int ServiceId = GetServiceID(serviceTitle);
             if (ServiceId == 0)
             {
@@ -295,31 +329,56 @@ namespace PSS_ITWORKS.Presentation_Layer
                 TechFilter_txt.Clear();
                 TechFilter_txt.Focus();
             }
-            Technician_dgv.DataSource = GetJobsByID(ServiceId);
+            List<IEntity> job= GetJobsByID(ServiceId);
+            foreach (IEntity entity in job)
+            {
+                EntityJob j = entity as EntityJob;
+                Technician_dgv.Rows.Add(j.GetID(), j.GetServiceId(),j.GetTimeBegin(), j.GetTimeEnd(),j.GetStatus(), j.GetNotes());
+            }
         }
 
         private void JobsFilter_btn_Click(object sender, EventArgs e)
         {
             ModifyJobs_pnl.Visible = false;
-            string techName = TechFilter_txt.Text;
+            string techName = JobsFilter_txt.Text;
+            JobsByTech_dgv.ColumnCount = 5;
 
-            JobsByTech_dgv.DataSource = SearchJobByTechLoad(techName);
+            List<IEntity> list = SearchJobByTechLoad(techName);
+            foreach (IEntity entity in list)
+            {
+                EntityJob job = entity as EntityJob;
+                jobID = job.GetID();
+                JobsByTech_dgv.Rows.Add(job.GetID(), job.GetServiceId(), job.GetTimeBegin(), job.GetStatus(), job.GetNotes());
+            }
+            
         }
 
         private void ModifyJobs_btn_Click(object sender, EventArgs e)
         {
+            string techName = JobsFilter_txt.Text;
+            LoadJobID(techName);
+
             ModifyJobs_pnl.Visible = true;
-            context = new StrategyContextManager(new StrategyJobManager());
-            IEntity job = context.Get(int.Parse(Technician_dgv.SelectedRows[0].Cells[0].Value.ToString()));
-            EntityJob j = job as EntityJob;
-            CallList = j.GetCalls();
-            jobID = j.GetId();
-            clientID = j.GetClientId();
-            TimeBegin_dtp.Value = j.GetTimeBegin();
-            TimeEnd_dtp.Value = j.GetTimeEnd();
-            status_cbx.SelectedItem = j.GetStatus();
-            int ServiceID = j.GetServiceId();
-            string title = GetServiceTitle(ServiceID);
+            UpdateJobID_cbx.SelectedIndex = 0;
+            int jID = int.Parse(UpdateJobID_cbx.SelectedItem.ToString());
+            string title = "";
+            int ServiceID = 1;
+            List<IEntity> jobs = GetJobsByID(jID);
+            foreach (IEntity entity in jobs)
+            {
+                EntityJob j = entity as EntityJob;
+                CallList = j.GetCalls();
+                jobID = j.GetId();
+                clientID = j.GetClientId();
+                TimeBegin_dtp.Value = j.GetTimeBegin();
+                TimeEnd_dtp.Value = j.GetTimeEnd();
+                status_cbx.SelectedItem = j.GetStatus();
+                ServiceID = j.GetServiceId();
+                title = GetServiceTitle(ServiceID);
+                Notes_rtb.Text = j.GetNotes();
+
+            }
+            
             LoadServices();
             LoadStatus();
             for (int x = 0; x < Service_cbx.Items.Count; x++)
@@ -329,7 +388,7 @@ namespace PSS_ITWORKS.Presentation_Layer
                     Service_cbx.SelectedIndex = x;
                 }
             }
-            Notes_rtb.Text = j.GetNotes();
+            
             LoadTechListBox(jobID);
 
         }
@@ -344,18 +403,19 @@ namespace PSS_ITWORKS.Presentation_Layer
             DateTime end = TimeEnd_dtp.Value;
             string status = status_cbx.SelectedItem.ToString();
             string notes = Notes_rtb.Text;
-            string[] tech = new string[1000];
+           List<string> tech = new List<string>();
+            //int selectedI = ChangeTech_lbx
             foreach (int i in ChangeTech_lbx.SelectedIndices)
             {
-                tech[i] = ChangeTech_lbx.Items[i].ToString();
+                tech.Add(ChangeTech_lbx.Items[i].ToString());
             }
-            int[] techID = new int[1000];
-            for (int i = 0; i < tech.Length; i++)
+            List<int> techID = new List<int>();
+            for (int i = 0; i < tech.Count; i++)
             {
-                techID[i] = GetTechID(tech[i]);
+                techID.Add(GetTechID(tech[i]));
             }
 
-            for (int k = 0; k< techID.Length; k++)
+            for (int k = 0; k< techID.Count; k++)
             {
                 list.Add(GetEmployee(techID[k]));
             }
@@ -374,6 +434,57 @@ namespace PSS_ITWORKS.Presentation_Layer
             /// 
 
             ModifyJobs_pnl.Visible = false;
+
+        }
+
+        private void Assignement_dtp_VisibleChanged(object sender, EventArgs e)
+        {
+            //DateTime date = Assignement_dtp.Value;
+            //Request_dgv.ColumnCount = 6;
+            //AssignmentSchedule_dgv.ColumnCount = 6;
+
+            //context = new StrategyContextManager(new StrategyJobManager());
+            //context.Connect(conn);
+            //List<IEntity> entities = context.Get();
+
+            //MessageBox.Show(entities.Count.ToString() + "Entities list count");
+            //List<EntityJob> jobList = new List<EntityJob>();
+            //List<EntityJob> pending = new List<EntityJob>();
+            //foreach (IEntity ent in entities)
+            //{
+            //    EntityJob jobEntity = ent as EntityJob;
+            //    if (jobEntity.GetTimeBegin() == date)
+            //    {
+            //        jobList.Add(jobEntity);
+            //        AssignmentSchedule_dgv.Rows.Add(jobEntity.GetID(), jobEntity.GetClientId(), jobEntity.GetServiceId(), jobEntity.GetPriotity(), jobEntity.GetStatus(), jobEntity.GetNotes());
+            //    }
+                
+            //}
+        }
+
+        private void Assignement_dtp_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime date = Assignement_dtp.Value;
+            Request_dgv.ColumnCount = 6;
+            AssignmentSchedule_dgv.ColumnCount = 6;
+
+            context = new StrategyContextManager(new StrategyJobManager());
+            context.Connect(conn);
+            List<IEntity> entities = context.Get();
+
+            MessageBox.Show(entities.Count.ToString() + "Entities list count");
+            List<EntityJob> jobList = new List<EntityJob>();
+            List<EntityJob> pending = new List<EntityJob>();
+            foreach (IEntity ent in entities)
+            {
+                EntityJob jobEntity = ent as EntityJob;
+                if (jobEntity.GetTimeBegin() == date)
+                {
+                    jobList.Add(jobEntity);
+                    AssignmentSchedule_dgv.Rows.Add(jobEntity.GetID(), jobEntity.GetClientId(), jobEntity.GetServiceId(), jobEntity.GetPriotity(), jobEntity.GetStatus(), jobEntity.GetNotes());
+                }
+
+            }
 
         }
     }
