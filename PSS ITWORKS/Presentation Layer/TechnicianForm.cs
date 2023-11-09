@@ -108,7 +108,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             {
                 if (job.GetStatus() == "In Process")
                 {
-                    JobId_cmb.Items.Add(job.GetId());
+                    //JobId_cmb.Items.Add(job.GetId());
                 }
                 
             }
@@ -167,13 +167,15 @@ namespace PSS_ITWORKS.Presentation_Layer
         void LoadDetails(EntityJob job)
         {
             this.job = job;
+            int clienID;
+            clienID = job.GetClientId();
             //jobID_txt.Text = jobId.ToString();
             //Change stratagy to clientManagement
             clientDetails_dgv.Rows.Clear();
             clientDetails_dgv.ColumnCount = 6;
             context = new StrategyContextManager(new StrategyClientManager());
             context.Connect(connString);
-            EntityClient client = context.Get(job.GetClientId()) as EntityClient;
+            EntityClient client = context.Get(clienID) as EntityClient;
             clientDetails_dgv.Rows.Add(client.GetID(), client.GetName(), client.GetPhone(), client.GetStreetNumber(), client.GetStreetName(), client.GetCity());
             //Change stratagy to ServiceManagement
             serviceOverview_dgv.Rows.Clear();
@@ -197,12 +199,17 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void filterDetails_btn_Click(object sender, EventArgs e)
         {
-            
-            foreach (EntityJob job in technician.GetJobs())
+            int id = int.Parse(JobId_cmb.Text.ToString());
+            context = new StrategyContextManager(new StrategyJobManager());
+            context.Connect(connString);
+            List<IEntity> ent  = context.Get();
+
+            foreach(IEntity entity in ent)
             {
-                if (job.GetId() == int.Parse(JobId_cmb.Text.ToString()))
+                EntityJob j = entity as EntityJob;
+                if (j.GetId() == int.Parse(JobId_cmb.Text.ToString()))
                 {
-                    LoadDetails(job);
+                    LoadDetails(j);
                 }
             }
         }

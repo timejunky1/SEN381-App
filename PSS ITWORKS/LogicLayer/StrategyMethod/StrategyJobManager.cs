@@ -76,12 +76,13 @@ namespace PSS_ITWORKS
             EntityClient jobClient = api.GetClient(job.GetClientId());
             EntityService service = api.GetService(job.GetServiceId());
             api.DeleteJobEmployeeRef(jobId: job.GetClientId());
-            foreach(EntityEmployee employee in job.GetEmployees())
-            {
-                api.InsertJobEmployeeRef(job.GetId(), employee.GetID());
-                string SMS = $"Service: {service.GetTitle()}\nClient: {jobClient.GetName()} {jobClient.GetSurname()}\nAddress: {jobClient.GetStreetNumber()} {jobClient.GetStreetName()}";
-                sms.SendSMS(SMS, employee.GetPhone());
-            }
+            
+            //foreach (EntityEmployee employee in job.GetEmployees())
+            //{
+               // api.InsertJobEmployeeRef(job.GetId(), employee.GetID());
+               // string SMS = $"Service: {service.GetTitle()}\nClient: {jobClient.GetName()} {jobClient.GetSurname()}\nAddress: {jobClient.GetStreetNumber()} {jobClient.GetStreetName()}";
+              //  sms.SendSMS(SMS, employee.GetPhone());
+            //}
             api.UpdateJob(job);
         }
 

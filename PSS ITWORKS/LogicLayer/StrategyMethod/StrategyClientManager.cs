@@ -48,29 +48,29 @@ namespace PSS_ITWORKS
 
         public IEntity Get(int ID)
         {
-            EntityClient client = null;
-            if(client != null)
-            {
-                client = api.GetClient(ID);
+            
+                EntityClient client = api.GetClient(ID);
                 List<EntityJob> jobs= api.GetJobs();
+                List<EntityJob> j = new List<EntityJob>();
                 foreach(EntityJob job in jobs)
                 {
+                    
                     if(job.GetClientId() == client.GetID())
                     {
-                        jobs.Add(job);
+                        j.Add(job);
                     }
                 }
-                client.SetJobs(jobs);
+                client.SetJobs(j);
                 List<EntityCall> calls = api.GetCalls();
-                foreach (EntityCall call in calls)
+            List<EntityCall> c = new List<EntityCall>();
+            foreach (EntityCall call in calls)
                 {
                     if (call.GetClientId() == client.GetID())
                     {
-                        calls.Add(call);
+                        c.Add(call);
                     }
                 }
-                client.SetCalls(calls);
-            }
+                client.SetCalls(c);
             return client;
 
         }
