@@ -25,7 +25,7 @@ namespace PSS_ITWORKS.Presentation_Layer
             InitializeComponent();
             this.dashboard = dashboard;
             this.userInfo = userInfo;
-            welcome_lbl.Text = $"Welcome Back {userInfo.Name} {userInfo.Surname} <Client Manager>";
+            WelcomeClientManager_lbl.Text = $"Welcome Back {userInfo.Name} {userInfo.Surname} <Client Manager>";
         }
 
         private void Logout_btn_Click(object sender, EventArgs e)
