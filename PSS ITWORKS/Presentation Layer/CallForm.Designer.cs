@@ -120,6 +120,7 @@
             this.Logout_btn.TabIndex = 2;
             this.Logout_btn.Text = "Logout";
             this.Logout_btn.UseVisualStyleBackColor = false;
+            this.Logout_btn.Click += new System.EventHandler(this.Logout_btn_Click_1);
             // 
             // PSS_lbl
             // 

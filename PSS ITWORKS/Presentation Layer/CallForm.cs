@@ -355,6 +355,11 @@ namespace PSS_ITWORKS.Presentation_Layer
             
             //repopulate dgv
         }
-        
+
+        private void Logout_btn_Click_1(object sender, EventArgs e)
+        {
+            dashbord.Show();
+            this.Close();
+        }
     }
 }

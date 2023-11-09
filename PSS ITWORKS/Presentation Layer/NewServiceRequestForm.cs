@@ -170,7 +170,7 @@ namespace PSS_ITWORKS.Presentation_Layer
 
 
             MessageBox.Show("Service Request successfully created");
-            this.Close();
+            callForm.Show();
 
         }
 
