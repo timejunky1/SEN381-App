@@ -41,7 +41,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         void getContractInfo(DateTime InitiationDate)
         {
             int contractID = int.Parse(ContractOverview_dgv.SelectedRows[0].Cells[0].Value.ToString());
-
+            PSS_lbl.Text = $"Welcome {userInfo.Name} {userInfo.Surname} (Call Employee)";
             int priority = 0;
             int duration = 0;
             DateTime date;

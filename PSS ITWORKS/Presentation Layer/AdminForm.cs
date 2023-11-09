@@ -39,6 +39,7 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void AdminForm_Load(object sender, EventArgs e)
         {
+            Welcome_lbl.Text = $"Welcome {userInfo.Name} {userInfo.Surname} (Admin)";
             cm = new StrategyContextManager(new StrategyClientManager());
             cm.Connect(connString);
             Users_dgv.Rows.Clear();

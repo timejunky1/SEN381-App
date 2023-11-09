@@ -219,6 +219,7 @@ namespace PSS_ITWORKS.Presentation_Layer
         }
         private void ContractManagerForm_Load(object sender, EventArgs e)
         {
+            PSS_lbl.Text = $"Welcome {userInfo.Name} {userInfo.Surname} (Contract Manager)";
             Services_dgv.Rows.Clear();
             Months2_num.Value = 12;
             months1_num.Value = 12;

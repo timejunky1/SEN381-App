@@ -36,6 +36,7 @@ namespace PSS_ITWORKS.Presentation_Layer
 
         private void ClientManagerForm_Load(object sender, EventArgs e)
         {
+            WelcomeClientManager_lbl.Text = $"Welcome {userInfo.Name} {userInfo.Surname} (Client Manager)";
             context = new StrategyContextManager(new StrategyClientManager());
             context.Connect(connString);
             List<IEntity> entities = context.Get();
